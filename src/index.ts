@@ -42,7 +42,7 @@ app.post('/publish', async (req: any, res: any) => {
             return FailureValue("No request body was provided.");
         }
 
-        const request = JSON.parse(req.body) as HollowPublicationRequest;
+        const request = req.body as HollowPublicationRequest;
         logger.info(request);
 
         const publisher = await createPublisher(request);
@@ -84,7 +84,7 @@ app.post('/publish', async (req: any, res: any) => {
 
 app.post('/check', async (req: any, res: any) => {
     try {
-        const request = JSON.parse(req.body) as HollowPublicationRequest;
+        const request = req.body as HollowPublicationRequest;
         logger.info(request);
 
         const publisher = await createPublisher(request);

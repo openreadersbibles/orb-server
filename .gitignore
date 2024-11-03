@@ -4,3 +4,5 @@ dropall.sql
 src/package-lock.json
 package-lock.json
 dist/**
+combined.log
+error.log
