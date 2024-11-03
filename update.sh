@@ -18,4 +18,4 @@ git stash
 git pull
 npm install
 npx webpack
-pm2 restart ~/orb-server/dist/server.js
+pm2 restart ~/orb-server/dist/server.js --update-env

@@ -14,6 +14,7 @@ import { GitHubActionYML } from './GitHubActionYML';
 import axios, { ResponseType } from 'axios';
 import { ParsingFormat } from '../../models/parsing-formats/ParsingFormat';
 import { create } from 'xmlbuilder2';
+import logger from './logger';
 
 export interface PublisherInterface {
     connect(): Promise<void>;

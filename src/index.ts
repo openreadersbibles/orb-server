@@ -85,7 +85,7 @@ app.post('/publish', async (req: any, res: any) => {
 app.post('/check', async (req: any, res: any) => {
     try {
         const request = req.body as HollowPublicationRequest;
-        logger.info(request);
+        logger.info(JSON.stringify(request, null, 2));
 
         const publisher = await createPublisher(request);
 
