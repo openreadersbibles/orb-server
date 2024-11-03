@@ -1,0 +1,374 @@
+ماضی ساده معلوم اِخباری سوم مفرد	{"person":"3rd","tense":"aorist","voice":"active","mood":"indicative","grammatical_case":null,"grammatical_number":"singular","gender":null}
+ماضی ساده مجهول اِخباری سوم مفرد	{"person":"3rd","tense":"aorist","voice":"passive","mood":"indicative","grammatical_case":null,"grammatical_number":"singular","gender":null}
+حال مجهول وجه وصفی نهادی مذکر مفرد	{"person":null,"tense":"present","voice":"passive","mood":"participle","grammatical_case":"nominative","grammatical_number":"singular","gender":"masculine"}
+گذشتهٔ استمراری معلوم اِخباری سوم مفرد	{"person":"3rd","tense":"imperfect","voice":"active","mood":"indicative","grammatical_case":null,"grammatical_number":"singular","gender":null}
+ماضی ساده مجهول وجه وصفی وابستگی مؤنث مفرد	{"person":null,"tense":"aorist","voice":"passive","mood":"participle","grammatical_case":"genitive","grammatical_number":"singular","gender":"feminine"}
+ماضی ساده معلوم مصدر	{"person":null,"tense":"aorist","voice":"active","mood":"infinitive","grammatical_case":null,"grammatical_number":null,"gender":null}
+حال معلوم وجه وصفی نهادی مؤنث مفرد	{"person":null,"tense":"present","voice":"active","mood":"participle","grammatical_case":"nominative","grammatical_number":"singular","gender":"feminine"}
+حال معلوم وجه وصفی نهادی مذکر مفرد	{"person":null,"tense":"present","voice":"active","mood":"participle","grammatical_case":"nominative","grammatical_number":"singular","gender":"masculine"}
+ماضی ساده مجهول وجه وصفی وابستگی مذکر مفرد	{"person":null,"tense":"aorist","voice":"passive","mood":"participle","grammatical_case":"genitive","grammatical_number":"singular","gender":"masculine"}
+ماضی ساده مجهول اِلتِزامی دوم مفرد	{"person":"2nd","tense":"aorist","voice":"passive","mood":"subjunctive","grammatical_case":null,"grammatical_number":"singular","gender":null}
+ماضی ساده مجهول وجه وصفی نهادی خنثی مفرد	{"person":null,"tense":"aorist","voice":"passive","mood":"participle","grammatical_case":"nominative","grammatical_number":"singular","gender":"neuter"}
+حال معلوم اِخباری سوم مفرد	{"person":"3rd","tense":"present","voice":"active","mood":"indicative","grammatical_case":null,"grammatical_number":"singular","gender":null}
+آینده میانه اِخباری سوم مفرد	{"person":"3rd","tense":"future","voice":"middle","mood":"indicative","grammatical_case":null,"grammatical_number":"singular","gender":null}
+آینده معلوم اِخباری دوم مفرد	{"person":"2nd","tense":"future","voice":"active","mood":"indicative","grammatical_case":null,"grammatical_number":"singular","gender":null}
+آینده معلوم اِخباری سوم مفرد	{"person":"3rd","tense":"future","voice":"active","mood":"indicative","grammatical_case":null,"grammatical_number":"singular","gender":null}
+کامل معلوم اِخباری سوم مفرد	{"person":"3rd","tense":"perfect","voice":"active","mood":"indicative","grammatical_case":null,"grammatical_number":"singular","gender":null}
+ماضی ساده مجهول اِلتِزامی سوم مفرد	{"person":"3rd","tense":"aorist","voice":"passive","mood":"subjunctive","grammatical_case":null,"grammatical_number":"singular","gender":null}
+حال معلوم وجه وصفی وابستگی مذکر مفرد	{"person":null,"tense":"present","voice":"active","mood":"participle","grammatical_case":"genitive","grammatical_number":"singular","gender":"masculine"}
+آینده معلوم اِخباری سوم جمع	{"person":"3rd","tense":"future","voice":"active","mood":"indicative","grammatical_case":null,"grammatical_number":"plural","gender":null}
+حال مجهول وجه وصفی نهادی خنثی مفرد	{"person":null,"tense":"present","voice":"passive","mood":"participle","grammatical_case":"nominative","grammatical_number":"singular","gender":"neuter"}
+ماضی ساده مجهول وجه وصفی نهادی مذکر مفرد	{"person":null,"tense":"aorist","voice":"passive","mood":"participle","grammatical_case":"nominative","grammatical_number":"singular","gender":"masculine"}
+ماضی ساده میانه اِخباری سوم جمع	{"person":"3rd","tense":"aorist","voice":"middle","mood":"indicative","grammatical_case":null,"grammatical_number":"plural","gender":null}
+حال معلوم وجه وصفی نهادی مذکر جمع	{"person":null,"tense":"present","voice":"active","mood":"participle","grammatical_case":"nominative","grammatical_number":"plural","gender":"masculine"}
+ماضی ساده معلوم اِخباری اول جمع	{"person":"1st","tense":"aorist","voice":"active","mood":"indicative","grammatical_case":null,"grammatical_number":"plural","gender":null}
+ماضی ساده معلوم وجه وصفی نهادی مذکر مفرد	{"person":null,"tense":"aorist","voice":"active","mood":"participle","grammatical_case":"nominative","grammatical_number":"singular","gender":"masculine"}
+گذشتهٔ استمراری میانه اِخباری سوم مفرد	{"person":"3rd","tense":"imperfect","voice":"middle","mood":"indicative","grammatical_case":null,"grammatical_number":"singular","gender":null}
+حال مجهول اِخباری سوم مفرد	{"person":"3rd","tense":"present","voice":"passive","mood":"indicative","grammatical_case":null,"grammatical_number":"singular","gender":null}
+ماضی ساده معلوم اِخباری سوم جمع	{"person":"3rd","tense":"aorist","voice":"active","mood":"indicative","grammatical_case":null,"grammatical_number":"plural","gender":null}
+کامل مجهول اِخباری سوم مفرد	{"person":"3rd","tense":"perfect","voice":"passive","mood":"indicative","grammatical_case":null,"grammatical_number":"singular","gender":null}
+حال معلوم اِخباری دوم مفرد	{"person":"2nd","tense":"present","voice":"active","mood":"indicative","grammatical_case":null,"grammatical_number":"singular","gender":null}
+حال میانه وجه وصفی نهادی مذکر مفرد	{"person":null,"tense":"present","voice":"middle","mood":"participle","grammatical_case":"nominative","grammatical_number":"singular","gender":"masculine"}
+حال میانه وجه وصفی وابستگی مذکر مفرد	{"person":null,"tense":"present","voice":"middle","mood":"participle","grammatical_case":"genitive","grammatical_number":"singular","gender":"masculine"}
+ماضی ساده مجهول وجه وصفی نهادی مذکر جمع	{"person":null,"tense":"aorist","voice":"passive","mood":"participle","grammatical_case":"nominative","grammatical_number":"plural","gender":"masculine"}
+ماضی ساده معلوم امری دوم جمع	{"person":"2nd","tense":"aorist","voice":"active","mood":"imperative","grammatical_case":null,"grammatical_number":"plural","gender":null}
+ماضی ساده معلوم اِلتِزامی دوم جمع	{"person":"2nd","tense":"aorist","voice":"active","mood":"subjunctive","grammatical_case":null,"grammatical_number":"plural","gender":null}
+ماضی ساده معلوم اِلتِزامی اول مفرد	{"person":"1st","tense":"aorist","voice":"active","mood":"subjunctive","grammatical_case":null,"grammatical_number":"singular","gender":null}
+ماضی ساده معلوم وجه وصفی نهادی مذکر جمع	{"person":null,"tense":"aorist","voice":"active","mood":"participle","grammatical_case":"nominative","grammatical_number":"plural","gender":"masculine"}
+ماضی ساده مجهول اِخباری سوم جمع	{"person":"3rd","tense":"aorist","voice":"passive","mood":"indicative","grammatical_case":null,"grammatical_number":"plural","gender":null}
+ماضی ساده معلوم وجه وصفی وابستگی مذکر جمع	{"person":null,"tense":"aorist","voice":"active","mood":"participle","grammatical_case":"genitive","grammatical_number":"plural","gender":"masculine"}
+حال میانه اِخباری سوم مفرد	{"person":"3rd","tense":"present","voice":"middle","mood":"indicative","grammatical_case":null,"grammatical_number":"singular","gender":null}
+ماضی ساده معلوم امری دوم مفرد	{"person":"2nd","tense":"aorist","voice":"active","mood":"imperative","grammatical_case":null,"grammatical_number":"singular","gender":null}
+حال معلوم امری دوم مفرد	{"person":"2nd","tense":"present","voice":"active","mood":"imperative","grammatical_case":null,"grammatical_number":"singular","gender":null}
+حال معلوم مصدر	{"person":null,"tense":"present","voice":"active","mood":"infinitive","grammatical_case":null,"grammatical_number":null,"gender":null}
+ماضی ساده معلوم اِخباری اول مفرد	{"person":"1st","tense":"aorist","voice":"active","mood":"indicative","grammatical_case":null,"grammatical_number":"singular","gender":null}
+ماضی ساده مجهول مصدر	{"person":null,"tense":"aorist","voice":"passive","mood":"infinitive","grammatical_case":null,"grammatical_number":null,"gender":null}
+حال معلوم اِخباری سوم جمع	{"person":"3rd","tense":"present","voice":"active","mood":"indicative","grammatical_case":null,"grammatical_number":"plural","gender":null}
+ماضی ساده معلوم وجه وصفی وابستگی مذکر مفرد	{"person":null,"tense":"aorist","voice":"active","mood":"participle","grammatical_case":"genitive","grammatical_number":"singular","gender":"masculine"}
+حال میانه امری دوم مفرد	{"person":"2nd","tense":"present","voice":"middle","mood":"imperative","grammatical_case":null,"grammatical_number":"singular","gender":null}
+کامل معلوم اِخباری سوم جمع	{"person":"3rd","tense":"perfect","voice":"active","mood":"indicative","grammatical_case":null,"grammatical_number":"plural","gender":null}
+حال مجهول وجه وصفی مفعولی مؤنث مفرد	{"person":null,"tense":"present","voice":"passive","mood":"participle","grammatical_case":"accusative","grammatical_number":"singular","gender":"feminine"}
+آینده مجهول اِخباری سوم مفرد	{"person":"3rd","tense":"future","voice":"passive","mood":"indicative","grammatical_case":null,"grammatical_number":"singular","gender":null}
+حال معلوم امری دوم جمع	{"person":"2nd","tense":"present","voice":"active","mood":"imperative","grammatical_case":null,"grammatical_number":"plural","gender":null}
+گذشتهٔ استمراری مجهول اِخباری سوم جمع	{"person":"3rd","tense":"imperfect","voice":"passive","mood":"indicative","grammatical_case":null,"grammatical_number":"plural","gender":null}
+حال میانه وجه وصفی نهادی مذکر جمع	{"person":null,"tense":"present","voice":"middle","mood":"participle","grammatical_case":"nominative","grammatical_number":"plural","gender":"masculine"}
+حال میانه وجه وصفی مفعولی مذکر جمع	{"person":null,"tense":"present","voice":"middle","mood":"participle","grammatical_case":"accusative","grammatical_number":"plural","gender":"masculine"}
+حال معلوم وجه وصفی وابستگی مؤنث مفرد	{"person":null,"tense":"present","voice":"active","mood":"participle","grammatical_case":"genitive","grammatical_number":"singular","gender":"feminine"}
+حال معلوم اِخباری اول جمع	{"person":"1st","tense":"present","voice":"active","mood":"indicative","grammatical_case":null,"grammatical_number":"plural","gender":null}
+حال معلوم اِخباری اول مفرد	{"person":"1st","tense":"present","voice":"active","mood":"indicative","grammatical_case":null,"grammatical_number":"singular","gender":null}
+حال معلوم وجه وصفی نهادی خنثی مفرد	{"person":null,"tense":"present","voice":"active","mood":"participle","grammatical_case":"nominative","grammatical_number":"singular","gender":"neuter"}
+حال میانه اِخباری دوم مفرد	{"person":"2nd","tense":"present","voice":"middle","mood":"indicative","grammatical_case":null,"grammatical_number":"singular","gender":null}
+حال معلوم وجه وصفی مفعولی خنثی مفرد	{"person":null,"tense":"present","voice":"active","mood":"participle","grammatical_case":"accusative","grammatical_number":"singular","gender":"neuter"}
+حال میانه وجه وصفی مفعولی خنثی مفرد	{"person":null,"tense":"present","voice":"middle","mood":"participle","grammatical_case":"accusative","grammatical_number":"singular","gender":"neuter"}
+ماضی ساده میانه اِلتِزامی سوم جمع	{"person":"3rd","tense":"aorist","voice":"middle","mood":"subjunctive","grammatical_case":null,"grammatical_number":"plural","gender":null}
+حال میانه وجه وصفی کنش‌گیری خنثی مفرد	{"person":null,"tense":"present","voice":"middle","mood":"participle","grammatical_case":"dative","grammatical_number":"singular","gender":"neuter"}
+ماضی ساده معلوم اِلتِزامی دوم مفرد	{"person":"2nd","tense":"aorist","voice":"active","mood":"subjunctive","grammatical_case":null,"grammatical_number":"singular","gender":null}
+آینده معلوم اِخباری اول مفرد	{"person":"1st","tense":"future","voice":"active","mood":"indicative","grammatical_case":null,"grammatical_number":"singular","gender":null}
+گذشتهٔ استمراری معلوم اِخباری سوم جمع	{"person":"3rd","tense":"imperfect","voice":"active","mood":"indicative","grammatical_case":null,"grammatical_number":"plural","gender":null}
+حال میانه وجه وصفی کنش‌گیری مذکر جمع	{"person":null,"tense":"present","voice":"middle","mood":"participle","grammatical_case":"dative","grammatical_number":"plural","gender":"masculine"}
+ماضی ساده میانه اِخباری سوم مفرد	{"person":"3rd","tense":"aorist","voice":"middle","mood":"indicative","grammatical_case":null,"grammatical_number":"singular","gender":null}
+حال مجهول وجه وصفی مفعولی مذکر مفرد	{"person":null,"tense":"present","voice":"passive","mood":"participle","grammatical_case":"accusative","grammatical_number":"singular","gender":"masculine"}
+حال معلوم وجه وصفی مفعولی مذکر جمع	{"person":null,"tense":"present","voice":"active","mood":"participle","grammatical_case":"accusative","grammatical_number":"plural","gender":"masculine"}
+حال مجهول وجه وصفی مفعولی مذکر جمع	{"person":null,"tense":"present","voice":"passive","mood":"participle","grammatical_case":"accusative","grammatical_number":"plural","gender":"masculine"}
+آینده مجهول اِخباری سوم جمع	{"person":"3rd","tense":"future","voice":"passive","mood":"indicative","grammatical_case":null,"grammatical_number":"plural","gender":null}
+آینده میانه اِخباری سوم جمع	{"person":"3rd","tense":"future","voice":"middle","mood":"indicative","grammatical_case":null,"grammatical_number":"plural","gender":null}
+کامل مجهول وجه وصفی نهادی مذکر جمع	{"person":null,"tense":"perfect","voice":"passive","mood":"participle","grammatical_case":"nominative","grammatical_number":"plural","gender":"masculine"}
+حال معلوم اِخباری دوم جمع	{"person":"2nd","tense":"present","voice":"active","mood":"indicative","grammatical_case":null,"grammatical_number":"plural","gender":null}
+ماضی ساده معلوم اِلتِزامی سوم جمع	{"person":"3rd","tense":"aorist","voice":"active","mood":"subjunctive","grammatical_case":null,"grammatical_number":"plural","gender":null}
+حال میانه امری دوم جمع	{"person":"2nd","tense":"present","voice":"middle","mood":"imperative","grammatical_case":null,"grammatical_number":"plural","gender":null}
+حال مجهول مصدر	{"person":null,"tense":"present","voice":"passive","mood":"infinitive","grammatical_case":null,"grammatical_number":null,"gender":null}
+حال میانه وجه وصفی نهادی مؤنث مفرد	{"person":null,"tense":"present","voice":"middle","mood":"participle","grammatical_case":"nominative","grammatical_number":"singular","gender":"feminine"}
+ماضی ساده معلوم امری سوم مفرد	{"person":"3rd","tense":"aorist","voice":"active","mood":"imperative","grammatical_case":null,"grammatical_number":"singular","gender":null}
+ماضی ساده معلوم اِلتِزامی سوم مفرد	{"person":"3rd","tense":"aorist","voice":"active","mood":"subjunctive","grammatical_case":null,"grammatical_number":"singular","gender":null}
+ماضی ساده میانه اِلتِزامی سوم مفرد	{"person":"3rd","tense":"aorist","voice":"middle","mood":"subjunctive","grammatical_case":null,"grammatical_number":"singular","gender":null}
+ماضی ساده معلوم اِخباری دوم جمع	{"person":"2nd","tense":"aorist","voice":"active","mood":"indicative","grammatical_case":null,"grammatical_number":"plural","gender":null}
+حال معلوم اِلتِزامی دوم مفرد	{"person":"2nd","tense":"present","voice":"active","mood":"subjunctive","grammatical_case":null,"grammatical_number":"singular","gender":null}
+ماضی ساده مجهول امری دوم مفرد	{"person":"2nd","tense":"aorist","voice":"passive","mood":"imperative","grammatical_case":null,"grammatical_number":"singular","gender":null}
+آینده مجهول اِخباری دوم مفرد	{"person":"2nd","tense":"future","voice":"passive","mood":"indicative","grammatical_case":null,"grammatical_number":"singular","gender":null}
+کامل مجهول وجه وصفی مفعولی مؤنث مفرد	{"person":null,"tense":"perfect","voice":"passive","mood":"participle","grammatical_case":"accusative","grammatical_number":"singular","gender":"feminine"}
+حال معلوم امری سوم مفرد	{"person":"3rd","tense":"present","voice":"active","mood":"imperative","grammatical_case":null,"grammatical_number":"singular","gender":null}
+حال معلوم وجه وصفی کنش‌گیری مذکر مفرد	{"person":null,"tense":"present","voice":"active","mood":"participle","grammatical_case":"dative","grammatical_number":"singular","gender":"masculine"}
+حال معلوم وجه وصفی مفعولی مذکر مفرد	{"person":null,"tense":"present","voice":"active","mood":"participle","grammatical_case":"accusative","grammatical_number":"singular","gender":"masculine"}
+ماضی ساده میانه مصدر	{"person":null,"tense":"aorist","voice":"middle","mood":"infinitive","grammatical_case":null,"grammatical_number":null,"gender":null}
+حال معلوم وجه وصفی وابستگی مذکر جمع	{"person":null,"tense":"present","voice":"active","mood":"participle","grammatical_case":"genitive","grammatical_number":"plural","gender":"masculine"}
+ماضی ساده میانه اِلتِزامی دوم جمع	{"person":"2nd","tense":"aorist","voice":"middle","mood":"subjunctive","grammatical_case":null,"grammatical_number":"plural","gender":null}
+آینده میانه اِخباری دوم جمع	{"person":"2nd","tense":"future","voice":"middle","mood":"indicative","grammatical_case":null,"grammatical_number":"plural","gender":null}
+ماضی ساده مجهول اِلتِزامی سوم جمع	{"person":"3rd","tense":"aorist","voice":"passive","mood":"subjunctive","grammatical_case":null,"grammatical_number":"plural","gender":null}
+حال معلوم اِلتِزامی سوم مفرد	{"person":"3rd","tense":"present","voice":"active","mood":"subjunctive","grammatical_case":null,"grammatical_number":"singular","gender":null}
+حال میانه اِلتِزامی دوم جمع	{"person":"2nd","tense":"present","voice":"middle","mood":"subjunctive","grammatical_case":null,"grammatical_number":"plural","gender":null}
+کامل معلوم وجه وصفی نهادی مذکر جمع	{"person":null,"tense":"perfect","voice":"active","mood":"participle","grammatical_case":"nominative","grammatical_number":"plural","gender":"masculine"}
+حال میانه مصدر	{"person":null,"tense":"present","voice":"middle","mood":"infinitive","grammatical_case":null,"grammatical_number":null,"gender":null}
+حال میانه اِلتِزامی دوم مفرد	{"person":"2nd","tense":"present","voice":"middle","mood":"subjunctive","grammatical_case":null,"grammatical_number":"singular","gender":null}
+ماضی ساده میانه امری دوم مفرد	{"person":"2nd","tense":"aorist","voice":"middle","mood":"imperative","grammatical_case":null,"grammatical_number":"singular","gender":null}
+ماضی ساده مجهول اِلتِزامی دوم جمع	{"person":"2nd","tense":"aorist","voice":"passive","mood":"subjunctive","grammatical_case":null,"grammatical_number":"plural","gender":null}
+ماضی ساده مجهول امری سوم مفرد	{"person":"3rd","tense":"aorist","voice":"passive","mood":"imperative","grammatical_case":null,"grammatical_number":"singular","gender":null}
+حال معلوم اِلتِزامی دوم جمع	{"person":"2nd","tense":"present","voice":"active","mood":"subjunctive","grammatical_case":null,"grammatical_number":"plural","gender":null}
+حال میانه اِخباری دوم جمع	{"person":"2nd","tense":"present","voice":"middle","mood":"indicative","grammatical_case":null,"grammatical_number":"plural","gender":null}
+ماضی ساده معلوم اِلتِزامی اول جمع	{"person":"1st","tense":"aorist","voice":"active","mood":"subjunctive","grammatical_case":null,"grammatical_number":"plural","gender":null}
+ماضی ساده میانه اِلتِزامی اول جمع	{"person":"1st","tense":"aorist","voice":"middle","mood":"subjunctive","grammatical_case":null,"grammatical_number":"plural","gender":null}
+آینده مجهول اِخباری دوم جمع	{"person":"2nd","tense":"future","voice":"passive","mood":"indicative","grammatical_case":null,"grammatical_number":"plural","gender":null}
+آینده معلوم اِخباری دوم جمع	{"person":"2nd","tense":"future","voice":"active","mood":"indicative","grammatical_case":null,"grammatical_number":"plural","gender":null}
+کامل معلوم اِخباری دوم جمع	{"person":"2nd","tense":"perfect","voice":"active","mood":"indicative","grammatical_case":null,"grammatical_number":"plural","gender":null}
+حال معلوم وجه وصفی کنش‌گیری مذکر جمع	{"person":null,"tense":"present","voice":"active","mood":"participle","grammatical_case":"dative","grammatical_number":"plural","gender":"masculine"}
+حال معلوم اِلتِزامی سوم جمع	{"person":"3rd","tense":"present","voice":"active","mood":"subjunctive","grammatical_case":null,"grammatical_number":"plural","gender":null}
+کامل مجهول وجه وصفی نهادی مؤنث مفرد	{"person":null,"tense":"perfect","voice":"passive","mood":"participle","grammatical_case":"nominative","grammatical_number":"singular","gender":"feminine"}
+حال میانه اِخباری سوم جمع	{"person":"3rd","tense":"present","voice":"middle","mood":"indicative","grammatical_case":null,"grammatical_number":"plural","gender":null}
+ماضی بَعید مجهول اِخباری سوم مفرد	{"person":"3rd","tense":"pluperfect","voice":"passive","mood":"indicative","grammatical_case":null,"grammatical_number":"singular","gender":null}
+ماضی ساده معلوم اِخباری دوم مفرد	{"person":"2nd","tense":"aorist","voice":"active","mood":"indicative","grammatical_case":null,"grammatical_number":"singular","gender":null}
+حال معلوم وجه وصفی مفعولی مؤنث مفرد	{"person":null,"tense":"present","voice":"active","mood":"participle","grammatical_case":"accusative","grammatical_number":"singular","gender":"feminine"}
+ماضی ساده میانه وجه وصفی وابستگی مؤنث مفرد	{"person":null,"tense":"aorist","voice":"middle","mood":"participle","grammatical_case":"genitive","grammatical_number":"singular","gender":"feminine"}
+ماضی ساده معلوم وجه وصفی کنش‌گیری مذکر مفرد	{"person":null,"tense":"aorist","voice":"active","mood":"participle","grammatical_case":"dative","grammatical_number":"singular","gender":"masculine"}
+حال میانه اِخباری اول جمع	{"person":"1st","tense":"present","voice":"middle","mood":"indicative","grammatical_case":null,"grammatical_number":"plural","gender":null}
+حال مجهول وجه وصفی نهادی مؤنث مفرد	{"person":null,"tense":"present","voice":"passive","mood":"participle","grammatical_case":"nominative","grammatical_number":"singular","gender":"feminine"}
+حال میانه وجه وصفی وابستگی مذکر جمع	{"person":null,"tense":"present","voice":"middle","mood":"participle","grammatical_case":"genitive","grammatical_number":"plural","gender":"masculine"}
+کامل مجهول وجه وصفی مفعولی مذکر مفرد	{"person":null,"tense":"perfect","voice":"passive","mood":"participle","grammatical_case":"accusative","grammatical_number":"singular","gender":"masculine"}
+حال مجهول اِخباری سوم جمع	{"person":"3rd","tense":"present","voice":"passive","mood":"indicative","grammatical_case":null,"grammatical_number":"plural","gender":null}
+کامل معلوم وجه وصفی نهادی مذکر مفرد	{"person":null,"tense":"perfect","voice":"active","mood":"participle","grammatical_case":"nominative","grammatical_number":"singular","gender":"masculine"}
+کامل معلوم اِلتِزامی دوم جمع	{"person":"2nd","tense":"perfect","voice":"active","mood":"subjunctive","grammatical_case":null,"grammatical_number":"plural","gender":null}
+ماضی ساده معلوم وجه وصفی مفعولی مذکر مفرد	{"person":null,"tense":"aorist","voice":"active","mood":"participle","grammatical_case":"accusative","grammatical_number":"singular","gender":"masculine"}
+حال میانه وجه وصفی مفعولی مذکر مفرد	{"person":null,"tense":"present","voice":"middle","mood":"participle","grammatical_case":"accusative","grammatical_number":"singular","gender":"masculine"}
+گذشتهٔ استمراری میانه اِخباری سوم جمع	{"person":"3rd","tense":"imperfect","voice":"middle","mood":"indicative","grammatical_case":null,"grammatical_number":"plural","gender":null}
+ماضی ساده معلوم وجه وصفی نهادی مؤنث مفرد	{"person":null,"tense":"aorist","voice":"active","mood":"participle","grammatical_case":"nominative","grammatical_number":"singular","gender":"feminine"}
+ماضی ساده میانه اِلتِزامی اول مفرد	{"person":"1st","tense":"aorist","voice":"middle","mood":"subjunctive","grammatical_case":null,"grammatical_number":"singular","gender":null}
+آینده مجهول اِخباری اول مفرد	{"person":"1st","tense":"future","voice":"passive","mood":"indicative","grammatical_case":null,"grammatical_number":"singular","gender":null}
+حال میانه اِخباری اول مفرد	{"person":"1st","tense":"present","voice":"middle","mood":"indicative","grammatical_case":null,"grammatical_number":"singular","gender":null}
+ماضی ساده مجهول وجه وصفی وابستگی خنثی مفرد	{"person":null,"tense":"aorist","voice":"passive","mood":"participle","grammatical_case":"genitive","grammatical_number":"singular","gender":"neuter"}
+حال معلوم وجه وصفی نهادی خنثی جمع	{"person":null,"tense":"present","voice":"active","mood":"participle","grammatical_case":"nominative","grammatical_number":"plural","gender":"neuter"}
+ماضی ساده مجهول امری دوم جمع	{"person":"2nd","tense":"aorist","voice":"passive","mood":"imperative","grammatical_case":null,"grammatical_number":"plural","gender":null}
+ماضی ساده میانه وجه وصفی نهادی مذکر مفرد	{"person":null,"tense":"aorist","voice":"middle","mood":"participle","grammatical_case":"nominative","grammatical_number":"singular","gender":"masculine"}
+کامل معلوم وجه وصفی مفعولی خنثی جمع	{"person":null,"tense":"perfect","voice":"active","mood":"participle","grammatical_case":"accusative","grammatical_number":"plural","gender":"neuter"}
+ماضی ساده میانه امری دوم جمع	{"person":"2nd","tense":"aorist","voice":"middle","mood":"imperative","grammatical_case":null,"grammatical_number":"plural","gender":null}
+حال مجهول وجه وصفی نهادی مذکر جمع	{"person":null,"tense":"present","voice":"passive","mood":"participle","grammatical_case":"nominative","grammatical_number":"plural","gender":"masculine"}
+کامل مجهول وجه وصفی نهادی خنثی مفرد	{"person":null,"tense":"perfect","voice":"passive","mood":"participle","grammatical_case":"nominative","grammatical_number":"singular","gender":"neuter"}
+کامل مجهول وجه وصفی نهادی مؤنث جمع	{"person":null,"tense":"perfect","voice":"passive","mood":"participle","grammatical_case":"nominative","grammatical_number":"plural","gender":"feminine"}
+آینده میانه اِخباری اول مفرد	{"person":"1st","tense":"future","voice":"middle","mood":"indicative","grammatical_case":null,"grammatical_number":"singular","gender":null}
+حال میانه وجه وصفی کنش‌گیری خنثی جمع	{"person":null,"tense":"present","voice":"middle","mood":"participle","grammatical_case":"dative","grammatical_number":"plural","gender":"neuter"}
+ماضی ساده میانه اِخباری دوم جمع	{"person":"2nd","tense":"aorist","voice":"middle","mood":"indicative","grammatical_case":null,"grammatical_number":"plural","gender":null}
+ماضی ساده میانه وجه وصفی نهادی مؤنث جمع	{"person":null,"tense":"aorist","voice":"middle","mood":"participle","grammatical_case":"nominative","grammatical_number":"plural","gender":"feminine"}
+آینده میانه اِخباری دوم مفرد	{"person":"2nd","tense":"future","voice":"middle","mood":"indicative","grammatical_case":null,"grammatical_number":"singular","gender":null}
+حال میانه اِلتِزامی سوم مفرد	{"person":"3rd","tense":"present","voice":"middle","mood":"subjunctive","grammatical_case":null,"grammatical_number":"singular","gender":null}
+ماضی بَعید معلوم اِخباری دوم جمع	{"person":"2nd","tense":"pluperfect","voice":"active","mood":"indicative","grammatical_case":null,"grammatical_number":"plural","gender":null}
+حال مجهول وجه وصفی مفعولی خنثی مفرد	{"person":null,"tense":"present","voice":"passive","mood":"participle","grammatical_case":"accusative","grammatical_number":"singular","gender":"neuter"}
+ماضی ساده مجهول وجه وصفی نهادی مؤنث مفرد	{"person":null,"tense":"aorist","voice":"passive","mood":"participle","grammatical_case":"nominative","grammatical_number":"singular","gender":"feminine"}
+ماضی ساده معلوم وجه وصفی نهادی خنثی مفرد	{"person":null,"tense":"aorist","voice":"active","mood":"participle","grammatical_case":"nominative","grammatical_number":"singular","gender":"neuter"}
+ماضی ساده معلوم وجه وصفی نهادی خنثی جمع	{"person":null,"tense":"aorist","voice":"active","mood":"participle","grammatical_case":"nominative","grammatical_number":"plural","gender":"neuter"}
+ماضی بَعید معلوم اِخباری سوم جمع	{"person":"3rd","tense":"pluperfect","voice":"active","mood":"indicative","grammatical_case":null,"grammatical_number":"plural","gender":null}
+ماضی بَعید معلوم اِخباری سوم مفرد	{"person":"3rd","tense":"pluperfect","voice":"active","mood":"indicative","grammatical_case":null,"grammatical_number":"singular","gender":null}
+کامل مجهول وجه وصفی مفعولی خنثی مفرد	{"person":null,"tense":"perfect","voice":"passive","mood":"participle","grammatical_case":"accusative","grammatical_number":"singular","gender":"neuter"}
+کامل مجهول وجه وصفی مفعولی خنثی جمع	{"person":null,"tense":"perfect","voice":"passive","mood":"participle","grammatical_case":"accusative","grammatical_number":"plural","gender":"neuter"}
+کامل مجهول وجه وصفی کنش‌گیری مذکر مفرد	{"person":null,"tense":"perfect","voice":"passive","mood":"participle","grammatical_case":"dative","grammatical_number":"singular","gender":"masculine"}
+ماضی ساده مجهول وجه وصفی کنش‌گیری مؤنث مفرد	{"person":null,"tense":"aorist","voice":"passive","mood":"participle","grammatical_case":"dative","grammatical_number":"singular","gender":"feminine"}
+ماضی ساده معلوم وجه وصفی کنش‌گیری مؤنث مفرد	{"person":null,"tense":"aorist","voice":"active","mood":"participle","grammatical_case":"dative","grammatical_number":"singular","gender":"feminine"}
+ماضی ساده میانه وجه وصفی کنش‌گیری خنثی جمع	{"person":null,"tense":"aorist","voice":"middle","mood":"participle","grammatical_case":"dative","grammatical_number":"plural","gender":"neuter"}
+حال میانه وجه وصفی نهادی خنثی مفرد	{"person":null,"tense":"present","voice":"middle","mood":"participle","grammatical_case":"nominative","grammatical_number":"singular","gender":"neuter"}
+کامل معلوم اِخباری دوم مفرد	{"person":"2nd","tense":"perfect","voice":"active","mood":"indicative","grammatical_case":null,"grammatical_number":"singular","gender":null}
+حال میانه وجه وصفی نهادی خنثی جمع	{"person":null,"tense":"present","voice":"middle","mood":"participle","grammatical_case":"nominative","grammatical_number":"plural","gender":"neuter"}
+ماضی ساده مجهول اِخباری اول مفرد	{"person":"1st","tense":"aorist","voice":"passive","mood":"indicative","grammatical_case":null,"grammatical_number":"singular","gender":null}
+حال معلوم وجه وصفی وابستگی خنثی جمع	{"person":null,"tense":"present","voice":"active","mood":"participle","grammatical_case":"genitive","grammatical_number":"plural","gender":"neuter"}
+ماضی ساده میانه امری سوم مفرد	{"person":"3rd","tense":"aorist","voice":"middle","mood":"imperative","grammatical_case":null,"grammatical_number":"singular","gender":null}
+کامل معلوم وجه وصفی وابستگی مذکر جمع	{"person":null,"tense":"perfect","voice":"active","mood":"participle","grammatical_case":"genitive","grammatical_number":"plural","gender":"masculine"}
+کامل مجهول وجه وصفی مؤنث مفرد	{"person":null,"tense":"perfect","voice":"passive","mood":"participle","grammatical_case":null,"grammatical_number":"singular","gender":"feminine"}
+ماضی ساده مجهول اِخباری اول جمع	{"person":"1st","tense":"aorist","voice":"passive","mood":"indicative","grammatical_case":null,"grammatical_number":"plural","gender":null}
+حال مجهول وجه وصفی وابستگی مذکر جمع	{"person":null,"tense":"present","voice":"passive","mood":"participle","grammatical_case":"genitive","grammatical_number":"plural","gender":"masculine"}
+کامل مجهول وجه وصفی کنش‌گیری خنثی جمع	{"person":null,"tense":"perfect","voice":"passive","mood":"participle","grammatical_case":"dative","grammatical_number":"plural","gender":"neuter"}
+کامل مجهول وجه وصفی نهادی خنثی جمع	{"person":null,"tense":"perfect","voice":"passive","mood":"participle","grammatical_case":"nominative","grammatical_number":"plural","gender":"neuter"}
+ماضی ساده میانه وجه وصفی وابستگی مذکر مفرد	{"person":null,"tense":"aorist","voice":"middle","mood":"participle","grammatical_case":"genitive","grammatical_number":"singular","gender":"masculine"}
+ماضی ساده میانه وجه وصفی مفعولی خنثی جمع	{"person":null,"tense":"aorist","voice":"middle","mood":"participle","grammatical_case":"accusative","grammatical_number":"plural","gender":"neuter"}
+حال معلوم وجه وصفی مفعولی خنثی جمع	{"person":null,"tense":"present","voice":"active","mood":"participle","grammatical_case":"accusative","grammatical_number":"plural","gender":"neuter"}
+کامل معلوم وجه وصفی مفعولی مذکر جمع	{"person":null,"tense":"perfect","voice":"active","mood":"participle","grammatical_case":"accusative","grammatical_number":"plural","gender":"masculine"}
+ماضی ساده معلوم وجه وصفی کنش‌گیری مذکر جمع	{"person":null,"tense":"aorist","voice":"active","mood":"participle","grammatical_case":"dative","grammatical_number":"plural","gender":"masculine"}
+کامل مجهول وجه وصفی نهادی مذکر مفرد	{"person":null,"tense":"perfect","voice":"passive","mood":"participle","grammatical_case":"nominative","grammatical_number":"singular","gender":"masculine"}
+ماضی ساده میانه اِخباری دوم مفرد	{"person":"2nd","tense":"aorist","voice":"middle","mood":"indicative","grammatical_case":null,"grammatical_number":"singular","gender":null}
+کامل معلوم اِخباری اول جمع	{"person":"1st","tense":"perfect","voice":"active","mood":"indicative","grammatical_case":null,"grammatical_number":"plural","gender":null}
+ماضی ساده مجهول اِخباری دوم جمع	{"person":"2nd","tense":"aorist","voice":"passive","mood":"indicative","grammatical_case":null,"grammatical_number":"plural","gender":null}
+حال معلوم وجه وصفی کنش‌گیری خنثی مفرد	{"person":null,"tense":"present","voice":"active","mood":"participle","grammatical_case":"dative","grammatical_number":"singular","gender":"neuter"}
+کامل مجهول وجه وصفی مفعولی مذکر جمع	{"person":null,"tense":"perfect","voice":"passive","mood":"participle","grammatical_case":"accusative","grammatical_number":"plural","gender":"masculine"}
+کامل مجهول وجه وصفی کنش‌گیری مذکر جمع	{"person":null,"tense":"perfect","voice":"passive","mood":"participle","grammatical_case":"dative","grammatical_number":"plural","gender":"masculine"}
+کامل معلوم اِخباری اول مفرد	{"person":"1st","tense":"perfect","voice":"active","mood":"indicative","grammatical_case":null,"grammatical_number":"singular","gender":null}
+کامل میانه وجه وصفی مفعولی مذکر مفرد	{"person":null,"tense":"perfect","voice":"middle","mood":"participle","grammatical_case":"accusative","grammatical_number":"singular","gender":"masculine"}
+حال مجهول اِخباری دوم جمع	{"person":"2nd","tense":"present","voice":"passive","mood":"indicative","grammatical_case":null,"grammatical_number":"plural","gender":null}
+ماضی ساده مجهول وجه وصفی مفعولی خنثی مفرد	{"person":null,"tense":"aorist","voice":"passive","mood":"participle","grammatical_case":"accusative","grammatical_number":"singular","gender":"neuter"}
+کامل مجهول وجه وصفی وابستگی مذکر جمع	{"person":null,"tense":"perfect","voice":"passive","mood":"participle","grammatical_case":"genitive","grammatical_number":"plural","gender":"masculine"}
+حال میانه وجه وصفی کنش‌گیری مذکر مفرد	{"person":null,"tense":"present","voice":"middle","mood":"participle","grammatical_case":"dative","grammatical_number":"singular","gender":"masculine"}
+حال معلوم وجه وصفی مذکر جمع	{"person":null,"tense":"present","voice":"active","mood":"participle","grammatical_case":null,"grammatical_number":"plural","gender":"masculine"}
+گذشتهٔ استمراری میانه اِخباری اول جمع	{"person":"1st","tense":"imperfect","voice":"middle","mood":"indicative","grammatical_case":null,"grammatical_number":"plural","gender":null}
+حال مجهول امری دوم جمع	{"person":"2nd","tense":"present","voice":"passive","mood":"imperative","grammatical_case":null,"grammatical_number":"plural","gender":null}
+کامل معلوم وجه وصفی مفعولی خنثی مفرد	{"person":null,"tense":"perfect","voice":"active","mood":"participle","grammatical_case":"accusative","grammatical_number":"singular","gender":"neuter"}
+حال معلوم امری سوم جمع	{"person":"3rd","tense":"present","voice":"active","mood":"imperative","grammatical_case":null,"grammatical_number":"plural","gender":null}
+حال معلوم وجه وصفی کنش‌گیری مؤنث جمع	{"person":null,"tense":"present","voice":"active","mood":"participle","grammatical_case":"dative","grammatical_number":"plural","gender":"feminine"}
+حال معلوم وجه وصفی نهادی مؤنث جمع	{"person":null,"tense":"present","voice":"active","mood":"participle","grammatical_case":"nominative","grammatical_number":"plural","gender":"feminine"}
+حال معلوم وجه وصفی کنش‌گیری خنثی جمع	{"person":null,"tense":"present","voice":"active","mood":"participle","grammatical_case":"dative","grammatical_number":"plural","gender":"neuter"}
+ماضی ساده معلوم وجه وصفی نهادی مؤنث جمع	{"person":null,"tense":"aorist","voice":"active","mood":"participle","grammatical_case":"nominative","grammatical_number":"plural","gender":"feminine"}
+حال میانه وجه وصفی وابستگی مؤنث جمع	{"person":null,"tense":"present","voice":"middle","mood":"participle","grammatical_case":"genitive","grammatical_number":"plural","gender":"feminine"}
+گذشتهٔ استمراری معلوم اِخباری دوم مفرد	{"person":"2nd","tense":"imperfect","voice":"active","mood":"indicative","grammatical_case":null,"grammatical_number":"singular","gender":null}
+ماضی بَعید معلوم اِخباری دوم مفرد	{"person":"2nd","tense":"pluperfect","voice":"active","mood":"indicative","grammatical_case":null,"grammatical_number":"singular","gender":null}
+ماضی ساده میانه اِخباری اول مفرد	{"person":"1st","tense":"aorist","voice":"middle","mood":"indicative","grammatical_case":null,"grammatical_number":"singular","gender":null}
+گذشتهٔ استمراری میانه اِخباری اول مفرد	{"person":"1st","tense":"imperfect","voice":"middle","mood":"indicative","grammatical_case":null,"grammatical_number":"singular","gender":null}
+حال مجهول وجه وصفی وابستگی مذکر مفرد	{"person":null,"tense":"present","voice":"passive","mood":"participle","grammatical_case":"genitive","grammatical_number":"singular","gender":"masculine"}
+حال معلوم اِلتِزامی اول مفرد	{"person":"1st","tense":"present","voice":"active","mood":"subjunctive","grammatical_case":null,"grammatical_number":"singular","gender":null}
+حال معلوم اِلتِزامی اول جمع	{"person":"1st","tense":"present","voice":"active","mood":"subjunctive","grammatical_case":null,"grammatical_number":"plural","gender":null}
+کامل معلوم وجه وصفی وابستگی مذکر مفرد	{"person":null,"tense":"perfect","voice":"active","mood":"participle","grammatical_case":"genitive","grammatical_number":"singular","gender":"masculine"}
+کامل مجهول وجه وصفی وابستگی مذکر مفرد	{"person":null,"tense":"perfect","voice":"passive","mood":"participle","grammatical_case":"genitive","grammatical_number":"singular","gender":"masculine"}
+آینده معلوم اِخباری اول جمع	{"person":"1st","tense":"future","voice":"active","mood":"indicative","grammatical_case":null,"grammatical_number":"plural","gender":null}
+آینده معلوم وجه وصفی نهادی مذکر مفرد	{"person":null,"tense":"future","voice":"active","mood":"participle","grammatical_case":"nominative","grammatical_number":"singular","gender":"masculine"}
+کامل میانه وجه وصفی وابستگی مذکر جمع	{"person":null,"tense":"perfect","voice":"middle","mood":"participle","grammatical_case":"genitive","grammatical_number":"plural","gender":"masculine"}
+حال میانه وجه وصفی نهادی مؤنث جمع	{"person":null,"tense":"present","voice":"middle","mood":"participle","grammatical_case":"nominative","grammatical_number":"plural","gender":"feminine"}
+حال مجهول اِخباری اول مفرد	{"person":"1st","tense":"present","voice":"passive","mood":"indicative","grammatical_case":null,"grammatical_number":"singular","gender":null}
+حال معلوم وجه وصفی کنش‌گیری مؤنث مفرد	{"person":null,"tense":"present","voice":"active","mood":"participle","grammatical_case":"dative","grammatical_number":"singular","gender":"feminine"}
+ماضی ساده مجهول وجه وصفی نهادی مؤنث جمع	{"person":null,"tense":"aorist","voice":"passive","mood":"participle","grammatical_case":"nominative","grammatical_number":"plural","gender":"feminine"}
+کامل میانه وجه وصفی نهادی مذکر مفرد	{"person":null,"tense":"perfect","voice":"middle","mood":"participle","grammatical_case":"nominative","grammatical_number":"singular","gender":"masculine"}
+حال میانه وجه وصفی مفعولی مؤنث جمع	{"person":null,"tense":"present","voice":"middle","mood":"participle","grammatical_case":"accusative","grammatical_number":"plural","gender":"feminine"}
+حال مجهول وجه وصفی نهادی خنثی جمع	{"person":null,"tense":"present","voice":"passive","mood":"participle","grammatical_case":"nominative","grammatical_number":"plural","gender":"neuter"}
+حال مجهول اِلتِزامی سوم مفرد	{"person":"3rd","tense":"present","voice":"passive","mood":"subjunctive","grammatical_case":null,"grammatical_number":"singular","gender":null}
+کامل مجهول امری دوم مفرد	{"person":"2nd","tense":"perfect","voice":"passive","mood":"imperative","grammatical_case":null,"grammatical_number":"singular","gender":null}
+کامل مجهول مصدر	{"person":null,"tense":"perfect","voice":"passive","mood":"infinitive","grammatical_case":null,"grammatical_number":null,"gender":null}
+کامل معلوم وجه وصفی نهادی خنثی مفرد	{"person":null,"tense":"perfect","voice":"active","mood":"participle","grammatical_case":"nominative","grammatical_number":"singular","gender":"neuter"}
+کامل معلوم وجه وصفی مفعولی مذکر مفرد	{"person":null,"tense":"perfect","voice":"active","mood":"participle","grammatical_case":"accusative","grammatical_number":"singular","gender":"masculine"}
+ماضی ساده معلوم وجه وصفی مفعولی مؤنث مفرد	{"person":null,"tense":"aorist","voice":"active","mood":"participle","grammatical_case":"accusative","grammatical_number":"singular","gender":"feminine"}
+کامل معلوم وجه وصفی نهادی مؤنث مفرد	{"person":null,"tense":"perfect","voice":"active","mood":"participle","grammatical_case":"nominative","grammatical_number":"singular","gender":"feminine"}
+ماضی ساده میانه وجه وصفی وابستگی خنثی مفرد	{"person":null,"tense":"aorist","voice":"middle","mood":"participle","grammatical_case":"genitive","grammatical_number":"singular","gender":"neuter"}
+کامل میانه وجه وصفی مفعولی مذکر جمع	{"person":null,"tense":"perfect","voice":"middle","mood":"participle","grammatical_case":"accusative","grammatical_number":"plural","gender":"masculine"}
+ماضی ساده معلوم وجه وصفی وابستگی مؤنث مفرد	{"person":null,"tense":"aorist","voice":"active","mood":"participle","grammatical_case":"genitive","grammatical_number":"singular","gender":"feminine"}
+کامل معلوم وجه وصفی مفعولی مؤنث مفرد	{"person":null,"tense":"perfect","voice":"active","mood":"participle","grammatical_case":"accusative","grammatical_number":"singular","gender":"feminine"}
+ماضی ساده میانه وجه وصفی نهادی مذکر جمع	{"person":null,"tense":"aorist","voice":"middle","mood":"participle","grammatical_case":"nominative","grammatical_number":"plural","gender":"masculine"}
+گذشتهٔ استمراری میانه اِخباری دوم جمع	{"person":"2nd","tense":"imperfect","voice":"middle","mood":"indicative","grammatical_case":null,"grammatical_number":"plural","gender":null}
+گذشتهٔ استمراری معلوم اِخباری اول جمع	{"person":"1st","tense":"imperfect","voice":"active","mood":"indicative","grammatical_case":null,"grammatical_number":"plural","gender":null}
+ماضی ساده معلوم تمنایی سوم مفرد	{"person":"3rd","tense":"aorist","voice":"active","mood":"optative","grammatical_case":null,"grammatical_number":"singular","gender":null}
+گذشتهٔ استمراری مجهول اِخباری سوم مفرد	{"person":"3rd","tense":"imperfect","voice":"passive","mood":"indicative","grammatical_case":null,"grammatical_number":"singular","gender":null}
+حال معلوم وجه وصفی وابستگی خنثی مفرد	{"person":null,"tense":"present","voice":"active","mood":"participle","grammatical_case":"genitive","grammatical_number":"singular","gender":"neuter"}
+حال میانه وجه وصفی مفعولی خنثی جمع	{"person":null,"tense":"present","voice":"middle","mood":"participle","grammatical_case":"accusative","grammatical_number":"plural","gender":"neuter"}
+کامل معلوم وجه وصفی کنش‌گیری مذکر جمع	{"person":null,"tense":"perfect","voice":"active","mood":"participle","grammatical_case":"dative","grammatical_number":"plural","gender":"masculine"}
+ماضی ساده میانه وجه وصفی کنش‌گیری مذکر جمع	{"person":null,"tense":"aorist","voice":"middle","mood":"participle","grammatical_case":"dative","grammatical_number":"plural","gender":"masculine"}
+کامل مجهول وجه وصفی وابستگی خنثی جمع	{"person":null,"tense":"perfect","voice":"passive","mood":"participle","grammatical_case":"genitive","grammatical_number":"plural","gender":"neuter"}
+کامل معلوم وجه وصفی کنش‌گیری مذکر مفرد	{"person":null,"tense":"perfect","voice":"active","mood":"participle","grammatical_case":"dative","grammatical_number":"singular","gender":"masculine"}
+ماضی ساده مجهول اِخباری دوم مفرد	{"person":"2nd","tense":"aorist","voice":"passive","mood":"indicative","grammatical_case":null,"grammatical_number":"singular","gender":null}
+حال معلوم تمنایی سوم مفرد	{"person":"3rd","tense":"present","voice":"active","mood":"optative","grammatical_case":null,"grammatical_number":"singular","gender":null}
+حال مجهول وجه وصفی کنش‌گیری مؤنث مفرد	{"person":null,"tense":"present","voice":"passive","mood":"participle","grammatical_case":"dative","grammatical_number":"singular","gender":"feminine"}
+ماضی ساده میانه تمنایی سوم مفرد	{"person":"3rd","tense":"aorist","voice":"middle","mood":"optative","grammatical_case":null,"grammatical_number":"singular","gender":null}
+ماضی ساده مجهول وجه وصفی مفعولی مذکر جمع	{"person":null,"tense":"aorist","voice":"passive","mood":"participle","grammatical_case":"accusative","grammatical_number":"plural","gender":"masculine"}
+کامل مجهول وجه وصفی کنش‌گیری مؤنث مفرد	{"person":null,"tense":"perfect","voice":"passive","mood":"participle","grammatical_case":"dative","grammatical_number":"singular","gender":"feminine"}
+ماضی ساده مجهول وجه وصفی وابستگی خنثی جمع	{"person":null,"tense":"aorist","voice":"passive","mood":"participle","grammatical_case":"genitive","grammatical_number":"plural","gender":"neuter"}
+حال مجهول وجه وصفی کنش‌گیری خنثی جمع	{"person":null,"tense":"present","voice":"passive","mood":"participle","grammatical_case":"dative","grammatical_number":"plural","gender":"neuter"}
+گذشتهٔ استمراری معلوم اِخباری دوم جمع	{"person":"2nd","tense":"imperfect","voice":"active","mood":"indicative","grammatical_case":null,"grammatical_number":"plural","gender":null}
+ماضی ساده مجهول وجه وصفی وابستگی مؤنث جمع	{"person":null,"tense":"aorist","voice":"passive","mood":"participle","grammatical_case":"genitive","grammatical_number":"plural","gender":"feminine"}
+ماضی ساده معلوم وجه وصفی مفعولی مذکر جمع	{"person":null,"tense":"aorist","voice":"active","mood":"participle","grammatical_case":"accusative","grammatical_number":"plural","gender":"masculine"}
+کامل مجهول اِخباری سوم جمع	{"person":"3rd","tense":"perfect","voice":"passive","mood":"indicative","grammatical_case":null,"grammatical_number":"plural","gender":null}
+ماضی ساده معلوم تمنایی سوم جمع	{"person":"3rd","tense":"aorist","voice":"active","mood":"optative","grammatical_case":null,"grammatical_number":"plural","gender":null}
+حال مجهول امری دوم مفرد	{"person":"2nd","tense":"present","voice":"passive","mood":"imperative","grammatical_case":null,"grammatical_number":"singular","gender":null}
+حال میانه اِلتِزامی سوم جمع	{"person":"3rd","tense":"present","voice":"middle","mood":"subjunctive","grammatical_case":null,"grammatical_number":"plural","gender":null}
+حال مجهول وجه وصفی مفعولی خنثی جمع	{"person":null,"tense":"present","voice":"passive","mood":"participle","grammatical_case":"accusative","grammatical_number":"plural","gender":"neuter"}
+ماضی ساده مجهول وجه وصفی مفعولی مذکر مفرد	{"person":null,"tense":"aorist","voice":"passive","mood":"participle","grammatical_case":"accusative","grammatical_number":"singular","gender":"masculine"}
+گذشتهٔ استمراری معلوم اِخباری اول مفرد	{"person":"1st","tense":"imperfect","voice":"active","mood":"indicative","grammatical_case":null,"grammatical_number":"singular","gender":null}
+کامل معلوم مصدر	{"person":null,"tense":"perfect","voice":"active","mood":"infinitive","grammatical_case":null,"grammatical_number":null,"gender":null}
+حال مجهول اِخباری دوم مفرد	{"person":"2nd","tense":"present","voice":"passive","mood":"indicative","grammatical_case":null,"grammatical_number":"singular","gender":null}
+ماضی ساده معلوم وجه وصفی وابستگی خنثی مفرد	{"person":null,"tense":"aorist","voice":"active","mood":"participle","grammatical_case":"genitive","grammatical_number":"singular","gender":"neuter"}
+کامل مجهول اِخباری دوم مفرد	{"person":"2nd","tense":"perfect","voice":"passive","mood":"indicative","grammatical_case":null,"grammatical_number":"singular","gender":null}
+حال میانه وجه وصفی کنش‌گیری مؤنث مفرد	{"person":null,"tense":"present","voice":"middle","mood":"participle","grammatical_case":"dative","grammatical_number":"singular","gender":"feminine"}
+ماضی ساده مجهول اِلتِزامی اول جمع	{"person":"1st","tense":"aorist","voice":"passive","mood":"subjunctive","grammatical_case":null,"grammatical_number":"plural","gender":null}
+ماضی ساده مجهول اِلتِزامی اول مفرد	{"person":"1st","tense":"aorist","voice":"passive","mood":"subjunctive","grammatical_case":null,"grammatical_number":"singular","gender":null}
+ماضی ساده معلوم امری سوم جمع	{"person":"3rd","tense":"aorist","voice":"active","mood":"imperative","grammatical_case":null,"grammatical_number":"plural","gender":null}
+ماضی ساده مجهول وجه وصفی مفعولی خنثی جمع	{"person":null,"tense":"aorist","voice":"passive","mood":"participle","grammatical_case":"accusative","grammatical_number":"plural","gender":"neuter"}
+حال میانه وجه وصفی مفعولی مؤنث مفرد	{"person":null,"tense":"present","voice":"middle","mood":"participle","grammatical_case":"accusative","grammatical_number":"singular","gender":"feminine"}
+حال میانه امری سوم جمع	{"person":"3rd","tense":"present","voice":"middle","mood":"imperative","grammatical_case":null,"grammatical_number":"plural","gender":null}
+حال میانه وجه وصفی وابستگی خنثی جمع	{"person":null,"tense":"present","voice":"middle","mood":"participle","grammatical_case":"genitive","grammatical_number":"plural","gender":"neuter"}
+حال میانه امری سوم مفرد	{"person":"3rd","tense":"present","voice":"middle","mood":"imperative","grammatical_case":null,"grammatical_number":"singular","gender":null}
+ماضی ساده میانه اِلتِزامی دوم مفرد	{"person":"2nd","tense":"aorist","voice":"middle","mood":"subjunctive","grammatical_case":null,"grammatical_number":"singular","gender":null}
+آینده میانه وجه وصفی مفعولی خنثی مفرد	{"person":null,"tense":"future","voice":"middle","mood":"participle","grammatical_case":"accusative","grammatical_number":"singular","gender":"neuter"}
+ماضی ساده میانه وجه وصفی مفعولی مذکر جمع	{"person":null,"tense":"aorist","voice":"middle","mood":"participle","grammatical_case":"accusative","grammatical_number":"plural","gender":"masculine"}
+ماضی ساده میانه وجه وصفی مفعولی مؤنث مفرد	{"person":null,"tense":"aorist","voice":"middle","mood":"participle","grammatical_case":"accusative","grammatical_number":"singular","gender":"feminine"}
+ماضی ساده مجهول وجه وصفی وابستگی مذکر جمع	{"person":null,"tense":"aorist","voice":"passive","mood":"participle","grammatical_case":"genitive","grammatical_number":"plural","gender":"masculine"}
+ماضی ساده میانه وجه وصفی مفعولی خنثی مفرد	{"person":null,"tense":"aorist","voice":"middle","mood":"participle","grammatical_case":"accusative","grammatical_number":"singular","gender":"neuter"}
+کامل معلوم وجه وصفی نهادی مؤنث جمع	{"person":null,"tense":"perfect","voice":"active","mood":"participle","grammatical_case":"nominative","grammatical_number":"plural","gender":"feminine"}
+ماضی ساده میانه وجه وصفی وابستگی مؤنث جمع	{"person":null,"tense":"aorist","voice":"middle","mood":"participle","grammatical_case":"genitive","grammatical_number":"plural","gender":"feminine"}
+حال معلوم وجه وصفی وابستگی مؤنث جمع	{"person":null,"tense":"present","voice":"active","mood":"participle","grammatical_case":"genitive","grammatical_number":"plural","gender":"feminine"}
+کامل معلوم وجه وصفی وابستگی خنثی جمع	{"person":null,"tense":"perfect","voice":"active","mood":"participle","grammatical_case":"genitive","grammatical_number":"plural","gender":"neuter"}
+ماضی ساده میانه اِخباری اول جمع	{"person":"1st","tense":"aorist","voice":"middle","mood":"indicative","grammatical_case":null,"grammatical_number":"plural","gender":null}
+ماضی بَعید معلوم اِخباری اول مفرد	{"person":"1st","tense":"pluperfect","voice":"active","mood":"indicative","grammatical_case":null,"grammatical_number":"singular","gender":null}
+کامل میانه اِخباری اول مفرد	{"person":"1st","tense":"perfect","voice":"middle","mood":"indicative","grammatical_case":null,"grammatical_number":"singular","gender":null}
+حال میانه وجه وصفی وابستگی خنثی مفرد	{"person":null,"tense":"present","voice":"middle","mood":"participle","grammatical_case":"genitive","grammatical_number":"singular","gender":"neuter"}
+حال میانه اِلتِزامی اول مفرد	{"person":"1st","tense":"present","voice":"middle","mood":"subjunctive","grammatical_case":null,"grammatical_number":"singular","gender":null}
+ماضی ساده معلوم وجه وصفی مفعولی خنثی جمع	{"person":null,"tense":"aorist","voice":"active","mood":"participle","grammatical_case":"accusative","grammatical_number":"plural","gender":"neuter"}
+حال میانه اِلتِزامی اول جمع	{"person":"1st","tense":"present","voice":"middle","mood":"subjunctive","grammatical_case":null,"grammatical_number":"plural","gender":null}
+آینده میانه اِخباری اول جمع	{"person":"1st","tense":"future","voice":"middle","mood":"indicative","grammatical_case":null,"grammatical_number":"plural","gender":null}
+کامل مجهول اِخباری دوم جمع	{"person":"2nd","tense":"perfect","voice":"passive","mood":"indicative","grammatical_case":null,"grammatical_number":"plural","gender":null}
+کامل مجهول اِخباری اول جمع	{"person":"1st","tense":"perfect","voice":"passive","mood":"indicative","grammatical_case":null,"grammatical_number":"plural","gender":null}
+ماضی بَعید میانه اِخباری سوم جمع	{"person":"3rd","tense":"pluperfect","voice":"middle","mood":"indicative","grammatical_case":null,"grammatical_number":"plural","gender":null}
+کامل میانه اِخباری سوم مفرد	{"person":"3rd","tense":"perfect","voice":"middle","mood":"indicative","grammatical_case":null,"grammatical_number":"singular","gender":null}
+حال مجهول امری سوم مفرد	{"person":"3rd","tense":"present","voice":"passive","mood":"imperative","grammatical_case":null,"grammatical_number":"singular","gender":null}
+کامل مجهول اِخباری اول مفرد	{"person":"1st","tense":"perfect","voice":"passive","mood":"indicative","grammatical_case":null,"grammatical_number":"singular","gender":null}
+کامل مجهول وجه وصفی وابستگی مؤنث جمع	{"person":null,"tense":"perfect","voice":"passive","mood":"participle","grammatical_case":"genitive","grammatical_number":"plural","gender":"feminine"}
+آینده معلوم مصدر	{"person":null,"tense":"future","voice":"active","mood":"infinitive","grammatical_case":null,"grammatical_number":null,"gender":null}
+حال مجهول وجه وصفی وابستگی خنثی مفرد	{"person":null,"tense":"present","voice":"passive","mood":"participle","grammatical_case":"genitive","grammatical_number":"singular","gender":"neuter"}
+حال مجهول وجه وصفی وابستگی مؤنث مفرد	{"person":null,"tense":"present","voice":"passive","mood":"participle","grammatical_case":"genitive","grammatical_number":"singular","gender":"feminine"}
+کامل معلوم وجه وصفی کنش‌گیری خنثی مفرد	{"person":null,"tense":"perfect","voice":"active","mood":"participle","grammatical_case":"dative","grammatical_number":"singular","gender":"neuter"}
+حال مجهول اِخباری اول جمع	{"person":"1st","tense":"present","voice":"passive","mood":"indicative","grammatical_case":null,"grammatical_number":"plural","gender":null}
+حال مجهول وجه وصفی وابستگی خنثی جمع	{"person":null,"tense":"present","voice":"passive","mood":"participle","grammatical_case":"genitive","grammatical_number":"plural","gender":"neuter"}
+کامل معلوم وجه وصفی وابستگی مؤنث مفرد	{"person":null,"tense":"perfect","voice":"active","mood":"participle","grammatical_case":"genitive","grammatical_number":"singular","gender":"feminine"}
+حال مجهول وجه وصفی کنش‌گیری مذکر مفرد	{"person":null,"tense":"present","voice":"passive","mood":"participle","grammatical_case":"dative","grammatical_number":"singular","gender":"masculine"}
+حال میانه تمنایی اول مفرد	{"person":"1st","tense":"present","voice":"middle","mood":"optative","grammatical_case":null,"grammatical_number":"singular","gender":null}
+گذشتهٔ استمراری میانه اِخباری دوم مفرد	{"person":"2nd","tense":"imperfect","voice":"middle","mood":"indicative","grammatical_case":null,"grammatical_number":"singular","gender":null}
+ماضی ساده میانه وجه وصفی مفعولی مذکر مفرد	{"person":null,"tense":"aorist","voice":"middle","mood":"participle","grammatical_case":"accusative","grammatical_number":"singular","gender":"masculine"}
+آینده میانه مصدر	{"person":null,"tense":"future","voice":"middle","mood":"infinitive","grammatical_case":null,"grammatical_number":null,"gender":null}
+حال مجهول وجه وصفی مفعولی مؤنث جمع	{"person":null,"tense":"present","voice":"passive","mood":"participle","grammatical_case":"accusative","grammatical_number":"plural","gender":"feminine"}
+کامل میانه وجه وصفی کنش‌گیری مؤنث جمع	{"person":null,"tense":"perfect","voice":"middle","mood":"participle","grammatical_case":"dative","grammatical_number":"plural","gender":"feminine"}
+کامل میانه امری دوم جمع	{"person":"2nd","tense":"perfect","voice":"middle","mood":"imperative","grammatical_case":null,"grammatical_number":"plural","gender":null}
+ماضی ساده معلوم وجه وصفی کنش‌گیری مؤنث جمع	{"person":null,"tense":"aorist","voice":"active","mood":"participle","grammatical_case":"dative","grammatical_number":"plural","gender":"feminine"}
+کامل مجهول وجه وصفی مفعولی مؤنث جمع	{"person":null,"tense":"perfect","voice":"passive","mood":"participle","grammatical_case":"accusative","grammatical_number":"plural","gender":"feminine"}
+ماضی ساده معلوم وجه وصفی مفعولی مؤنث جمع	{"person":null,"tense":"aorist","voice":"active","mood":"participle","grammatical_case":"accusative","grammatical_number":"plural","gender":"feminine"}
+آینده معلوم وجه وصفی مفعولی خنثی جمع	{"person":null,"tense":"future","voice":"active","mood":"participle","grammatical_case":"accusative","grammatical_number":"plural","gender":"neuter"}
+ماضی ساده میانه وجه وصفی وابستگی مذکر جمع	{"person":null,"tense":"aorist","voice":"middle","mood":"participle","grammatical_case":"genitive","grammatical_number":"plural","gender":"masculine"}
+کامل مجهول وجه وصفی مذکر مفرد	{"person":null,"tense":"perfect","voice":"passive","mood":"participle","grammatical_case":null,"grammatical_number":"singular","gender":"masculine"}
+حال میانه وجه وصفی وابستگی مؤنث مفرد	{"person":null,"tense":"present","voice":"middle","mood":"participle","grammatical_case":"genitive","grammatical_number":"singular","gender":"feminine"}
+ماضی ساده معلوم وجه وصفی مفعولی خنثی مفرد	{"person":null,"tense":"aorist","voice":"active","mood":"participle","grammatical_case":"accusative","grammatical_number":"singular","gender":"neuter"}
+حال معلوم تمنایی سوم جمع	{"person":"3rd","tense":"present","voice":"active","mood":"optative","grammatical_case":null,"grammatical_number":"plural","gender":null}
+کامل میانه اِخباری دوم مفرد	{"person":"2nd","tense":"perfect","voice":"middle","mood":"indicative","grammatical_case":null,"grammatical_number":"singular","gender":null}
+حال میانه تمنایی سوم مفرد	{"person":"3rd","tense":"present","voice":"middle","mood":"optative","grammatical_case":null,"grammatical_number":"singular","gender":null}
+ماضی ساده میانه تمنایی اول مفرد	{"person":"1st","tense":"aorist","voice":"middle","mood":"optative","grammatical_case":null,"grammatical_number":"singular","gender":null}
+ماضی بَعید میانه اِخباری سوم مفرد	{"person":"3rd","tense":"pluperfect","voice":"middle","mood":"indicative","grammatical_case":null,"grammatical_number":"singular","gender":null}
+ماضی ساده مجهول وجه وصفی کنش‌گیری مذکر مفرد	{"person":null,"tense":"aorist","voice":"passive","mood":"participle","grammatical_case":"dative","grammatical_number":"singular","gender":"masculine"}
+حال میانه تمنایی سوم جمع	{"person":"3rd","tense":"present","voice":"middle","mood":"optative","grammatical_case":null,"grammatical_number":"plural","gender":null}
+گذشتهٔ استمراری مجهول اِخباری اول جمع	{"person":"1st","tense":"imperfect","voice":"passive","mood":"indicative","grammatical_case":null,"grammatical_number":"plural","gender":null}
+حال مجهول وجه وصفی کنش‌گیری مذکر جمع	{"person":null,"tense":"present","voice":"passive","mood":"participle","grammatical_case":"dative","grammatical_number":"plural","gender":"masculine"}
+آینده مجهول اِخباری اول جمع	{"person":"1st","tense":"future","voice":"passive","mood":"indicative","grammatical_case":null,"grammatical_number":"plural","gender":null}
+کامل معلوم وجه وصفی نهادی خنثی جمع	{"person":null,"tense":"perfect","voice":"active","mood":"participle","grammatical_case":"nominative","grammatical_number":"plural","gender":"neuter"}
+ماضی ساده مجهول امری سوم جمع	{"person":"3rd","tense":"aorist","voice":"passive","mood":"imperative","grammatical_case":null,"grammatical_number":"plural","gender":null}
+ماضی ساده مجهول وجه وصفی مفعولی مؤنث مفرد	{"person":null,"tense":"aorist","voice":"passive","mood":"participle","grammatical_case":"accusative","grammatical_number":"singular","gender":"feminine"}
+گذشتهٔ استمراری مجهول اِخباری اول مفرد	{"person":"1st","tense":"imperfect","voice":"passive","mood":"indicative","grammatical_case":null,"grammatical_number":"singular","gender":null}
+حال معلوم وجه وصفی مفعولی مؤنث جمع	{"person":null,"tense":"present","voice":"active","mood":"participle","grammatical_case":"accusative","grammatical_number":"plural","gender":"feminine"}
+کامل معلوم اِلتِزامی اول جمع	{"person":"1st","tense":"perfect","voice":"active","mood":"subjunctive","grammatical_case":null,"grammatical_number":"plural","gender":null}
+کامل میانه اِخباری دوم جمع	{"person":"2nd","tense":"perfect","voice":"middle","mood":"indicative","grammatical_case":null,"grammatical_number":"plural","gender":null}
+گذشتهٔ استمراری مجهول اِخباری دوم جمع	{"person":"2nd","tense":"imperfect","voice":"passive","mood":"indicative","grammatical_case":null,"grammatical_number":"plural","gender":null}
+کامل معلوم اِلتِزامی اول مفرد	{"person":"1st","tense":"perfect","voice":"active","mood":"subjunctive","grammatical_case":null,"grammatical_number":"singular","gender":null}
+حال مجهول اِلتِزامی سوم جمع	{"person":"3rd","tense":"present","voice":"passive","mood":"subjunctive","grammatical_case":null,"grammatical_number":"plural","gender":null}
+حال مجهول امری سوم جمع	{"person":"3rd","tense":"present","voice":"passive","mood":"imperative","grammatical_case":null,"grammatical_number":"plural","gender":null}
+حال مجهول اِلتِزامی دوم جمع	{"person":"2nd","tense":"present","voice":"passive","mood":"subjunctive","grammatical_case":null,"grammatical_number":"plural","gender":null}
+کامل مجهول وجه وصفی وابستگی مؤنث مفرد	{"person":null,"tense":"perfect","voice":"passive","mood":"participle","grammatical_case":"genitive","grammatical_number":"singular","gender":"feminine"}
+کامل مجهول وجه وصفی کنش‌گیری خنثی مفرد	{"person":null,"tense":"perfect","voice":"passive","mood":"participle","grammatical_case":"dative","grammatical_number":"singular","gender":"neuter"}
+کامل میانه وجه وصفی نهادی مذکر جمع	{"person":null,"tense":"perfect","voice":"middle","mood":"participle","grammatical_case":"nominative","grammatical_number":"plural","gender":"masculine"}
+کامل میانه وجه وصفی مفعولی مؤنث مفرد	{"person":null,"tense":"perfect","voice":"middle","mood":"participle","grammatical_case":"accusative","grammatical_number":"singular","gender":"feminine"}
+حال مجهول اِلتِزامی اول مفرد	{"person":"1st","tense":"present","voice":"passive","mood":"subjunctive","grammatical_case":null,"grammatical_number":"singular","gender":null}
+کامل مجهول وجه وصفی وابستگی خنثی مفرد	{"person":null,"tense":"perfect","voice":"passive","mood":"participle","grammatical_case":"genitive","grammatical_number":"singular","gender":"neuter"}
+کامل معلوم امری دوم جمع	{"person":"2nd","tense":"perfect","voice":"active","mood":"imperative","grammatical_case":null,"grammatical_number":"plural","gender":null}
+کامل مجهول وجه وصفی مذکر جمع	{"person":null,"tense":"perfect","voice":"passive","mood":"participle","grammatical_case":null,"grammatical_number":"plural","gender":"masculine"}
+ماضی ساده مجهول تمنایی سوم مفرد	{"person":"3rd","tense":"aorist","voice":"passive","mood":"optative","grammatical_case":null,"grammatical_number":"singular","gender":null}
+حال میانه وجه وصفی کنش‌گیری مؤنث جمع	{"person":null,"tense":"present","voice":"middle","mood":"participle","grammatical_case":"dative","grammatical_number":"plural","gender":"feminine"}
+کامل معلوم اِلتِزامی دوم مفرد	{"person":"2nd","tense":"perfect","voice":"active","mood":"subjunctive","grammatical_case":null,"grammatical_number":"singular","gender":null}
+ماضی ساده مجهول وجه وصفی کنش‌گیری خنثی جمع	{"person":null,"tense":"aorist","voice":"passive","mood":"participle","grammatical_case":"dative","grammatical_number":"plural","gender":"neuter"}
+آینده مجهول وجه وصفی وابستگی خنثی جمع	{"person":null,"tense":"future","voice":"passive","mood":"participle","grammatical_case":"genitive","grammatical_number":"plural","gender":"neuter"}
+حال مجهول اِلتِزامی اول جمع	{"person":"1st","tense":"present","voice":"passive","mood":"subjunctive","grammatical_case":null,"grammatical_number":"plural","gender":null}
+ماضی ساده میانه وجه وصفی وابستگی خنثی جمع	{"person":null,"tense":"aorist","voice":"middle","mood":"participle","grammatical_case":"genitive","grammatical_number":"plural","gender":"neuter"}
+حال مجهول وجه وصفی نهادی مؤنث جمع	{"person":null,"tense":"present","voice":"passive","mood":"participle","grammatical_case":"nominative","grammatical_number":"plural","gender":"feminine"}
+ماضی ساده مجهول وجه وصفی نهادی خنثی جمع	{"person":null,"tense":"aorist","voice":"passive","mood":"participle","grammatical_case":"nominative","grammatical_number":"plural","gender":"neuter"}
+ماضی ساده میانه وجه وصفی نهادی مؤنث مفرد	{"person":null,"tense":"aorist","voice":"middle","mood":"participle","grammatical_case":"nominative","grammatical_number":"singular","gender":"feminine"}
+حال مجهول وجه وصفی کنش‌گیری خنثی مفرد	{"person":null,"tense":"present","voice":"passive","mood":"participle","grammatical_case":"dative","grammatical_number":"singular","gender":"neuter"}
+آینده معلوم وجه وصفی نهادی مذکر جمع	{"person":null,"tense":"future","voice":"active","mood":"participle","grammatical_case":"nominative","grammatical_number":"plural","gender":"masculine"}
+ماضی ساده میانه امری سوم جمع	{"person":"3rd","tense":"aorist","voice":"middle","mood":"imperative","grammatical_case":null,"grammatical_number":"plural","gender":null}
+ماضی ساده مجهول وجه وصفی کنش‌گیری خنثی مفرد	{"person":null,"tense":"aorist","voice":"passive","mood":"participle","grammatical_case":"dative","grammatical_number":"singular","gender":"neuter"}
+حال معلوم تمنایی دوم جمع	{"person":"2nd","tense":"present","voice":"active","mood":"optative","grammatical_case":null,"grammatical_number":"plural","gender":null}
+کامل میانه مصدر	{"person":null,"tense":"perfect","voice":"middle","mood":"infinitive","grammatical_case":null,"grammatical_number":null,"gender":null}
+کامل میانه وجه وصفی وابستگی مؤنث مفرد	{"person":null,"tense":"perfect","voice":"middle","mood":"participle","grammatical_case":"genitive","grammatical_number":"singular","gender":"feminine"}
+ماضی ساده میانه وجه وصفی نهادی خنثی مفرد	{"person":null,"tense":"aorist","voice":"middle","mood":"participle","grammatical_case":"nominative","grammatical_number":"singular","gender":"neuter"}
+کامل میانه اِخباری سوم جمع	{"person":"3rd","tense":"perfect","voice":"middle","mood":"indicative","grammatical_case":null,"grammatical_number":"plural","gender":null}
+کامل میانه اِخباری اول جمع	{"person":"1st","tense":"perfect","voice":"middle","mood":"indicative","grammatical_case":null,"grammatical_number":"plural","gender":null}
+کامل میانه وجه وصفی نهادی مؤنث مفرد	{"person":null,"tense":"perfect","voice":"middle","mood":"participle","grammatical_case":"nominative","grammatical_number":"singular","gender":"feminine"}
+کامل میانه وجه وصفی کنش‌گیری مذکر جمع	{"person":null,"tense":"perfect","voice":"middle","mood":"participle","grammatical_case":"dative","grammatical_number":"plural","gender":"masculine"}

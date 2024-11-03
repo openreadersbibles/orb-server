@@ -1,0 +1,6 @@
+README-private.md
+node_modules
+dropall.sql
+src/package-lock.json
+package-lock.json
+dist/**

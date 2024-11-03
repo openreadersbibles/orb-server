@@ -1,0 +1,869 @@
+ق‍ ۱۰	{"vs":"qal","vt":"perf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۱۱	{"vs":"qal","vt":"perf","ps":"p3","nu":"sg","gn":"f","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ ۵۱	{"vs":"piel","vt":"ptca","ps":"unknown","nu":"sg","gn":"f","st":"a","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ اد‍ ۲۰	{"vs":"qal","vt":"wayq","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۲۰	{"vs":"qal","vt":"impf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ اد‍ ۲۰	{"vs":"hif","vt":"wayq","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ ۵۰	{"vs":"hif","vt":"ptca","ps":"unknown","nu":"sg","gn":"m","st":"a","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ن‍ ۲۵	{"vs":"nif","vt":"impf","ps":"p3","nu":"pl","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ن‍ ۲۱	{"vs":"nif","vt":"impf","ps":"p3","nu":"sg","gn":"f","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ ۲۱	{"vs":"hif","vt":"impf","ps":"p3","nu":"sg","gn":"f","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۵۰	{"vs":"qal","vt":"ptca","ps":"unknown","nu":"sg","gn":"m","st":"a","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ اد‍ ۲۱	{"vs":"hif","vt":"wayq","ps":"p3","nu":"sg","gn":"f","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ ۶۵	{"vs":"hif","vt":"infc","ps":"unknown","nu":"unknown","gn":"unknown","st":"a","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۱۵	{"vs":"qal","vt":"perf","ps":"p3","nu":"pl","gn":"unknown","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۶۵	{"vs":"qal","vt":"infc","ps":"unknown","nu":"unknown","gn":"unknown","st":"a","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۲۵	{"vs":"qal","vt":"impf","ps":"p3","nu":"pl","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ ۲۰	{"vs":"piel","vt":"impf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۵۱	{"vs":"qal","vt":"ptca","ps":"unknown","nu":"sg","gn":"f","st":"a","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ اد‍ ۲۰	{"vs":"piel","vt":"wayq","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۳۷	{"vs":"qal","vt":"impv","ps":"p2","nu":"pl","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۲۹	{"vs":"qal","vt":"impf","ps":"p1","nu":"pl","gn":"unknown","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۳۷	{"vs":"qal","vt":"impv","ps":"p2","nu":"pl","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"f"}
+ق‍ ۱۴	{"vs":"qal","vt":"perf","ps":"p1","nu":"sg","gn":"unknown","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ مغعول اد‍ ۲۵	{"vs":"pual","vt":"wayq","ps":"p3","nu":"pl","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ن‍ ۶۵	{"vs":"nif","vt":"infc","ps":"unknown","nu":"unknown","gn":"unknown","st":"a","prs_ps":"p3","prs_nu":"pl","prs_gn":"m"}
+ق‍ ۶۵	{"vs":"qal","vt":"infc","ps":"unknown","nu":"unknown","gn":"unknown","st":"c","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ ۱۰	{"vs":"hif","vt":"perf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ن‍ ۵۰	{"vs":"nif","vt":"ptca","ps":"unknown","nu":"sg","gn":"m","st":"a","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ن‍ ۲۰	{"vs":"nif","vt":"impf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ اد‍ ۲۰	{"vs":"hif","vt":"wayq","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"m"}
+ق‍ ۶۵	{"vs":"qal","vt":"infc","ps":"unknown","nu":"unknown","gn":"unknown","st":"a","prs_ps":"p3","prs_nu":"sg","prs_gn":"f"}
+ق‍ ۲۲	{"vs":"qal","vt":"impf","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۶۵	{"vs":"qal","vt":"infc","ps":"unknown","nu":"unknown","gn":"unknown","st":"a","prs_ps":"p2","prs_nu":"sg","prs_gn":"m"}
+ق‍ ۲۴	{"vs":"qal","vt":"impf","ps":"p1","nu":"sg","gn":"unknown","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ اد‍ ۲۰	{"vs":"hif","vt":"wayq","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"f"}
+پ‍ مغعول ۱۱	{"vs":"pual","vt":"perf","ps":"p3","nu":"sg","gn":"f","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ اد‍ ۲۵	{"vs":"qal","vt":"wayq","ps":"p3","nu":"pl","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+حیت‍ ۲۵	{"vs":"hit","vt":"impf","ps":"p3","nu":"pl","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۲۷	{"vs":"qal","vt":"impf","ps":"p2","nu":"pl","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ اد‍ ۲۱	{"vs":"qal","vt":"wayq","ps":"p3","nu":"sg","gn":"f","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۶۵	{"vs":"qal","vt":"infc","ps":"unknown","nu":"unknown","gn":"unknown","st":"a","prs_ps":"p2","prs_nu":"pl","prs_gn":"m"}
+ن‍ ۱۵	{"vs":"nif","vt":"perf","ps":"p3","nu":"pl","gn":"unknown","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۱۷	{"vs":"qal","vt":"perf","ps":"p2","nu":"pl","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ن‍ اد‍ ۲۶	{"vs":"nif","vt":"wayq","ps":"p3","nu":"pl","gn":"f","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+حیت‍ ۵۰	{"vs":"hit","vt":"ptca","ps":"unknown","nu":"sg","gn":"m","st":"a","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+حیت‍ اد‍ ۲۰	{"vs":"hit","vt":"wayq","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ اد‍ ۲۴	{"vs":"qal","vt":"wayq","ps":"p1","nu":"sg","gn":"unknown","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ن‍ اد‍ ۲۴	{"vs":"nif","vt":"wayq","ps":"p1","nu":"sg","gn":"unknown","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ ۱۴	{"vs":"piel","vt":"perf","ps":"p1","nu":"sg","gn":"unknown","st":"NA","prs_ps":"p2","prs_nu":"sg","prs_gn":"m"}
+ق‍ ۱۲	{"vs":"qal","vt":"perf","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۱۳	{"vs":"qal","vt":"perf","ps":"p2","nu":"sg","gn":"f","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ ۱۰	{"vs":"hif","vt":"perf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"p1","prs_nu":"sg","prs_gn":"unknown"}
+ق‍ مغعول ۵۰	{"vs":"qal","vt":"ptcp","ps":"unknown","nu":"sg","gn":"m","st":"a","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۲۰	{"vs":"qal","vt":"impf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"p2","prs_nu":"sg","prs_gn":"m"}
+ق‍ ۲۲	{"vs":"qal","vt":"impf","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"m"}
+ح‍ ۲۴	{"vs":"hif","vt":"impf","ps":"p1","nu":"sg","gn":"unknown","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۲۳	{"vs":"qal","vt":"impf","ps":"p2","nu":"sg","gn":"f","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ اد‍ ۲۲	{"vs":"qal","vt":"wayq","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ مغعول ۵۱	{"vs":"qal","vt":"ptcp","ps":"unknown","nu":"sg","gn":"f","st":"a","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۲۲	{"vs":"qal","vt":"impf","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"f"}
+پ‍ مغعول ۱۲	{"vs":"pual","vt":"perf","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ اد‍ ۲۰	{"vs":"hif","vt":"wayq","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"pl","prs_gn":"m"}
+پ‍ اد‍ ۲۰	{"vs":"piel","vt":"wayq","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"m"}
+پ‍ مغعول ۱۰	{"vs":"pual","vt":"perf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+حیت‍ ۵۱	{"vs":"hit","vt":"ptca","ps":"unknown","nu":"sg","gn":"f","st":"a","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ ۲۲	{"vs":"hif","vt":"impf","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۶۵	{"vs":"qal","vt":"infc","ps":"unknown","nu":"unknown","gn":"unknown","st":"a","prs_ps":"p3","prs_nu":"pl","prs_gn":"m"}
+ق‍ اد‍ ۲۰	{"vs":"qal","vt":"wayq","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"m"}
+ق‍ ۵۵	{"vs":"qal","vt":"ptca","ps":"unknown","nu":"pl","gn":"m","st":"a","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ ۱۲	{"vs":"piel","vt":"perf","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ن‍ ۲۴	{"vs":"nif","vt":"impf","ps":"p1","nu":"sg","gn":"unknown","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۵۰	{"vs":"qal","vt":"ptca","ps":"unknown","nu":"sg","gn":"m","st":"a","prs_ps":"p1","prs_nu":"sg","prs_gn":"unknown"}
+ق‍ ۲۰	{"vs":"qal","vt":"impf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"p1","prs_nu":"sg","prs_gn":"unknown"}
+ح‍ مغعول ۲۰	{"vs":"hof","vt":"impf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ن‍ اد‍ ۲۰	{"vs":"nif","vt":"wayq","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۳۸	{"vs":"qal","vt":"impv","ps":"p2","nu":"pl","gn":"f","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ ۳۸	{"vs":"hif","vt":"impv","ps":"p2","nu":"pl","gn":"f","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۱۰	{"vs":"qal","vt":"perf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"m"}
+ح‍ مغعول ۱۰	{"vs":"hof","vt":"perf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۱۰	{"vs":"qal","vt":"perf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"pl","prs_gn":"m"}
+ح‍ ۶۵	{"vs":"hif","vt":"infc","ps":"unknown","nu":"unknown","gn":"unknown","st":"a","prs_ps":"p3","prs_nu":"sg","prs_gn":"m"}
+پ‍ ۲۰	{"vs":"piel","vt":"impf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"p1","prs_nu":"pl","prs_gn":"unknown"}
+پ‍ ۱۰	{"vs":"piel","vt":"perf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"f"}
+پ‍ مغعول ۱۵	{"vs":"pual","vt":"perf","ps":"p3","nu":"pl","gn":"unknown","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ن‍ ۱۴	{"vs":"nif","vt":"perf","ps":"p1","nu":"sg","gn":"unknown","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۱۴	{"vs":"qal","vt":"perf","ps":"p1","nu":"sg","gn":"unknown","st":"NA","prs_ps":"p3","prs_nu":"pl","prs_gn":"m"}
+حیت‍ ۱۰	{"vs":"hit","vt":"perf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ن‍ اد‍ ۲۱	{"vs":"nif","vt":"wayq","ps":"p3","nu":"sg","gn":"f","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ن‍ ۱۱	{"vs":"nif","vt":"perf","ps":"p3","nu":"sg","gn":"f","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ ۵۰	{"vs":"hif","vt":"ptca","ps":"unknown","nu":"sg","gn":"m","st":"a","prs_ps":"p3","prs_nu":"pl","prs_gn":"m"}
+ق‍ ۳۲	{"vs":"qal","vt":"impv","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ ۲۲	{"vs":"piel","vt":"impf","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"f"}
+پ‍ ۶۵	{"vs":"piel","vt":"infc","ps":"unknown","nu":"unknown","gn":"unknown","st":"c","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ ۱۴	{"vs":"hif","vt":"perf","ps":"p1","nu":"sg","gn":"unknown","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ ۱۰	{"vs":"piel","vt":"perf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ ۱۰	{"vs":"piel","vt":"perf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"m"}
+ن‍ اد‍ ۲۵	{"vs":"nif","vt":"wayq","ps":"p3","nu":"pl","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ اد‍ ۲۰	{"vs":"qal","vt":"wayq","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"f"}
+پ‍ ۶۵	{"vs":"piel","vt":"infc","ps":"unknown","nu":"unknown","gn":"unknown","st":"a","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ ۳۲	{"vs":"hif","vt":"impv","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۲۱	{"vs":"qal","vt":"impf","ps":"p3","nu":"sg","gn":"f","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۲۴	{"vs":"qal","vt":"impf","ps":"p1","nu":"sg","gn":"unknown","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"m"}
+ق‍ ۵۷	{"vs":"qal","vt":"ptca","ps":"unknown","nu":"pl","gn":"m","st":"c","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ ۶۵	{"vs":"piel","vt":"infc","ps":"unknown","nu":"unknown","gn":"unknown","st":"a","prs_ps":"p1","prs_nu":"sg","prs_gn":"unknown"}
+ق‍ ۱۴	{"vs":"qal","vt":"perf","ps":"p1","nu":"sg","gn":"unknown","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"f"}
+پ‍ اد‍ ۲۵	{"vs":"piel","vt":"wayq","ps":"p3","nu":"pl","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ ۲۰	{"vs":"hif","vt":"impf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ ۶۵	{"vs":"hif","vt":"infc","ps":"unknown","nu":"unknown","gn":"unknown","st":"a","prs_ps":"p3","prs_nu":"pl","prs_gn":"m"}
+ح‍ ۱۰	{"vs":"hif","vt":"perf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"pl","prs_gn":"m"}
+ح‍ ۲۴	{"vs":"hif","vt":"impf","ps":"p1","nu":"sg","gn":"unknown","st":"NA","prs_ps":"p2","prs_nu":"sg","prs_gn":"m"}
+ق‍ ۲۴	{"vs":"qal","vt":"impf","ps":"p1","nu":"sg","gn":"unknown","st":"NA","prs_ps":"p2","prs_nu":"sg","prs_gn":"m"}
+پ‍ ۲۴	{"vs":"piel","vt":"impf","ps":"p1","nu":"sg","gn":"unknown","st":"NA","prs_ps":"p2","prs_nu":"sg","prs_gn":"m"}
+پ‍ ۲۴	{"vs":"piel","vt":"impf","ps":"p1","nu":"sg","gn":"unknown","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۶۵	{"vs":"qal","vt":"infc","ps":"unknown","nu":"unknown","gn":"unknown","st":"a","prs_ps":"p3","prs_nu":"sg","prs_gn":"m"}
+پ‍ ۲۵	{"vs":"piel","vt":"impf","ps":"p3","nu":"pl","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۳۳	{"vs":"qal","vt":"impv","ps":"p2","nu":"sg","gn":"f","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ مغعول اد‍ ۲۱	{"vs":"hof","vt":"wayq","ps":"p3","nu":"sg","gn":"f","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ ۱۲	{"vs":"hif","vt":"perf","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ن‍ ۳۲	{"vs":"nif","vt":"impv","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ن‍ ۶۵	{"vs":"nif","vt":"infc","ps":"unknown","nu":"unknown","gn":"unknown","st":"c","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۲۴	{"vs":"qal","vt":"impf","ps":"p1","nu":"sg","gn":"unknown","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"f"}
+حیت‍ ۳۲	{"vs":"hit","vt":"impv","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ اد‍ ۲۵	{"vs":"hif","vt":"wayq","ps":"p3","nu":"pl","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ن‍ ۱۰	{"vs":"nif","vt":"perf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ اد‍ ۲۰	{"vs":"qal","vt":"wayq","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"pl","prs_gn":"m"}
+ح‍ ۱۴	{"vs":"hif","vt":"perf","ps":"p1","nu":"sg","gn":"unknown","st":"NA","prs_ps":"p2","prs_nu":"sg","prs_gn":"m"}
+ق‍ ۱۵	{"vs":"qal","vt":"perf","ps":"p3","nu":"pl","gn":"unknown","st":"NA","prs_ps":"p3","prs_nu":"pl","prs_gn":"m"}
+پ‍ ۱۵	{"vs":"piel","vt":"perf","ps":"p3","nu":"pl","gn":"unknown","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ن‍ ۲۲	{"vs":"nif","vt":"impf","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۱۰	{"vs":"qal","vt":"perf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"p1","prs_nu":"sg","prs_gn":"unknown"}
+پ‍ اد‍ ۲۱	{"vs":"piel","vt":"wayq","ps":"p3","nu":"sg","gn":"f","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"f"}
+حیت‍ ۳۳	{"vs":"hit","vt":"impv","ps":"p2","nu":"sg","gn":"f","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۱۴	{"vs":"qal","vt":"perf","ps":"p1","nu":"sg","gn":"unknown","st":"NA","prs_ps":"p2","prs_nu":"sg","prs_gn":"m"}
+ن‍ ۶۰	{"vs":"nif","vt":"infa","ps":"unknown","nu":"unknown","gn":"unknown","st":"a","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ن‍ ۱۷	{"vs":"nif","vt":"perf","ps":"p2","nu":"pl","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ ۱۴	{"vs":"piel","vt":"perf","ps":"p1","nu":"sg","gn":"unknown","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ ۱۴	{"vs":"piel","vt":"perf","ps":"p1","nu":"sg","gn":"unknown","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"f"}
+ق‍ ۱۴	{"vs":"qal","vt":"perf","ps":"p1","nu":"sg","gn":"unknown","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"m"}
+ن‍ ۶۵	{"vs":"nif","vt":"infc","ps":"unknown","nu":"unknown","gn":"unknown","st":"a","prs_ps":"p3","prs_nu":"sg","prs_gn":"m"}
+ن‍ ۵۵	{"vs":"nif","vt":"ptca","ps":"unknown","nu":"pl","gn":"m","st":"a","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+حیش‍ اد‍ ۲۰	{"vs":"hsht","vt":"wayq","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ن‍ ۳۷	{"vs":"nif","vt":"impv","ps":"p2","nu":"pl","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ ۳۳	{"vs":"piel","vt":"impv","ps":"p2","nu":"sg","gn":"f","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۶۵	{"vs":"qal","vt":"infc","ps":"unknown","nu":"unknown","gn":"unknown","st":"a","prs_ps":"p1","prs_nu":"sg","prs_gn":"unknown"}
+پ‍ اد‍ ۲۱	{"vs":"piel","vt":"wayq","ps":"p3","nu":"sg","gn":"f","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ ۶۵	{"vs":"piel","vt":"infc","ps":"unknown","nu":"unknown","gn":"unknown","st":"a","prs_ps":"p3","prs_nu":"pl","prs_gn":"m"}
+پ‍ ۵۰	{"vs":"piel","vt":"ptca","ps":"unknown","nu":"sg","gn":"m","st":"a","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ ۶۵	{"vs":"hif","vt":"infc","ps":"unknown","nu":"unknown","gn":"unknown","st":"c","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ ۱۷	{"vs":"hif","vt":"perf","ps":"p2","nu":"pl","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ ۳۲	{"vs":"hif","vt":"impv","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"pl","prs_gn":"m"}
+ح‍ ۲۷	{"vs":"hif","vt":"impf","ps":"p2","nu":"pl","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ ۲۹	{"vs":"hif","vt":"impf","ps":"p1","nu":"pl","gn":"unknown","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ ۱۵	{"vs":"hif","vt":"perf","ps":"p3","nu":"pl","gn":"unknown","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ ۵۵	{"vs":"hif","vt":"ptca","ps":"unknown","nu":"pl","gn":"m","st":"a","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ اد‍ ۲۰	{"vs":"piel","vt":"wayq","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"p1","prs_nu":"pl","prs_gn":"unknown"}
+پ‍ ۶۵	{"vs":"piel","vt":"infc","ps":"unknown","nu":"unknown","gn":"unknown","st":"a","prs_ps":"p3","prs_nu":"sg","prs_gn":"f"}
+ن‍ ۵۶	{"vs":"nif","vt":"ptca","ps":"unknown","nu":"pl","gn":"f","st":"a","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ اد‍ ۲۵	{"vs":"hif","vt":"wayq","ps":"p3","nu":"pl","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"m"}
+ح‍ اد‍ ۲۲	{"vs":"hif","vt":"wayq","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ن‍ ۶۵	{"vs":"nif","vt":"infc","ps":"unknown","nu":"unknown","gn":"unknown","st":"a","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۲۱	{"vs":"qal","vt":"impf","ps":"p3","nu":"sg","gn":"f","st":"NA","prs_ps":"p1","prs_nu":"sg","prs_gn":"unknown"}
+پ‍ ۳۲	{"vs":"piel","vt":"impv","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ ۲۹	{"vs":"piel","vt":"impf","ps":"p1","nu":"pl","gn":"unknown","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ اد‍ ۲۶	{"vs":"hif","vt":"wayq","ps":"p3","nu":"pl","gn":"f","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ ۲۹	{"vs":"hif","vt":"impf","ps":"p1","nu":"pl","gn":"unknown","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"m"}
+ق‍ اد‍ ۲۶	{"vs":"qal","vt":"wayq","ps":"p3","nu":"pl","gn":"f","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+حیت‍ ۲۰	{"vs":"hit","vt":"impf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۱۵	{"vs":"qal","vt":"perf","ps":"p3","nu":"pl","gn":"unknown","st":"NA","prs_ps":"p1","prs_nu":"sg","prs_gn":"unknown"}
+ن‍ ۵۱	{"vs":"nif","vt":"ptca","ps":"unknown","nu":"sg","gn":"f","st":"a","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ ۱۱	{"vs":"hif","vt":"perf","ps":"p3","nu":"sg","gn":"f","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ اد‍ ۲۰	{"vs":"piel","vt":"wayq","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"f"}
+ح‍ ۳۳	{"vs":"hif","vt":"impv","ps":"p2","nu":"sg","gn":"f","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ ۳۲	{"vs":"hif","vt":"impv","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"m"}
+حیش‍ ۲۹	{"vs":"hsht","vt":"impf","ps":"p1","nu":"pl","gn":"unknown","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+حیت‍ ۱۵	{"vs":"hit","vt":"perf","ps":"p3","nu":"pl","gn":"unknown","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ مغعول اد‍ ۲۰	{"vs":"hof","vt":"wayq","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۳۲	{"vs":"qal","vt":"impv","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"p1","prs_nu":"pl","prs_gn":"unknown"}
+ق‍ ۳۷	{"vs":"qal","vt":"impv","ps":"p2","nu":"pl","gn":"m","st":"NA","prs_ps":"p1","prs_nu":"sg","prs_gn":"unknown"}
+ق‍ ۲۰	{"vs":"qal","vt":"impf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"f"}
+ق‍ ۳۲	{"vs":"qal","vt":"impv","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"p1","prs_nu":"sg","prs_gn":"unknown"}
+ن‍ ۱۲	{"vs":"nif","vt":"perf","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۵۶	{"vs":"qal","vt":"ptca","ps":"unknown","nu":"pl","gn":"f","st":"a","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۱۰	{"vs":"qal","vt":"perf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"f"}
+ح‍ ۳۳	{"vs":"hif","vt":"impv","ps":"p2","nu":"sg","gn":"f","st":"NA","prs_ps":"p1","prs_nu":"sg","prs_gn":"unknown"}
+ح‍ اد‍ ۲۱	{"vs":"hif","vt":"wayq","ps":"p3","nu":"sg","gn":"f","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"m"}
+حیت‍ ۵۲	{"vs":"hit","vt":"ptca","ps":"unknown","nu":"sg","gn":"m","st":"c","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ اد‍ ۲۰	{"vs":"hif","vt":"wayq","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"p1","prs_nu":"sg","prs_gn":"unknown"}
+حیت‍ ۱۴	{"vs":"hit","vt":"perf","ps":"p1","nu":"sg","gn":"unknown","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+حیش‍ اد‍ ۲۴	{"vs":"hsht","vt":"wayq","ps":"p1","nu":"sg","gn":"unknown","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ اد‍ ۲۴	{"vs":"piel","vt":"wayq","ps":"p1","nu":"sg","gn":"unknown","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ ۳۷	{"vs":"hif","vt":"impv","ps":"p2","nu":"pl","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ ۳۷	{"vs":"piel","vt":"impv","ps":"p2","nu":"pl","gn":"m","st":"NA","prs_ps":"p1","prs_nu":"sg","prs_gn":"unknown"}
+پ‍ ۲۷	{"vs":"piel","vt":"impf","ps":"p2","nu":"pl","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۶۵	{"vs":"qal","vt":"infc","ps":"unknown","nu":"unknown","gn":"unknown","st":"a","prs_ps":"p1","prs_nu":"pl","prs_gn":"unknown"}
+حیت‍ اد‍ ۲۱	{"vs":"hit","vt":"wayq","ps":"p3","nu":"sg","gn":"f","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ اد‍ ۲۰	{"vs":"piel","vt":"wayq","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"pl","prs_gn":"m"}
+حیت‍ اد‍ ۲۵	{"vs":"hit","vt":"wayq","ps":"p3","nu":"pl","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ ۳۲	{"vs":"hif","vt":"impv","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"p1","prs_nu":"sg","prs_gn":"unknown"}
+ق‍ ۲۵	{"vs":"qal","vt":"impf","ps":"p3","nu":"pl","gn":"m","st":"NA","prs_ps":"p1","prs_nu":"sg","prs_gn":"unknown"}
+پ‍ ۱۵	{"vs":"piel","vt":"perf","ps":"p3","nu":"pl","gn":"unknown","st":"NA","prs_ps":"p3","prs_nu":"pl","prs_gn":"m"}
+پ‍ اد‍ ۲۵	{"vs":"piel","vt":"wayq","ps":"p3","nu":"pl","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"pl","prs_gn":"m"}
+ق‍ ۱۹	{"vs":"qal","vt":"perf","ps":"p1","nu":"pl","gn":"unknown","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ اد‍ ۲۷	{"vs":"piel","vt":"wayq","ps":"p2","nu":"pl","gn":"m","st":"NA","prs_ps":"p1","prs_nu":"sg","prs_gn":"unknown"}
+ق‍ اد‍ ۲۹	{"vs":"qal","vt":"wayq","ps":"p1","nu":"pl","gn":"unknown","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۱۹	{"vs":"qal","vt":"perf","ps":"p1","nu":"pl","gn":"unknown","st":"NA","prs_ps":"p2","prs_nu":"sg","prs_gn":"m"}
+پ‍ اد‍ ۲۹	{"vs":"piel","vt":"wayq","ps":"p1","nu":"pl","gn":"unknown","st":"NA","prs_ps":"p2","prs_nu":"sg","prs_gn":"m"}
+پ‍ ۲۱	{"vs":"piel","vt":"impf","ps":"p3","nu":"sg","gn":"f","st":"NA","prs_ps":"p2","prs_nu":"sg","prs_gn":"m"}
+پ‍ ۲۰	{"vs":"piel","vt":"impf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"p2","prs_nu":"sg","prs_gn":"m"}
+پ‍ ۲۱	{"vs":"piel","vt":"impf","ps":"p3","nu":"sg","gn":"f","st":"NA","prs_ps":"p1","prs_nu":"sg","prs_gn":"unknown"}
+ح‍ ۱۰	{"vs":"hif","vt":"perf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"m"}
+ق‍ ۲۵	{"vs":"qal","vt":"impf","ps":"p3","nu":"pl","gn":"m","st":"NA","prs_ps":"p2","prs_nu":"sg","prs_gn":"m"}
+حیش‍ ۲۵	{"vs":"hsht","vt":"impf","ps":"p3","nu":"pl","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ اد‍ ۲۴	{"vs":"piel","vt":"wayq","ps":"p1","nu":"sg","gn":"unknown","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"m"}
+پ‍ ۳۲	{"vs":"piel","vt":"impv","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"p1","prs_nu":"sg","prs_gn":"unknown"}
+ق‍ اد‍ ۲۰	{"vs":"qal","vt":"wayq","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"p1","prs_nu":"sg","prs_gn":"unknown"}
+ح‍ ۲۰	{"vs":"hif","vt":"impf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"p2","prs_nu":"sg","prs_gn":"m"}
+پ‍ ۶۵	{"vs":"piel","vt":"infc","ps":"unknown","nu":"unknown","gn":"unknown","st":"a","prs_ps":"p3","prs_nu":"sg","prs_gn":"m"}
+ح‍ مغعول ۵۰	{"vs":"hof","vt":"ptcp","ps":"unknown","nu":"sg","gn":"m","st":"a","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ ۲۴	{"vs":"piel","vt":"impf","ps":"p1","nu":"sg","gn":"unknown","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"m"}
+ح‍ ۲۵	{"vs":"hif","vt":"impf","ps":"p3","nu":"pl","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ ۱۹	{"vs":"hif","vt":"perf","ps":"p1","nu":"pl","gn":"unknown","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۱۲	{"vs":"qal","vt":"perf","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"p1","prs_nu":"sg","prs_gn":"unknown"}
+پ‍ ۱۲	{"vs":"piel","vt":"perf","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"p1","prs_nu":"sg","prs_gn":"unknown"}
+پ‍ ۱۵	{"vs":"piel","vt":"perf","ps":"p3","nu":"pl","gn":"unknown","st":"NA","prs_ps":"p1","prs_nu":"sg","prs_gn":"unknown"}
+ق‍ ۶۵	{"vs":"qal","vt":"infc","ps":"unknown","nu":"unknown","gn":"unknown","st":"a","prs_ps":"p2","prs_nu":"sg","prs_gn":"f"}
+پ‍ اد‍ ۲۰	{"vs":"piel","vt":"wayq","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"p1","prs_nu":"sg","prs_gn":"unknown"}
+ح‍ ۶۰	{"vs":"hif","vt":"infa","ps":"unknown","nu":"unknown","gn":"unknown","st":"a","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۲۶	{"vs":"qal","vt":"impf","ps":"p3","nu":"pl","gn":"f","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۶۵	{"vs":"qal","vt":"infc","ps":"unknown","nu":"unknown","gn":"unknown","st":"a","prs_ps":"p3","prs_nu":"pl","prs_gn":"f"}
+پ‍ ۶۵	{"vs":"piel","vt":"infc","ps":"unknown","nu":"unknown","gn":"unknown","st":"a","prs_ps":"p3","prs_nu":"pl","prs_gn":"f"}
+ق‍ ۱۸	{"vs":"qal","vt":"perf","ps":"p2","nu":"pl","gn":"f","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ن‍ ۱۹	{"vs":"nif","vt":"perf","ps":"p1","nu":"pl","gn":"unknown","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۱۰	{"vs":"qal","vt":"perf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"p1","prs_nu":"pl","prs_gn":"unknown"}
+پ‍ ۲۲	{"vs":"piel","vt":"impf","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ اد‍ ۲۲	{"vs":"piel","vt":"wayq","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ اد‍ ۲۴	{"vs":"piel","vt":"wayq","ps":"p1","nu":"sg","gn":"unknown","st":"NA","prs_ps":"p2","prs_nu":"sg","prs_gn":"m"}
+ق‍ ۱۱	{"vs":"qal","vt":"perf","ps":"p3","nu":"sg","gn":"f","st":"NA","prs_ps":"p3","prs_nu":"pl","prs_gn":"m"}
+ق‍ اد‍ ۲۱	{"vs":"qal","vt":"wayq","ps":"p3","nu":"sg","gn":"f","st":"NA","prs_ps":"p3","prs_nu":"pl","prs_gn":"m"}
+پ‍ ۲۴	{"vs":"piel","vt":"impf","ps":"p1","nu":"sg","gn":"unknown","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"f"}
+ن‍ ۲۹	{"vs":"nif","vt":"impf","ps":"p1","nu":"pl","gn":"unknown","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۱۰	{"vs":"qal","vt":"perf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"p2","prs_nu":"sg","prs_gn":"m"}
+حیش‍ اد‍ ۲۶	{"vs":"hsht","vt":"wayq","ps":"p3","nu":"pl","gn":"f","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+حیش‍ اد‍ ۲۵	{"vs":"hsht","vt":"wayq","ps":"p3","nu":"pl","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ اد‍ ۲۲	{"vs":"qal","vt":"wayq","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"p1","prs_nu":"sg","prs_gn":"unknown"}
+ح‍ مغعول ۱۱	{"vs":"hof","vt":"perf","ps":"p3","nu":"sg","gn":"f","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+حیت‍ ۲۴	{"vs":"hit","vt":"impf","ps":"p1","nu":"sg","gn":"unknown","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+حیت‍ ۳۷	{"vs":"hit","vt":"impv","ps":"p2","nu":"pl","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ ۶۵	{"vs":"hif","vt":"infc","ps":"unknown","nu":"unknown","gn":"unknown","st":"a","prs_ps":"p1","prs_nu":"sg","prs_gn":"unknown"}
+ح‍ ۱۵	{"vs":"hif","vt":"perf","ps":"p3","nu":"pl","gn":"unknown","st":"NA","prs_ps":"p1","prs_nu":"sg","prs_gn":"unknown"}
+ح‍ ۶۵	{"vs":"hif","vt":"infc","ps":"unknown","nu":"unknown","gn":"unknown","st":"a","prs_ps":"p3","prs_nu":"sg","prs_gn":"f"}
+پ‍ ۵۵	{"vs":"piel","vt":"ptca","ps":"unknown","nu":"pl","gn":"m","st":"a","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+حیش‍ ۵۵	{"vs":"hsht","vt":"ptca","ps":"unknown","nu":"pl","gn":"m","st":"a","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+حیش‍ ۶۵	{"vs":"hsht","vt":"infc","ps":"unknown","nu":"unknown","gn":"unknown","st":"a","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۲۹	{"vs":"qal","vt":"impf","ps":"p1","nu":"pl","gn":"unknown","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"m"}
+ق‍ ۱۱	{"vs":"qal","vt":"perf","ps":"p3","nu":"sg","gn":"f","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"m"}
+ق‍ اد‍ ۲۵	{"vs":"qal","vt":"wayq","ps":"p3","nu":"pl","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"m"}
+پ‍ ۱۹	{"vs":"piel","vt":"perf","ps":"p1","nu":"pl","gn":"unknown","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+حیت‍ ۶۵	{"vs":"hit","vt":"infc","ps":"unknown","nu":"unknown","gn":"unknown","st":"a","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ ۱۱	{"vs":"piel","vt":"perf","ps":"p3","nu":"sg","gn":"f","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۱۲	{"vs":"qal","vt":"perf","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"f"}
+ح‍ ۳۷	{"vs":"hif","vt":"impv","ps":"p2","nu":"pl","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"f"}
+ح‍ مغعول ۵۱	{"vs":"hof","vt":"ptcp","ps":"unknown","nu":"sg","gn":"f","st":"a","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ ۱۵	{"vs":"hif","vt":"perf","ps":"p3","nu":"pl","gn":"unknown","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"m"}
+ق‍ اد‍ ۲۱	{"vs":"qal","vt":"wayq","ps":"p3","nu":"sg","gn":"f","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"m"}
+ق‍ مغعول ۵۵	{"vs":"qal","vt":"ptcp","ps":"unknown","nu":"pl","gn":"m","st":"a","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ ۳۷	{"vs":"piel","vt":"impv","ps":"p2","nu":"pl","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ ۱۰	{"vs":"hif","vt":"perf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"p2","prs_nu":"sg","prs_gn":"m"}
+ح‍ ۱۲	{"vs":"hif","vt":"perf","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"p1","prs_nu":"sg","prs_gn":"unknown"}
+پ‍ مغعول ۱۴	{"vs":"pual","vt":"perf","ps":"p1","nu":"sg","gn":"unknown","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ مغعول ۶۵	{"vs":"hof","vt":"infc","ps":"unknown","nu":"unknown","gn":"unknown","st":"a","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ اد‍ ۲۹	{"vs":"piel","vt":"wayq","ps":"p1","nu":"pl","gn":"unknown","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۲۰	{"vs":"qal","vt":"impf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"m"}
+ق‍ ۶۰	{"vs":"qal","vt":"infa","ps":"unknown","nu":"unknown","gn":"unknown","st":"a","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ ۱۰	{"vs":"piel","vt":"perf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"p1","prs_nu":"sg","prs_gn":"unknown"}
+حیت‍ ۲۷	{"vs":"hit","vt":"impf","ps":"p2","nu":"pl","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ن‍ ۲۷	{"vs":"nif","vt":"impf","ps":"p2","nu":"pl","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+حیت‍ ۶۵	{"vs":"hit","vt":"infc","ps":"unknown","nu":"unknown","gn":"unknown","st":"a","prs_ps":"p3","prs_nu":"sg","prs_gn":"m"}
+پ‍ ۱۷	{"vs":"piel","vt":"perf","ps":"p2","nu":"pl","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ ۲۴	{"vs":"hif","vt":"impf","ps":"p1","nu":"sg","gn":"unknown","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"m"}
+ح‍ اد‍ ۲۹	{"vs":"hif","vt":"wayq","ps":"p1","nu":"pl","gn":"unknown","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ ۲۲	{"vs":"piel","vt":"impf","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"m"}
+ح‍ ۱۴	{"vs":"hif","vt":"perf","ps":"p1","nu":"sg","gn":"unknown","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"m"}
+حیت‍ ۱۹	{"vs":"hit","vt":"perf","ps":"p1","nu":"pl","gn":"unknown","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ مغعول ۱۵	{"vs":"hof","vt":"perf","ps":"p3","nu":"pl","gn":"unknown","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ مغعول ۵۵	{"vs":"hof","vt":"ptcp","ps":"unknown","nu":"pl","gn":"m","st":"a","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ ۱۲	{"vs":"hif","vt":"perf","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"pl","prs_gn":"m"}
+حیت‍ ۲۹	{"vs":"hit","vt":"impf","ps":"p1","nu":"pl","gn":"unknown","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ ۳۷	{"vs":"hif","vt":"impv","ps":"p2","nu":"pl","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"m"}
+حیت‍ ۶۵	{"vs":"hit","vt":"infc","ps":"unknown","nu":"unknown","gn":"unknown","st":"c","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۵۲	{"vs":"qal","vt":"ptca","ps":"unknown","nu":"sg","gn":"m","st":"c","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۱۲	{"vs":"qal","vt":"perf","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"pl","prs_gn":"m"}
+ح‍ ۱۲	{"vs":"hif","vt":"perf","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"p1","prs_nu":"pl","prs_gn":"unknown"}
+ق‍ ۲۲	{"vs":"qal","vt":"impf","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"p1","prs_nu":"sg","prs_gn":"unknown"}
+ح‍ ۵۰	{"vs":"hif","vt":"ptca","ps":"unknown","nu":"sg","gn":"m","st":"a","prs_ps":"p2","prs_nu":"sg","prs_gn":"m"}
+ق‍ اد‍ ۲۴	{"vs":"qal","vt":"wayq","ps":"p1","nu":"sg","gn":"unknown","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"f"}
+ق‍ ۳۲	{"vs":"qal","vt":"impv","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"pl","prs_gn":"m"}
+پ‍ ۲۴	{"vs":"piel","vt":"impf","ps":"p1","nu":"sg","gn":"unknown","st":"NA","prs_ps":"p3","prs_nu":"pl","prs_gn":"m"}
+ح‍ ۲۴	{"vs":"hif","vt":"impf","ps":"p1","nu":"sg","gn":"unknown","st":"NA","prs_ps":"p3","prs_nu":"pl","prs_gn":"m"}
+ح‍ ۲۵	{"vs":"hif","vt":"impf","ps":"p3","nu":"pl","gn":"m","st":"NA","prs_ps":"p2","prs_nu":"sg","prs_gn":"m"}
+ح‍ ۲۰	{"vs":"hif","vt":"impf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"m"}
+پ‍ اد‍ ۲۵	{"vs":"piel","vt":"wayq","ps":"p3","nu":"pl","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"m"}
+پ‍ ۱۰	{"vs":"piel","vt":"perf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"pl","prs_gn":"m"}
+ق‍ ۲۰	{"vs":"qal","vt":"impf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"p1","prs_nu":"pl","prs_gn":"unknown"}
+ق‍ ۱۵	{"vs":"qal","vt":"perf","ps":"p3","nu":"pl","gn":"unknown","st":"NA","prs_ps":"p2","prs_nu":"sg","prs_gn":"m"}
+پ‍ ۶۵	{"vs":"piel","vt":"infc","ps":"unknown","nu":"unknown","gn":"unknown","st":"a","prs_ps":"p2","prs_nu":"pl","prs_gn":"f"}
+ح‍ ۱۸	{"vs":"hif","vt":"perf","ps":"p2","nu":"pl","gn":"f","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ اد‍ ۲۶	{"vs":"piel","vt":"wayq","ps":"p3","nu":"pl","gn":"f","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ اد‍ ۲۸	{"vs":"piel","vt":"wayq","ps":"p2","nu":"pl","gn":"f","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ ۲۷	{"vs":"hif","vt":"impf","ps":"p2","nu":"pl","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"m"}
+ق‍ اد‍ ۲۱	{"vs":"qal","vt":"wayq","ps":"p3","nu":"sg","gn":"f","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"f"}
+ح‍ ۳۳	{"vs":"hif","vt":"impv","ps":"p2","nu":"sg","gn":"f","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"m"}
+ح‍ اد‍ ۲۰	{"vs":"hif","vt":"wayq","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"pl","prs_gn":"f"}
+پ‍ ۱۸	{"vs":"piel","vt":"perf","ps":"p2","nu":"pl","gn":"f","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ ۱۰	{"vs":"hif","vt":"perf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"p1","prs_nu":"pl","prs_gn":"unknown"}
+ق‍ مغعول ۵۰	{"vs":"pasq","vt":"ptcp","ps":"unknown","nu":"sg","gn":"m","st":"a","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ ۶۵	{"vs":"hif","vt":"infc","ps":"unknown","nu":"unknown","gn":"unknown","st":"a","prs_ps":"p2","prs_nu":"sg","prs_gn":"m"}
+پ‍ مغعول ۵۱	{"vs":"pual","vt":"ptcp","ps":"unknown","nu":"sg","gn":"f","st":"a","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ ۶۵	{"vs":"piel","vt":"infc","ps":"unknown","nu":"unknown","gn":"unknown","st":"a","prs_ps":"p2","prs_nu":"sg","prs_gn":"m"}
+ح‍ مغعول اد‍ ۲۵	{"vs":"hof","vt":"wayq","ps":"p3","nu":"pl","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ ۲۰	{"vs":"piel","vt":"impf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"pl","prs_gn":"m"}
+ن‍ ۲۶	{"vs":"nif","vt":"impf","ps":"p3","nu":"pl","gn":"f","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۲۵	{"vs":"qal","vt":"impf","ps":"p3","nu":"pl","gn":"m","st":"NA","prs_ps":"p1","prs_nu":"pl","prs_gn":"unknown"}
+ح‍ اد‍ ۲۴	{"vs":"hif","vt":"wayq","ps":"p1","nu":"sg","gn":"unknown","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ن‍ اد‍ ۲۲	{"vs":"nif","vt":"wayq","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+حیت‍ ۵۳	{"vs":"hit","vt":"ptca","ps":"unknown","nu":"sg","gn":"f","st":"c","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+حیش‍ ۱۵	{"vs":"hsht","vt":"perf","ps":"p3","nu":"pl","gn":"unknown","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۲۵	{"vs":"qal","vt":"impf","ps":"p3","nu":"pl","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"m"}
+پ‍ مغعول ۵۰	{"vs":"pual","vt":"ptcp","ps":"unknown","nu":"sg","gn":"m","st":"a","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۲۷	{"vs":"qal","vt":"impf","ps":"p2","nu":"pl","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"m"}
+پ‍ ۶۵	{"vs":"piel","vt":"infc","ps":"unknown","nu":"unknown","gn":"unknown","st":"a","prs_ps":"p2","prs_nu":"pl","prs_gn":"m"}
+ق‍ مغعول ۵۶	{"vs":"qal","vt":"ptcp","ps":"unknown","nu":"pl","gn":"f","st":"a","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ اد‍ ۲۵	{"vs":"hif","vt":"wayq","ps":"p3","nu":"pl","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"pl","prs_gn":"m"}
+ق‍ ۱۲	{"vs":"qal","vt":"perf","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"m"}
+پ‍ ۶۵	{"vs":"piel","vt":"infc","ps":"unknown","nu":"unknown","gn":"unknown","st":"a","prs_ps":"p1","prs_nu":"pl","prs_gn":"unknown"}
+ق‍ ۱۲	{"vs":"qal","vt":"perf","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"p1","prs_nu":"pl","prs_gn":"unknown"}
+ح‍ ۶۵	{"vs":"hif","vt":"infc","ps":"unknown","nu":"unknown","gn":"unknown","st":"a","prs_ps":"p1","prs_nu":"pl","prs_gn":"unknown"}
+ق‍ ۳۲	{"vs":"qal","vt":"impv","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"m"}
+ن‍ ۶۵	{"vs":"nif","vt":"infc","ps":"unknown","nu":"unknown","gn":"unknown","st":"a","prs_ps":"p1","prs_nu":"sg","prs_gn":"unknown"}
+پ‍ ۲۵	{"vs":"piel","vt":"impf","ps":"p3","nu":"pl","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"pl","prs_gn":"m"}
+ن‍ ۵۲	{"vs":"nif","vt":"ptca","ps":"unknown","nu":"sg","gn":"m","st":"c","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۲۰	{"vs":"qal","vt":"impf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"pl","prs_gn":"m"}
+ق‍ ۲۱	{"vs":"qal","vt":"impf","ps":"p3","nu":"sg","gn":"f","st":"NA","prs_ps":"p3","prs_nu":"pl","prs_gn":"m"}
+ح‍ ۲۱	{"vs":"hif","vt":"impf","ps":"p3","nu":"sg","gn":"f","st":"NA","prs_ps":"p3","prs_nu":"pl","prs_gn":"m"}
+ح‍ ۲۲	{"vs":"hif","vt":"impf","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"pl","prs_gn":"m"}
+ق‍ ۲۲	{"vs":"qal","vt":"impf","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"pl","prs_gn":"m"}
+ق‍ ۳۷	{"vs":"qal","vt":"impv","ps":"p2","nu":"pl","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"m"}
+پ‍ ۱۰	{"vs":"piel","vt":"perf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"p2","prs_nu":"sg","prs_gn":"m"}
+پ‍ ۱۲	{"vs":"piel","vt":"perf","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"pl","prs_gn":"m"}
+پ‍ ۱۲	{"vs":"piel","vt":"perf","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"m"}
+حیش‍ ۲۲	{"vs":"hsht","vt":"impf","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ مغعول ۲۲	{"vs":"hof","vt":"impf","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"pl","prs_gn":"m"}
+پ‍ ۶۰	{"vs":"piel","vt":"infa","ps":"unknown","nu":"unknown","gn":"unknown","st":"a","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ اد‍ ۲۲	{"vs":"piel","vt":"wayq","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"f"}
+ح‍ ۱۰	{"vs":"hif","vt":"perf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"f"}
+ح‍ ۵۲	{"vs":"hif","vt":"ptca","ps":"unknown","nu":"sg","gn":"m","st":"c","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ ۲۰	{"vs":"piel","vt":"impf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"m"}
+ح‍ ۲۲	{"vs":"hif","vt":"impf","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"m"}
+پ‍ ۲۲	{"vs":"piel","vt":"impf","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"pl","prs_gn":"m"}
+حیش‍ ۱۷	{"vs":"hsht","vt":"perf","ps":"p2","nu":"pl","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ ۵۶	{"vs":"hif","vt":"ptca","ps":"unknown","nu":"pl","gn":"f","st":"a","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ مغعول ۵۶	{"vs":"pual","vt":"ptcp","ps":"unknown","nu":"pl","gn":"f","st":"a","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ مغعول ۱۲	{"vs":"hof","vt":"perf","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ مغعول ۵۵	{"vs":"pual","vt":"ptcp","ps":"unknown","nu":"pl","gn":"m","st":"a","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ ۱۴	{"vs":"piel","vt":"perf","ps":"p1","nu":"sg","gn":"unknown","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"m"}
+ح‍ ۲۰	{"vs":"hif","vt":"impf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"f"}
+پ‍ ۵۰	{"vs":"piel","vt":"ptca","ps":"unknown","nu":"sg","gn":"m","st":"a","prs_ps":"p2","prs_nu":"pl","prs_gn":"m"}
+پ‍ ۵۵	{"vs":"piel","vt":"ptca","ps":"unknown","nu":"pl","gn":"m","st":"a","prs_ps":"p3","prs_nu":"sg","prs_gn":"f"}
+ح‍ ۱۵	{"vs":"hif","vt":"perf","ps":"p3","nu":"pl","gn":"unknown","st":"NA","prs_ps":"p2","prs_nu":"sg","prs_gn":"m"}
+پ‍ ۱۴	{"vs":"piel","vt":"perf","ps":"p1","nu":"sg","gn":"unknown","st":"NA","prs_ps":"p3","prs_nu":"pl","prs_gn":"m"}
+ح‍ اد‍ ۲۴	{"vs":"hif","vt":"wayq","ps":"p1","nu":"sg","gn":"unknown","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"m"}
+ح‍ ۲۲	{"vs":"hif","vt":"impf","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"p1","prs_nu":"pl","prs_gn":"unknown"}
+ق‍ اد‍ ۲۴	{"vs":"qal","vt":"wayq","ps":"p1","nu":"sg","gn":"unknown","st":"NA","prs_ps":"p2","prs_nu":"sg","prs_gn":"m"}
+پ‍ ۵۰	{"vs":"piel","vt":"ptca","ps":"unknown","nu":"sg","gn":"m","st":"a","prs_ps":"p2","prs_nu":"sg","prs_gn":"m"}
+پ‍ مغعول ۲۰	{"vs":"pual","vt":"impf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ مغعول ۵۶	{"vs":"hof","vt":"ptcp","ps":"unknown","nu":"pl","gn":"f","st":"a","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ اد‍ ۲۵	{"vs":"qal","vt":"wayq","ps":"p3","nu":"pl","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"pl","prs_gn":"m"}
+ح‍ مغعول ۲۱	{"vs":"hof","vt":"impf","ps":"p3","nu":"sg","gn":"f","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۲۵	{"vs":"qal","vt":"impf","ps":"p3","nu":"pl","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"f"}
+ح‍ ۲۲	{"vs":"hif","vt":"impf","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"f"}
+پ‍ مغعول ۲۱	{"vs":"pual","vt":"impf","ps":"p3","nu":"sg","gn":"f","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ ۲۶	{"vs":"hif","vt":"impf","ps":"p3","nu":"pl","gn":"f","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ ۵۱	{"vs":"hif","vt":"ptca","ps":"unknown","nu":"sg","gn":"f","st":"a","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ ۵۳	{"vs":"hif","vt":"ptca","ps":"unknown","nu":"sg","gn":"f","st":"c","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۲۷	{"vs":"qal","vt":"impf","ps":"p2","nu":"pl","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"pl","prs_gn":"m"}
+حیت‍ ۱۷	{"vs":"hit","vt":"perf","ps":"p2","nu":"pl","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+حیت‍ مغعول ۶۵	{"vs":"hotp","vt":"infc","ps":"unknown","nu":"unknown","gn":"unknown","st":"a","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ ۱۵	{"vs":"hif","vt":"perf","ps":"p3","nu":"pl","gn":"unknown","st":"NA","prs_ps":"p3","prs_nu":"pl","prs_gn":"m"}
+ق‍ ۵۵	{"vs":"qal","vt":"ptca","ps":"unknown","nu":"pl","gn":"m","st":"a","prs_ps":"p3","prs_nu":"sg","prs_gn":"m"}
+ح‍ مغعول ۲۵	{"vs":"hof","vt":"impf","ps":"p3","nu":"pl","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ ۵۰	{"vs":"piel","vt":"ptca","ps":"unknown","nu":"sg","gn":"m","st":"a","prs_ps":"p3","prs_nu":"sg","prs_gn":"m"}
+پ‍ ۵۰	{"vs":"piel","vt":"ptca","ps":"unknown","nu":"sg","gn":"m","st":"a","prs_ps":"p3","prs_nu":"pl","prs_gn":"m"}
+پ‍ ۲۵	{"vs":"piel","vt":"impf","ps":"p3","nu":"pl","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"m"}
+ح‍ ۶۵	{"vs":"hif","vt":"infc","ps":"unknown","nu":"unknown","gn":"unknown","st":"a","prs_ps":"p2","prs_nu":"pl","prs_gn":"m"}
+ق‍ ۱۵	{"vs":"qal","vt":"perf","ps":"p3","nu":"pl","gn":"unknown","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"m"}
+پ‍ ۲۰	{"vs":"piel","vt":"impf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"f"}
+پ‍ ۵۶	{"vs":"piel","vt":"ptca","ps":"unknown","nu":"pl","gn":"f","st":"a","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+حیت‍ مغعول ۱۵	{"vs":"hotp","vt":"perf","ps":"p3","nu":"pl","gn":"unknown","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ ۲۷	{"vs":"piel","vt":"impf","ps":"p2","nu":"pl","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"pl","prs_gn":"m"}
+ن‍ ۳۳	{"vs":"nif","vt":"impv","ps":"p2","nu":"sg","gn":"f","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ن‍ ۱۳	{"vs":"nif","vt":"perf","ps":"p2","nu":"sg","gn":"f","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ ۲۰	{"vs":"hif","vt":"impf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"p1","prs_nu":"pl","prs_gn":"unknown"}
+ق‍ اد‍ ۲۷	{"vs":"qal","vt":"wayq","ps":"p2","nu":"pl","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+حیت‍ ۵۵	{"vs":"hit","vt":"ptca","ps":"unknown","nu":"pl","gn":"m","st":"a","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ ۲۵	{"vs":"piel","vt":"impf","ps":"p3","nu":"pl","gn":"m","st":"NA","prs_ps":"p1","prs_nu":"sg","prs_gn":"unknown"}
+ح‍ ۵۷	{"vs":"hif","vt":"ptca","ps":"unknown","nu":"pl","gn":"m","st":"c","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+حیت‍ ۲۲	{"vs":"hit","vt":"impf","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۲۱	{"vs":"qal","vt":"impf","ps":"p3","nu":"sg","gn":"f","st":"NA","prs_ps":"p1","prs_nu":"pl","prs_gn":"unknown"}
+پ‍ ۲۵	{"vs":"piel","vt":"impf","ps":"p3","nu":"pl","gn":"m","st":"NA","prs_ps":"p2","prs_nu":"sg","prs_gn":"m"}
+ح‍ ۱۷	{"vs":"hif","vt":"perf","ps":"p2","nu":"pl","gn":"m","st":"NA","prs_ps":"p1","prs_nu":"pl","prs_gn":"unknown"}
+ق‍ ۱۱	{"vs":"qal","vt":"perf","ps":"p3","nu":"sg","gn":"f","st":"NA","prs_ps":"p1","prs_nu":"pl","prs_gn":"unknown"}
+ح‍ اد‍ ۲۰	{"vs":"hif","vt":"wayq","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"p1","prs_nu":"pl","prs_gn":"unknown"}
+ق‍ ۱۵	{"vs":"qal","vt":"perf","ps":"p3","nu":"pl","gn":"unknown","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"f"}
+حیت‍ ۲۱	{"vs":"hit","vt":"impf","ps":"p3","nu":"sg","gn":"f","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ اد‍ ۲۹	{"vs":"qal","vt":"wayq","ps":"p1","nu":"pl","gn":"unknown","st":"NA","prs_ps":"p3","prs_nu":"pl","prs_gn":"m"}
+حیت‍ ۱۳	{"vs":"hit","vt":"perf","ps":"p2","nu":"sg","gn":"f","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۱۴	{"vs":"qal","vt":"perf","ps":"p1","nu":"sg","gn":"unknown","st":"NA","prs_ps":"p2","prs_nu":"sg","prs_gn":"f"}
+ق‍ اد‍ ۲۱	{"vs":"qal","vt":"wayq","ps":"p3","nu":"sg","gn":"f","st":"NA","prs_ps":"p1","prs_nu":"sg","prs_gn":"unknown"}
+ح‍ ۲۰	{"vs":"hif","vt":"impf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"p1","prs_nu":"sg","prs_gn":"unknown"}
+ح‍ ۲۴	{"vs":"hif","vt":"impf","ps":"p1","nu":"sg","gn":"unknown","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"f"}
+ح‍ ۵۰	{"vs":"hif","vt":"ptca","ps":"unknown","nu":"sg","gn":"m","st":"a","prs_ps":"p3","prs_nu":"sg","prs_gn":"m"}
+پ‍ ۵۵	{"vs":"piel","vt":"ptca","ps":"unknown","nu":"pl","gn":"m","st":"a","prs_ps":"p2","prs_nu":"sg","prs_gn":"m"}
+ق‍ ۵۵	{"vs":"qal","vt":"ptca","ps":"unknown","nu":"pl","gn":"m","st":"a","prs_ps":"p2","prs_nu":"sg","prs_gn":"m"}
+ق‍ ۲۱	{"vs":"qal","vt":"impf","ps":"p3","nu":"sg","gn":"f","st":"NA","prs_ps":"p2","prs_nu":"sg","prs_gn":"m"}
+ح‍ ۲۰	{"vs":"hif","vt":"impf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"pl","prs_gn":"m"}
+ح‍ ۱۹	{"vs":"hif","vt":"perf","ps":"p1","nu":"pl","gn":"unknown","st":"NA","prs_ps":"p3","prs_nu":"pl","prs_gn":"m"}
+ق‍ اد‍ ۲۵	{"vs":"qal","vt":"wayq","ps":"p3","nu":"pl","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"f"}
+ق‍ ۲۴	{"vs":"qal","vt":"impf","ps":"p1","nu":"sg","gn":"unknown","st":"NA","prs_ps":"p3","prs_nu":"pl","prs_gn":"m"}
+ح‍ اد‍ ۲۷	{"vs":"hif","vt":"wayq","ps":"p2","nu":"pl","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ن‍ اد‍ ۲۷	{"vs":"nif","vt":"wayq","ps":"p2","nu":"pl","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ ۱۰	{"vs":"piel","vt":"perf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"p1","prs_nu":"pl","prs_gn":"unknown"}
+ق‍ ۲۵	{"vs":"qal","vt":"impf","ps":"p3","nu":"pl","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"pl","prs_gn":"m"}
+ح‍ ۲۲	{"vs":"hif","vt":"impf","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"p1","prs_nu":"sg","prs_gn":"unknown"}
+ح‍ اد‍ ۲۹	{"vs":"hif","vt":"wayq","ps":"p1","nu":"pl","gn":"unknown","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"m"}
+حیت‍ اد‍ ۲۴	{"vs":"hit","vt":"wayq","ps":"p1","nu":"sg","gn":"unknown","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ ۳۲	{"vs":"piel","vt":"impv","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"m"}
+حیش‍ ۱۲	{"vs":"hsht","vt":"perf","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ اد‍ ۲۰	{"vs":"hif","vt":"wayq","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"p2","prs_nu":"sg","prs_gn":"m"}
+ق‍ اد‍ ۲۰	{"vs":"qal","vt":"wayq","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"p2","prs_nu":"sg","prs_gn":"m"}
+پ‍ اد‍ ۲۰	{"vs":"piel","vt":"wayq","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"p2","prs_nu":"sg","prs_gn":"m"}
+ح‍ اد‍ ۲۴	{"vs":"hif","vt":"wayq","ps":"p1","nu":"sg","gn":"unknown","st":"NA","prs_ps":"p3","prs_nu":"pl","prs_gn":"m"}
+پ‍ اد‍ ۲۴	{"vs":"piel","vt":"wayq","ps":"p1","nu":"sg","gn":"unknown","st":"NA","prs_ps":"p3","prs_nu":"pl","prs_gn":"m"}
+پ‍ ۲۱	{"vs":"piel","vt":"impf","ps":"p3","nu":"sg","gn":"f","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ مغعول ۲۹	{"vs":"hof","vt":"impf","ps":"p1","nu":"pl","gn":"unknown","st":"NA","prs_ps":"p3","prs_nu":"pl","prs_gn":"m"}
+ق‍ ۵۰	{"vs":"qal","vt":"ptca","ps":"unknown","nu":"sg","gn":"m","st":"a","prs_ps":"p2","prs_nu":"sg","prs_gn":"m"}
+نیت‍ ۱۰	{"vs":"nit","vt":"perf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ ۱۲	{"vs":"hif","vt":"perf","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"f"}
+پ‍ ۱۲	{"vs":"piel","vt":"perf","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"f"}
+حیت‍ ۱۲	{"vs":"hit","vt":"perf","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ ۱۲	{"vs":"hif","vt":"perf","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"m"}
+حیت‍ مغعول ۱۱	{"vs":"hotp","vt":"perf","ps":"p3","nu":"sg","gn":"f","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ اد‍ ۲۵	{"vs":"piel","vt":"wayq","ps":"p3","nu":"pl","gn":"m","st":"NA","prs_ps":"p1","prs_nu":"pl","prs_gn":"unknown"}
+ن‍ ۶۵	{"vs":"nif","vt":"infc","ps":"unknown","nu":"unknown","gn":"unknown","st":"a","prs_ps":"p2","prs_nu":"sg","prs_gn":"m"}
+ق‍ ۲۱	{"vs":"qal","vt":"impf","ps":"p3","nu":"sg","gn":"f","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"m"}
+ح‍ اد‍ ۲۹	{"vs":"hif","vt":"wayq","ps":"p1","nu":"pl","gn":"unknown","st":"NA","prs_ps":"p3","prs_nu":"pl","prs_gn":"m"}
+ق‍ اد‍ ۲۹	{"vs":"qal","vt":"wayq","ps":"p1","nu":"pl","gn":"unknown","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"f"}
+ق‍ ۲۹	{"vs":"qal","vt":"impf","ps":"p1","nu":"pl","gn":"unknown","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"f"}
+پ‍ ۳۲	{"vs":"piel","vt":"impv","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"f"}
+ق‍ ۳۲	{"vs":"qal","vt":"impv","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"f"}
+ح‍ ۲۵	{"vs":"hif","vt":"impf","ps":"p3","nu":"pl","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"m"}
+ق‍ ۲۵	{"vs":"qal","vt":"impf","ps":"p3","nu":"pl","gn":"m","st":"NA","prs_ps":"p2","prs_nu":"pl","prs_gn":"m"}
+پ‍ ۱۲	{"vs":"piel","vt":"perf","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"p1","prs_nu":"pl","prs_gn":"unknown"}
+ق‍ ۲۲	{"vs":"qal","vt":"impf","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"p1","prs_nu":"pl","prs_gn":"unknown"}
+ح‍ ۲۷	{"vs":"hif","vt":"impf","ps":"p2","nu":"pl","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"pl","prs_gn":"m"}
+ح‍ ۱۱	{"vs":"hif","vt":"perf","ps":"p3","nu":"sg","gn":"f","st":"NA","prs_ps":"p3","prs_nu":"pl","prs_gn":"m"}
+ح‍ اد‍ ۲۱	{"vs":"hif","vt":"wayq","ps":"p3","nu":"sg","gn":"f","st":"NA","prs_ps":"p3","prs_nu":"pl","prs_gn":"m"}
+ح‍ ۱۳	{"vs":"hif","vt":"perf","ps":"p2","nu":"sg","gn":"f","st":"NA","prs_ps":"p1","prs_nu":"pl","prs_gn":"unknown"}
+ح‍ ۲۳	{"vs":"hif","vt":"impf","ps":"p2","nu":"sg","gn":"f","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ اد‍ ۲۱	{"vs":"piel","vt":"wayq","ps":"p3","nu":"sg","gn":"f","st":"NA","prs_ps":"p3","prs_nu":"pl","prs_gn":"m"}
+ق‍ اد‍ ۲۴	{"vs":"qal","vt":"wayq","ps":"p1","nu":"sg","gn":"unknown","st":"NA","prs_ps":"p3","prs_nu":"pl","prs_gn":"m"}
+ح‍ اد‍ ۲۵	{"vs":"hif","vt":"wayq","ps":"p3","nu":"pl","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"f"}
+ح‍ ۳۲	{"vs":"hif","vt":"impv","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"f"}
+ح‍ ۱۴	{"vs":"hif","vt":"perf","ps":"p1","nu":"sg","gn":"unknown","st":"NA","prs_ps":"p3","prs_nu":"pl","prs_gn":"m"}
+حیش‍ ۲۷	{"vs":"hsht","vt":"impf","ps":"p2","nu":"pl","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ اد‍ ۲۰	{"vs":"qal","vt":"wayq","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"p1","prs_nu":"pl","prs_gn":"unknown"}
+ح‍ ۳۲	{"vs":"hif","vt":"impv","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"p1","prs_nu":"pl","prs_gn":"unknown"}
+حیت‍ ۶۵	{"vs":"hit","vt":"infc","ps":"unknown","nu":"unknown","gn":"unknown","st":"a","prs_ps":"p3","prs_nu":"pl","prs_gn":"m"}
+پ‍ اد‍ ۲۱	{"vs":"piel","vt":"wayq","ps":"p3","nu":"sg","gn":"f","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"m"}
+ق‍ ۱۰	{"vs":"qal","vt":"perf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"p2","prs_nu":"sg","prs_gn":"f"}
+ح‍ ۱۳	{"vs":"hif","vt":"perf","ps":"p2","nu":"sg","gn":"f","st":"NA","prs_ps":"p1","prs_nu":"sg","prs_gn":"unknown"}
+پ‍ ۱۹	{"vs":"piel","vt":"perf","ps":"p1","nu":"pl","gn":"unknown","st":"NA","prs_ps":"p2","prs_nu":"sg","prs_gn":"m"}
+ح‍ ۱۱	{"vs":"hif","vt":"perf","ps":"p3","nu":"sg","gn":"f","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"m"}
+ق‍ ۲۹	{"vs":"qal","vt":"impf","ps":"p1","nu":"pl","gn":"unknown","st":"NA","prs_ps":"p2","prs_nu":"sg","prs_gn":"m"}
+ح‍ ۲۹	{"vs":"hif","vt":"impf","ps":"p1","nu":"pl","gn":"unknown","st":"NA","prs_ps":"p2","prs_nu":"sg","prs_gn":"m"}
+ق‍ ۱۹	{"vs":"qal","vt":"perf","ps":"p1","nu":"pl","gn":"unknown","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"m"}
+پ‍ اد‍ ۲۵	{"vs":"piel","vt":"wayq","ps":"p3","nu":"pl","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"f"}
+پ‍ اد‍ ۲۴	{"vs":"piel","vt":"wayq","ps":"p1","nu":"sg","gn":"unknown","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"f"}
+ح‍ ۲۹	{"vs":"hif","vt":"impf","ps":"p1","nu":"pl","gn":"unknown","st":"NA","prs_ps":"p3","prs_nu":"pl","prs_gn":"m"}
+ق‍ ۳۷	{"vs":"qal","vt":"impv","ps":"p2","nu":"pl","gn":"m","st":"NA","prs_ps":"p1","prs_nu":"pl","prs_gn":"unknown"}
+پ‍ ۱۱	{"vs":"piel","vt":"perf","ps":"p3","nu":"sg","gn":"f","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"f"}
+ح‍ ۲۱	{"vs":"hif","vt":"impf","ps":"p3","nu":"sg","gn":"f","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"f"}
+حیت‍ ۲۳	{"vs":"hit","vt":"impf","ps":"p2","nu":"sg","gn":"f","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۵۰	{"vs":"qal","vt":"ptca","ps":"unknown","nu":"sg","gn":"m","st":"a","prs_ps":"p3","prs_nu":"sg","prs_gn":"m"}
+ح‍ ۳۷	{"vs":"hif","vt":"impv","ps":"p2","nu":"pl","gn":"m","st":"NA","prs_ps":"p1","prs_nu":"pl","prs_gn":"unknown"}
+پ‍ ۲۹	{"vs":"piel","vt":"impf","ps":"p1","nu":"pl","gn":"unknown","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"m"}
+ق‍ اد‍ ۲۵	{"vs":"qal","vt":"wayq","ps":"p3","nu":"pl","gn":"m","st":"NA","prs_ps":"p1","prs_nu":"sg","prs_gn":"unknown"}
+حیش‍ ۲۴	{"vs":"hsht","vt":"impf","ps":"p1","nu":"sg","gn":"unknown","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+حیش‍ ۱۴	{"vs":"hsht","vt":"perf","ps":"p1","nu":"sg","gn":"unknown","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ ۱۱	{"vs":"piel","vt":"perf","ps":"p3","nu":"sg","gn":"f","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"m"}
+پ‍ ۱۳	{"vs":"piel","vt":"perf","ps":"p2","nu":"sg","gn":"f","st":"NA","prs_ps":"p1","prs_nu":"sg","prs_gn":"unknown"}
+پ‍ اد‍ ۲۳	{"vs":"piel","vt":"wayq","ps":"p2","nu":"sg","gn":"f","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ ۳۳	{"vs":"piel","vt":"impv","ps":"p2","nu":"sg","gn":"f","st":"NA","prs_ps":"p1","prs_nu":"sg","prs_gn":"unknown"}
+ح‍ ۲۴	{"vs":"hif","vt":"impf","ps":"p1","nu":"sg","gn":"unknown","st":"NA","prs_ps":"p2","prs_nu":"sg","prs_gn":"f"}
+پ‍ مغعول ۱۴	{"vs":"poal","vt":"perf","ps":"p1","nu":"sg","gn":"unknown","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ ۲۵	{"vs":"hif","vt":"impf","ps":"p3","nu":"pl","gn":"m","st":"NA","prs_ps":"p1","prs_nu":"sg","prs_gn":"unknown"}
+ح‍ مغعول ۱۹	{"vs":"hof","vt":"perf","ps":"p1","nu":"pl","gn":"unknown","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+حیش‍ اد‍ ۲۱	{"vs":"hsht","vt":"wayq","ps":"p3","nu":"sg","gn":"f","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۱۳	{"vs":"qal","vt":"perf","ps":"p2","nu":"sg","gn":"f","st":"NA","prs_ps":"p1","prs_nu":"sg","prs_gn":"unknown"}
+پ‍ ۱۳	{"vs":"piel","vt":"perf","ps":"p2","nu":"sg","gn":"f","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ اد‍ ۲۳	{"vs":"qal","vt":"wayq","ps":"p2","nu":"sg","gn":"f","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۲۰	{"vs":"qal","vt":"impf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"p2","prs_nu":"sg","prs_gn":"f"}
+ح‍ ۵۰	{"vs":"hif","vt":"ptca","ps":"unknown","nu":"sg","gn":"m","st":"a","prs_ps":"p2","prs_nu":"pl","prs_gn":"m"}
+ق‍ اد‍ ۲۴	{"vs":"qal","vt":"wayq","ps":"p1","nu":"sg","gn":"unknown","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"m"}
+ح‍ ۲۱	{"vs":"hif","vt":"impf","ps":"p3","nu":"sg","gn":"f","st":"NA","prs_ps":"p1","prs_nu":"sg","prs_gn":"unknown"}
+پ‍ ۲۲	{"vs":"piel","vt":"impf","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"p1","prs_nu":"sg","prs_gn":"unknown"}
+ح‍ ۱۳	{"vs":"hif","vt":"perf","ps":"p2","nu":"sg","gn":"f","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"m"}
+پ‍ ۲۳	{"vs":"piel","vt":"impf","ps":"p2","nu":"sg","gn":"f","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+حیش‍ ۲۰	{"vs":"hsht","vt":"impf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ ۲۰	{"vs":"piel","vt":"impf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"p1","prs_nu":"sg","prs_gn":"unknown"}
+پ‍ اد‍ ۲۲	{"vs":"piel","vt":"wayq","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"p1","prs_nu":"sg","prs_gn":"unknown"}
+ح‍ ۵۰	{"vs":"hif","vt":"ptca","ps":"unknown","nu":"sg","gn":"m","st":"a","prs_ps":"p1","prs_nu":"sg","prs_gn":"unknown"}
+ق‍ ۲۴	{"vs":"qal","vt":"impf","ps":"p1","nu":"sg","gn":"unknown","st":"NA","prs_ps":"p2","prs_nu":"sg","prs_gn":"f"}
+ق‍ ۵۳	{"vs":"qal","vt":"ptca","ps":"unknown","nu":"sg","gn":"f","st":"c","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ ۵۳	{"vs":"piel","vt":"ptca","ps":"unknown","nu":"sg","gn":"f","st":"c","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ ۱۳	{"vs":"hif","vt":"perf","ps":"p2","nu":"sg","gn":"f","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۳۷	{"vs":"qal","vt":"impv","ps":"p2","nu":"pl","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"pl","prs_gn":"m"}
+حیت‍ ۶۵	{"vs":"hit","vt":"infc","ps":"unknown","nu":"unknown","gn":"unknown","st":"a","prs_ps":"p2","prs_nu":"sg","prs_gn":"m"}
+ح‍ مغعول ۱۴	{"vs":"hof","vt":"perf","ps":"p1","nu":"sg","gn":"unknown","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ ۱۵	{"vs":"piel","vt":"perf","ps":"p3","nu":"pl","gn":"unknown","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"f"}
+ق‍ مغعول ۵۲	{"vs":"qal","vt":"ptcp","ps":"unknown","nu":"sg","gn":"m","st":"c","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+حیش‍ ۶۵	{"vs":"hsht","vt":"infc","ps":"unknown","nu":"unknown","gn":"unknown","st":"a","prs_ps":"p1","prs_nu":"sg","prs_gn":"unknown"}
+ح‍ ۲۰	{"vs":"hif","vt":"impf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"p2","prs_nu":"sg","prs_gn":"f"}
+ق‍ اد‍ ۲۹	{"vs":"qal","vt":"wayq","ps":"p1","nu":"pl","gn":"unknown","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"m"}
+پ‍ ۲۵	{"vs":"piel","vt":"impf","ps":"p3","nu":"pl","gn":"m","st":"NA","prs_ps":"p1","prs_nu":"pl","prs_gn":"unknown"}
+ح‍ ۲۵	{"vs":"hif","vt":"impf","ps":"p3","nu":"pl","gn":"m","st":"NA","prs_ps":"p1","prs_nu":"pl","prs_gn":"unknown"}
+ق‍ ۲۹	{"vs":"qal","vt":"impf","ps":"p1","nu":"pl","gn":"unknown","st":"NA","prs_ps":"p3","prs_nu":"pl","prs_gn":"m"}
+ح‍ ۳۷	{"vs":"hif","vt":"impv","ps":"p2","nu":"pl","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"pl","prs_gn":"m"}
+ق‍ مغعول ۵۷	{"vs":"qal","vt":"ptcp","ps":"unknown","nu":"pl","gn":"m","st":"c","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ ۱۴	{"vs":"hif","vt":"perf","ps":"p1","nu":"sg","gn":"unknown","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"f"}
+ق‍ ۵۰	{"vs":"qal","vt":"ptca","ps":"unknown","nu":"sg","gn":"m","st":"a","prs_ps":"p3","prs_nu":"sg","prs_gn":"f"}
+ح‍ مغعول ۲۷	{"vs":"hof","vt":"impf","ps":"p2","nu":"pl","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ مغعول ۲۷	{"vs":"pual","vt":"impf","ps":"p2","nu":"pl","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۲۷	{"vs":"qal","vt":"impf","ps":"p2","nu":"pl","gn":"m","st":"NA","prs_ps":"p1","prs_nu":"sg","prs_gn":"unknown"}
+پ‍ ۲۶	{"vs":"piel","vt":"impf","ps":"p3","nu":"pl","gn":"f","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ مغعول ۱۷	{"vs":"hof","vt":"perf","ps":"p2","nu":"pl","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ ۵۷	{"vs":"piel","vt":"ptca","ps":"unknown","nu":"pl","gn":"m","st":"c","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ ۲۹	{"vs":"hif","vt":"impf","ps":"p1","nu":"pl","gn":"unknown","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"f"}
+پ‍ ۱۴	{"vs":"poel","vt":"perf","ps":"p1","nu":"sg","gn":"unknown","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ مغعول ۲۵	{"vs":"pual","vt":"impf","ps":"p3","nu":"pl","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+حیت‍ ۱۵	{"vs":"hit","vt":"perf","ps":"p3","nu":"pl","gn":"unknown","st":"NA","prs_ps":"p3","prs_nu":"pl","prs_gn":"m"}
+ح‍ مغعول ۲۲	{"vs":"hof","vt":"impf","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ ۵۰	{"vs":"hif","vt":"ptca","ps":"unknown","nu":"sg","gn":"m","st":"a","prs_ps":"p2","prs_nu":"sg","prs_gn":"f"}
+پ‍ ۲۴	{"vs":"piel","vt":"impf","ps":"p1","nu":"sg","gn":"unknown","st":"NA","prs_ps":"p2","prs_nu":"sg","prs_gn":"f"}
+پ‍ ۱۱	{"vs":"piel","vt":"perf","ps":"p3","nu":"sg","gn":"f","st":"NA","prs_ps":"p1","prs_nu":"sg","prs_gn":"unknown"}
+پ‍ اد‍ ۲۷	{"vs":"piel","vt":"wayq","ps":"p2","nu":"pl","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ ۱۵	{"vs":"piel","vt":"perf","ps":"p3","nu":"pl","gn":"unknown","st":"NA","prs_ps":"p2","prs_nu":"sg","prs_gn":"f"}
+ح‍ ۲۵	{"vs":"hif","vt":"impf","ps":"p3","nu":"pl","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"f"}
+ن‍ ۲۳	{"vs":"nif","vt":"impf","ps":"p2","nu":"sg","gn":"f","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+حیت‍ ۱۱	{"vs":"hit","vt":"perf","ps":"p3","nu":"sg","gn":"f","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۲۱	{"vs":"qal","vt":"impf","ps":"p3","nu":"sg","gn":"f","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"f"}
+ق‍ ۱۵	{"vs":"qal","vt":"perf","ps":"p3","nu":"pl","gn":"unknown","st":"NA","prs_ps":"p1","prs_nu":"pl","prs_gn":"unknown"}
+ح‍ اد‍ ۲۲	{"vs":"hif","vt":"wayq","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"pl","prs_gn":"m"}
+ق‍ ۵۰	{"vs":"qal","vt":"ptca","ps":"unknown","nu":"sg","gn":"m","st":"a","prs_ps":"p1","prs_nu":"pl","prs_gn":"unknown"}
+ق‍ ۲۸	{"vs":"qal","vt":"impf","ps":"p2","nu":"pl","gn":"f","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۲۱	{"vs":"qal","vt":"impf","ps":"p3","nu":"sg","gn":"f","st":"NA","prs_ps":"p2","prs_nu":"pl","prs_gn":"m"}
+پ‍ ۵۰	{"vs":"piel","vt":"ptca","ps":"unknown","nu":"sg","gn":"m","st":"a","prs_ps":"p1","prs_nu":"pl","prs_gn":"unknown"}
+پ‍ ۱۰	{"vs":"piel","vt":"perf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"pl","prs_gn":"f"}
+ح‍ ۲۰	{"vs":"hif","vt":"impf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"p2","prs_nu":"pl","prs_gn":"m"}
+حیش‍ ۵۰	{"vs":"hsht","vt":"ptca","ps":"unknown","nu":"sg","gn":"m","st":"a","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ ۲۱	{"vs":"hif","vt":"impf","ps":"p3","nu":"sg","gn":"f","st":"NA","prs_ps":"p2","prs_nu":"sg","prs_gn":"m"}
+پ‍ ۱۰	{"vs":"poel","vt":"perf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ ۲۷	{"vs":"piel","vt":"impf","ps":"p2","nu":"pl","gn":"m","st":"NA","prs_ps":"p1","prs_nu":"sg","prs_gn":"unknown"}
+ق‍ ۵۰	{"vs":"qal","vt":"ptca","ps":"unknown","nu":"sg","gn":"m","st":"a","prs_ps":"p2","prs_nu":"sg","prs_gn":"f"}
+ق‍ ۵۰	{"vs":"qal","vt":"ptca","ps":"unknown","nu":"sg","gn":"m","st":"a","prs_ps":"p3","prs_nu":"pl","prs_gn":"m"}
+ق‍ ۲۷	{"vs":"qal","vt":"impf","ps":"p2","nu":"pl","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"f"}
+ن‍ ۲۲	{"vs":"nif","vt":"impf","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"p1","prs_nu":"sg","prs_gn":"unknown"}
+ح‍ ۲۷	{"vs":"hif","vt":"impf","ps":"p2","nu":"pl","gn":"m","st":"NA","prs_ps":"p1","prs_nu":"sg","prs_gn":"unknown"}
+پ‍ ۱۱	{"vs":"piel","vt":"perf","ps":"p3","nu":"sg","gn":"f","st":"NA","prs_ps":"p2","prs_nu":"sg","prs_gn":"f"}
+ح‍ ۲۵	{"vs":"hif","vt":"impf","ps":"p3","nu":"pl","gn":"m","st":"NA","prs_ps":"p2","prs_nu":"sg","prs_gn":"f"}
+ق‍ ۵۵	{"vs":"qal","vt":"ptca","ps":"unknown","nu":"pl","gn":"m","st":"a","prs_ps":"p2","prs_nu":"sg","prs_gn":"f"}
+ق‍ ۱۴	{"vs":"qal","vt":"perf","ps":"p1","nu":"sg","gn":"unknown","st":"NA","prs_ps":"p3","prs_nu":"pl","prs_gn":"f"}
+پ‍ ۲۳	{"vs":"piel","vt":"impf","ps":"p2","nu":"sg","gn":"f","st":"NA","prs_ps":"p3","prs_nu":"pl","prs_gn":"m"}
+پ‍ مغعول ۱۷	{"vs":"pual","vt":"perf","ps":"p2","nu":"pl","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ ۲۱	{"vs":"piel","vt":"impf","ps":"p3","nu":"sg","gn":"f","st":"NA","prs_ps":"p2","prs_nu":"pl","prs_gn":"m"}
+ق‍ ۵۶	{"vs":"qal","vt":"ptca","ps":"unknown","nu":"pl","gn":"f","st":"a","prs_ps":"p2","prs_nu":"sg","prs_gn":"f"}
+حیت‍ ۵۰	{"vs":"htpo","vt":"ptca","ps":"unknown","nu":"sg","gn":"m","st":"a","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ ۱۴	{"vs":"piel","vt":"perf","ps":"p1","nu":"sg","gn":"unknown","st":"NA","prs_ps":"p2","prs_nu":"sg","prs_gn":"f"}
+ح‍ اد‍ ۲۳	{"vs":"hif","vt":"wayq","ps":"p2","nu":"sg","gn":"f","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ ۲۱	{"vs":"hif","vt":"impf","ps":"p3","nu":"sg","gn":"f","st":"NA","prs_ps":"p1","prs_nu":"pl","prs_gn":"unknown"}
+ق‍ ۱۹	{"vs":"qal","vt":"perf","ps":"p1","nu":"pl","gn":"unknown","st":"NA","prs_ps":"p3","prs_nu":"pl","prs_gn":"m"}
+ح‍ مغعول ۶۰	{"vs":"hof","vt":"infa","ps":"unknown","nu":"unknown","gn":"unknown","st":"a","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ ۲۱	{"vs":"piel","vt":"impf","ps":"p3","nu":"sg","gn":"f","st":"NA","prs_ps":"p2","prs_nu":"sg","prs_gn":"f"}
+پ‍ ۲۵	{"vs":"piel","vt":"impf","ps":"p3","nu":"pl","gn":"m","st":"NA","prs_ps":"p2","prs_nu":"sg","prs_gn":"f"}
+پ‍ ۱۰	{"vs":"piel","vt":"perf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"p2","prs_nu":"sg","prs_gn":"f"}
+ح‍ ۱۴	{"vs":"hif","vt":"perf","ps":"p1","nu":"sg","gn":"unknown","st":"NA","prs_ps":"p2","prs_nu":"sg","prs_gn":"f"}
+ق‍ ۲۵	{"vs":"qal","vt":"impf","ps":"p3","nu":"pl","gn":"m","st":"NA","prs_ps":"p2","prs_nu":"sg","prs_gn":"f"}
+ح‍ ۲۵	{"vs":"hif","vt":"impf","ps":"p3","nu":"pl","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"pl","prs_gn":"m"}
+پ‍ ۵۵	{"vs":"piel","vt":"ptca","ps":"unknown","nu":"pl","gn":"m","st":"a","prs_ps":"p3","prs_nu":"sg","prs_gn":"m"}
+ق‍ ۱۱	{"vs":"qal","vt":"perf","ps":"p3","nu":"sg","gn":"f","st":"NA","prs_ps":"p1","prs_nu":"sg","prs_gn":"unknown"}
+ح‍ ۲۱	{"vs":"hif","vt":"impf","ps":"p3","nu":"sg","gn":"f","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"m"}
+پ‍ ۵۲	{"vs":"piel","vt":"ptca","ps":"unknown","nu":"sg","gn":"m","st":"c","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ اد‍ ۲۲	{"vs":"qal","vt":"wayq","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"p1","prs_nu":"pl","prs_gn":"unknown"}
+پ‍ ۱۵	{"vs":"piel","vt":"perf","ps":"p3","nu":"pl","gn":"unknown","st":"NA","prs_ps":"p2","prs_nu":"sg","prs_gn":"m"}
+پ‍ ۲۲	{"vs":"piel","vt":"impf","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"p1","prs_nu":"pl","prs_gn":"unknown"}
+ق‍ ۵۵	{"vs":"qal","vt":"ptca","ps":"unknown","nu":"pl","gn":"m","st":"a","prs_ps":"p2","prs_nu":"pl","prs_gn":"m"}
+پ‍ ۵۵	{"vs":"piel","vt":"ptca","ps":"unknown","nu":"pl","gn":"m","st":"a","prs_ps":"p2","prs_nu":"pl","prs_gn":"m"}
+پ‍ ۲۱	{"vs":"piel","vt":"impf","ps":"p3","nu":"sg","gn":"f","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"m"}
+پ‍ ۲۴	{"vs":"piel","vt":"impf","ps":"p1","nu":"sg","gn":"unknown","st":"NA","prs_ps":"p2","prs_nu":"pl","prs_gn":"m"}
+ح‍ ۲۶	{"vs":"hif","vt":"impf","ps":"p3","nu":"pl","gn":"f","st":"NA","prs_ps":"p2","prs_nu":"sg","prs_gn":"f"}
+ق‍ ۱۳	{"vs":"qal","vt":"perf","ps":"p2","nu":"sg","gn":"f","st":"NA","prs_ps":"p1","prs_nu":"pl","prs_gn":"unknown"}
+ق‍ ۱۳	{"vs":"qal","vt":"perf","ps":"p2","nu":"sg","gn":"f","st":"NA","prs_ps":"p3","prs_nu":"pl","prs_gn":"m"}
+پ‍ مغعول ۱۳	{"vs":"pual","vt":"perf","ps":"p2","nu":"sg","gn":"f","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ ۲۱	{"vs":"piel","vt":"impf","ps":"p3","nu":"sg","gn":"f","st":"NA","prs_ps":"p1","prs_nu":"pl","prs_gn":"unknown"}
+پ‍ مغعول ۱۹	{"vs":"pual","vt":"perf","ps":"p1","nu":"pl","gn":"unknown","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ ۱۱	{"vs":"hif","vt":"perf","ps":"p3","nu":"sg","gn":"f","st":"NA","prs_ps":"p1","prs_nu":"pl","prs_gn":"unknown"}
+ح‍ ۱۱	{"vs":"hif","vt":"perf","ps":"p3","nu":"sg","gn":"f","st":"NA","prs_ps":"p1","prs_nu":"sg","prs_gn":"unknown"}
+پ‍ ۳۸	{"vs":"piel","vt":"impv","ps":"p2","nu":"pl","gn":"f","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۲۷	{"vs":"peal","vt":"impf","ps":"p2","nu":"pl","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۱۵	{"vs":"peal","vt":"perf","ps":"p3","nu":"pl","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۲۵	{"vs":"peal","vt":"impf","ps":"p3","nu":"pl","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ مغعول ۱۵	{"vs":"poal","vt":"perf","ps":"p3","nu":"pl","gn":"unknown","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ اد‍ ۲۵	{"vs":"hif","vt":"wayq","ps":"p3","nu":"pl","gn":"m","st":"NA","prs_ps":"p2","prs_nu":"sg","prs_gn":"m"}
+حیت‍ ۲۲	{"vs":"tif","vt":"impf","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ اد‍ ۲۴	{"vs":"hif","vt":"wayq","ps":"p1","nu":"sg","gn":"unknown","st":"NA","prs_ps":"p2","prs_nu":"sg","prs_gn":"f"}
+پ‍ ۵۵	{"vs":"piel","vt":"ptca","ps":"unknown","nu":"pl","gn":"m","st":"a","prs_ps":"p1","prs_nu":"sg","prs_gn":"unknown"}
+حیت‍ ۵۰	{"vs":"tif","vt":"ptca","ps":"unknown","nu":"sg","gn":"m","st":"a","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۱۱	{"vs":"qal","vt":"perf","ps":"p3","nu":"sg","gn":"f","st":"NA","prs_ps":"p2","prs_nu":"sg","prs_gn":"m"}
+ح‍ اد‍ ۲۷	{"vs":"hif","vt":"wayq","ps":"p2","nu":"pl","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"pl","prs_gn":"m"}
+حیت‍ ۱۵	{"vs":"htpo","vt":"perf","ps":"p3","nu":"pl","gn":"unknown","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+حیت‍ ۱۴	{"vs":"tif","vt":"perf","ps":"p1","nu":"sg","gn":"unknown","st":"NA","prs_ps":"p2","prs_nu":"pl","prs_gn":"m"}
+حیش‍ ۶۵	{"vs":"hsht","vt":"infc","ps":"unknown","nu":"unknown","gn":"unknown","st":"c","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۱۵	{"vs":"qal","vt":"perf","ps":"p3","nu":"pl","gn":"unknown","st":"NA","prs_ps":"p2","prs_nu":"sg","prs_gn":"f"}
+حیت‍ ۲۵	{"vs":"htpo","vt":"impf","ps":"p3","nu":"pl","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ ۱۵	{"vs":"piel","vt":"perf","ps":"p3","nu":"pl","gn":"unknown","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"m"}
+حیت‍ ۳۸	{"vs":"hit","vt":"impv","ps":"p2","nu":"pl","gn":"f","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ مغعول ۳۷	{"vs":"hof","vt":"impv","ps":"p2","nu":"pl","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۱۱	{"vs":"qal","vt":"perf","ps":"p3","nu":"sg","gn":"f","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"f"}
+ح‍ اد‍ ۲۱	{"vs":"hif","vt":"wayq","ps":"p3","nu":"sg","gn":"f","st":"NA","prs_ps":"p1","prs_nu":"sg","prs_gn":"unknown"}
+ن‍ ۶۵	{"vs":"nif","vt":"infc","ps":"unknown","nu":"unknown","gn":"unknown","st":"a","prs_ps":"p2","prs_nu":"pl","prs_gn":"m"}
+حیت‍ ۵۶	{"vs":"hit","vt":"ptca","ps":"unknown","nu":"pl","gn":"f","st":"a","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ ۲۸	{"vs":"piel","vt":"impf","ps":"p2","nu":"pl","gn":"f","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ مغعول ۱۳	{"vs":"hof","vt":"perf","ps":"p2","nu":"sg","gn":"f","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ مغعول اد‍ ۲۳	{"vs":"hof","vt":"wayq","ps":"p2","nu":"sg","gn":"f","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ اد‍ ۲۴	{"vs":"qal","vt":"wayq","ps":"p1","nu":"sg","gn":"unknown","st":"NA","prs_ps":"p2","prs_nu":"sg","prs_gn":"f"}
+پ‍ اد‍ ۲۳	{"vs":"piel","vt":"wayq","ps":"p2","nu":"sg","gn":"f","st":"NA","prs_ps":"p3","prs_nu":"pl","prs_gn":"m"}
+ق‍ ۱۳	{"vs":"qal","vt":"perf","ps":"p2","nu":"sg","gn":"f","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"m"}
+ق‍ اد‍ ۲۳	{"vs":"qal","vt":"wayq","ps":"p2","nu":"sg","gn":"f","st":"NA","prs_ps":"p3","prs_nu":"pl","prs_gn":"m"}
+ح‍ ۱۵	{"vs":"hif","vt":"perf","ps":"p3","nu":"pl","gn":"unknown","st":"NA","prs_ps":"p2","prs_nu":"sg","prs_gn":"f"}
+پ‍ ۶۵	{"vs":"piel","vt":"infc","ps":"unknown","nu":"unknown","gn":"unknown","st":"a","prs_ps":"p2","prs_nu":"sg","prs_gn":"f"}
+نیت‍ ۱۵	{"vs":"nit","vt":"perf","ps":"p3","nu":"pl","gn":"unknown","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ ۲۰	{"vs":"piel","vt":"impf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"p2","prs_nu":"sg","prs_gn":"f"}
+پ‍ مغعول ۲۳	{"vs":"pual","vt":"impf","ps":"p2","nu":"sg","gn":"f","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۵۱	{"vs":"qal","vt":"ptca","ps":"unknown","nu":"sg","gn":"f","st":"a","prs_ps":"p2","prs_nu":"sg","prs_gn":"f"}
+ن‍ اد‍ ۲۳	{"vs":"nif","vt":"wayq","ps":"p2","nu":"sg","gn":"f","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۱۴	{"vs":"qal","vt":"perf","ps":"p1","nu":"sg","gn":"unknown","st":"NA","prs_ps":"p1","prs_nu":"sg","prs_gn":"unknown"}
+ح‍ مغعول ۳۲	{"vs":"hof","vt":"impv","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۱۹	{"vs":"qal","vt":"perf","ps":"p1","nu":"pl","gn":"unknown","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"f"}
+ق‍ ۵۶	{"vs":"qal","vt":"ptca","ps":"unknown","nu":"pl","gn":"f","st":"a","prs_ps":"p3","prs_nu":"sg","prs_gn":"m"}
+حیش‍ ۱۰	{"vs":"hsht","vt":"perf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ن‍ ۶۵	{"vs":"nif","vt":"infc","ps":"unknown","nu":"unknown","gn":"unknown","st":"a","prs_ps":"p3","prs_nu":"sg","prs_gn":"f"}
+پ‍ ۱۱	{"vs":"piel","vt":"perf","ps":"p3","nu":"sg","gn":"f","st":"NA","prs_ps":"p3","prs_nu":"pl","prs_gn":"m"}
+پ‍ ۵۰	{"vs":"piel","vt":"ptca","ps":"unknown","nu":"sg","gn":"m","st":"a","prs_ps":"p3","prs_nu":"sg","prs_gn":"f"}
+پ‍ ۲۱	{"vs":"piel","vt":"impf","ps":"p3","nu":"sg","gn":"f","st":"NA","prs_ps":"p3","prs_nu":"pl","prs_gn":"m"}
+پ‍ ۳۷	{"vs":"piel","vt":"impv","ps":"p2","nu":"pl","gn":"m","st":"NA","prs_ps":"p1","prs_nu":"pl","prs_gn":"unknown"}
+حیت‍ ۱۴	{"vs":"tif","vt":"perf","ps":"p1","nu":"sg","gn":"unknown","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ ۲۰	{"vs":"poel","vt":"impf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ ۵۰	{"vs":"hif","vt":"ptca","ps":"unknown","nu":"sg","gn":"m","st":"a","prs_ps":"p3","prs_nu":"sg","prs_gn":"f"}
+حیت‍ ۲۶	{"vs":"hit","vt":"impf","ps":"p3","nu":"pl","gn":"f","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ ۳۷	{"vs":"hif","vt":"impv","ps":"p2","nu":"pl","gn":"m","st":"NA","prs_ps":"p1","prs_nu":"sg","prs_gn":"unknown"}
+ح‍ اد‍ ۲۲	{"vs":"hif","vt":"wayq","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"p1","prs_nu":"sg","prs_gn":"unknown"}
+ح‍ ۱۰	{"vs":"hif","vt":"perf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"p2","prs_nu":"sg","prs_gn":"f"}
+پ‍ ۲۱	{"vs":"piel","vt":"impf","ps":"p3","nu":"sg","gn":"f","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"f"}
+ق‍ ۲۱	{"vs":"qal","vt":"impf","ps":"p3","nu":"sg","gn":"f","st":"NA","prs_ps":"p2","prs_nu":"sg","prs_gn":"f"}
+ح‍ ۲۱	{"vs":"hif","vt":"impf","ps":"p3","nu":"sg","gn":"f","st":"NA","prs_ps":"p2","prs_nu":"sg","prs_gn":"f"}
+ح‍ ۲۰	{"vs":"hif","vt":"impf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"pl","prs_gn":"f"}
+پ‍ ۲۵	{"vs":"piel","vt":"impf","ps":"p3","nu":"pl","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"f"}
+ن‍ ۵۷	{"vs":"nif","vt":"ptca","ps":"unknown","nu":"pl","gn":"m","st":"c","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+حیت‍ اد‍ ۲۶	{"vs":"hit","vt":"wayq","ps":"p3","nu":"pl","gn":"f","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۱۷	{"vs":"qal","vt":"perf","ps":"p2","nu":"pl","gn":"m","st":"NA","prs_ps":"p1","prs_nu":"sg","prs_gn":"unknown"}
+پ‍ اد‍ ۲۲	{"vs":"piel","vt":"wayq","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"m"}
+پ‍ ۵۰	{"vs":"piel","vt":"ptca","ps":"unknown","nu":"sg","gn":"m","st":"a","prs_ps":"p1","prs_nu":"sg","prs_gn":"unknown"}
+ق‍ ۵۵	{"vs":"qal","vt":"ptca","ps":"unknown","nu":"pl","gn":"m","st":"a","prs_ps":"p1","prs_nu":"sg","prs_gn":"unknown"}
+حیت‍ اد‍ ۲۹	{"vs":"hit","vt":"wayq","ps":"p1","nu":"pl","gn":"unknown","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ اد‍ ۲۲	{"vs":"piel","vt":"wayq","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"pl","prs_gn":"m"}
+پ‍ ۳۷	{"vs":"piel","vt":"impv","ps":"p2","nu":"pl","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"m"}
+پ‍ ۳۲	{"vs":"piel","vt":"impv","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"pl","prs_gn":"m"}
+حیش‍ ۳۷	{"vs":"hsht","vt":"impv","ps":"p2","nu":"pl","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ ۱۹	{"vs":"piel","vt":"perf","ps":"p1","nu":"pl","gn":"unknown","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"m"}
+حیت‍ ۲۴	{"vs":"hit","vt":"impf","ps":"p1","nu":"sg","gn":"unknown","st":"NA","prs_ps":"p3","prs_nu":"pl","prs_gn":"m"}
+ق‍ اد‍ ۲۲	{"vs":"qal","vt":"wayq","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"pl","prs_gn":"m"}
+ق‍ ۵۵	{"vs":"qal","vt":"ptca","ps":"unknown","nu":"pl","gn":"m","st":"a","prs_ps":"p1","prs_nu":"pl","prs_gn":"unknown"}
+ح‍ اد‍ ۲۲	{"vs":"hif","vt":"wayq","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"p1","prs_nu":"pl","prs_gn":"unknown"}
+حیش‍ ۳۳	{"vs":"hsht","vt":"impv","ps":"p2","nu":"sg","gn":"f","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ مغعول ۲۶	{"vs":"hof","vt":"impf","ps":"p3","nu":"pl","gn":"f","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ اد‍ ۲۱	{"vs":"piel","vt":"wayq","ps":"p3","nu":"sg","gn":"f","st":"NA","prs_ps":"p1","prs_nu":"sg","prs_gn":"unknown"}
+پ‍ مغعول ۲۶	{"vs":"pual","vt":"impf","ps":"p3","nu":"pl","gn":"f","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+حیت‍ ۱۵	{"vs":"etpa","vt":"perf","ps":"p3","nu":"pl","gn":"unknown","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ ۱۵	{"vs":"poel","vt":"perf","ps":"p3","nu":"pl","gn":"unknown","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ اد‍ ۲۲	{"vs":"qal","vt":"wayq","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"f"}
+حیت‍ ۶۰	{"vs":"hit","vt":"infa","ps":"unknown","nu":"unknown","gn":"unknown","st":"a","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ ۳۲	{"vs":"piel","vt":"impv","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"p1","prs_nu":"pl","prs_gn":"unknown"}
+پ‍ ۵۰	{"vs":"piel","vt":"ptca","ps":"unknown","nu":"sg","gn":"m","st":"a","prs_ps":"p2","prs_nu":"sg","prs_gn":"f"}
+ن‍ اد‍ ۲۵	{"vs":"nif","vt":"wayq","ps":"p3","nu":"pl","gn":"m","st":"NA","prs_ps":"p1","prs_nu":"sg","prs_gn":"unknown"}
+پ‍ ۱۹	{"vs":"piel","vt":"perf","ps":"p1","nu":"pl","gn":"unknown","st":"NA","prs_ps":"p2","prs_nu":"pl","prs_gn":"m"}
+پ‍ اد‍ ۲۵	{"vs":"piel","vt":"wayq","ps":"p3","nu":"pl","gn":"m","st":"NA","prs_ps":"p1","prs_nu":"sg","prs_gn":"unknown"}
+ق‍ اد‍ ۲۲	{"vs":"qal","vt":"wayq","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"m"}
+ح‍ مغعول ۲۴	{"vs":"hof","vt":"impf","ps":"p1","nu":"sg","gn":"unknown","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۲۶	{"vs":"qal","vt":"impf","ps":"p3","nu":"pl","gn":"f","st":"NA","prs_ps":"p1","prs_nu":"sg","prs_gn":"unknown"}
+حیت‍ اد‍ ۲۲	{"vs":"hit","vt":"wayq","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ مغعول ۲۵	{"vs":"poal","vt":"impf","ps":"p3","nu":"pl","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۵۵	{"vs":"qal","vt":"ptca","ps":"unknown","nu":"pl","gn":"m","st":"a","prs_ps":"p3","prs_nu":"sg","prs_gn":"f"}
+ن‍ ۲۸	{"vs":"nif","vt":"impf","ps":"p2","nu":"pl","gn":"f","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ ۲۷	{"vs":"hif","vt":"impf","ps":"p2","nu":"pl","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"f"}
+ق‍ ۱۱	{"vs":"qal","vt":"perf","ps":"p3","nu":"sg","gn":"f","st":"NA","prs_ps":"p2","prs_nu":"sg","prs_gn":"f"}
+پ‍ ۱۱	{"vs":"piel","vt":"perf","ps":"p3","nu":"sg","gn":"f","st":"NA","prs_ps":"p2","prs_nu":"sg","prs_gn":"m"}
+ح‍ ۱۵	{"vs":"hif","vt":"perf","ps":"p3","nu":"pl","gn":"unknown","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"f"}
+ح‍ ۶۵	{"vs":"hif","vt":"infc","ps":"unknown","nu":"unknown","gn":"unknown","st":"a","prs_ps":"p2","prs_nu":"sg","prs_gn":"f"}
+پ‍ مغعول اد‍ ۲۰	{"vs":"pual","vt":"wayq","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۳۲	{"vs":"peal","vt":"impv","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ ۲۹	{"vs":"pael","vt":"impf","ps":"p1","nu":"pl","gn":"unknown","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۵۰	{"vs":"peal","vt":"ptca","ps":"unknown","nu":"sg","gn":"m","st":"a","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ ۲۷	{"vs":"haf","vt":"impf","ps":"p2","nu":"pl","gn":"m","st":"NA","prs_ps":"p1","prs_nu":"sg","prs_gn":"unknown"}
+حیتپ‍ ۲۷	{"vs":"htpe","vt":"impf","ps":"p2","nu":"pl","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+حیتپ‍ ۲۵	{"vs":"htpe","vt":"impf","ps":"p3","nu":"pl","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ ۲۷	{"vs":"haf","vt":"impf","ps":"p2","nu":"pl","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ ۲۷	{"vs":"pael","vt":"impf","ps":"p2","nu":"pl","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ ۳۷	{"vs":"haf","vt":"impv","ps":"p2","nu":"pl","gn":"m","st":"NA","prs_ps":"p1","prs_nu":"sg","prs_gn":"unknown"}
+ق‍ ۵۵	{"vs":"peal","vt":"ptca","ps":"unknown","nu":"pl","gn":"m","st":"a","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۲۰	{"vs":"peal","vt":"impf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ ۲۹	{"vs":"haf","vt":"impf","ps":"p1","nu":"pl","gn":"unknown","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۱۷	{"vs":"peal","vt":"perf","ps":"p2","nu":"pl","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+حیتپ‍ ۱۷	{"vs":"htpe","vt":"perf","ps":"p2","nu":"pl","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۶۵	{"vs":"peal","vt":"infc","ps":"unknown","nu":"unknown","gn":"unknown","st":"a","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+حیت‍ ۲۰	{"vs":"etpa","vt":"impf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۳۷	{"vs":"peal","vt":"impv","ps":"p2","nu":"pl","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۲۴	{"vs":"peal","vt":"impf","ps":"p1","nu":"sg","gn":"unknown","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ ۶۵	{"vs":"haf","vt":"infc","ps":"unknown","nu":"unknown","gn":"unknown","st":"a","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۱۰	{"vs":"peal","vt":"perf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ ۲۰	{"vs":"pael","vt":"impf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"f"}
+ق‍ ۱۱	{"vs":"peal","vt":"perf","ps":"p3","nu":"sg","gn":"f","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+حیت‍ ۵۵	{"vs":"htpa","vt":"ptca","ps":"unknown","nu":"pl","gn":"m","st":"a","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+حیتپ‍ ۶۵	{"vs":"htpe","vt":"infc","ps":"unknown","nu":"unknown","gn":"unknown","st":"a","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ ۱۰	{"vs":"haf","vt":"perf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ ۶۵	{"vs":"pael","vt":"infc","ps":"unknown","nu":"unknown","gn":"unknown","st":"a","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ ۵۱	{"vs":"haf","vt":"ptca","ps":"unknown","nu":"sg","gn":"f","st":"a","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ ۲۵	{"vs":"haf","vt":"impf","ps":"p3","nu":"pl","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ مغعول ۱۰	{"vs":"peil","vt":"perf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ ۱۰	{"vs":"pael","vt":"perf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ مغعول ۵۰	{"vs":"pael","vt":"ptcp","ps":"unknown","nu":"sg","gn":"m","st":"a","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ ۵۰	{"vs":"haf","vt":"ptca","ps":"unknown","nu":"sg","gn":"m","st":"a","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ مغعول ۵۰	{"vs":"peal","vt":"ptcp","ps":"unknown","nu":"sg","gn":"m","st":"a","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ ۵۰	{"vs":"pael","vt":"ptca","ps":"unknown","nu":"sg","gn":"m","st":"a","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۱۲	{"vs":"peal","vt":"perf","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ ۱۲	{"vs":"haf","vt":"perf","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"p1","prs_nu":"sg","prs_gn":"unknown"}
+ق‍ ۱۹	{"vs":"peal","vt":"perf","ps":"p1","nu":"pl","gn":"unknown","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ ۱۲	{"vs":"haf","vt":"perf","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"p1","prs_nu":"pl","prs_gn":"unknown"}
+ح‍ ۲۱	{"vs":"haf","vt":"impf","ps":"p3","nu":"sg","gn":"f","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ ۳۲	{"vs":"haf","vt":"impv","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"p1","prs_nu":"sg","prs_gn":"unknown"}
+پ‍ ۲۴	{"vs":"pael","vt":"impf","ps":"p1","nu":"sg","gn":"unknown","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ ۱۴	{"vs":"haf","vt":"perf","ps":"p1","nu":"sg","gn":"unknown","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ ۲۰	{"vs":"haf","vt":"impf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ ۶۵	{"vs":"haf","vt":"infc","ps":"unknown","nu":"unknown","gn":"unknown","st":"a","prs_ps":"p1","prs_nu":"sg","prs_gn":"unknown"}
+ق‍ ۱۴	{"vs":"peal","vt":"perf","ps":"p1","nu":"sg","gn":"unknown","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ ۱۰	{"vs":"haf","vt":"perf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"p2","prs_nu":"sg","prs_gn":"m"}
+ق‍ ۲۲	{"vs":"peal","vt":"impf","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+حیتپ‍ ۱۱	{"vs":"htpe","vt":"perf","ps":"p3","nu":"sg","gn":"f","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ ۱۱	{"vs":"haf","vt":"perf","ps":"p3","nu":"sg","gn":"f","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+حیتپ‍ ۱۰	{"vs":"htpe","vt":"perf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۲۹	{"vs":"peal","vt":"impf","ps":"p1","nu":"pl","gn":"unknown","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۲۱	{"vs":"peal","vt":"impf","ps":"p3","nu":"sg","gn":"f","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+حیت‍ ۵۰	{"vs":"htpa","vt":"ptca","ps":"unknown","nu":"sg","gn":"m","st":"a","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+حیت‍ ۲۱	{"vs":"htpa","vt":"impf","ps":"p3","nu":"sg","gn":"f","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+حیتپ‍ ۲۱	{"vs":"htpe","vt":"impf","ps":"p3","nu":"sg","gn":"f","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+حیتپ‍ ۱۱	{"vs":"etpe","vt":"perf","ps":"p3","nu":"sg","gn":"f","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ مغعول ۵۰	{"vs":"haf","vt":"ptcp","ps":"unknown","nu":"sg","gn":"m","st":"a","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۶۵	{"vs":"peal","vt":"infc","ps":"unknown","nu":"unknown","gn":"unknown","st":"c","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ ۱۰	{"vs":"haf","vt":"perf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"m"}
+ح‍ ۱۰	{"vs":"afel","vt":"perf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"m"}
+حیتپ‍ ۲۰	{"vs":"htpe","vt":"impf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ ۱۲	{"vs":"pael","vt":"perf","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ ۱۲	{"vs":"haf","vt":"perf","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ مغعول ۱۵	{"vs":"hof","vt":"perf","ps":"p3","nu":"pl","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ش‍ ۲۰	{"vs":"shaf","vt":"impf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"p2","prs_nu":"pl","prs_gn":"m"}
+ح‍ ۶۵	{"vs":"haf","vt":"infc","ps":"unknown","nu":"unknown","gn":"unknown","st":"a","prs_ps":"p2","prs_nu":"sg","prs_gn":"m"}
+ش‍ ۶۵	{"vs":"shaf","vt":"infc","ps":"unknown","nu":"unknown","gn":"unknown","st":"a","prs_ps":"p1","prs_nu":"pl","prs_gn":"unknown"}
+ش‍ ۲۰	{"vs":"shaf","vt":"impf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+حیت‍ ۱۰	{"vs":"etpa","vt":"perf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۶۵	{"vs":"peal","vt":"infc","ps":"unknown","nu":"unknown","gn":"unknown","st":"a","prs_ps":"p3","prs_nu":"sg","prs_gn":"m"}
+ق‍ مغعول ۱۵	{"vs":"peil","vt":"perf","ps":"p3","nu":"pl","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ ۱۵	{"vs":"haf","vt":"perf","ps":"p3","nu":"pl","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ مغعول ۵۵	{"vs":"pael","vt":"ptcp","ps":"unknown","nu":"pl","gn":"m","st":"a","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ مغعول ۵۵	{"vs":"peal","vt":"ptcp","ps":"unknown","nu":"pl","gn":"m","st":"a","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ ۵۵	{"vs":"haf","vt":"ptca","ps":"unknown","nu":"pl","gn":"m","st":"a","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+حیت‍ ۱۰	{"vs":"htpa","vt":"perf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ش‍ ۱۰	{"vs":"shaf","vt":"perf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+حیتپ‍ ۱۵	{"vs":"htpe","vt":"perf","ps":"p3","nu":"pl","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ ۱۵	{"vs":"pael","vt":"perf","ps":"p3","nu":"pl","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+حیت‍ ۲۰	{"vs":"htpa","vt":"impf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ ۲۰	{"vs":"pael","vt":"impf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"p1","prs_nu":"sg","prs_gn":"unknown"}
+پ‍ ۲۵	{"vs":"pael","vt":"impf","ps":"p3","nu":"pl","gn":"m","st":"NA","prs_ps":"p1","prs_nu":"sg","prs_gn":"unknown"}
+ح‍ ۲۵	{"vs":"haf","vt":"impf","ps":"p3","nu":"pl","gn":"m","st":"NA","prs_ps":"p1","prs_nu":"sg","prs_gn":"unknown"}
+ق‍ ۲۶	{"vs":"peal","vt":"impf","ps":"p3","nu":"pl","gn":"f","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ ۳۷	{"vs":"pael","vt":"impv","ps":"p2","nu":"pl","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ ۳۷	{"vs":"afel","vt":"impv","ps":"p2","nu":"pl","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ ۲۵	{"vs":"pael","vt":"impf","ps":"p3","nu":"pl","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۲۰	{"vs":"peal","vt":"impf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"f"}
+پ‍ ۲۵	{"vs":"pael","vt":"impf","ps":"p3","nu":"pl","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"m"}
+پ‍ ۲۰	{"vs":"pael","vt":"impf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"p2","prs_nu":"sg","prs_gn":"m"}
+پ‍ ۳۷	{"vs":"pael","vt":"impv","ps":"p2","nu":"pl","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"m"}
+پ‍ ۵۵	{"vs":"pael","vt":"ptca","ps":"unknown","nu":"pl","gn":"m","st":"a","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۱۴	{"vs":"peal","vt":"perf","ps":"p1","nu":"sg","gn":"unknown","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"f"}
+پ‍ ۱۴	{"vs":"pael","vt":"perf","ps":"p1","nu":"sg","gn":"unknown","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ ۲۰	{"vs":"pael","vt":"impf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۱۶	{"vs":"peal","vt":"perf","ps":"p3","nu":"pl","gn":"f","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۵۶	{"vs":"peal","vt":"ptca","ps":"unknown","nu":"pl","gn":"f","st":"a","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۵۱	{"vs":"peal","vt":"ptca","ps":"unknown","nu":"sg","gn":"f","st":"a","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۱۵	{"vs":"peal","vt":"perf","ps":"p3","nu":"pl","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"m"}
+پ‍ ۲۵	{"vs":"pael","vt":"impf","ps":"p3","nu":"pl","gn":"m","st":"NA","prs_ps":"p2","prs_nu":"sg","prs_gn":"m"}
+حیت‍ ۲۵	{"vs":"etpa","vt":"impf","ps":"p3","nu":"pl","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ ۶۵	{"vs":"afel","vt":"infc","ps":"unknown","nu":"unknown","gn":"unknown","st":"c","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ ۲۴	{"vs":"haf","vt":"impf","ps":"p1","nu":"sg","gn":"unknown","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"m"}
+حیت‍ ۱۲	{"vs":"htpa","vt":"perf","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ ۱۰	{"vs":"haf","vt":"perf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"f"}
+ق‍ مغعول ۱۲	{"vs":"peil","vt":"perf","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+حیتپ‍ ۱۲	{"vs":"htpe","vt":"perf","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ مغعول ۱۱	{"vs":"peil","vt":"perf","ps":"p3","nu":"sg","gn":"f","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ ۶۵	{"vs":"haf","vt":"infc","ps":"unknown","nu":"unknown","gn":"unknown","st":"a","prs_ps":"p3","prs_nu":"sg","prs_gn":"m"}
+ح‍ ۱۹	{"vs":"haf","vt":"perf","ps":"p1","nu":"pl","gn":"unknown","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+حیت‍ ۱۵	{"vs":"etpa","vt":"perf","ps":"p3","nu":"pl","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ ۲۲	{"vs":"haf","vt":"impf","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ مغعول ۵۶	{"vs":"peal","vt":"ptcp","ps":"unknown","nu":"pl","gn":"f","st":"a","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ش‍ ۶۵	{"vs":"shaf","vt":"infc","ps":"unknown","nu":"unknown","gn":"unknown","st":"a","prs_ps":"p3","prs_nu":"sg","prs_gn":"m"}
+ش‍ ۲۰	{"vs":"shaf","vt":"impf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"p2","prs_nu":"sg","prs_gn":"m"}
+ق‍ ۱۰	{"vs":"peal","vt":"perf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"f"}
+ش‍ ۶۵	{"vs":"shaf","vt":"infc","ps":"unknown","nu":"unknown","gn":"unknown","st":"a","prs_ps":"p2","prs_nu":"sg","prs_gn":"m"}
+پ‍ ۱۵	{"vs":"pael","vt":"perf","ps":"p3","nu":"pl","gn":"m","st":"NA","prs_ps":"p1","prs_nu":"sg","prs_gn":"unknown"}
+ش‍ ۵۰	{"vs":"shaf","vt":"ptca","ps":"unknown","nu":"sg","gn":"m","st":"a","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ ۵۶	{"vs":"haf","vt":"ptca","ps":"unknown","nu":"pl","gn":"f","st":"a","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۳۳	{"vs":"peal","vt":"impv","ps":"p2","nu":"sg","gn":"f","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ مغعول ۵۱	{"vs":"pael","vt":"ptcp","ps":"unknown","nu":"sg","gn":"f","st":"a","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+حیتپ‍ ۱۶	{"vs":"etpe","vt":"perf","ps":"p3","nu":"pl","gn":"f","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ ۵۱	{"vs":"pael","vt":"ptca","ps":"unknown","nu":"sg","gn":"f","st":"a","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ ۱۵	{"vs":"haf","vt":"perf","ps":"p3","nu":"pl","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"m"}
+ح‍ ۲۰	{"vs":"haf","vt":"impf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"p1","prs_nu":"sg","prs_gn":"unknown"}
+ق‍ مغعول ۵۱	{"vs":"peal","vt":"ptcp","ps":"unknown","nu":"sg","gn":"f","st":"a","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۲۱	{"vs":"peal","vt":"impf","ps":"p3","nu":"sg","gn":"f","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"f"}
+ح‍ ۲۱	{"vs":"haf","vt":"impf","ps":"p3","nu":"sg","gn":"f","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"f"}
+حیت‍ ۲۵	{"vs":"htpa","vt":"impf","ps":"p3","nu":"pl","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ش‍ ۱۵	{"vs":"shaf","vt":"perf","ps":"p3","nu":"pl","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ ۵۳	{"vs":"haf","vt":"ptca","ps":"unknown","nu":"sg","gn":"f","st":"c","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+حیت‍ ۵۱	{"vs":"htpa","vt":"ptca","ps":"unknown","nu":"sg","gn":"f","st":"a","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+حیتپ‍ ۵۰	{"vs":"htpe","vt":"ptca","ps":"unknown","nu":"sg","gn":"m","st":"a","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ ۶۵	{"vs":"haf","vt":"infc","ps":"unknown","nu":"unknown","gn":"unknown","st":"c","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ش‍ ۶۵	{"vs":"shaf","vt":"infc","ps":"unknown","nu":"unknown","gn":"unknown","st":"a","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+حیتپ‍ ۵۱	{"vs":"htpe","vt":"ptca","ps":"unknown","nu":"sg","gn":"f","st":"a","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ ۱۵	{"vs":"haf","vt":"perf","ps":"p3","nu":"pl","gn":"m","st":"NA","prs_ps":"p1","prs_nu":"pl","prs_gn":"unknown"}
+ق‍ ۱۰	{"vs":"peal","vt":"perf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"m"}
+ش‍ ۱۰	{"vs":"shaf","vt":"perf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"p3","prs_nu":"sg","prs_gn":"m"}
+ح‍ ۳۲	{"vs":"afel","vt":"impv","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+حیت‍ ۱۵	{"vs":"htpa","vt":"perf","ps":"p3","nu":"pl","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+حیت‍ ۶۵	{"vs":"htpa","vt":"infc","ps":"unknown","nu":"unknown","gn":"unknown","st":"c","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ ۲۲	{"vs":"pael","vt":"impf","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+حیتپ‍ ۵۵	{"vs":"htpe","vt":"ptca","ps":"unknown","nu":"pl","gn":"m","st":"a","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ح‍ ۳۲	{"vs":"haf","vt":"impv","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۲۰	{"vs":"peal","vt":"impf","ps":"p3","nu":"sg","gn":"m","st":"NA","prs_ps":"p2","prs_nu":"pl","prs_gn":"m"}
+پ‍ ۳۲	{"vs":"pael","vt":"impv","ps":"p2","nu":"sg","gn":"m","st":"NA","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ ۵۷	{"vs":"peal","vt":"ptca","ps":"unknown","nu":"pl","gn":"m","st":"c","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+پ‍ مغعول ۵۲	{"vs":"pual","vt":"ptcp","ps":"unknown","nu":"sg","gn":"m","st":"c","prs_ps":"NA","prs_nu":"NA","prs_gn":"NA"}
+ق‍ اد‍ ۲۵	{"vs":"qal","vt":"wayq","ps":"p3","nu":"pl","gn":"m","st":"NA","prs_ps":"p2","prs_nu":"sg","prs_gn":"m"}
+ق‍ ۵۱	{"vs":"qal","vt":"ptca","ps":"unknown","nu":"sg","gn":"f","st":"a","prs_ps":"p3","prs_nu":"sg","prs_gn":"m"}

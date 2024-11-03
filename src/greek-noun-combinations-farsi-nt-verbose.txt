@@ -1,0 +1,76 @@
+نهادی مؤنث مفرد	{"grammatical_case":"nominative","grammatical_number":"singular","gender":"feminine","degree":null}
+وابستگی مؤنث مفرد	{"grammatical_case":"genitive","grammatical_number":"singular","gender":"feminine","degree":null}
+وابستگی مذکر مفرد	{"grammatical_case":"genitive","grammatical_number":"singular","gender":"masculine","degree":null}
+نهادی مذکر مفرد	{"grammatical_case":"nominative","grammatical_number":"singular","gender":"masculine","degree":null}
+مفعولی مذکر مفرد	{"grammatical_case":"accusative","grammatical_number":"singular","gender":"masculine","degree":null}
+مفعولی مذکر جمع	{"grammatical_case":"accusative","grammatical_number":"plural","gender":"masculine","degree":null}
+مفعولی مؤنث مفرد	{"grammatical_case":"accusative","grammatical_number":"singular","gender":"feminine","degree":null}
+نهادی مؤنث جمع	{"grammatical_case":"nominative","grammatical_number":"plural","gender":"feminine","degree":null}
+کنش‌گیری مذکر مفرد	{"grammatical_case":"dative","grammatical_number":"singular","gender":"masculine","degree":null}
+کنش‌گیری مؤنث مفرد	{"grammatical_case":"dative","grammatical_number":"singular","gender":"feminine","degree":null}
+وابستگی خنثی مفرد	{"grammatical_case":"genitive","grammatical_number":"singular","gender":"neuter","degree":null}
+مفعولی خنثی جمع	{"grammatical_case":"accusative","grammatical_number":"plural","gender":"neuter","degree":null}
+مفعولی خنثی مفرد	{"grammatical_case":"accusative","grammatical_number":"singular","gender":"neuter","degree":null}
+مذکر مفرد	{"grammatical_case":null,"grammatical_number":"singular","gender":"masculine","degree":null}
+وابستگی مفرد	{"grammatical_case":"genitive","grammatical_number":"singular","gender":null,"degree":null}
+نهادی خنثی مفرد	{"grammatical_case":"nominative","grammatical_number":"singular","gender":"neuter","degree":null}
+وابستگی مؤنث جمع	{"grammatical_case":"genitive","grammatical_number":"plural","gender":"feminine","degree":null}
+وابستگی مذکر جمع	{"grammatical_case":"genitive","grammatical_number":"plural","gender":"masculine","degree":null}
+وابستگی جمع	{"grammatical_case":"genitive","grammatical_number":"plural","gender":null,"degree":null}
+کنش‌گیری مؤنث جمع	{"grammatical_case":"dative","grammatical_number":"plural","gender":"feminine","degree":null}
+نهادی مذکر جمع	{"grammatical_case":"nominative","grammatical_number":"plural","gender":"masculine","degree":null}
+نهادی مفرد	{"grammatical_case":"nominative","grammatical_number":"singular","gender":null,"degree":null}
+مؤنث مفرد	{"grammatical_case":null,"grammatical_number":"singular","gender":"feminine","degree":null}
+نهادی مؤنث مفرد	{"grammatical_case":"nominative","grammatical_number":"singular","gender":"feminine","degree":"superlative"}
+کنش‌گیری مذکر جمع	{"grammatical_case":"dative","grammatical_number":"plural","gender":"masculine","degree":null}
+کنش‌گیری مفرد	{"grammatical_case":"dative","grammatical_number":"singular","gender":null,"degree":null}
+کنش‌گیری خنثی جمع	{"grammatical_case":"dative","grammatical_number":"plural","gender":"neuter","degree":null}
+مفعولی مؤنث جمع	{"grammatical_case":"accusative","grammatical_number":"plural","gender":"feminine","degree":null}
+نهادی خنثی جمع	{"grammatical_case":"nominative","grammatical_number":"plural","gender":"neuter","degree":null}
+خنثی جمع	{"grammatical_case":null,"grammatical_number":"plural","gender":"neuter","degree":null}
+کنش‌گیری جمع	{"grammatical_case":"dative","grammatical_number":"plural","gender":null,"degree":null}
+وابستگی خنثی جمع	{"grammatical_case":"genitive","grammatical_number":"plural","gender":"neuter","degree":null}
+مفعولی جمع	{"grammatical_case":"accusative","grammatical_number":"plural","gender":null,"degree":null}
+کنش‌گیری خنثی مفرد	{"grammatical_case":"dative","grammatical_number":"singular","gender":"neuter","degree":null}
+نهادی مذکر مفرد	{"grammatical_case":"nominative","grammatical_number":"singular","gender":"masculine","degree":"comparative"}
+مفعولی مفرد	{"grammatical_case":"accusative","grammatical_number":"singular","gender":null,"degree":null}
+مفعولی خنثی مفرد	{"grammatical_case":"accusative","grammatical_number":"singular","gender":"neuter","degree":"comparative"}
+نهادی جمع	{"grammatical_case":"nominative","grammatical_number":"plural","gender":null,"degree":null}
+وابستگی مؤنث جمع	{"grammatical_case":"genitive","grammatical_number":"plural","gender":"feminine","degree":"superlative"}
+نهادی مذکر مفرد	{"grammatical_case":"nominative","grammatical_number":"singular","gender":"masculine","degree":"superlative"}
+نهادی خنثی مفرد	{"grammatical_case":"nominative","grammatical_number":"singular","gender":"neuter","degree":"comparative"}
+مذکر جمع	{"grammatical_case":null,"grammatical_number":"plural","gender":"masculine","degree":null}
+خنثی مفرد	{"grammatical_case":null,"grammatical_number":"singular","gender":"neuter","degree":null}
+مفعولی مذکر مفرد	{"grammatical_case":"accusative","grammatical_number":"singular","gender":"masculine","degree":"comparative"}
+نهادی مؤنث جمع	{"grammatical_case":"nominative","grammatical_number":"plural","gender":"feminine","degree":"superlative"}
+مفعولی خنثی جمع	{"grammatical_case":"accusative","grammatical_number":"plural","gender":"neuter","degree":"comparative"}
+نهادی خنثی جمع	{"grammatical_case":"nominative","grammatical_number":"plural","gender":"neuter","degree":"comparative"}
+کنش‌گیری خنثی جمع	{"grammatical_case":"dative","grammatical_number":"plural","gender":"neuter","degree":"superlative"}
+مفعولی مذکر جمع	{"grammatical_case":"accusative","grammatical_number":"plural","gender":"masculine","degree":"comparative"}
+وابستگی مذکر جمع	{"grammatical_case":"genitive","grammatical_number":"plural","gender":"masculine","degree":"superlative"}
+نهادی مؤنث مفرد	{"grammatical_case":"nominative","grammatical_number":"singular","gender":"feminine","degree":"comparative"}
+وابستگی مذکر مفرد	{"grammatical_case":"genitive","grammatical_number":"singular","gender":"masculine","degree":"superlative"}
+مذکر مفرد	{"grammatical_case":null,"grammatical_number":"singular","gender":"masculine","degree":"superlative"}
+وابستگی خنثی جمع	{"grammatical_case":"genitive","grammatical_number":"plural","gender":"neuter","degree":"comparative"}
+مفعولی مؤنث جمع	{"grammatical_case":"accusative","grammatical_number":"plural","gender":"feminine","degree":"comparative"}
+مفعولی خنثی مفرد	{"grammatical_case":"accusative","grammatical_number":"singular","gender":"neuter","degree":"superlative"}
+نهادی مذکر جمع	{"grammatical_case":"nominative","grammatical_number":"plural","gender":"masculine","degree":"comparative"}
+کنش‌گیری خنثی مفرد	{"grammatical_case":"dative","grammatical_number":"singular","gender":"neuter","degree":"superlative"}
+مؤنث جمع	{"grammatical_case":null,"grammatical_number":"plural","gender":"feminine","degree":null}
+مفعولی مؤنث مفرد	{"grammatical_case":"accusative","grammatical_number":"singular","gender":"feminine","degree":"comparative"}
+کنش‌گیری مذکر جمع	{"grammatical_case":"dative","grammatical_number":"plural","gender":"masculine","degree":"comparative"}
+مفعولی خنثی جمع	{"grammatical_case":"accusative","grammatical_number":"plural","gender":"neuter","degree":"superlative"}
+کنش‌گیری مذکر مفرد	{"grammatical_case":"dative","grammatical_number":"singular","gender":"masculine","degree":"superlative"}
+نهادی مؤنث جمع	{"grammatical_case":"nominative","grammatical_number":"plural","gender":"feminine","degree":"comparative"}
+مفعولی مؤنث مفرد	{"grammatical_case":"accusative","grammatical_number":"singular","gender":"feminine","degree":"superlative"}
+کنش‌گیری مذکر مفرد	{"grammatical_case":"dative","grammatical_number":"singular","gender":"masculine","degree":"comparative"}
+وابستگی خنثی جمع	{"grammatical_case":"genitive","grammatical_number":"plural","gender":"neuter","degree":"superlative"}
+وابستگی مذکر جمع	{"grammatical_case":"genitive","grammatical_number":"plural","gender":"masculine","degree":"comparative"}
+کنش‌گیری مؤنث مفرد	{"grammatical_case":"dative","grammatical_number":"singular","gender":"feminine","degree":"comparative"}
+وابستگی مؤنث مفرد	{"grammatical_case":"genitive","grammatical_number":"singular","gender":"feminine","degree":"comparative"}
+وابستگی مذکر مفرد	{"grammatical_case":"genitive","grammatical_number":"singular","gender":"masculine","degree":"comparative"}
+کنش‌گیری مؤنث جمع	{"grammatical_case":"dative","grammatical_number":"plural","gender":"feminine","degree":"comparative"}
+وابستگی خنثی مفرد	{"grammatical_case":"genitive","grammatical_number":"singular","gender":"neuter","degree":"superlative"}
+کنش‌گیری خنثی مفرد	{"grammatical_case":"dative","grammatical_number":"singular","gender":"neuter","degree":"comparative"}
+مذکر جمع	{"grammatical_case":null,"grammatical_number":"plural","gender":"masculine","degree":"comparative"}
+کنش‌گیری مؤنث مفرد	{"grammatical_case":"dative","grammatical_number":"singular","gender":"feminine","degree":"superlative"}
