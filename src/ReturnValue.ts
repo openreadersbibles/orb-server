@@ -4,11 +4,6 @@ export interface HttpReturnValue {
     headers?: any;
 }
 
-interface ReturnValue {
-    operation_status: 'success' | 'failure';
-    payload: any;
-}
-
 function Value(status: 'success' | 'failure', payload: any): HttpReturnValue {
     let statusCode = status === 'success' ? 200 : 500;
     return {

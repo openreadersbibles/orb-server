@@ -5,17 +5,15 @@ import path from 'path';
 import { annotationFromObject } from '../../models/Annotation';
 import { Canon, UbsBook, VerseReference } from '../../models/VerseReference';
 import { BookDump, BookHopper } from '../../models/ProjectDump';
-import { HasReferenceString, PublicationHebrewWordElement } from './PublicationHebrewWordElement';
-import { PublicationVerse, WordElementCreator } from './PublicationVerse';
-import { PublicationGreekWordElement } from './PublicationGreekWordElement';
+import { HasReferenceString, PublicationHebrewWordElement } from '../../models/publication/PublicationHebrewWordElement';
+import { PublicationVerse, WordElementCreator } from '../../models/publication/PublicationVerse';
+import { PublicationGreekWordElement } from '../../models/publication/PublicationGreekWordElement';
 import { ProjectConfiguration, ProjectId } from '../../models/ProjectConfiguration';
 import { GitHubAdapter, GitHubFile } from './GitHubAdapter';
 import { GitHubActionYML } from './GitHubActionYML';
 import axios, { ResponseType } from 'axios';
 import { ParsingFormat } from '../../models/parsing-formats/ParsingFormat';
 import { create } from 'xmlbuilder2';
-
-export type NumeralConverter = (num: string) => string;
 
 export interface PublisherInterface {
     connect(): Promise<void>;
