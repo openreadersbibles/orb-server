@@ -6,6 +6,7 @@ import { ProjectConfiguration } from '../../models/ProjectConfiguration';
 import { FailureValue, SuccessValue } from './ReturnValue';
 import { createPublisher } from './createPublisher';
 import { HollowPublicationRequest } from '../../models/PublicationRequest';
+import logger from './logger';
 
 const app = express();
 const port = 3000; // HTTPS port
@@ -25,10 +26,10 @@ app.get('/publication_contents/:project_id', async (req: any, res: any) => {
         const github = new GitHubAdapter(process.env['GITHUB_SECRET'] || '');
         const repo = ProjectConfiguration.getRepositoryName(project_id);
         const result = await github.listFilesWithLastModifiedDate('openreadersbibles', repo, 'gh-pages', '', '.pdf');
-        console.log(result);
+        logger.info(result);
         return res.json(SuccessValue(result));
     } catch (error) {
-        console.error(error);
+        logger.error(error);
         return res.status(500).json(FailureValue(error));
     }
 });
@@ -36,13 +37,13 @@ app.get('/publication_contents/:project_id', async (req: any, res: any) => {
 
 app.post('/publish', async (req: any, res: any) => {
     try {
-        console.log(req);
+        logger.info(req);
         if (req.body === undefined || req.body === null || req.body === "") {
             return FailureValue("No request body was provided.");
         }
 
         const request = JSON.parse(req.body) as HollowPublicationRequest;
-        console.log(request);
+        logger.info(request);
 
         const publisher = await createPublisher(request);
 
@@ -50,7 +51,7 @@ app.post('/publish', async (req: any, res: any) => {
         const checkForMissingGlossesResult = await publisher.checkAllFilesForMissingGlosses();
         Object.keys(checkForMissingGlossesResult).forEach(key => {
             if (checkForMissingGlossesResult[key].length > 0) {
-                console.log(`Missing glosses for ${key}: ${checkForMissingGlossesResult[key].join(', ')}`);
+                logger.info(`Missing glosses for ${key}: ${checkForMissingGlossesResult[key].join(', ')}`);
                 return FailureValue(`Missing glosses for ${key}: ${checkForMissingGlossesResult[key].join(', ')} See the check endpoint for more information.`);
             }
         });
@@ -59,7 +60,7 @@ app.post('/publish', async (req: any, res: any) => {
         /// At this point we know that the book is ready
 
         const result = await publisher.publish();
-        console.log(result.data);
+        logger.info(result.data);
 
         /// Disconnect from the database
         await publisher.disconnect();
@@ -67,11 +68,11 @@ app.post('/publish', async (req: any, res: any) => {
         /// Return the result
         return res.json(SuccessValue(result.data));
     } catch (error) {
-        // console.log("Success", SuccessValue("success message"));
-        // console.log("Failure", FailureValue("failure message"));
+        // logger.info("Success", SuccessValue("success message"));
+        // logger.info("Failure", FailureValue("failure message"));
 
-        console.log("Catching error in publish handler");
-        console.error(error);
+        logger.info("Catching error in publish handler");
+        logger.error(error);
         if (error === undefined || error === null || error === "") {
             return res.status(500).json(FailureValue("Indistinct error."));
         } else {
@@ -84,15 +85,15 @@ app.post('/publish', async (req: any, res: any) => {
 app.post('/check', async (req: any, res: any) => {
     try {
         const request = JSON.parse(req.body) as HollowPublicationRequest;
-        console.log(request);
+        logger.info(request);
 
         const publisher = await createPublisher(request);
 
         /// Check to see if any glosses are missing from the specified book
         const checkForMissingGlossesResult = await publisher.checkAllFilesForMissingGlosses();
-        console.log(checkForMissingGlossesResult);
+        logger.info(checkForMissingGlossesResult);
         // if (checkForMissingGlossesResult.length > 0) {
-        //     console.log(`There were ${checkForMissingGlossesResult.length} missing glosses.`);
+        //     logger.info(`There were ${checkForMissingGlossesResult.length} missing glosses.`);
         //     if (checkForMissingGlossesResult.length <= 10) {
         //         return LambdaProxyValue(`There were ${checkForMissingGlossesResult.length} missing glosses. They are: ${checkForMissingGlossesResult.join(', ')}.`);
         //     } else {
@@ -106,7 +107,7 @@ app.post('/check', async (req: any, res: any) => {
         /// Return the result
         return res.json(SuccessValue(checkForMissingGlossesResult));
     } catch (error) {
-        console.error(error);
+        logger.error(error);
         return res.status(500).json(FailureValue(error));
     }
 });
@@ -118,10 +119,10 @@ app.get('/action_status/:repo/:commit_sha', async (req: any, res: any) => {
         const commit_sha = decodeURIComponent(req.pathParameters.commit_sha);
         const github = new GitHubAdapter(process.env['GITHUB_SECRET'] || '');
         const result = await github.getActionsForCommit('openreadersbibles', repo, commit_sha);
-        console.log(result);
+        logger.info(result);
         return res.json(SuccessValue(result));
     } catch (error) {
-        console.error(error);
+        logger.error(error);
         return res.status(500).json(FailureValue(error));
     }
 });
@@ -130,5 +131,5 @@ app.get('/action_status/:repo/:commit_sha', async (req: any, res: any) => {
 
 // Start the server
 app.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`);
+    logger.info(`Server is running on http://localhost:${port}`);
 });

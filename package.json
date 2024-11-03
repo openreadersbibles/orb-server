@@ -10,11 +10,12 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "axios": "^1.7.7",
     "body-parser": "^1.20.3",
     "express": "^4.21.1",
-    "webpack-node-externals": "^3.0.0",
-    "axios": "^1.7.7",
     "mysql2": "^3.11.0",
+    "webpack-node-externals": "^3.0.0",
+    "winston": "^3.16.0",
     "xmlbuilder2": "^3.1.1"
   },
   "devDependencies": {
