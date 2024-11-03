@@ -23,7 +23,10 @@ const logger = createLogger({
     format: format.combine(
         customFormat(),
         format.timestamp(),
-        format.printf(({ timestamp, level, message }) => {
+        format.printf(({ timestamp, level, message, stack }) => {
+            if (level === 'error' && stack) {
+                return `${timestamp} [${level}]: ${message}\n${stack}`;
+            }
             return `${timestamp} [${level}]: ${message}`;
         })
     ),
@@ -31,7 +34,17 @@ const logger = createLogger({
         new transports.Console(),
         new transports.File({ filename: 'error.log', level: 'error' }),
         new transports.File({ filename: 'combined.log' })
+    ],
+    exceptionHandlers: [
+        new transports.File({ filename: 'exceptions.log' })
     ]
 });
+
+logger.add(new transports.Console({
+    format: format.combine(
+        format.colorize(),
+        format.simple()
+    )
+}));
 
 export default logger;
