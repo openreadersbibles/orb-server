@@ -6,3 +6,4 @@ package-lock.json
 dist/**
 combined.log
 error.log
+exceptions.log
