@@ -12,10 +12,8 @@
   "dependencies": {
     "@aws-sdk/client-cognito-identity-provider": "^3.682.0",
     "axios": "^1.7.7",
-    "body-parser": "^1.20.3",
     "cors": "^2.8.5",
     "express": "^4.21.1",
-    "jsonwebtoken": "^9.0.2",
     "mysql2": "^3.11.0",
     "webpack-node-externals": "^3.0.0",
     "winston": "^3.16.0",
@@ -23,8 +21,8 @@
   },
   "devDependencies": {
     "@types/express": "^5.0.0",
-    "@types/jsonwebtoken": "^9.0.7",
     "@types/node": "^22.8.6",
+    "@types/cors": "^2.8.17",
     "ts-loader": "^9.5.1",
     "typescript": "^5.6.3",
     "webpack": "^5.96.1",
