@@ -57,7 +57,6 @@ export class Publisher {
         let parsingFormats = new Map<Canon, ParsingFormat>();
         for (const key in req.parsing_formats) {
             if (req.parsing_formats.hasOwnProperty(key)) {
-                console.log(`${key}: ${req.parsing_formats[key]}`);
                 const format = project.publicationSettings.getParsingFormatFromId(req.parsing_formats[key]);
                 if (!format) {
                     return Promise.reject('Parsing format not found:' + req.parsing_formats[key]);

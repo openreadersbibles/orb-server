@@ -13,3 +13,6 @@ npx webpack
 Local test:
 npx webpack
 node dist/server.js
+
+or:
+nodemon
