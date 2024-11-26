@@ -176,15 +176,25 @@ export class Publisher {
     }
 
     async getBookDump(bid: BookIdentifier): Promise<BookDump> {
+        let book: BookDump = { book_id: bid.book, canon: 'LXX', book_title: '', verses: [] };
         switch (bid.canon) {
             case 'OT':
-                return await this.getOTBook(bid);
+                book = await this.getOTBook(bid);
             case 'NT':
-                return await this.getNTBook(bid);
+                book = await this.getNTBook(bid);
             case 'LXX':
                 console.log("LXX not implemented yet");
-                return { book_id: bid.book, canon: 'LXX', book_title: '', verses: [] };
         }
+
+        /// convert the annotation JSON to objects
+        book.verses = book.verses.map((row: any) => {
+            if (row.gloss !== null) {
+                row.gloss = annotationFromObject(row.gloss);
+            }
+            return row;
+        });
+
+        return book;
     }
 
     async getProjectFromId(project_id: ProjectId): Promise<ProjectConfiguration | undefined> {
@@ -226,13 +236,6 @@ GROUP BY
     }
 
     static bookDumpToTex(book: BookDump, request: PublicationRequest): string {
-        book.verses = book.verses.map((row: any) => {
-            if (row.gloss !== null) {
-                row.gloss = annotationFromObject(row.gloss);
-            }
-            return row;
-        });
-
         let content = "";
         switch (book.canon) {
             case 'OT':
@@ -291,13 +294,6 @@ GROUP BY
     }
 
     static bookDumpToTEI(book: BookDump, request: PublicationRequest): string {
-        book.verses = book.verses.map((row: any) => {
-            if (row.gloss !== null) {
-                row.gloss = annotationFromObject(row.gloss);
-            }
-            return row;
-        });
-
         let content = "";
         switch (book.canon) {
             case 'OT':
