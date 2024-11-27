@@ -18,7 +18,7 @@ import { projectDescriptions } from './handlers/projectDescriptions';
 import { joinProject } from './handlers/joinProject';
 
 const app = express();
-const port = 3000; // HTTPS port
+const port = process.env.API_PORT || 3000; // HTTPS port
 
 // Middleware to parse JSON bodies
 app.use(express.json());
