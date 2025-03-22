@@ -7,13 +7,13 @@ import { createPublisher } from "../createPublisher";
 
 export async function publish(req: Request, res: Response, userInfo: CognitoUserInfoResponse): Promise<Response<any, Record<string, any>>> {
     try {
-        logger.info(req);
+        // logger.info(req);
         if (req.body === undefined || req.body === null || req.body === "") {
             return res.json(FailureValue("No request body was provided."));
         }
 
         const request = req.body as HollowPublicationRequest;
-        logger.info(request);
+        // logger.info(request);
 
         const publisher = await createPublisher(request);
 

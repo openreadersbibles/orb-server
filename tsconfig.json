@@ -5,6 +5,7 @@
     "strict": true,
     "esModuleInterop": true,
     "sourceMap": true, // Enable source maps
+    "resolveJsonModule": true,
   },
   "exclude": [
     "node_modules"

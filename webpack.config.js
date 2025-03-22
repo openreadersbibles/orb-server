@@ -24,7 +24,7 @@ module.exports = {
     },
     devtool: 'source-map', // Enable source maps
     resolve: {
-        extensions: ['.tsx', '.ts', '.js'],
+        extensions: ['.tsx', '.ts', '.js', '.json'],
     },
     output: {
         filename: 'server.js',
