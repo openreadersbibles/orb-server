@@ -1,5 +1,7 @@
 # README
 
+See `README-private.md` for instructions on how to connect to the server, etc.
+
 ## How it works
 Truth be told I am fuzzy on the details, but here are the essentials:
 

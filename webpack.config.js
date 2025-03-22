@@ -11,6 +11,15 @@ module.exports = {
                 use: 'ts-loader',
                 exclude: /node_modules/,
             },
+            {
+                test: /\.json$/,
+                type: 'asset',
+                parser: {
+                    dataUrlCondition: {
+                        maxSize: 10 * 1024, // 10KB
+                    },
+                },
+            },
         ],
     },
     devtool: 'source-map', // Enable source maps
@@ -20,6 +29,7 @@ module.exports = {
     output: {
         filename: 'server.js',
         path: path.resolve(__dirname, 'dist'),
+        assetModuleFilename: 'assets/[name][ext]',
     },
     target: 'node',
     externals: [nodeExternals()],
