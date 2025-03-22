@@ -13,7 +13,7 @@ export async function seekVerse(req: Request, res: Response, userInfo: CognitoUs
         const exclusivity = req.params.exclusivity as "me" | "anyone";
         const frequency_threshold = Number.parseInt(req.params.frequency_threshold);
 
-        console.log(`Seeking verse for user ${user_id} in project ${project_id} starting at ${startingPosition} in direction ${direction} with exclusivity ${exclusivity} and frequency threshold ${frequency_threshold}`);
+        console.info(`Seeking verse for user ${user_id} in project ${project_id} starting at ${startingPosition} in direction ${direction} with exclusivity ${exclusivity} and frequency threshold ${frequency_threshold}`);
 
         return res.json(await ConnectRunDisconnect(async (adapter) => {
             return adapter.seekVerse(project_id, user_id, frequency_threshold, startingPosition, direction, exclusivity);

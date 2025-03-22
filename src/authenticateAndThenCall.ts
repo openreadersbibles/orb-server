@@ -9,7 +9,7 @@ export type ApiCallHandler = (req: Request, res: Response, userInfo: CognitoUser
 export const authenticateAndThenCall = async (req: Request, res: Response, next: ApiCallHandler) => {
     const token = req.headers['authorization'];
     if (!token) {
-        console.log(req.headers);
+        console.error(req.headers);
         return res.status(401).json(FailureValue({ error: 'No authorization header' }));
     }
 
@@ -20,7 +20,7 @@ export const authenticateAndThenCall = async (req: Request, res: Response, next:
 
         const response = await axios.get(`${COGNITO.auth_url}/oauth2/userInfo`, { headers });
         if (response.data.error && response.data.error === 'invalid_token') {
-            console.log(response.data);
+            console.error(response.data);
             throw new Error('Invalid token');
         } else if (response.data.error) {
             throw new Error(response.data.error);

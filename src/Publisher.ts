@@ -80,7 +80,6 @@ export class Publisher {
         if (this.connection) {
             try {
                 await this.connection.end();
-                // console.log('Disconnected from the database');
             } catch (error) {
                 console.error('Error disconnecting from the database:', error);
             }
@@ -91,7 +90,7 @@ export class Publisher {
         let results: CheckResults = {};
         await Promise.all(this.request.books.map(async (bid: BookIdentifier) => {
             let mg = await this.checkForMissingGlosses(bid);
-            console.log(`Missing glosses for ${bid.toString()}: ${mg.join(', ')}`);
+            console.error(`Missing glosses for ${bid.toString()}: ${mg.join(', ')}`);
             results[bid.toString()] = mg;
         }));
         return results;
@@ -163,7 +162,7 @@ export class Publisher {
 
         /// Print file paths to console
         files.forEach(file => {
-            console.log(`File path: ${file.path}`);
+            console.info(`File path: ${file.path}`);
         });
 
         /// Add the files to the repository and create a new commit
@@ -172,7 +171,7 @@ export class Publisher {
 
     async createBookDumps(files: GitHubFile[]): Promise<void[]> {
         return Promise.all(this.request.books.map(async (bid: BookIdentifier) => {
-            console.log(`Processing ${bid.canon} ${bid.book}`);
+            console.info(`Processing ${bid.canon} ${bid.book}`);
 
             /// Create the book dump
             const dump: BookDump = await this.getBookDump(bid);
@@ -185,7 +184,7 @@ export class Publisher {
             const tei = await Publisher.bookDumpToTEI(dump, this._request);
             files.push({ path: this.teiFilename(bid), content: tei });
 
-            console.log(`Finished processing ${bid.canon} ${bid.book}. Now files has ${files.length} items.`);
+            console.info(`Finished processing ${bid.canon} ${bid.book}. Now files has ${files.length} items.`);
         }));
     }
 
@@ -197,7 +196,7 @@ export class Publisher {
             case 'NT':
                 book = await this.getNTBook(bid);
             case 'LXX':
-                console.log("LXX not implemented yet");
+                console.error("LXX not implemented yet");
         }
         Publisher.initializeBookDumpAnnotations(book);
         return book;
@@ -452,7 +451,6 @@ FROM ot
     }
 
     async getDatabaseRows(bid: BookIdentifier, query: string): Promise<BookDump> {
-        // console.log(query);
         let bookName = await this.getCanonicalBookName(bid.canon, bid.book);
         let [rows] = await this.connection.execute<any[]>(query, [this._request.project.id, this._request.project.id])
         rows = rows.map((row: any) => {

@@ -29,7 +29,6 @@ export class MariaDbAdapter implements GenericDatabaseAdapter {
         if (this.connection) {
             try {
                 await this.connection.end();
-                // console.log('Disconnected from the database');
             } catch (error) {
                 console.error('Error disconnecting from the database:', error);
             }
@@ -183,8 +182,6 @@ GROUP BY
             for (let i = 0; i < phraseGlossUpdates.length; i++) {
                 if (phraseGlossUpdates[i].gloss_id === -1) {
                     let location = phraseGlossUpdates[i].location as unknown as PhraseGlossLocationObject;
-                    // console.log(location);
-                    // console.log(location.from_word_id, location.to_word_id, project_id, phraseGlossUpdates[i].annotationObject.content.markdown, reference_text);
                     await this.connection.execute(`INSERT INTO phrase_gloss (from_word_id, to_word_id, project_id, markdown,reference) VALUES (?,?,?,?,?);`, [location.from_word_id, location.to_word_id, project_id, phraseGlossUpdates[i].annotationObject.content.markdown, reference_text]);
                     phraseGlossUpdates[i].gloss_id = await this.lastInsertId();
                 }
@@ -266,8 +263,6 @@ GROUP BY
             let glossSuggestions = await this.getWordGlosses(project_id, reference, 'nt');
             let phraseGlosses = await this.getPhraseGlosses(user_id, project_id, reference);
 
-            // console.log(glossSuggestions);
-
             return ReturnValue({
                 words: rows.map((row: any) => { row.votes = JSON.parse(row.votes); return row; }),
                 suggestions: glossSuggestions,
@@ -326,12 +321,10 @@ GROUP BY
         ORDER BY ${canon}._id ${orderDirection} 
         LIMIT 1;`;
 
-            console.log(query);
-
             const result = await this.connection.query<any[]>(query, args);
 
             if (result[0][0] === undefined) {
-                console.log(`Query returned empty; returning starting position: ${startingPosition.toString()}`);
+                console.error(`Query returned empty; returning starting position: ${startingPosition.toString()}`);
                 return ResolvedPromiseReturnValue({ reference: startingPosition.toString() });
             }
             return ResolvedPromiseReturnValue(result[0][0]);

@@ -20,10 +20,9 @@ export class GitHubAdapter {
     }
 
     async createRepositoryIfNotExists(repo: string) {
-        console.log(`Checking if repository ${repo} exists...`);
+        console.info(`Checking if repository ${repo} exists...`);
         try {
             const response = await axios.get(`https://api.github.com/repos/${this._owner}/${repo}`, this.config);
-            // console.log(response.data);
         } catch (error: any) {
             if (error.status === 404) {
                 await this.createRepository(repo);
@@ -48,7 +47,7 @@ export class GitHubAdapter {
             console.error(`Error creating repository: ${error.message}`);
         }
 
-        console.log(`Repository ${repo} created successfully.`);
+        console.info(`Repository ${repo} created successfully.`);
     }
 
 
@@ -58,19 +57,15 @@ export class GitHubAdapter {
             const { data: refData } = await axios.get(`https://api.github.com/repos/${this._owner}/${repo}/git/ref/heads/${branch}`, this.config);
             const baseTreeSha = refData.object.sha;
 
-            // console.log(baseTreeSha);
-
             // Step 2: Create blobs for each file
             const blobs = await Promise.all(files.map(async file => {
-                console.log(`Adding file ${file.path} to repository ${repo}...`);
+                console.info(`Adding file ${file.path} to repository ${repo}...`);
                 const { data: blobData } = await axios.post(`https://api.github.com/repos/${this._owner}/${repo}/git/blobs`, {
                     content: Buffer.from(file.content).toString('base64'),
                     encoding: 'base64'
                 }, this.config);
                 return { path: file.path, sha: blobData.sha };
             }));
-
-            console.log(blobs);
 
             // Step 3: Create a new tree with all blobs
             const { data: treeData } = await axios.post(`https://api.github.com/repos/${this._owner}/${repo}/git/trees`, {
@@ -95,8 +90,6 @@ export class GitHubAdapter {
                 sha: commitData.sha,
                 force: true // Force update to handle conflicts
             }, this.config);
-
-            // console.log(`Files added to repository ${repo} successfully.`);
         } catch (error: any) {
             if (error.response && error.response.status === 409) {
                 console.error(`Conflict error: ${error.message}. Please ensure you are working with the latest branch state.`);
@@ -111,7 +104,6 @@ export class GitHubAdapter {
     async getActionsForCommit(owner: string, repo: string, commitSha: string) {
         try {
             const url = `https://api.github.com/repos/${owner}/${repo}/actions/runs?head_sha=${commitSha}`;
-            console.log(url);
             const response = await axios.get(url, this.config);
 
             if (response.status !== 200) {

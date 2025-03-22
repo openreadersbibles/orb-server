@@ -15,4 +15,4 @@ const result = saxonJs.transform({
 });
 
 // Output the result
-console.log(result.principalResult);
+console.info(result.principalResult);
