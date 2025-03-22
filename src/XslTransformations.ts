@@ -19,7 +19,7 @@ export class XslTransformations {
     }
 
     static produceTeXForFile(file: GitHubFile): GitHubFile {
-        const newPath = file.path.replace('.xml', '.html');
+        const newPath = file.path.replace('.xml', '.tex');
         const newContent = XslTransformations.xslTransform(file.content, './tei2tex.sef.json');
         return { path: newPath, content: newContent };
     }

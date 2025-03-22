@@ -29,5 +29,6 @@ git pull
 npm install
 npx webpack
 
+cd ~
 pm2 start ecosystem.config.js
 # pm2 restart ~/orb-server/dist/server.js --update-env

@@ -183,7 +183,7 @@ export class Publisher {
             files.push({ path: this.texFilename(bid), content: tex });
 
             const tei = await Publisher.bookDumpToTEI(dump, this._request);
-            files.push({ path: this.teiFilename(bid), content: tex });
+            files.push({ path: this.teiFilename(bid), content: tei });
 
             console.log(`Finished processing ${bid.canon} ${bid.book}. Now files has ${files.length} items.`);
         }));
