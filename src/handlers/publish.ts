@@ -41,8 +41,17 @@ export async function publish(req: Request, res: Response, userInfo: CognitoUser
         // logger.info("Success", SuccessValue("success message"));
         // logger.info("Failure", FailureValue("failure message"));
 
+        console.error(error);
+        console.trace();
+
         logger.info("Catching error in publish handler");
-        logger.error(error);
+        // Log the error stack trace if available
+        if (error instanceof Error) {
+            logger.error(`Error: ${error.message}`);
+            logger.error(`Stack Trace: ${error.stack}`);
+        } else {
+            logger.error(`Error: ${JSON.stringify(error)}`);
+        }
         if (error === undefined || error === null || error === "") {
             return res.status(500).json(FailureValue("Indistinct error."));
         } else {

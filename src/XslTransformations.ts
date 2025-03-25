@@ -46,7 +46,7 @@ export class XslTransformations {
             stylesheetText: stylesheetContent,
             sourceText: fileContent,
             destination: 'serialized'
-        });
+        }).principalResult || '';
     }
 
 }

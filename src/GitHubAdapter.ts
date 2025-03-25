@@ -1,4 +1,5 @@
 import axios from 'axios';
+import logger from './logger';
 
 export interface GitHubFile { path: string, content: any };
 
@@ -95,6 +96,7 @@ export class GitHubAdapter {
                 console.error(`Conflict error: ${error.message}. Please ensure you are working with the latest branch state.`);
             } else {
                 console.error(`Error adding files to repository: ${error.message}`);
+                console.trace();
             }
             console.error(`Stack trace: ${error.stack}`);
             return Promise.reject(error);

@@ -4,7 +4,7 @@ import { BookIdentifier } from '../../models/BookIdentifier';
 import path from 'path';
 import { annotationFromObject } from '../../models/Annotation';
 import { Canon, UbsBook, VerseReference } from '../../models/VerseReference';
-import { BookDump, BookHopper } from '../../models/ProjectDump';
+import { BookHopper } from '../../models/ProjectDump';
 import { HasReferenceString, PublicationHebrewWordElement } from '../../models/publication/PublicationHebrewWordElement';
 import { PublicationVerse, WordElementCreator } from '../../models/publication/PublicationVerse';
 import { PublicationGreekWordElement } from '../../models/publication/PublicationGreekWordElement';
@@ -16,6 +16,7 @@ import { ParsingFormat } from '../../models/parsing-formats/ParsingFormat';
 import { create } from 'xmlbuilder2';
 import { XslTransformations } from './XslTransformations';
 import logger from "./logger";
+import { BookDump } from '../../models/BookDump';
 
 export interface PublisherInterface {
     connect(): Promise<void>;
@@ -82,7 +83,7 @@ export class Publisher {
             try {
                 await this.connection.end();
             } catch (error) {
-                console.error('Error disconnecting from the database:', error);
+                logger.error('Error disconnecting from the database:', error);
             }
         }
     }
@@ -91,7 +92,9 @@ export class Publisher {
         let results: CheckResults = {};
         await Promise.all(this.request.books.map(async (bid: BookIdentifier) => {
             let mg = await this.checkForMissingGlosses(bid);
-            console.error(`Missing glosses for ${bid.toString()}: ${mg.join(', ')}`);
+            if (mg.length > 0) {
+                logger.error(`Missing glosses for ${bid.toString()}: ${mg.join(', ')}`);
+            }
             results[bid.toString()] = mg;
         }));
         return results;
@@ -155,16 +158,13 @@ export class Publisher {
         files.push({ path: 'openreader.cls', content: await Publisher.downloadContent(`https://github.com/openreadersbibles/publication-files/raw/refs/heads/main/openreader.cls`) });
 
         /// Copy the CSS file
-        let cssContentSource = await Publisher.downloadContent(`https://github.com/openreadersbibles/publication-files/raw/refs/heads/main/style.template.css`, 'arraybuffer')
-        const cssContent = cssContentSource
-            .replace('__BIBLICAL_FONT__', this.request.project.publicationBiblicalFont)
-            .replace('__PROJECT_FONT__', this.request.project.publicationProjectFont);
-        files.push({ path: 'style.css', content: cssContent });
+        let styleCssContent = await this.createStyleCss();
+        files.push({ path: 'style.css', content: styleCssContent });
 
         /// Print file paths to console
-        files.forEach(file => {
-            console.info(`File path: ${file.path}`);
-        });
+        // files.forEach(file => {
+        //     logger.info(`File path: ${file.path}`);
+        // });
 
         /// Add the files to the repository and create a new commit
         return await this._github.addFilesToRepository(this.request.project.repositoryNameForTemplate(this.request.latex_template_id), files);
@@ -172,48 +172,29 @@ export class Publisher {
 
     async createBookDumps(files: GitHubFile[]): Promise<void[]> {
         return Promise.all(this.request.books.map(async (bid: BookIdentifier) => {
-            console.info(`Processing ${bid.canon} ${bid.book}`);
+            logger.info(`Processing ${bid.canon} ${bid.book}`);
 
             /// Create the book dump
             const dump: BookDump = await this.getBookDump(bid);
             files.push({ path: this.dumpFilename(bid), content: JSON.stringify(dump, null, 2) });
 
-            /// Create a TeX file for the book
-            const tex = await Publisher.bookDumpToTex(dump, this._request);
-            files.push({ path: this.texFilename(bid), content: tex });
-
             const tei = await Publisher.bookDumpToTEI(dump, this._request);
             files.push({ path: this.teiFilename(bid), content: tei });
 
-            console.info(`Finished processing ${bid.canon} ${bid.book}. Now files has ${files.length} items.`);
+            logger.info(`Finished processing ${bid.canon} ${bid.book}. Now files has ${files.length} items.`);
         }));
     }
 
     async getBookDump(bid: BookIdentifier): Promise<BookDump> {
-        let book: BookDump = { book_id: bid.book, canon: 'LXX', book_title: '', verses: [] };
         switch (bid.canon) {
             case 'OT':
-                book = await this.getOTBook(bid);
+                return await this.getOTBook(bid);
             case 'NT':
-                book = await this.getNTBook(bid);
+                return await this.getNTBook(bid);
             case 'LXX':
-                console.error("LXX not implemented yet");
+                logger.error("LXX not implemented yet");
+                return new BookDump(bid.book, 'LXX', '', []);
         }
-        Publisher.initializeBookDumpAnnotations(book);
-        return book;
-    }
-
-    /// I'm not thrilled with where this code is. It adds extra initialization,
-    /// which makes it seems like BookDump should be a class rather than an
-    /// interface.
-    static initializeBookDumpAnnotations(book: BookDump) {
-        /// convert the annotation JSON to objects
-        book.verses = book.verses.map((row: any) => {
-            if (row.gloss !== null) {
-                row.gloss = annotationFromObject(row.gloss);
-            }
-            return row;
-        });
     }
 
     async getProjectFromId(project_id: ProjectId): Promise<ProjectConfiguration | undefined> {
@@ -252,64 +233,6 @@ GROUP BY
 
     protected teiFilename(bid: BookIdentifier) {
         return `${this.baseFilename(bid)}.xml`;
-    }
-
-    static bookDumpToTex(book: BookDump, request: PublicationRequest): string {
-        let content = "";
-        switch (book.canon) {
-            case 'OT':
-                content = this.processRowsToTex(book.verses, request, PublicationHebrewWordElement.fromWordRow);
-                break;
-            case 'NT':
-                content = this.processRowsToTex(book.verses, request, PublicationGreekWordElement.fromWordRow);
-                break;
-            default:
-                throw new Error('Invalid canon');
-        }
-
-        let biblicalFontCommand = "";
-        if (book.canon == "OT") {
-            biblicalFontCommand = `\\newfontfamily\\hebrewfont[Script=Hebrew]{${request.project.publicationBiblicalFont}}`;
-        } else {
-            biblicalFontCommand = `\\newfontfamily\\greekfont[Script=Greek]{${request.project.publicationBiblicalFont}}`;
-        }
-
-        const template = request.latex_template_id === undefined ? ProjectConfiguration.default_latex_template : request.project.getLatexTemplate(request.latex_template_id) || ProjectConfiguration.default_latex_template;
-        const tex = template
-            .replace('__TITLE__', book.book_title)
-            .replace('__MAINLANGUAGE__', request.project.polyglossiaOtherLanguage)
-            .replace('__MAINLANGUAGEFONT__', request.project.publicationProjectFont)
-            .replace('__BIBLICALLANGUAGE__', book.canon == "OT" ? "hebrew" : "greek")
-            .replace('__BIBLICALLANGUAGE__', book.canon == "OT" ? "hebrew" : "greek") /// occurs twice
-            .replace('__NEWFONTFAMILYCOMMAND__', biblicalFontCommand)
-            .replace('__CONTENT__', content);
-
-        return tex;
-    }
-
-    static processRowsToTex(
-        rows: any[],
-        request: PublicationRequest,
-        objectCreator: WordElementCreator
-    ): string {
-        let buffer = '';
-        let book = Publisher.putIntoHoppers(rows);
-
-        book.forEach((chapter: any[], chapterIndex: number) => {
-            let plainChapterNumber = request.project.replaceNumerals((chapterIndex + 1).toString());
-            let footnoteChapterHeader = request.project.getChapterHeader(chapterIndex + 1);
-            buffer += `\\section*{${plainChapterNumber}}\n`;
-            buffer += `\\FootnoteHeader{${footnoteChapterHeader}}\n`;
-            chapter.forEach((verse: any[]) => {
-                let reference = VerseReference.fromString(verse[0].reference);
-                if (reference) {
-                    const v = PublicationVerse.fromWordElements(verse, reference, request, objectCreator);
-                    buffer += v.text();
-                }
-            });
-        });
-
-        return buffer;
     }
 
     static bookDumpToTEI(book: BookDump, request: PublicationRequest): string {
@@ -381,7 +304,7 @@ GROUP BY
             });
         });
 
-        return doc.end({ prettyPrint: false });
+        return doc.end({ prettyPrint: true });
     }
 
     static putIntoHoppers(rows: HasReferenceString[]): BookHopper {
@@ -409,7 +332,7 @@ GROUP BY
                 let verse = chapter[chapter.length - 1];
                 verse.push(row);
             } else {
-                console.error('Error parsing reference: ' + reference);
+                logger.error('Error parsing reference: ' + reference);
             }
         }
         return hopper;
@@ -454,23 +377,12 @@ FROM ot
     async getDatabaseRows(bid: BookIdentifier, query: string): Promise<BookDump> {
         let bookName = await this.getCanonicalBookName(bid.canon, bid.book);
         let [rows] = await this.connection.execute<any[]>(query, [this._request.project.id, this._request.project.id])
-        rows = rows.map((row: any) => {
-            if (row.gloss !== null) {
-                let obj = JSON.parse(row.gloss);
-                row.gloss = annotationFromObject(obj)?.toAnnotationObject();
-            }
-            if (row.phrasalGlosses !== null) {
-                row.phrasalGlosses = JSON.parse(row.phrasalGlosses);
-            }
-
-            return row;
-        });
-        return {
-            book_id: bid.book,
-            canon: bid.canon,
-            book_title: bookName || '',
-            verses: rows
-        };
+        if (rows === undefined) {
+            console.error(`No rows returned for ${bid.canon} ${bid.book}`);
+            console.error(query);
+            return Promise.reject(`No rows returned for ${bid.canon} ${bid.book}`);
+        }
+        return new BookDump(bid.book, bid.canon, bookName || '', rows);
     }
 
     async getCanonicalBookName(canon: Canon, book: UbsBook): Promise<string | undefined> {
@@ -506,7 +418,7 @@ FROM ot
             });
             return response.data;
         } catch (error) {
-            console.error(`Error downloading content from ${url}:`, error);
+            logger.error(`Error downloading content from ${url}:`, error);
             return Promise.reject(error);
         }
     }
@@ -516,6 +428,14 @@ FROM ot
         const lines = texFilenames.join("\n            ");
         const newContent = fileContent.replace(/__FILES_GO_HERE__/g, lines);
         return newContent;
+    }
+
+    async createStyleCss(): Promise<string> {
+        let cssContentSource = await Publisher.downloadContent(`https://github.com/openreadersbibles/publication-files/raw/refs/heads/main/style.template.css`);
+        const cssContent = cssContentSource
+            .replace(/__BIBLICAL_FONT__/g, this.request.project.publicationBiblicalFont)
+            .replace(/__PROJECT_FONT__/g, this.request.project.publicationProjectFont);
+        return cssContent;
     }
 
 
