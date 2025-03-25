@@ -125,6 +125,7 @@ export class Publisher {
         /// Create a data dump for each book
         await this.createBookDumps(files);
 
+        /*
         const filesFromXml = XslTransformations.produceTransformedFiles(files);
         files.push(...filesFromXml);
 
@@ -159,6 +160,7 @@ export class Publisher {
         // files.forEach(file => {
         //     logger.info(`File path: ${file.path}`);
         // });
+        */
 
         /// Add the files to the repository and create a new commit
         return await this._github.addFilesToRepository(this.request.project.repositoryNameForTemplate(this.request.latex_template_id), files);
@@ -172,8 +174,8 @@ export class Publisher {
             const pb: PublicationBook = await this.getBook(bid);
             files.push({ path: this.dumpFilename(bid), content: JSON.stringify(pb.toJsonObject(), null, 2) });
 
-            const tei = pb.toTEI(this._request);
-            files.push({ path: this.teiFilename(bid), content: tei });
+            // const tei = pb.toTEI(this._request);
+            // files.push({ path: this.teiFilename(bid), content: tei });
 
             logger.info(`Finished processing ${bid.canon} ${bid.book}. Now files has ${files.length} items.`);
         }));
