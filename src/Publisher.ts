@@ -2,7 +2,6 @@ import mysql from 'mysql2/promise';
 import { HollowPublicationRequest, PublicationRequest } from '../../models/PublicationRequest';
 import { BookIdentifier } from '../../models/BookIdentifier';
 import path from 'path';
-import { annotationFromObject } from '../../models/Annotation';
 import { Canon, UbsBook, VerseReference } from '../../models/VerseReference';
 import { BookHopper } from '../../models/ProjectDump';
 import { HasReferenceString, PublicationHebrewWordElement } from '../../models/publication/PublicationHebrewWordElement';

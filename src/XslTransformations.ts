@@ -12,11 +12,15 @@ export class XslTransformations {
 
     // Load the JSON files synchronously
     static initialize() {
-        const tei2htmlPath = path.resolve(__dirname, tei2htmlPathFromWebpack);
-        const tei2texPath = path.resolve(__dirname, tei2texPathFromWebpack);
-
-        this.tei2html = fs.readFileSync(tei2htmlPath, 'utf8');
-        this.tei2tex = fs.readFileSync(tei2texPath, 'utf8');
+        if (fs.existsSync('./tei2html.sef.json') && fs.existsSync('./tei2tex.sef.json')) {
+            this.tei2html = fs.readFileSync('./tei2html.sef.json', 'utf8');
+            this.tei2tex = fs.readFileSync('./tei2tex.sef.json', 'utf8');
+        } else {
+            const tei2htmlPath = path.resolve(__dirname, tei2htmlPathFromWebpack);
+            const tei2texPath = path.resolve(__dirname, tei2texPathFromWebpack);
+            this.tei2html = fs.readFileSync(tei2htmlPath, 'utf8');
+            this.tei2tex = fs.readFileSync(tei2texPath, 'utf8');
+        }
     }
 
     static produceTransformedFiles(files: GitHubFile[]): GitHubFile[] {
