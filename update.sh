@@ -22,7 +22,7 @@ git pull
 npm install
 npx webpack
 
-# Pull the latest production branch server, build it, etc.
+# Pull the latest development branch server, build it, etc.
 cd ~/orb-server-dev
 git stash
 git pull
