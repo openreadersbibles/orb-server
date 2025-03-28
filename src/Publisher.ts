@@ -8,7 +8,6 @@ import { ProjectConfiguration, ProjectId } from '../../models/ProjectConfigurati
 import { GitHubAdapter, GitHubFile } from './GitHubAdapter';
 import { GitHubActionYML } from './GitHubActionYML';
 import axios, { ResponseType } from 'axios';
-import { ParsingFormat } from '../../models/parsing-formats/ParsingFormat';
 import { XslTransformations } from './XslTransformations';
 import logger from "./logger";
 
@@ -49,31 +48,16 @@ export class Publisher {
             return Promise.reject(`Project not found: ${req.project_id}`);
         }
 
-        const projectConfiguration = project.publicationConfigurations.get(req.publication_configuration_id);
-        if (!projectConfiguration) {
+        const configuration = project.publicationConfigurations.get(req.publication_configuration_id);
+        if (!configuration) {
             return Promise.reject(`Publication configuration not found: ${req.publication_configuration_id}`);
-        }
-
-        /// get the parsing formats from the project
-        let parsingFormats = new Map<Canon, ParsingFormat>();
-        for (const key in req.parsing_formats) {
-            if (req.parsing_formats.hasOwnProperty(key)) {
-                const format = project.parsingFormats.getParsingFormatFromId(req.parsing_formats[key]);
-                if (!format) {
-                    return Promise.reject('Parsing format not found:' + req.parsing_formats[key]);
-                } else {
-                    parsingFormats.set(key as Canon, format);
-                }
-            }
         }
 
         this._request = {
             books: req.books.map(b => BookIdentifier.fromString(b)).filter(b => b !== undefined) as BookIdentifier[],
             project: project,
-            configuration: projectConfiguration,
-            parsing_formats: parsingFormats,
+            configuration: configuration,
             nopdf: req.nopdf,
-            latex_template_id: req.latex_template_id
         };
 
     }
@@ -123,7 +107,7 @@ export class Publisher {
 
     async publish(): Promise<any> {
         /// Create the repository if it doesn't yet exist
-        await this._github.createRepositoryIfNotExists(this.request.project.repositoryNameForTemplate(this.request.latex_template_id));
+        await this._github.createRepositoryIfNotExists(this.request.project.repositoryNameForConfiguration(this.request.configuration.id));
 
         /// The content of the files we create will be kept in this array:
         let files: GitHubFile[] = [];
@@ -167,7 +151,7 @@ export class Publisher {
         // });
 
         /// Add the files to the repository and create a new commit
-        return await this._github.addFilesToRepository(this.request.project.repositoryNameForTemplate(this.request.latex_template_id), files);
+        return await this._github.addFilesToRepository(this.request.project.repositoryNameForConfiguration(this.request.configuration.id), files);
     }
 
     async createBookDumps(files: GitHubFile[]): Promise<void[]> {
