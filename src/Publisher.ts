@@ -49,11 +49,16 @@ export class Publisher {
             return Promise.reject(`Project not found: ${req.project_id}`);
         }
 
+        const projectConfiguration = project.publicationConfigurations.get(req.publication_configuration_id);
+        if (!projectConfiguration) {
+            return Promise.reject(`Publication configuration not found: ${req.publication_configuration_id}`);
+        }
+
         /// get the parsing formats from the project
         let parsingFormats = new Map<Canon, ParsingFormat>();
         for (const key in req.parsing_formats) {
             if (req.parsing_formats.hasOwnProperty(key)) {
-                const format = project.publicationSettings.getParsingFormatFromId(req.parsing_formats[key]);
+                const format = project.parsingFormats.getParsingFormatFromId(req.parsing_formats[key]);
                 if (!format) {
                     return Promise.reject('Parsing format not found:' + req.parsing_formats[key]);
                 } else {
@@ -65,6 +70,7 @@ export class Publisher {
         this._request = {
             books: req.books.map(b => BookIdentifier.fromString(b)).filter(b => b !== undefined) as BookIdentifier[],
             project: project,
+            configuration: projectConfiguration,
             parsing_formats: parsingFormats,
             nopdf: req.nopdf,
             latex_template_id: req.latex_template_id
@@ -137,14 +143,14 @@ export class Publisher {
         }
 
         /// Get the fonts
-        let googleFonts = await this.getGoogleFonts(this.request.project.publicationProjectFont);
+        let googleFonts = await this.getGoogleFonts(this.request.configuration.publicationProjectFont);
         files.push(...googleFonts);
 
         /// Get the biblical font
-        if (this.request.project.publicationBiblicalFont === 'SBL BibLit') {
+        if (this.request.configuration.publicationBiblicalFont === 'SBL BibLit') {
             files.push({ path: 'fonts/SBL_BLit.ttf', content: await Publisher.downloadContent(`https://github.com/openreadersbibles/publication-files/raw/refs/heads/main/SBL_BLit.ttf`, 'arraybuffer') });
         } else {
-            let googleFonts = await this.getGoogleFonts(this.request.project.publicationBiblicalFont);
+            let googleFonts = await this.getGoogleFonts(this.request.configuration.publicationBiblicalFont);
             files.push(...googleFonts);
         }
 
@@ -333,8 +339,8 @@ FROM ot
     async createStyleCss(): Promise<string> {
         let cssContentSource = await Publisher.downloadContent(`https://github.com/openreadersbibles/publication-files/raw/refs/heads/main/style.template.css`);
         const cssContent = cssContentSource
-            .replace(/__BIBLICAL_FONT__/g, this.request.project.publicationBiblicalFont)
-            .replace(/__PROJECT_FONT__/g, this.request.project.publicationProjectFont);
+            .replace(/__BIBLICAL_FONT__/g, this.request.configuration.publicationBiblicalFont)
+            .replace(/__PROJECT_FONT__/g, this.request.configuration.publicationProjectFont);
         return cssContent;
     }
 
