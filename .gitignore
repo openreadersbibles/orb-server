@@ -9,3 +9,4 @@ error.log
 exceptions.log
 ecosystem.config.js
 src/bhsa_OT_JON.xml
+src/index.test.ts

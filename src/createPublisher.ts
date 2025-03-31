@@ -4,7 +4,8 @@ import { Publisher } from "./Publisher";
 export async function createPublisher(request: HollowPublicationRequest): Promise<Publisher> {
     /// Check to see if the required fields are present
     if (request.project_id === undefined
-        || request.books === undefined) {
+        || request.books === undefined
+        || request.publication_configuration_id === undefined) {
         throw "Missing required fields.";
     }
 

@@ -3,7 +3,7 @@ import { IReturnValue, ResolvedPromiseReturnValue, ReturnValue } from '../../mod
 import { BadRequestFailure, InternalFailure, PhraseGlossRow, ProjectPackage, UpdateVerseData } from '../../models/database-input-output';
 import { UserId, UserUpdateObject } from '../../models/UserProfile';
 import { ProjectId } from '../../models/ProjectConfiguration';
-import mysql from 'mysql2/promise';
+import mysql, { QueryResult } from 'mysql2/promise';
 import { VerseReference } from '../../models/VerseReference';
 import { SuggestionRow } from '../../models/HebrewWordRow';
 import { PhraseGlossLocationObject, WordGlossLocation, WordGlossLocationObject } from '../../models/gloss-locations';
@@ -104,12 +104,15 @@ GROUP BY
                 return ResolvedPromiseReturnValue({ status: "success" });
             } else {
                 /// update the new project
-                await this.connection.execute(`UPDATE project p
+                let [result]: [any, any[]] = await this.connection.execute(`UPDATE project p
                             JOIN project_roles pr ON p.project_id = pr.project_id
                             SET p.settings = ?
                             WHERE p.project_id = ?
                             AND pr.user_id = ?
                             AND pr.user_role = 'admin';`, [JSON.stringify(settingWithoutRoles), project.project_id, user_id]);
+                if (result.affectedRows < 1) {
+                    return ResolvedPromiseReturnValue(BadRequestFailure);
+                }
 
                 for (let role of roles) {
                     await this.connection.execute(`REPLACE INTO project_roles (user_id,project_id,user_role,power_user) VALUES (?,?,?,?);`, [role.user_id, project.project_id, role.user_role, role.power_user]);

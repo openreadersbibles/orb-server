@@ -19,3 +19,22 @@ Further details are available in `README-private.md`, though this is not in any 
 cd ~/Documents/open-readers-bibles/application/orb-server/src
 ts-node index.ts
 ```
+
+## Database commands
+```
+sudo service mariadb start
+```
+
+```
+sudo service mariadb status
+```
+
+## Logs commands
+
+```
+pm2 logs api-dev
+```
+
+```
+pm2 flush
+```

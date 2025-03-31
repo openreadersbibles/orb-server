@@ -8,9 +8,14 @@ export async function GetDatabaseAdapter(): Promise<GenericDatabaseAdapter> {
         return Promise.reject("SQLite is not supported in this version of the code.");
         // return new SqliteAdapter();
     } else {
-        const adapter = new MariaDbAdapter();
-        await adapter.connect();
-        return adapter;
+        try {
+            const adapter = new MariaDbAdapter();
+            await adapter.connect();
+            return adapter;
+        } catch (error) {
+            console.error(error);
+            return Promise.reject("Error connecting to the server.");
+        }
     }
 }
 
