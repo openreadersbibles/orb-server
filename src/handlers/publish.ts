@@ -30,7 +30,7 @@ export async function publish(req: Request, res: Response, userInfo: CognitoUser
         /// At this point we know that the book is ready
 
         const result = await publisher.publish();
-        logger.info(result.data);
+        // console.info(result.data);
 
         /// Disconnect from the database
         await publisher.disconnect();

@@ -10,6 +10,7 @@ import { GitHubActionYML } from './GitHubActionYML';
 import axios, { ResponseType } from 'axios';
 import { XslTransformations } from './XslTransformations';
 import logger from "./logger";
+import { PublicationConfiguration } from '../../models/PublicationConfiguration';
 
 export interface PublisherInterface {
     connect(): Promise<void>;
@@ -107,7 +108,7 @@ export class Publisher {
 
     async publish(): Promise<any> {
         /// Create the repository if it doesn't yet exist
-        await this._github.createRepositoryIfNotExists(this.request.project.repositoryNameForConfiguration(this.request.configuration.id));
+        await this._github.createRepositoryIfNotExists(this.request.project.repositoryName);
 
         /// The content of the files we create will be kept in this array:
         let files: GitHubFile[] = [];
@@ -115,14 +116,14 @@ export class Publisher {
         /// Create a data dump for each book
         await this.createBookDumps(files);
 
-        const filesFromXml = XslTransformations.produceTransformedFiles(files);
+        const filesFromXml = XslTransformations.produceTransformedFiles(files, this.request.configuration);
         files.push(...filesFromXml);
 
         /// Create the GitHub action file
         if (this._request.nopdf) {
             files.push({ path: GitHubActionYML.ymlFilePath, content: '' });
         } else {
-            let ymlContent = await this.createYMLFile(this._request.books.map(bid => this.texFilename(bid)));
+            let ymlContent = await this.createYMLFile(this._request.books.map(bid => this.texFilename(bid)), this.request.configuration);
             files.push({ path: GitHubActionYML.ymlFilePath, content: ymlContent });
         }
 
@@ -132,18 +133,21 @@ export class Publisher {
 
         /// Get the biblical font
         if (this.request.configuration.publicationBiblicalFont === 'SBL BibLit') {
-            files.push({ path: 'fonts/SBL_BLit.ttf', content: await Publisher.downloadContent(`https://github.com/openreadersbibles/publication-files/raw/refs/heads/main/SBL_BLit.ttf`, 'arraybuffer') });
+            files.push({ path: this.addProjectConfigurationFolder('fonts/SBL_BLit.ttf'), content: await Publisher.downloadContent(`https://github.com/openreadersbibles/publication-files/raw/refs/heads/main/SBL_BLit.ttf`, 'arraybuffer') });
         } else {
             let googleFonts = await this.getGoogleFonts(this.request.configuration.publicationBiblicalFont);
             files.push(...googleFonts);
         }
 
         /// Copy the CLS file
-        files.push({ path: 'openreader.cls', content: await Publisher.downloadContent(`https://github.com/openreadersbibles/publication-files/raw/refs/heads/main/openreader.cls`) });
+        files.push({ path: this.addProjectConfigurationFolder('openreader.cls'), content: await Publisher.downloadContent(`https://github.com/openreadersbibles/publication-files/raw/refs/heads/main/openreader.cls`) });
 
         /// Copy the CSS file
         let styleCssContent = await this.createStyleCss();
-        files.push({ path: 'style.css', content: styleCssContent });
+        files.push({ path: this.addProjectConfigurationFolder('style.css'), content: styleCssContent });
+
+        /// Copy the JS file
+        files.push({ path: this.addProjectConfigurationFolder('script.js'), content: await Publisher.downloadContent(`https://github.com/openreadersbibles/publication-files/raw/refs/heads/main/script.js`) });
 
         /// Print file paths to console
         // files.forEach(file => {
@@ -151,7 +155,7 @@ export class Publisher {
         // });
 
         /// Add the files to the repository and create a new commit
-        return await this._github.addFilesToRepository(this.request.project.repositoryNameForConfiguration(this.request.configuration.id), files);
+        return await this._github.addFilesToRepository(this.request.project.repositoryName, files);
     }
 
     async createBookDumps(files: GitHubFile[]): Promise<void[]> {
@@ -163,7 +167,7 @@ export class Publisher {
             files.push({ path: this.dumpFilename(bid), content: JSON.stringify(pb.toJsonObject(), null, 2) });
 
             const tei = pb.toTEI(this._request);
-            files.push({ path: this.teiFilename(bid), content: tei });
+            files.push({ path: this.teiFilename(bid), content: tei, pb: pb });
 
             logger.info(`Finished processing ${bid.canon} ${bid.book}. Now files has ${files.length} items.`);
         }));
@@ -221,6 +225,10 @@ GROUP BY
 
     protected teiFilename(bid: BookIdentifier) {
         return `${this.baseFilename(bid)}.xml`;
+    }
+
+    protected addProjectConfigurationFolder(filename: string): string {
+        return this.request.configuration.id + '/' + filename;
     }
 
     async getOTBook(bid: BookIdentifier): Promise<BookDumpJson> {
@@ -293,7 +301,7 @@ FROM ot
         const urls = await this.getFontUrlsForFamiliy(family);
         const promises = urls.map(async (url: string) => {
             const parsedUrl = new URL(url);
-            const basename = 'fonts/' + path.basename(parsedUrl.pathname);
+            const basename = this.addProjectConfigurationFolder('fonts/' + path.basename(parsedUrl.pathname));
             const fileContent = await Publisher.downloadContent(url, 'arraybuffer');
             let ghf: GitHubFile = { path: basename, content: fileContent };
             return ghf;
@@ -313,20 +321,20 @@ FROM ot
         }
     }
 
-    async createYMLFile(texFilenames: string[]): Promise<string> {
+    async createYMLFile(texFilenames: string[], configuration: PublicationConfiguration): Promise<string> {
         const fileContent = await Publisher.downloadContent(`https://github.com/openreadersbibles/publication-files/raw/refs/heads/main/github-actions.yml`)
         const lines = texFilenames.join("\n            ");
-        const newContent = fileContent.replace(/__FILES_GO_HERE__/g, lines);
+        const newContent = fileContent.replace(/__FILES_GO_HERE__/g, lines)
+            .replace(/__PUBLICATION_CONFIGURATION__/g, configuration.id);
         return newContent;
     }
 
     async createStyleCss(): Promise<string> {
-        let cssContentSource = await Publisher.downloadContent(`https://github.com/openreadersbibles/publication-files/raw/refs/heads/main/style.template.css`);
+        let cssContentSource = this._request.configuration.css_template;
         const cssContent = cssContentSource
             .replace(/__BIBLICAL_FONT__/g, this.request.configuration.publicationBiblicalFont)
             .replace(/__PROJECT_FONT__/g, this.request.configuration.publicationProjectFont);
         return cssContent;
     }
-
 
 }

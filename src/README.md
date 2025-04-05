@@ -12,6 +12,7 @@ npm install saxon-js
 
 Compile the XSL files to JSON format:
 ```
+cd ~\Documents\open-readers-bibles\application\orb-server\src
 node node_modules/xslt3/xslt3.js -t -xsl:xslt/tei2html.xsl -export:tei2html.sef.json -nogo "-ns:##html5"
 node node_modules/xslt3/xslt3.js -t -xsl:xslt/tei2tex.xsl -export:tei2tex.sef.json -nogo "-ns:##html5"
 ```

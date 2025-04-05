@@ -9,7 +9,8 @@ xsltproc  -o bhsa_OT_JON.html tei2html.xsl bhsa_OT_JON.xml
     exclude-result-prefixes="tei">
 
     <!-- Change output method to xml for XHTML and add doctype declaration -->
-    <xsl:output method="xml" 
+    <xsl:output method="html"
+                version="5" 
                 omit-xml-declaration="yes"
                 doctype-public="-//W3C//DTD XHTML 1.0 Strict//EN" 
                 doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"
@@ -35,7 +36,7 @@ xsltproc  -o bhsa_OT_JON.html tei2html.xsl bhsa_OT_JON.xml
                     <xsl:value-of select="tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:title"/>
                 </title>
                 <link rel="stylesheet" href="style.css"/>
-                <script type="text/javascript" src="script.js">&#x20;</script>
+                <script type="text/javascript" src="script.js"></script>
             </head>
             <body>
                 <h1>

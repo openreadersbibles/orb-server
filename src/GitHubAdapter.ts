@@ -1,7 +1,8 @@
 import axios from 'axios';
 import logger from './logger';
+import { PublicationBook } from '../../models/publication/PublicationBook';
 
-export interface GitHubFile { path: string, content: any };
+export interface GitHubFile { path: string, content: any, pb?: PublicationBook };
 
 export class GitHubAdapter {
     private _secret: string;

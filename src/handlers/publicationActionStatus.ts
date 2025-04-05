@@ -10,7 +10,8 @@ export async function publicationActionStatus(req: Request, res: Response, userI
         const commit_sha = req.params.commit_sha;
         const github = new GitHubAdapter(process.env['GITHUB_SECRET'] || '');
         const result = await github.getActionsForCommit('openreadersbibles', repo, commit_sha);
-        logger.info(result);
+        // console.info(req.params);
+        // console.info(result);
         return res.json(SuccessValue(result));
     } catch (error) {
         logger.error(error);
