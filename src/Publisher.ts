@@ -133,21 +133,21 @@ export class Publisher {
 
         /// Get the biblical font
         if (this.request.configuration.publicationBiblicalFont === 'SBL BibLit') {
-            files.push({ path: this.addProjectConfigurationFolder('fonts/SBL_BLit.ttf'), content: await Publisher.downloadContent(`https://github.com/openreadersbibles/publication-files/raw/refs/heads/main/SBL_BLit.ttf`, 'arraybuffer') });
+            files.push({ path: this.addPublicationConfigurationFolder('fonts/SBL_BLit.ttf'), content: await Publisher.downloadContent(`https://github.com/openreadersbibles/publication-files/raw/refs/heads/main/SBL_BLit.ttf`, 'arraybuffer') });
         } else {
             let googleFonts = await this.getGoogleFonts(this.request.configuration.publicationBiblicalFont);
             files.push(...googleFonts);
         }
 
         /// Copy the CLS file
-        files.push({ path: this.addProjectConfigurationFolder('openreader.cls'), content: await Publisher.downloadContent(`https://github.com/openreadersbibles/publication-files/raw/refs/heads/main/openreader.cls`) });
+        files.push({ path: this.addPublicationConfigurationFolder('openreader.cls'), content: await Publisher.downloadContent(`https://github.com/openreadersbibles/publication-files/raw/refs/heads/main/openreader.cls`) });
 
         /// Copy the CSS file
         let styleCssContent = await this.createStyleCss();
-        files.push({ path: this.addProjectConfigurationFolder('style.css'), content: styleCssContent });
+        files.push({ path: this.addPublicationConfigurationFolder('style.css'), content: styleCssContent });
 
         /// Copy the JS file
-        files.push({ path: this.addProjectConfigurationFolder('script.js'), content: await Publisher.downloadContent(`https://github.com/openreadersbibles/publication-files/raw/refs/heads/main/script.js`) });
+        files.push({ path: this.addPublicationConfigurationFolder('script.js'), content: await Publisher.downloadContent(`https://github.com/openreadersbibles/publication-files/raw/refs/heads/main/script.js`) });
 
         /// Save the project configuration file to `[project_id].json`
         files.push({ path: `${this.request.project.id}.json`, content: JSON.stringify(this.request.project.toObject(), null, 2) });
@@ -230,7 +230,7 @@ GROUP BY
         return `${this.baseFilename(bid)}.xml`;
     }
 
-    protected addProjectConfigurationFolder(filename: string): string {
+    protected addPublicationConfigurationFolder(filename: string): string {
         return this.request.configuration.id + '/' + filename;
     }
 
@@ -304,7 +304,7 @@ FROM ot
         const urls = await this.getFontUrlsForFamiliy(family);
         const promises = urls.map(async (url: string) => {
             const parsedUrl = new URL(url);
-            const basename = this.addProjectConfigurationFolder('fonts/' + path.basename(parsedUrl.pathname));
+            const basename = this.addPublicationConfigurationFolder('fonts/' + path.basename(parsedUrl.pathname));
             const fileContent = await Publisher.downloadContent(url, 'arraybuffer');
             let ghf: GitHubFile = { path: basename, content: fileContent };
             return ghf;
