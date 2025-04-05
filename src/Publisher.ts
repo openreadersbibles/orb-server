@@ -149,6 +149,9 @@ export class Publisher {
         /// Copy the JS file
         files.push({ path: this.addProjectConfigurationFolder('script.js'), content: await Publisher.downloadContent(`https://github.com/openreadersbibles/publication-files/raw/refs/heads/main/script.js`) });
 
+        /// Save the project configuration file to `[project_id].json`
+        files.push({ path: `${this.request.project.id}.json`, content: JSON.stringify(this.request.project.toObject(), null, 2) });
+
         /// Print file paths to console
         // files.forEach(file => {
         //     logger.info(`File path: ${file.path}`);
