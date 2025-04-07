@@ -1,4 +1,4 @@
-import mysql from 'mysql2/promise';
+import mysql, { RowDataPacket } from 'mysql2/promise';
 import { HollowPublicationRequest, PublicationRequest } from '../../models/PublicationRequest';
 import { BookDumpJson, PublicationBook } from '../../models/publication/PublicationBook';
 import { BookIdentifier } from '../../models/BookIdentifier';
@@ -11,6 +11,10 @@ import axios, { ResponseType } from 'axios';
 import { XslTransformations } from './XslTransformations';
 import logger from "./logger";
 import { PublicationConfiguration } from '../../models/PublicationConfiguration';
+import { annotationFromJson } from '../../models/Annotation';
+import { PublicationHebrewWordElementRow } from '../../models/publication/PublicationHebrewWordElementRow';
+import { PublicationGreekWordElementRow } from '../../models/publication/PublicationGreekWordElementRow';
+import { CheckResults } from '../../models/database-input-output';
 
 export interface PublisherInterface {
     connect(): Promise<void>;
@@ -18,11 +22,6 @@ export interface PublisherInterface {
     checkForMissingGlosses(): Promise<string[]>;
     createDataDump(): Promise<void>;
     createTeX(): Promise<void>;
-}
-
-
-export interface CheckResults {
-    [key: string]: string[];
 }
 
 /// a feature of this case is that _request is not defined until the connect method is called
@@ -74,9 +73,9 @@ export class Publisher {
     }
 
     async checkAllFilesForMissingGlosses(): Promise<CheckResults> {
-        let results: CheckResults = {};
+        const results: CheckResults = {};
         await Promise.all(this.request.books.map(async (bid: BookIdentifier) => {
-            let mg = await this.checkForMissingGlosses(bid);
+            const mg = await this.checkForMissingGlosses(bid);
             if (mg.length > 0) {
                 logger.error(`Missing glosses for ${bid.toString()}: ${mg.join(', ')}`);
             }
@@ -84,7 +83,6 @@ export class Publisher {
         }));
         return results;
     }
-
 
     async checkForMissingGlosses(bid: BookIdentifier): Promise<string[]> {
         const canon = bid.canon.toLowerCase(); /// in Linux, MariaDB table names can be case sensitive
@@ -102,16 +100,16 @@ export class Publisher {
                                 LIMIT 10;`;
 
         const frequency_threshold = this._request.project.getFrequencyThreshold(bid.canon);
-        const [rows] = await this.connection.query<any[]>(queryString, [this._request.project.id, frequency_threshold]);
-        return rows.map((row: any) => row.reference);
+        const [rows] = await this.connection.query<RowDataPacket[]>(queryString, [this._request.project.id, frequency_threshold]);
+        return rows.map((row) => row.reference);
     }
 
-    async publish(): Promise<any> {
+    async publish(): Promise<unknown> {
         /// Create the repository if it doesn't yet exist
         await this._github.createRepositoryIfNotExists(this.request.project.repositoryName);
 
         /// The content of the files we create will be kept in this array:
-        let files: GitHubFile[] = [];
+        const files: GitHubFile[] = [];
 
         /// Create a data dump for each book
         await this.createBookDumps(files);
@@ -123,19 +121,19 @@ export class Publisher {
         if (this._request.nopdf) {
             files.push({ path: GitHubActionYML.ymlFilePath, content: '' });
         } else {
-            let ymlContent = await this.createYMLFile(this._request.books.map(bid => this.texFilename(bid)), this.request.configuration);
+            const ymlContent = await this.createYMLFile(this._request.books.map(bid => this.texFilename(bid)), this.request.configuration);
             files.push({ path: GitHubActionYML.ymlFilePath, content: ymlContent });
         }
 
         /// Get the fonts
-        let googleFonts = await this.getGoogleFonts(this.request.configuration.publicationProjectFont);
+        const googleFonts = await this.getGoogleFonts(this.request.configuration.publicationProjectFont);
         files.push(...googleFonts);
 
         /// Get the biblical font
         if (this.request.configuration.publicationBiblicalFont === 'SBL BibLit') {
             files.push({ path: this.addPublicationConfigurationFolder('fonts/SBL_BLit.ttf'), content: await Publisher.downloadContent(`https://github.com/openreadersbibles/publication-files/raw/refs/heads/main/SBL_BLit.ttf`, 'arraybuffer') });
         } else {
-            let googleFonts = await this.getGoogleFonts(this.request.configuration.publicationBiblicalFont);
+            const googleFonts = await this.getGoogleFonts(this.request.configuration.publicationBiblicalFont);
             files.push(...googleFonts);
         }
 
@@ -143,7 +141,7 @@ export class Publisher {
         files.push({ path: this.addPublicationConfigurationFolder('openreader.cls'), content: await Publisher.downloadContent(`https://github.com/openreadersbibles/publication-files/raw/refs/heads/main/openreader.cls`) });
 
         /// Copy the CSS file
-        let styleCssContent = await this.createStyleCss();
+        const styleCssContent = await this.createStyleCss();
         files.push({ path: this.addPublicationConfigurationFolder('style.css'), content: styleCssContent });
 
         /// Copy the JS file
@@ -166,7 +164,14 @@ export class Publisher {
             logger.info(`Processing ${bid.canon} ${bid.book}`);
 
             /// Create the book dump
-            const pb: PublicationBook = await this.getBook(bid);
+            let pb: PublicationBook<PublicationGreekWordElementRow> | PublicationBook<PublicationHebrewWordElementRow>;
+            if (bid.canon === 'OT') {
+                // pb = await this.getBook<PublicationHebrewWordElementRow>(bid);
+                pb = await this.getOTBook(bid);
+            } else {
+                // pb = await this.getBook<PublicationGreekWordElementRow>(bid);
+                pb = await this.getNTBook(bid);
+            }
             files.push({ path: this.dumpFilename(bid), content: JSON.stringify(pb.toJsonObject(), null, 2) });
 
             const tei = pb.toTEI(this._request);
@@ -176,20 +181,16 @@ export class Publisher {
         }));
     }
 
-    async getBook(bid: BookIdentifier): Promise<PublicationBook> {
-        let bdj: BookDumpJson = { book_id: bid.book, canon: 'LXX', book_title: '', rows: [] };
+    async getBook(bid: BookIdentifier): Promise<PublicationBook<PublicationGreekWordElementRow> | PublicationBook<PublicationHebrewWordElementRow>> {
         switch (bid.canon) {
             case 'OT':
-                bdj = await this.getOTBook(bid);
-                break;
+                return await this.getOTBook(bid);
             case 'NT':
-                bdj = await this.getNTBook(bid);
-                break;
+                return await this.getNTBook(bid);
             case 'LXX':
                 logger.error("LXX not implemented yet");
-                break;
+                return Promise.reject("LXX not implemented yet");
         }
-        return new PublicationBook(bdj);
     }
 
     async getProjectFromId(project_id: ProjectId): Promise<ProjectConfiguration | undefined> {
@@ -202,7 +203,7 @@ FROM
 WHERE project.project_id = ?
 GROUP BY 
 	project.project_id;`;
-        const [rows] = await this.connection.query<any[]>(queryString, [project_id]);
+        const [rows] = await this.connection.query<RowDataPacket[]>(queryString, [project_id]);
         if (rows.length > 0) {
             return ProjectConfiguration.fromRow(JSON.parse(rows[0].settings));
         } else {
@@ -234,8 +235,8 @@ GROUP BY
         return this.request.configuration.id + '/' + filename;
     }
 
-    async getOTBook(bid: BookIdentifier): Promise<BookDumpJson> {
-        return await this.getDatabaseRows(bid, `SELECT ot._id,g_word_utf8, trailer_utf8, voc_lex_utf8, gn, nu, st, vt, vs, ps, pdp, freq_lex, gloss.gloss AS gloss, qere_utf8, kq_hybrid_utf8, prs_gn, prs_nu, prs_ps, ot.reference,ot.lex_id,
+    async getOTBook(bid: BookIdentifier): Promise<PublicationBook<PublicationHebrewWordElementRow>> {
+        const content = await this.getDatabaseRows<PublicationHebrewWordElementRow>(bid, `SELECT ot._id,g_word_utf8, trailer_utf8, voc_lex_utf8, gn, nu, st, vt, vs, ps, pdp, freq_lex, gloss.gloss AS gloss, qere_utf8, kq_hybrid_utf8, prs_gn, prs_nu, prs_ps, ot.reference,ot.lex_id,
 IF( count(from_word_id) = 0, JSON_ARRAY(),
 JSON_ARRAYAGG( DISTINCT JSON_OBJECT('from_word_id', from_word_id, 'to_word_id', to_word_id, 'markdown', phrase_gloss.markdown) )) AS phrasalGlosses
 FROM ot 
@@ -250,10 +251,11 @@ FROM ot
                         ot.reference LIKE '${bid.canon} ${bid.book}%' 
                     GROUP BY ot._id
                     ORDER BY ot._id ASC;`);
+        return new PublicationBook<PublicationHebrewWordElementRow>(content);
     }
 
-    async getNTBook(bid: BookIdentifier): Promise<BookDumpJson> {
-        return this.getDatabaseRows(bid, `SELECT nt._id,punctuated_text, unpunctuated_text, lemma, part_of_speech, person, tense, voice, mood, grammatical_case, grammatical_number, gender, degree, freq_lex, nt.reference,nt.lex_id, gloss.gloss AS gloss,
+    async getNTBook(bid: BookIdentifier): Promise<PublicationBook<PublicationGreekWordElementRow>> {
+        const content = await this.getDatabaseRows<PublicationGreekWordElementRow>(bid, `SELECT nt._id,punctuated_text, unpunctuated_text, lemma, part_of_speech, person, tense, voice, mood, grammatical_case, grammatical_number, gender, degree, freq_lex, nt.reference,nt.lex_id, gloss.gloss AS gloss,
             IF( count(from_word_id) = 0, JSON_ARRAY(),
                 JSON_ARRAYAGG( DISTINCT JSON_OBJECT('from_word_id', from_word_id, 'to_word_id', to_word_id, 'markdown', phrase_gloss.markdown) )) AS phrasalGlosses
             FROM nt 
@@ -268,26 +270,42 @@ FROM ot
                         nt.reference LIKE '${bid.canon} ${bid.book}%' 
                     GROUP BY nt._id 
                     ORDER BY nt._id ASC;`);
+        return new PublicationBook<PublicationGreekWordElementRow>(content);
     }
 
-    async getDatabaseRows(bid: BookIdentifier, query: string): Promise<BookDumpJson> {
-        let bookName = await this.getCanonicalBookName(bid.canon, bid.book);
-        let [rows] = await this.connection.execute<any[]>(query, [this._request.project.id, this._request.project.id])
+    async getDatabaseRows<T extends PublicationGreekWordElementRow | PublicationHebrewWordElementRow>(bid: BookIdentifier, query: string): Promise<BookDumpJson<T>> {
+        const bookName = await this.getCanonicalBookName(bid.canon, bid.book);
+        let [rows] = await this.connection.execute<RowDataPacket[]>(query, [this._request.project.id, this._request.project.id])
         if (rows === undefined) {
             console.error(`No rows returned for ${bid.canon} ${bid.book}`);
             console.error(query);
             return Promise.reject(`No rows returned for ${bid.canon} ${bid.book}`);
         }
+
+        /// convert the annotation JSON to objects
+        /// I'm doing this so that we can assume that the data in PublicationBook has objects rather than just strings
+        rows = rows.map((row) => {
+            if (row.gloss != null && typeof row.gloss === 'string') {
+                row.gloss = annotationFromJson(row.gloss);
+            }
+
+            if (row.phrasalGlosses != null) {
+                row.phrasalGlosses = JSON.parse(row.phrasalGlosses);
+            }
+
+            return row;
+        });
+
         return {
             book_id: bid.book,
             canon: bid.canon,
             book_title: bookName || '',
-            rows: rows
+            rows: rows as T[]
         };
     }
 
     async getCanonicalBookName(canon: Canon, book: UbsBook): Promise<string | undefined> {
-        let [rows] = await this.connection.execute<any[]>('SELECT `name` FROM `canonical_names` WHERE `canon`=? AND ubs=?;', [canon, book])
+        const [rows] = await this.connection.execute<RowDataPacket[]>('SELECT `name` FROM `canonical_names` WHERE `canon`=? AND ubs=?;', [canon, book])
         if (rows.length > 0) {
             return rows[0].name;
         } else {
@@ -296,8 +314,8 @@ FROM ot
     }
 
     async getFontUrlsForFamiliy(family: string): Promise<string[]> {
-        let [rows] = await this.connection.execute<any[]>('SELECT `url` FROM `fonturls` WHERE `family`=?;', [family]);
-        return rows.map((row: any) => row.url);
+        const [rows] = await this.connection.execute<RowDataPacket[]>('SELECT `url` FROM `fonturls` WHERE `family`=?;', [family]);
+        return rows.map((row) => row.url);
     }
 
     async getGoogleFonts(family: string): Promise<GitHubFile[]> {
@@ -306,15 +324,15 @@ FROM ot
             const parsedUrl = new URL(url);
             const basename = this.addPublicationConfigurationFolder('fonts/' + path.basename(parsedUrl.pathname));
             const fileContent = await Publisher.downloadContent(url, 'arraybuffer');
-            let ghf: GitHubFile = { path: basename, content: fileContent };
+            const ghf: GitHubFile = { path: basename, content: fileContent };
             return ghf;
         });
         return await Promise.all(promises);
     }
 
-    static async downloadContent(url: string, responseType: ResponseType = 'text'): Promise<any> {
+    static async downloadContent(url: string, responseType: ResponseType = 'text'): Promise<string> {
         try {
-            const response = await axios.get(url, {
+            const response = await axios.get<string>(url, {
                 responseType: responseType
             });
             return response.data;
@@ -333,7 +351,7 @@ FROM ot
     }
 
     async createStyleCss(): Promise<string> {
-        let cssContentSource = this._request.configuration.css_template;
+        const cssContentSource = this._request.configuration.css_template;
         const cssContent = cssContentSource
             .replace(/__BIBLICAL_FONT__/g, this.request.configuration.publicationBiblicalFont)
             .replace(/__PROJECT_FONT__/g, this.request.configuration.publicationProjectFont);

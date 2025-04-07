@@ -3,13 +3,14 @@ import { Request, Response } from 'express';
 import { CognitoUserInfoResponse } from '../../../models/TimedOauthCredentials';
 import { ConnectRunDisconnect } from "../GetDatabaseAdapter";
 import { WrappedBody } from '../../../models/SavedPostRequest';
-import { returnValueConfig } from '../../../models/ReturnValue';
+import { HttpReturnValue, returnValueConfig } from '../../../models/ReturnValue';
+import { UpdateVerseData } from "../../../models/database-input-output";
 
-export async function updateVerse(req: Request, res: Response, userInfo: CognitoUserInfoResponse): Promise<Response<any, Record<string, any>>> {
+export async function updateVerse(req: Request, res: Response, userInfo: CognitoUserInfoResponse): Promise<Response<HttpReturnValue, Record<string, HttpReturnValue>>> {
     try {
         const wrappedBody: WrappedBody = req.body;
         returnValueConfig.hash = wrappedBody.hash;
-        const request = wrappedBody.body;
+        const request = wrappedBody.body as UpdateVerseData;
         const user_id = userInfo.username;
         const project_id = req.params.project_id;
         const reference = req.params.reference;

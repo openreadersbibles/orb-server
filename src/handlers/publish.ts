@@ -1,15 +1,14 @@
 import logger from "../logger";
-import { SuccessValue, FailureValue } from "../ReturnValue";
 import { Request, Response } from 'express';
-import { CognitoUserInfoResponse } from '../../../models/TimedOauthCredentials';
 import { HollowPublicationRequest } from "../../../models/PublicationRequest";
 import { createPublisher } from "../createPublisher";
+import { HttpReturnValue } from "../../../models/ReturnValue";
 
-export async function publish(req: Request, res: Response, userInfo: CognitoUserInfoResponse): Promise<Response<any, Record<string, any>>> {
+export async function publish(req: Request, res: Response): Promise<Response<HttpReturnValue, Record<string, HttpReturnValue>>> {
     try {
         // logger.info(req);
         if (req.body === undefined || req.body === null || req.body === "") {
-            return res.json(FailureValue("No request body was provided."));
+            return res.status(400).send("No request body was provided.");
         }
 
         const request = req.body as HollowPublicationRequest;
@@ -22,7 +21,7 @@ export async function publish(req: Request, res: Response, userInfo: CognitoUser
         Object.keys(checkForMissingGlossesResult).forEach(key => {
             if (checkForMissingGlossesResult[key].length > 0) {
                 logger.info(`Missing glosses for ${key}: ${checkForMissingGlossesResult[key].join(', ')}`);
-                return res.json(FailureValue(`Missing glosses for ${key}: ${checkForMissingGlossesResult[key].join(', ')} See the check endpoint for more information.`));
+                return res.status(400).send(`Missing glosses for ${key}: ${checkForMissingGlossesResult[key].join(', ')} See the check endpoint for more information.`);
             }
         });
 
@@ -36,7 +35,7 @@ export async function publish(req: Request, res: Response, userInfo: CognitoUser
         await publisher.disconnect();
 
         /// Return the result
-        return res.json(SuccessValue(result.data));
+        return res.status(200).json(result);
     } catch (error) {
         // logger.info("Success", SuccessValue("success message"));
         // logger.info("Failure", FailureValue("failure message"));
@@ -53,9 +52,9 @@ export async function publish(req: Request, res: Response, userInfo: CognitoUser
             logger.error(`Error: ${JSON.stringify(error)}`);
         }
         if (error === undefined || error === null || error === "") {
-            return res.status(500).json(FailureValue("Indistinct error."));
+            return res.status(500).send("Indistinct error.");
         } else {
-            return res.status(500).json(FailureValue(error));
+            return res.status(500).json(error);
         }
     }
 }

@@ -3,9 +3,9 @@ import { Request, Response } from 'express';
 import { CognitoUserInfoResponse } from '../../../models/TimedOauthCredentials';
 import { ConnectRunDisconnect } from "../GetDatabaseAdapter";
 import { WrappedBody } from '../../../models/SavedPostRequest';
-import { returnValueConfig } from '../../../models/ReturnValue';
+import { HttpReturnValue, returnValueConfig } from '../../../models/ReturnValue';
 
-export async function joinProject(req: Request, res: Response, userInfo: CognitoUserInfoResponse): Promise<Response<any, Record<string, any>>> {
+export async function joinProject(req: Request, res: Response, userInfo: CognitoUserInfoResponse): Promise<Response<HttpReturnValue, Record<string, HttpReturnValue>>> {
     try {
         const wrappedBody: WrappedBody = req.body;
         returnValueConfig.hash = wrappedBody.hash;

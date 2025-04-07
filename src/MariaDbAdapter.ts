@@ -1,12 +1,13 @@
 import { GenericDatabaseAdapter } from './GenericDatabaseAdapter';
-import { IReturnValue, ResolvedPromiseReturnValue, ReturnValue } from '../../models/ReturnValue';
-import { BadRequestFailure, InternalFailure, PhraseGlossRow, ProjectPackage, UpdateVerseData } from '../../models/database-input-output';
+import { BadRequest, HttpReturnValue, InternalFailure, SuccessValue } from '../../models/ReturnValue';
+import { PhraseGlossRow, ProjectPackage, UpdateVerseData } from '../../models/database-input-output';
 import { UserId, UserUpdateObject } from '../../models/UserProfile';
 import { ProjectId } from '../../models/ProjectConfiguration';
-import mysql, { QueryResult } from 'mysql2/promise';
+import mysql, { RowDataPacket } from 'mysql2/promise';
 import { VerseReference } from '../../models/VerseReference';
 import { SuggestionRow } from '../../models/HebrewWordRow';
 import { PhraseGlossLocationObject, WordGlossLocation, WordGlossLocationObject } from '../../models/gloss-locations';
+import { MarkdownAnnotationContent } from '../../models/Annotation';
 
 export class MariaDbAdapter implements GenericDatabaseAdapter {
     private connection!: mysql.Connection;
@@ -35,9 +36,9 @@ export class MariaDbAdapter implements GenericDatabaseAdapter {
         }
     }
 
-    async getUserData(user_id: UserId): Promise<IReturnValue> {
+    async getUserData(user_id: UserId): Promise<HttpReturnValue> {
         try {
-            const [rows] = await this.connection.query<any[]>(`SELECT 
+            const [rows] = await this.connection.query<RowDataPacket[]>(`SELECT 
     user.user_id,
     user_description,
     JSON_ARRAYAGG(settings) AS projects
@@ -64,32 +65,32 @@ GROUP BY
                 await this.updateUser(user_id, { user_id: user_id, user_description: "" });
                 return this.getUserData(user_id);
             } else {
-                return ReturnValue(rows[0]);
+                return SuccessValue(rows[0]);
             }
         } catch (error) {
             console.error(error);
-            return ReturnValue(InternalFailure);
+            return InternalFailure("Error retrieving user data");
         }
     }
 
-    async updateUser(user_id: UserId, userObject: UserUpdateObject): Promise<IReturnValue> {
+    async updateUser(user_id: UserId, userObject: UserUpdateObject): Promise<HttpReturnValue> {
         try {
             if (userObject.user_id !== user_id) {
-                return ResolvedPromiseReturnValue(BadRequestFailure);
+                return BadRequest("You are not allowd to update that user's data.");
             }
-            await this.connection.query<any[]>("REPLACE INTO `user` (user_id,user_description) VALUES (?,?);", [userObject.user_id, userObject.user_description]);
-            return ResolvedPromiseReturnValue({ status: "success" });
+            await this.connection.query<RowDataPacket[]>("REPLACE INTO `user` (user_id,user_description) VALUES (?,?);", [userObject.user_id, userObject.user_description]);
+            return SuccessValue("User data updated successfully");
         } catch (err) {
             console.error(err);
-            return ResolvedPromiseReturnValue(InternalFailure);
+            return InternalFailure("Error updating user data");
         }
     }
 
-    async updateProject(user_id: UserId, pkg: ProjectPackage): Promise<IReturnValue> {
+    async updateProject(user_id: UserId, pkg: ProjectPackage): Promise<HttpReturnValue> {
         try {
-            let project = pkg.project;
+            const project = pkg.project;
             const roles = pkg.project.roles;
-            let settingWithoutRoles = JSON.parse(JSON.stringify(project));
+            const settingWithoutRoles = JSON.parse(JSON.stringify(project));
             delete settingWithoutRoles.roles;
 
             /// I'm handling new projects separately so that a project can't be accidentally overwritten
@@ -98,59 +99,59 @@ GROUP BY
                 await this.connection.execute(`INSERT INTO project (project_id,settings) VALUES (?,?);`, [project.project_id, JSON.stringify(settingWithoutRoles)]);
 
                 /// make the user the admin of the project
-                for (let role of roles) {
+                for (const role of roles) {
                     await this.connection.execute(`INSERT INTO project_roles (user_id,project_id,user_role,power_user) VALUES (?,?,?,?);`, [role.user_id, project.project_id, role.user_role, role.power_user]);
                 }
-                return ResolvedPromiseReturnValue({ status: "success" });
+                return SuccessValue("Project created successfully");
             } else {
                 /// update the new project
-                let [result]: [any, any[]] = await this.connection.execute(`UPDATE project p
+                const [result] = await this.connection.execute<mysql.ResultSetHeader>(`UPDATE project p
                             JOIN project_roles pr ON p.project_id = pr.project_id
                             SET p.settings = ?
                             WHERE p.project_id = ?
                             AND pr.user_id = ?
                             AND pr.user_role = 'admin';`, [JSON.stringify(settingWithoutRoles), project.project_id, user_id]);
                 if (result.affectedRows < 1) {
-                    return ResolvedPromiseReturnValue(BadRequestFailure);
+                    return BadRequest("The project was not updated. (Perhaps a bad project id?)");
                 }
 
-                for (let role of roles) {
+                for (const role of roles) {
                     await this.connection.execute(`REPLACE INTO project_roles (user_id,project_id,user_role,power_user) VALUES (?,?,?,?);`, [role.user_id, project.project_id, role.user_role, role.power_user]);
                 }
-                return ResolvedPromiseReturnValue({ status: "success" });
+                return SuccessValue("Project updated successfully");
             }
         } catch (err) {
             console.error(err);
-            return ResolvedPromiseReturnValue(InternalFailure);
+            return InternalFailure("Error updating project data");
         }
     }
 
-    async getUserIds(): Promise<IReturnValue> {
+    async getUserIds(): Promise<HttpReturnValue> {
         try {
-            const [rows] = await this.connection.query<any[]>('SELECT `user_id` FROM user ORDER BY lower(user_id) ASC;');
-            return ReturnValue(rows.map((row) => row.user_id));
+            const [rows] = await this.connection.query<RowDataPacket[]>('SELECT `user_id` FROM user ORDER BY lower(user_id) ASC;');
+            return SuccessValue(rows.map((row) => row.user_id));
         } catch (error) {
             console.error(error);
-            return ReturnValue(InternalFailure);
+            return InternalFailure("Error retrieving user IDs");
         }
     }
 
-    async getProjectIdExists(project_id: ProjectId): Promise<IReturnValue> {
+    async getProjectIdExists(project_id: ProjectId): Promise<HttpReturnValue> {
         try {
-            const [rows] = await this.connection.query<any[]>('SELECT project_id FROM project WHERE project_id=?;', [project_id]);
-            return ReturnValue({
+            const [rows] = await this.connection.query<RowDataPacket[]>('SELECT project_id FROM project WHERE project_id=?;', [project_id]);
+            return SuccessValue({
                 project_id: project_id,
                 exists: rows.length > 0 ? true : false
             });
         } catch (error) {
             console.error(error);
-            return ReturnValue(InternalFailure);
+            return InternalFailure("Error retrieving project ID existence");
         }
     }
 
     async lastInsertId(): Promise<number> {
         try {
-            const [rows] = await this.connection.query<any[]>('SELECT LAST_INSERT_ID() AS lid;');
+            const [rows] = await this.connection.query<RowDataPacket[]>('SELECT LAST_INSERT_ID() AS lid;');
             return rows[0].lid;
         } catch (error) {
             console.error(error);
@@ -158,9 +159,9 @@ GROUP BY
         }
     }
 
-    async updateVerse(user_id: UserId, data: UpdateVerseData, project_id: ProjectId, reference_text: string): Promise<IReturnValue> {
-        let wordGlossUpdates = data.word_gloss_updates;
-        let phraseGlossUpdates = data.phrase_gloss_updates;
+    async updateVerse(user_id: UserId, data: UpdateVerseData, project_id: ProjectId, reference_text: string): Promise<HttpReturnValue> {
+        const wordGlossUpdates = data.word_gloss_updates;
+        const phraseGlossUpdates = data.phrase_gloss_updates;
 
         try {
             /// we first need to add any glosses to the database
@@ -169,46 +170,48 @@ GROUP BY
             /// array so that we can use it to update votes
             for (let i = 0; i < wordGlossUpdates.length; i++) {
                 if (wordGlossUpdates[i].gloss_id == -1) {
-                    let location = wordGlossUpdates[i].location as WordGlossLocation
+                    const location = wordGlossUpdates[i].location as WordGlossLocation
                     await this.connection.execute(`INSERT INTO gloss (word_id, project_id, gloss,reference, lex_id) VALUES (?,?,?,?,?);`, [location.word_id, project_id, JSON.stringify(wordGlossUpdates[i].annotationObject), reference_text, location.lex_id]);
                     wordGlossUpdates[i].gloss_id = await this.lastInsertId();
                 }
             }
 
             /// add/update the votes table
-            for (let item of wordGlossUpdates) {
-                let location = item.location as unknown as WordGlossLocationObject;
+            for (const item of wordGlossUpdates) {
+                const location = item.location as unknown as WordGlossLocationObject;
                 await this.connection.execute(`REPLACE INTO votes (vote,gloss_id,user_id,word_id) VALUES (?,?,?,?);`, [item.myVote, item.gloss_id, user_id, location.word_id]);
             }
 
             /// insert new phrase-level glosses
             for (let i = 0; i < phraseGlossUpdates.length; i++) {
                 if (phraseGlossUpdates[i].gloss_id === -1) {
-                    let location = phraseGlossUpdates[i].location as unknown as PhraseGlossLocationObject;
-                    await this.connection.execute(`INSERT INTO phrase_gloss (from_word_id, to_word_id, project_id, markdown,reference) VALUES (?,?,?,?,?);`, [location.from_word_id, location.to_word_id, project_id, phraseGlossUpdates[i].annotationObject.content.markdown, reference_text]);
+                    const location = phraseGlossUpdates[i].location as unknown as PhraseGlossLocationObject;
+                    /// phrase-level glosses are always just markdown annotation
+                    const annotation = phraseGlossUpdates[i]?.annotationObject as { type: "markdown"; content: MarkdownAnnotationContent; };
+                    await this.connection.execute(`INSERT INTO phrase_gloss (from_word_id, to_word_id, project_id, markdown,reference) VALUES (?,?,?,?,?);`, [location.from_word_id, location.to_word_id, project_id, annotation.content, reference_text]);
                     phraseGlossUpdates[i].gloss_id = await this.lastInsertId();
                 }
             }
 
             /// update phrase-level gloss votes
-            for (let item of phraseGlossUpdates) {
+            for (const item of phraseGlossUpdates) {
                 await this.connection.execute(`REPLACE INTO phrase_gloss_votes (vote,phrase_gloss_id,user_id) VALUES (?,?,?);`, [item.myVote, item.gloss_id, user_id]);
             }
 
-            return ResolvedPromiseReturnValue({ status: "success" });
+            return SuccessValue("Verse data updated successfully");
 
         } catch (err) {
             console.error(err);
-            return ResolvedPromiseReturnValue(InternalFailure);
+            return InternalFailure("Error updating verse data");
         }
     }
 
     /// serverless deploy function -f getVerse
-    getVerse(project_id: ProjectId, user_id: UserId, reference: string): Promise<IReturnValue> {
+    getVerse(project_id: ProjectId, user_id: UserId, reference: string): Promise<HttpReturnValue> {
         const r = VerseReference.fromString(reference);
         if (r === undefined) {
             console.error("Bad reference", reference);
-            return ResolvedPromiseReturnValue(BadRequestFailure);
+            return Promise.reject("Bad reference");
         }
         switch (r.canon) {
             case "OT":
@@ -217,16 +220,16 @@ GROUP BY
                 return this.getNTVerse(project_id, user_id, reference);
             default:
                 console.error("LXX Not Supported");
-                return ResolvedPromiseReturnValue(BadRequestFailure);
+                return Promise.reject("LXX Not Supported");
         }
     }
 
     /// TODO The clause "GROUP BY user_id" (here an in the NT call) is a cludge because
     /// at least during development sometimes two glosses would both be voted for. I think
     /// that is fixed, but it might be better to make that kind of error unable to happen.
-    async getOTVerse(project_id: ProjectId, user_id: UserId, reference: string): Promise<IReturnValue> {
+    async getOTVerse(project_id: ProjectId, user_id: UserId, reference: string): Promise<HttpReturnValue> {
         try {
-            const [rows] = await this.connection.query<any[]>(`SELECT _id,freq_lex,g_word_utf8,trailer_utf8,lex_id,gn, nu, st, vt, vs, ps, pdp, ot.gloss AS englishGloss, prs_gn, prs_nu, prs_ps,voc_lex_utf8,languageISO,
+            const [rows] = await this.connection.query<RowDataPacket[]>(`SELECT _id,freq_lex,g_word_utf8,trailer_utf8,lex_id,gn, nu, st, vt, vs, ps, pdp, ot.gloss AS englishGloss, prs_gn, prs_nu, prs_ps,voc_lex_utf8,languageISO,
             CASE WHEN voteResults.gloss IS NULL THEN '[]' ELSE JSON_ARRAYAGG(JSON_OBJECT('jsonContent',voteResults.gloss,'votes',voteCount,'gloss_id',gloss_id)) END AS votes,
             (SELECT gloss_id FROM votes WHERE user_id=? AND votes.word_id=ot._id AND vote=1 GROUP BY user_id) AS myVote
             FROM ot
@@ -236,24 +239,24 @@ GROUP BY
             WHERE ot.reference=? 
             GROUP BY ot._id;`, [user_id, project_id, reference, reference]);
 
-            let glossSuggestions = await this.getWordGlosses(project_id, reference, 'ot');
-            let phraseGlosses = await this.getPhraseGlosses(user_id, project_id, reference);
+            const glossSuggestions = await this.getWordGlosses(project_id, reference, 'ot');
+            const phraseGlosses = await this.getPhraseGlosses(user_id, project_id, reference);
 
-            return ReturnValue({
-                words: rows.map((row: any) => { row.votes = JSON.parse(row.votes); return row; }),
+            return SuccessValue({
+                words: rows.map((row) => { row.votes = JSON.parse(row.votes); return row; }),
                 suggestions: glossSuggestions,
                 phrase_glosses: phraseGlosses
             });
         } catch (error) {
             console.error(user_id, project_id, reference, reference);
             console.error(error);
-            return ReturnValue(InternalFailure);
+            return InternalFailure("Error retrieving OT verse data");
         }
     }
 
-    async getNTVerse(project_id: ProjectId, user_id: UserId, reference: string): Promise<IReturnValue> {
+    async getNTVerse(project_id: ProjectId, user_id: UserId, reference: string): Promise<HttpReturnValue> {
         try {
-            const [rows] = await this.connection.query<any[]>(`SELECT _id, freq_lex, lex_id, 0 AS myVote, punctuated_text, unpunctuated_text, lemma, part_of_speech, person, tense, voice, mood, grammatical_case, grammatical_number, gender, degree, 'grc' AS languageISO,nt.gloss AS englishGloss,
+            const [rows] = await this.connection.query<RowDataPacket[]>(`SELECT _id, freq_lex, lex_id, 0 AS myVote, punctuated_text, unpunctuated_text, lemma, part_of_speech, person, tense, voice, mood, grammatical_case, grammatical_number, gender, degree, 'grc' AS languageISO,nt.gloss AS englishGloss,
             CASE WHEN voteResults.gloss IS NULL THEN '[]' ELSE JSON_ARRAYAGG(JSON_OBJECT('jsonContent',voteResults.gloss,'votes',voteCount,'gloss_id',gloss_id)) END AS votes,
             (SELECT gloss_id FROM votes WHERE user_id=? AND votes.word_id=nt._id AND vote=1 GROUP BY user_id) AS myVote
             FROM nt
@@ -263,28 +266,29 @@ GROUP BY
             WHERE nt.reference=? 
             GROUP BY nt._id;`, [user_id, project_id, reference, reference]);
 
-            let glossSuggestions = await this.getWordGlosses(project_id, reference, 'nt');
-            let phraseGlosses = await this.getPhraseGlosses(user_id, project_id, reference);
+            const glossSuggestions = await this.getWordGlosses(project_id, reference, 'nt');
+            const phraseGlosses = await this.getPhraseGlosses(user_id, project_id, reference);
 
-            return ReturnValue({
-                words: rows.map((row: any) => { row.votes = JSON.parse(row.votes); return row; }),
+            return SuccessValue({
+                words: rows.map((row) => { row.votes = JSON.parse(row.votes); return row; }),
                 suggestions: glossSuggestions,
                 phrase_glosses: phraseGlosses
             });
         } catch (error) {
             console.error(error);
             console.error(project_id, user_id, reference);
-            return ReturnValue(InternalFailure);
+            return InternalFailure("Error retrieving NT verse data");
         }
     }
 
     async getWordGlosses(project_id: ProjectId, reference: string, dataTableName: 'nt' | 'ot'): Promise<SuggestionRow[]> {
         try {
-            const [rows] = await this.connection.query<any[]>(`SELECT _id AS gloss_id,lex_id,JSON_ARRAYAGG(DISTINCT gloss.gloss) AS suggestions FROM gloss WHERE project_id=? AND lex_id IN (SELECT lex_id FROM ${dataTableName} WHERE reference=?) GROUP BY lex_id;`, [project_id, reference]);
-            return rows.map((row: any) => {
-                row.suggestions = JSON.parse(row.suggestions);
-                row.suggestions = row.suggestions.map((str: string) => JSON.parse(str));
-                return row;
+            const [rows] = await this.connection.query<RowDataPacket[]>(`SELECT _id AS gloss_id,lex_id,JSON_ARRAYAGG(DISTINCT gloss.gloss) AS suggestions FROM gloss WHERE project_id=? AND lex_id IN (SELECT lex_id FROM ${dataTableName} WHERE reference=?) GROUP BY lex_id;`, [project_id, reference]);
+            return rows.map((row) => {
+                return {
+                    lex_id: row.lex_id,
+                    suggestions: JSON.parse(row.suggestions).map((str: string) => JSON.parse(str))
+                };
             });
         } catch (err) {
             console.error(err);
@@ -294,7 +298,7 @@ GROUP BY
 
     async getPhraseGlosses(user_id: UserId, project_id: ProjectId, reference: string): Promise<PhraseGlossRow[]> {
         try {
-            const [rows] = await this.connection.query<any[]>(`SELECT _id AS phrase_gloss_id,from_word_id,to_word_id,markdown,SUM(IFNULL(vote,0)) AS votes,(SELECT phrase_gloss_id FROM phrase_gloss_votes WHERE user_id=? AND vote=1 AND phrase_gloss_id=phrase_gloss._id) AS myVote FROM phrase_gloss LEFT JOIN phrase_gloss_votes ON phrase_gloss._id=phrase_gloss_votes.phrase_gloss_id  WHERE project_id=? AND reference=? GROUP BY _id ORDER BY votes DESC;`, [user_id, project_id, reference]);
+            const [rows] = await this.connection.query<RowDataPacket[]>(`SELECT _id AS phrase_gloss_id,from_word_id,to_word_id,markdown,SUM(IFNULL(vote,0)) AS votes,(SELECT phrase_gloss_id FROM phrase_gloss_votes WHERE user_id=? AND vote=1 AND phrase_gloss_id=phrase_gloss._id) AS myVote FROM phrase_gloss LEFT JOIN phrase_gloss_votes ON phrase_gloss._id=phrase_gloss_votes.phrase_gloss_id  WHERE project_id=? AND reference=? GROUP BY _id ORDER BY votes DESC;`, [user_id, project_id, reference]);
             return rows as PhraseGlossRow[];
         } catch (err) {
             console.error(err);
@@ -302,7 +306,7 @@ GROUP BY
         }
     }
 
-    async seekVerse(project_id: ProjectId, user_id: UserId, frequency_threshold: number, startingPosition: VerseReference, direction: "before" | "after", exclusivity: "me" | "anyone"): Promise<IReturnValue> {
+    async seekVerse(project_id: ProjectId, user_id: UserId, frequency_threshold: number, startingPosition: VerseReference, direction: "before" | "after", exclusivity: "me" | "anyone"): Promise<HttpReturnValue> {
         try {
             const orderDirection = direction === "before" ? "DESC" : "ASC";
             const userClause = exclusivity === "me" ? " AND user_id=? " : "";
@@ -324,39 +328,39 @@ GROUP BY
         ORDER BY ${canon}._id ${orderDirection} 
         LIMIT 1;`;
 
-            const result = await this.connection.query<any[]>(query, args);
+            const result = await this.connection.query<RowDataPacket[]>(query, args);
 
             if (result[0][0] === undefined) {
                 console.error(`Query returned empty; returning starting position: ${startingPosition.toString()}`);
-                return ResolvedPromiseReturnValue({ reference: startingPosition.toString() });
+                return SuccessValue({ reference: startingPosition.toString() });
             }
-            return ResolvedPromiseReturnValue(result[0][0]);
+            return SuccessValue(result[0][0]);
         } catch (err) {
             console.error(err);
-            return ResolvedPromiseReturnValue(InternalFailure);
+            return InternalFailure("Error seeking verse data");
         }
     }
 
-    async getProjectDescriptions(): Promise<IReturnValue> {
+    async getProjectDescriptions(): Promise<HttpReturnValue> {
         try {
-            const [rows] = await this.connection.query<any[]>(`select project_id,JSON_VALUE(settings,'$.project_title') as project_title,JSON_VALUE(settings,'$.project_description') as project_description,JSON_VALUE(settings,'$.allow_joins') as allow_joins from project order by project_title ASC;`);
-            return ReturnValue(rows.map((row) => {
+            const [rows] = await this.connection.query<RowDataPacket[]>(`select project_id,JSON_VALUE(settings,'$.project_title') as project_title,JSON_VALUE(settings,'$.project_description') as project_description,JSON_VALUE(settings,'$.allow_joins') as allow_joins from project order by project_title ASC;`);
+            return SuccessValue(rows.map((row) => {
                 row.allow_joins = row.allow_joins === "1";
                 return row;
             }));
         } catch (error) {
             console.error(error);
-            return ReturnValue(InternalFailure);
+            return InternalFailure("Error retrieving project descriptions");
         }
     }
 
-    async joinProject(user_id: UserId, project_id: ProjectId): Promise<IReturnValue> {
+    async joinProject(user_id: UserId, project_id: ProjectId): Promise<HttpReturnValue> {
         try {
             await this.connection.execute(`insert ignore into project_roles values (?,?,'member',0);`, [user_id, project_id]);
-            return ResolvedPromiseReturnValue({ status: "success" });
+            return SuccessValue("User added to project successfully");
         } catch (err) {
             console.error(err);
-            return ResolvedPromiseReturnValue(InternalFailure);
+            return InternalFailure("Error joining project");
         }
     }
 }

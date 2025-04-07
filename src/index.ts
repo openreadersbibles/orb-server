@@ -29,7 +29,7 @@ app.use(cors());
 // Handle preflight requests
 app.options('*', cors());
 
-app.get('/getverse/:user_id/:project_id/:reference', async (req: any, res: any) => {
+app.get('/getverse/:user_id/:project_id/:reference', async (req: Request, res: Response) => {
     await authenticateAndThenCall(req, res, getVerse);
 });
 
@@ -37,15 +37,15 @@ app.post('/updateverse/:user_id/:project_id/:reference', async (req: Request, re
     await authenticateAndThenCall(req, res, updateVerse);
 });
 
-app.get('/seekVerse/:user_id/:project_id/:frequency_threshold/:startingPosition/:direction/:exclusivity', async (req: any, res: any) => {
+app.get('/seekVerse/:user_id/:project_id/:frequency_threshold/:startingPosition/:direction/:exclusivity', async (req: Request, res: Response) => {
     await authenticateAndThenCall(req, res, seekVerse);
 });
 
-app.get('/user/:user_id', async (req: any, res: any) => {
+app.get('/user/:user_id', async (req: Request, res: Response) => {
     await authenticateAndThenCall(req, res, getUserData);
 });
 
-app.get('/projectExists/:project_id', async (req: any, res: any) => {
+app.get('/projectExists/:project_id', async (req: Request, res: Response) => {
     await authenticateAndThenCall(req, res, getProjectIdExists);
 });
 
@@ -57,11 +57,11 @@ app.post('/updateuser', async (req: Request, res: Response) => {
     await authenticateAndThenCall(req, res, updateUser);
 });
 
-app.get('/userids', async (req: any, res: any) => {
+app.get('/userids', async (req: Request, res: Response) => {
     await authenticateAndThenCall(req, res, getUserIds);
 });
 
-app.get('/projectdescriptions', async (req: any, res: any) => {
+app.get('/projectdescriptions', async (req: Request, res: Response) => {
     await authenticateAndThenCall(req, res, projectDescriptions);
 });
 
@@ -69,7 +69,8 @@ app.post('/joinproject/:project_id', async (req: Request, res: Response) => {
     await authenticateAndThenCall(req, res, joinProject);
 });
 
-app.get('/publication_contents/:project_id', async (req: any, res: any) => {
+/// 2024-04-07: This ought to be deprecated since the publication index files are being generated in the respository
+app.get('/publication_contents/:project_id', async (req: Request, res: Response) => {
     await authenticateAndThenCall(req, res, publicationContents);
 });
 

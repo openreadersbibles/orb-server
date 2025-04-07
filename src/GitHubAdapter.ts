@@ -1,13 +1,14 @@
-import axios from 'axios';
-import logger from './logger';
+import axios, { AxiosRequestConfig } from 'axios';
 import { PublicationBook } from '../../models/publication/PublicationBook';
+import { PublicationGreekWordElementRow } from '../../models/publication/PublicationGreekWordElementRow';
+import { PublicationHebrewWordElementRow } from '../../models/publication/PublicationHebrewWordElementRow';
 
-export interface GitHubFile { path: string, content: any, pb?: PublicationBook };
+export interface GitHubFile { path: string, content: string, pb?: PublicationBook<PublicationGreekWordElementRow | PublicationHebrewWordElementRow> };
 
 export class GitHubAdapter {
     private _secret: string;
     private _owner: string = "openreadersbibles";
-    private config: any;
+    private config: AxiosRequestConfig;
 
     constructor(secret: string) {
         this._secret = secret;
@@ -24,20 +25,22 @@ export class GitHubAdapter {
     async createRepositoryIfNotExists(repo: string) {
         console.info(`Checking if repository ${repo} exists...`);
         try {
-            const response = await axios.get(`https://api.github.com/repos/${this._owner}/${repo}`, this.config);
-        } catch (error: any) {
-            if (error.status === 404) {
-                await this.createRepository(repo);
-            } else {
-                // Handle other errors
-                console.error(`Error checking repository existence: ${error.message}`);
+            return await axios.get(`https://api.github.com/repos/${this._owner}/${repo}`, this.config);
+        } catch (error) {
+            if (axios.isAxiosError(error)) {
+                if (error.status === 404) {
+                    await this.createRepository(repo);
+                } else {
+                    // Handle other errors
+                    console.error(`Error checking repository existence: ${error.message}`);
+                }
             }
         }
     }
 
     private async createRepository(repo: string) {
         try {
-            const response = await axios.post('https://api.github.com/user/repos', {
+            return await axios.post('https://api.github.com/user/repos', {
                 name: repo,
                 description: "This repository has been created by the Open Readers Bibles project.",
                 homepage: "https://openreadersbibles.org/",
@@ -45,15 +48,17 @@ export class GitHubAdapter {
                 is_template: true,
                 auto_init: true
             }, this.config);
-        } catch (error: any) {
-            console.error(`Error creating repository: ${error.message}`);
+        } catch (error) {
+            if (axios.isAxiosError(error)) {
+                console.error(`Error creating repository: ${error.message}`);
+            }
         }
 
         console.info(`Repository ${repo} created successfully.`);
     }
 
 
-    public async addFilesToRepository(repo: string, files: GitHubFile[], branch: string = 'main'): Promise<any> {
+    public async addFilesToRepository(repo: string, files: GitHubFile[], branch: string = 'main'): Promise<unknown> {
         try {
             // Step 1: Get the SHA of the base tree
             const { data: refData } = await axios.get(`https://api.github.com/repos/${this._owner}/${repo}/git/ref/heads/${branch}`, this.config);
@@ -92,14 +97,16 @@ export class GitHubAdapter {
                 sha: commitData.sha,
                 force: true // Force update to handle conflicts
             }, this.config);
-        } catch (error: any) {
-            if (error.response && error.response.status === 409) {
-                console.error(`Conflict error: ${error.message}. Please ensure you are working with the latest branch state.`);
-            } else {
-                console.error(`Error adding files to repository: ${error.message}`);
-                console.trace();
+        } catch (error) {
+            if (axios.isAxiosError(error)) {
+                if (error.response && error.response.status === 409) {
+                    console.error(`Conflict error: ${error.message}. Please ensure you are working with the latest branch state.`);
+                } else {
+                    console.error(`Error adding files to repository: ${error.message}`);
+                    console.trace();
+                }
+                console.error(`Stack trace: ${error.stack}`);
             }
-            console.error(`Stack trace: ${error.stack}`);
             return Promise.reject(error);
         }
     }
@@ -114,21 +121,25 @@ export class GitHubAdapter {
             }
 
             return response.data;
-        } catch (error: any) {
-            console.error(`Error fetching actions: ${error.message}`);
+        } catch (error) {
+            if (axios.isAxiosError(error)) {
+                console.error(`Error fetching actions: ${error.message}`);
+            }
             return Promise.reject(error);
         }
     }
 
-    async getRepositoryContents(owner: string, repo: string, branch: string, path: string = ''): Promise<any[]> {
+    async getRepositoryContents(owner: string, repo: string, branch: string, path: string = ''): Promise<{ type: string, name: string, path: string }[]> {
         try {
 
             const url = `https://api.github.com/repos/${owner}/${repo}/contents/${path}?ref=${branch}`;
             const response = await axios.get(url, this.config);
 
             return response.data;
-        } catch (error: any) {
-            console.error(`Error fetching repository contents: ${error.message}`);
+        } catch (error) {
+            if (axios.isAxiosError(error)) {
+                console.error(`Error fetching repository contents: ${error.message}`);
+            }
             return Promise.reject(error);
         }
     }
@@ -141,13 +152,15 @@ export class GitHubAdapter {
 
             const commit = response.data[0];
             return commit.commit.committer.date;
-        } catch (error: any) {
-            console.error(`Error fetching last modified date: ${error.message}`);
+        } catch (error) {
+            if (axios.isAxiosError(error)) {
+                console.error(`Error fetching last modified date: ${error.message}`);
+            }
             return Promise.reject(error);
         }
     }
 
-    async listFilesWithLastModifiedDate(owner: string, repo: string, branch: string, path: string = '', extension: string = ''): Promise<any[]> {
+    async listFilesWithLastModifiedDate(owner: string, repo: string, branch: string, path: string = '', extension: string = ''): Promise<{ name: string, path: string, lastModifiedDate: string }[]> {
         try {
             const files = await this.getRepositoryContents(owner, repo, branch, path);
             const result = [];
@@ -164,8 +177,10 @@ export class GitHubAdapter {
             }
 
             return result;
-        } catch (error: any) {
-            console.error(`Error listing files with last modified date: ${error.message}`);
+        } catch (error) {
+            if (axios.isAxiosError(error)) {
+                console.error(`Error listing files with last modified date: ${error.message}`);
+            }
             return Promise.reject(error);
         }
     }

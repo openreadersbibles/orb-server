@@ -1,11 +1,10 @@
 import { HollowPublicationRequest } from "../../../models/PublicationRequest";
 import { createPublisher } from "../createPublisher";
 import logger from "../logger";
-import { SuccessValue, FailureValue } from "../ReturnValue";
 import { Request, Response } from 'express';
-import { CognitoUserInfoResponse } from '../../../models/TimedOauthCredentials';
+import { HttpReturnValue } from "../../../models/ReturnValue";
 
-export async function publicationCheck(req: Request, res: Response, userInfo: CognitoUserInfoResponse): Promise<Response<any, Record<string, any>>> {
+export async function publicationCheck(req: Request, res: Response): Promise<Response<HttpReturnValue, Record<string, HttpReturnValue>>> {
     try {
         const request = req.body as HollowPublicationRequest;
 
@@ -27,9 +26,9 @@ export async function publicationCheck(req: Request, res: Response, userInfo: Co
         await publisher.disconnect();
 
         /// Return the result
-        return res.json(SuccessValue(checkForMissingGlossesResult));
+        return res.status(200).json(checkForMissingGlossesResult);
     } catch (error) {
         logger.error(error);
-        return res.status(500).json(FailureValue(error));
+        return res.status(500).json(error);
     }
 }

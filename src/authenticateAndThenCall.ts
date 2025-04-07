@@ -2,15 +2,15 @@ import { COGNITO } from '../cognito';
 import axios from 'axios';
 import { CognitoUserInfoResponse } from '../../models/TimedOauthCredentials';
 import { Request, Response } from 'express';
-import { FailureValue } from './ReturnValue';
+import { HttpReturnValue } from '../../models/ReturnValue';
 
-export type ApiCallHandler = (req: Request, res: Response, userInfo: CognitoUserInfoResponse) => Promise<Response<any, Record<string, any>>>;
+export type ApiCallHandler = (req: Request, res: Response, userInfo: CognitoUserInfoResponse) => Promise<Response<HttpReturnValue, Record<string, HttpReturnValue>>>;
 
 export const authenticateAndThenCall = async (req: Request, res: Response, next: ApiCallHandler) => {
     const token = req.headers['authorization'];
     if (!token) {
         console.error(req.headers);
-        return res.status(401).json(FailureValue({ error: 'No authorization header' }));
+        return res.status(401).send('No authorization header');
     }
 
     try {
@@ -26,8 +26,9 @@ export const authenticateAndThenCall = async (req: Request, res: Response, next:
             throw new Error(response.data.error);
         }
         const userInfo = response.data as CognitoUserInfoResponse;
+        /// here is where the function is actually called:
         next(req, res, userInfo);
-    } catch (error) {
-        return res.status(401).json(FailureValue({ error: 'Invalid token' }));
+    } catch {
+        return res.status(401).send('Invalid token');
     }
 };

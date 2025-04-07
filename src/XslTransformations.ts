@@ -25,10 +25,10 @@ export class XslTransformations {
     }
 
     static produceTransformedFiles(files: GitHubFile[], configuration: PublicationConfiguration): GitHubFile[] {
-        let htmlFiles = files
+        const htmlFiles = files
             .filter(file => file.path.endsWith('.xml'))
             .map(file => XslTransformations.produceHtmlForFile(file, configuration));
-        let texFiles = files
+        const texFiles = files
             .filter(file => file.path.endsWith('.xml'))
             .map(file => XslTransformations.produceTeXForFile(file, configuration));
         return htmlFiles.concat(texFiles);

@@ -1,9 +1,9 @@
 import logger from "../logger";
 import { Request, Response } from 'express';
-import { CognitoUserInfoResponse } from '../../../models/TimedOauthCredentials';
 import { ConnectRunDisconnect } from "../GetDatabaseAdapter";
+import { HttpReturnValue } from "../../../models/ReturnValue";
 
-export async function getUserIds(req: Request, res: Response, userInfo: CognitoUserInfoResponse): Promise<Response<any, Record<string, any>>> {
+export async function getUserIds(req: Request, res: Response): Promise<Response<HttpReturnValue, Record<string, HttpReturnValue>>> {
     try {
         return res.json(await ConnectRunDisconnect((adapter) => {
             return adapter.getUserIds();
