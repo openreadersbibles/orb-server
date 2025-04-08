@@ -2,7 +2,6 @@ import axios, { AxiosRequestConfig } from 'axios';
 import { PublicationBook } from '../../models/publication/PublicationBook';
 import { PublicationGreekWordElementRow } from '../../models/publication/PublicationGreekWordElementRow';
 import { PublicationHebrewWordElementRow } from '../../models/publication/PublicationHebrewWordElementRow';
-import { Octokit } from "@octokit/core";
 
 export interface GitHubFile { path: string, content: string, pb?: PublicationBook<PublicationGreekWordElementRow | PublicationHebrewWordElementRow> };
 
@@ -10,7 +9,6 @@ export class GitHubAdapter {
     private _secret: string;
     private _owner: string = "openreadersbibles";
     private config: AxiosRequestConfig;
-    private octokit: Octokit;
 
     constructor(secret: string) {
         this._secret = secret;
@@ -22,7 +20,6 @@ export class GitHubAdapter {
                 'X-GitHub-Api-Version': '2022-11-28'
             }
         };
-        this.octokit = new Octokit({ auth: process.env['GITHUB_SECRET'] });
     }
 
     async createRepositoryIfNotExists(repo: string) {
@@ -40,35 +37,39 @@ export class GitHubAdapter {
             }
         }
     }
-
     async createGitHubPages(repo: string) {
-        await this.octokit.request(`POST /repos/${this._owner}/${repo}/pages`, {
-            owner: this._owner,
-            repo: repo,
-            source: {
-                branch: 'gh-pages',
-                path: '/'
-            },
-            headers: {
-                'X-GitHub-Api-Version': '2022-11-28'
-            }
-        }).catch(async (error) => {
-            console.error(`Error creating GitHub Pages...${error}`);
-
-            await this.octokit.request(`PUT /repos/${this._owner}/${repo}/pages`, {
-                owner: this._owner,
-                repo: repo,
+        try {
+            await axios.post(`https://api.github.com/repos/${this._owner}/${repo}/pages`, {
                 source: {
                     branch: 'gh-pages',
                     path: '/'
-                },
+                }
+            }, {
+                ...this.config,
                 headers: {
+                    ...this.config.headers,
                     'X-GitHub-Api-Version': '2022-11-28'
                 }
-            }).catch((error) => {
-                console.error(`Error updating GitHub Pages...${error}`);
             });
-        });
+        } catch (error) {
+            console.error(`Error creating GitHub Pages: ${error}`);
+            try {
+                await axios.put(`https://api.github.com/repos/${this._owner}/${repo}/pages`, {
+                    source: {
+                        branch: 'gh-pages',
+                        path: '/'
+                    }
+                }, {
+                    ...this.config,
+                    headers: {
+                        ...this.config.headers,
+                        'X-GitHub-Api-Version': '2022-11-28'
+                    }
+                });
+            } catch (updateError) {
+                console.error(`Error updating GitHub Pages: ${updateError}`);
+            }
+        }
     }
 
     private async createRepository(repo: string) {
