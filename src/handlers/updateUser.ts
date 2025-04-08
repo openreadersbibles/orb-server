@@ -4,7 +4,7 @@ import { CognitoUserInfoResponse } from '../../../models/TimedOauthCredentials.j
 import { ConnectRunDisconnect } from "../GetDatabaseAdapter.js";
 import { WrappedBody } from "../../../models/SavedPostRequest.js";
 import { HttpReturnValue, returnValueConfig } from "../../../models/ReturnValue.js";
-import { ProjectPackage } from "../../../models/database-input-output.js";
+import { UserUpdateObject } from "../../../models/UserProfile.js";
 
 export async function updateUser(req: Request, res: Response, userInfo: CognitoUserInfoResponse): Promise<Response<HttpReturnValue, Record<string, HttpReturnValue>>> {
     try {
@@ -12,7 +12,7 @@ export async function updateUser(req: Request, res: Response, userInfo: CognitoU
         returnValueConfig.hash = wrappedBody.hash;
         const request = wrappedBody.body;
         return res.json(await ConnectRunDisconnect((adapter) => {
-            return adapter.updateProject(userInfo.username, request as ProjectPackage);
+            return adapter.updateUser(userInfo.username, request as UserUpdateObject);
         }));
     } catch (error) {
         logger.error(`Error in getVerse: ${error}`);
