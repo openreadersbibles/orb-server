@@ -5,7 +5,6 @@ import { publicationCheck } from './handlers/publicationCheck';
 import { authenticateAndThenCall } from './authenticateAndThenCall';
 import { publicationActionStatus } from './handlers/publicationActionStatus';
 import { publish } from './handlers/publish';
-import { publicationContents } from './handlers/publicationContents';
 import { getVerse } from './handlers/getVerse';
 import { updateVerse } from './handlers/updateVerse';
 import { seekVerse } from './handlers/seekVerse';
@@ -67,11 +66,6 @@ app.get('/projectdescriptions', async (req: Request, res: Response) => {
 
 app.post('/joinproject/:project_id', async (req: Request, res: Response) => {
     await authenticateAndThenCall(req, res, joinProject);
-});
-
-/// 2024-04-07: This ought to be deprecated since the publication index files are being generated in the respository
-app.get('/publication_contents/:project_id', async (req: Request, res: Response) => {
-    await authenticateAndThenCall(req, res, publicationContents);
 });
 
 app.post('/publish', async (req: Request, res: Response) => {
