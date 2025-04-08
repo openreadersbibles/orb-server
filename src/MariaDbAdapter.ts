@@ -188,7 +188,7 @@ GROUP BY
                     const location = phraseGlossUpdates[i].location as unknown as PhraseGlossLocationObject;
                     /// phrase-level glosses are always just markdown annotation
                     const annotation = phraseGlossUpdates[i]?.annotationObject as { type: "markdown"; content: MarkdownAnnotationContent; };
-                    await this.connection.execute(`INSERT INTO phrase_gloss (from_word_id, to_word_id, project_id, markdown,reference) VALUES (?,?,?,?,?);`, [location.from_word_id, location.to_word_id, project_id, annotation.content, reference_text]);
+                    await this.connection.execute(`INSERT INTO phrase_gloss (from_word_id, to_word_id, project_id, markdown,reference) VALUES (?,?,?,?,?);`, [location.from_word_id, location.to_word_id, project_id, annotation.content.markdown, reference_text]);
                     phraseGlossUpdates[i].gloss_id = await this.lastInsertId();
                 }
             }

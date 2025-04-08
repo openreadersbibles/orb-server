@@ -52,9 +52,11 @@ export class Publisher {
         if (!configuration) {
             return Promise.reject(`Publication configuration not found: ${req.publication_configuration_id}`);
         }
+        console.log(configuration.parsing_formats.get('NT'))
+        // console.log(configuration.parsing_formats.values())
 
         this._request = {
-            books: req.books.map(b => BookIdentifier.fromString(b)).filter(b => b !== undefined) as BookIdentifier[],
+            books: req.books.map(b => BookIdentifier.fromObject(b)).filter(b => b !== undefined) as BookIdentifier[],
             project: project,
             configuration: configuration,
             nopdf: req.nopdf,
@@ -107,6 +109,9 @@ export class Publisher {
     async publish(): Promise<unknown> {
         /// Create the repository if it doesn't yet exist
         await this._github.createRepositoryIfNotExists(this.request.project.repositoryName);
+
+        /// Create the GitHub pages if it doesn't yet exist
+        await this._github.createGitHubPages(this.request.project.repositoryName);
 
         /// The content of the files we create will be kept in this array:
         const files: GitHubFile[] = [];

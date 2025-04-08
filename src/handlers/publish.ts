@@ -12,7 +12,6 @@ export async function publish(req: Request, res: Response): Promise<Response<Htt
         }
 
         const request = req.body as HollowPublicationRequest;
-        // logger.info(request);
 
         const publisher = await createPublisher(request);
 
@@ -29,13 +28,12 @@ export async function publish(req: Request, res: Response): Promise<Response<Htt
         /// At this point we know that the book is ready
 
         const result = await publisher.publish();
-        // console.info(result.data);
 
         /// Disconnect from the database
         await publisher.disconnect();
 
         /// Return the result
-        return res.status(200).json(result);
+        return res.status(200).json("Success!");
     } catch (error) {
         // logger.info("Success", SuccessValue("success message"));
         // logger.info("Failure", FailureValue("failure message"));

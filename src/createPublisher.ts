@@ -15,6 +15,7 @@ export async function createPublisher(request: HollowPublicationRequest): Promis
         await publisher.initialize(request);
         return publisher;
     } catch (error) {
+        console.error("Error creating publisher:", error);
         return Promise.reject(error);
     }
 }
