@@ -42,7 +42,7 @@ export class MariaDbAdapter implements GenericDatabaseAdapter {
             const [rows] = await this.connection.query<RowDataPacket[]>(`SELECT 
     user.user_id,
     user_description,
-    JSON_ARRAYAGG(settings) AS projects
+    IF(settings IS NULL,JSON_ARRAY(),JSON_ARRAYAGG(settings)) AS projects
 FROM 
     user 
     LEFT JOIN project_roles ON user.user_id = project_roles.user_id
@@ -74,18 +74,36 @@ GROUP BY
         }
     }
 
-    async updateUser(user_id: UserId, userObject: UserUpdateObject): Promise<HttpReturnValue> {
+    async updateUser(requesting_user_id: UserId, userObject: UserUpdateObject): Promise<HttpReturnValue> {
         try {
-            if (userObject.user_id !== user_id) {
-                return BadRequest("You are not allowd to update that user's data.");
+            if (userObject.user_id !== requesting_user_id && requesting_user_id !== "orbadmin") {
+                return BadRequest("You are not allowed to update that user's data.");
             }
-            await this.connection.query<RowDataPacket[]>("REPLACE INTO `user` (user_id,user_description) VALUES (?,?);", [userObject.user_id, userObject.user_description]);
+            const [result] = await this.connection.execute<mysql.ResultSetHeader>("REPLACE INTO `user` (user_id,user_description) VALUES (?,?);", [userObject.user_id, userObject.user_description]);
+            if (result.affectedRows < 1) {
+                return BadRequest("The user was not updated. (Perhaps a bad project id?)");
+            }
+
             return SuccessValue("User data updated successfully");
         } catch (err) {
             console.error(err);
-            return InternalFailure("Error updating user data");
+            return Promise.reject(InternalFailure("Error updating user data"));
         }
     }
+
+    async removeUser(user_id: UserId): Promise<HttpReturnValue> {
+        try {
+            await this.connection.query<RowDataPacket[]>("DELETE FROM `user` WHERE user_id=?;", [user_id]);
+            await this.connection.query<RowDataPacket[]>("DELETE FROM `project_roles` WHERE user_id=?;", [user_id]);
+            await this.connection.query<RowDataPacket[]>("DELETE FROM `votes` WHERE user_id=?;", [user_id]);
+            await this.connection.query<RowDataPacket[]>("DELETE FROM `phrase_gloss_votes` WHERE user_id=?;", [user_id]);
+            return SuccessValue("User data deleted successfully");
+        } catch (err) {
+            console.error(err);
+            return InternalFailure("Error deleting user data");
+        }
+    }
+
 
     async updateProject(user_id: UserId, pkg: ProjectPackage): Promise<HttpReturnValue> {
         try {

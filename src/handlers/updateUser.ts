@@ -7,15 +7,14 @@ import { HttpReturnValue, returnValueConfig } from "../../../models/ReturnValue.
 import { UserUpdateObject } from "../../../models/UserProfile.js";
 
 export async function updateUser(req: Request, res: Response, userInfo: CognitoUserInfoResponse): Promise<Response<HttpReturnValue, Record<string, HttpReturnValue>>> {
-    try {
-        const wrappedBody: WrappedBody = req.body;
-        returnValueConfig.hash = wrappedBody.hash;
-        const request = wrappedBody.body;
-        return res.json(await ConnectRunDisconnect((adapter) => {
-            return adapter.updateUser(userInfo.username, request as UserUpdateObject);
-        }));
-    } catch (error) {
-        logger.error(`Error in getVerse: ${error}`);
-        return res.status(500).json({ error: `Internal server error: ${error}` });
+    const wrappedBody: WrappedBody = req.body;
+    const user_id = req.params.user_id;
+    returnValueConfig.hash = wrappedBody.hash;
+    const request = wrappedBody.body as UserUpdateObject;
+    if (userInfo.username !== user_id && userInfo.username !== "orbadmin") {
+        return res.status(400).json({ error: `User ID in request body does not match URL parameter` });
     }
+    return res.json(await ConnectRunDisconnect((adapter) => {
+        return adapter.updateUser(userInfo.username, request);
+    }));
 }

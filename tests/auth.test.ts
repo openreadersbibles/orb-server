@@ -7,14 +7,12 @@ let server: Server;
 
 beforeAll((done) => {
     server = app.listen(() => {
-        console.log('Test server started');
         done();
     });
 });
 
 afterAll((done) => {
     server.close(() => {
-        console.log('Test server stopped');
         done();
     });
 });

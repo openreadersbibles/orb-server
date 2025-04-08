@@ -12,6 +12,7 @@ export interface GenericDatabaseAdapter {
     /// Authenticated calls
     getUserData(user_id: UserId): Promise<HttpReturnValue>;
     updateUser(user_id: UserId, userObject: UserUpdateObject): Promise<HttpReturnValue>;
+    removeUser(user_id: UserId): Promise<HttpReturnValue>;
     updateProject(user_id: UserId, pkg: ProjectPackage): Promise<HttpReturnValue>;
     updateVerse(user_id: UserId, data: UpdateVerseData, project_id: ProjectId, reference_text: string): Promise<HttpReturnValue>;
     joinProject(user_id: UserId, project_id: ProjectId): Promise<HttpReturnValue>;
