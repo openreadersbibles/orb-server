@@ -1,7 +1,7 @@
 import axios, { AxiosRequestConfig } from 'axios';
-import { PublicationBook } from '../../models/publication/PublicationBook';
-import { PublicationGreekWordElementRow } from '../../models/publication/PublicationGreekWordElementRow';
-import { PublicationHebrewWordElementRow } from '../../models/publication/PublicationHebrewWordElementRow';
+import { PublicationBook } from '../../models/publication/PublicationBook.js';
+import { PublicationGreekWordElementRow } from '../../models/publication/PublicationGreekWordElementRow.js';
+import { PublicationHebrewWordElementRow } from '../../models/publication/PublicationHebrewWordElementRow.js';
 
 export interface GitHubFile { path: string, content: string, pb?: PublicationBook<PublicationGreekWordElementRow | PublicationHebrewWordElementRow> };
 

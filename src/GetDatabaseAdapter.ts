@@ -1,5 +1,5 @@
-import { MariaDbAdapter } from "./MariaDbAdapter";
-import { GenericDatabaseAdapter } from "./GenericDatabaseAdapter";
+import { MariaDbAdapter } from "./MariaDbAdapter.js";
+import { GenericDatabaseAdapter } from "./GenericDatabaseAdapter.js";
 
 /// This returns a database adapter based on the environment variable WHICH_DATABASE
 /// This enables both local SQLite and cloud-based Amazon RDS

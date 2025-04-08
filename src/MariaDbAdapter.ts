@@ -1,13 +1,13 @@
-import { GenericDatabaseAdapter } from './GenericDatabaseAdapter';
-import { BadRequest, HttpReturnValue, InternalFailure, SuccessValue } from '../../models/ReturnValue';
-import { PhraseGlossRow, ProjectPackage, UpdateVerseData } from '../../models/database-input-output';
-import { UserId, UserUpdateObject } from '../../models/UserProfile';
-import { ProjectId } from '../../models/ProjectConfiguration';
+import { GenericDatabaseAdapter } from './GenericDatabaseAdapter.js';
+import { BadRequest, HttpReturnValue, InternalFailure, SuccessValue } from '../../models/ReturnValue.js';
+import { PhraseGlossRow, ProjectPackage, UpdateVerseData } from '../../models/database-input-output.js';
+import { UserId, UserUpdateObject } from '../../models/UserProfile.js';
+import { ProjectId } from '../../models/ProjectConfiguration.js';
 import mysql, { RowDataPacket } from 'mysql2/promise';
-import { VerseReference } from '../../models/VerseReference';
-import { SuggestionRow } from '../../models/HebrewWordRow';
-import { PhraseGlossLocationObject, WordGlossLocation, WordGlossLocationObject } from '../../models/gloss-locations';
-import { MarkdownAnnotationContent } from '../../models/Annotation';
+import { VerseReference } from '../../models/VerseReference.js';
+import { SuggestionRow } from '../../models/HebrewWordRow.js';
+import { PhraseGlossLocationObject, WordGlossLocation, WordGlossLocationObject } from '../../models/gloss-locations.js';
+import { MarkdownAnnotationContent } from '../../models/Annotation.js';
 
 export class MariaDbAdapter implements GenericDatabaseAdapter {
     private connection!: mysql.Connection;
@@ -23,6 +23,7 @@ export class MariaDbAdapter implements GenericDatabaseAdapter {
             });
         } catch (error) {
             console.error(error);
+            throw new Error('Error connecting to the database: ' + error);
         }
     }
 

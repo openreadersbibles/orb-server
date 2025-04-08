@@ -1,7 +1,7 @@
-import logger from "../logger";
+import logger from "../logger.js";
 import { Request, Response } from 'express';
-import { ConnectRunDisconnect } from "../GetDatabaseAdapter";
-import { HttpReturnValue } from "../../../models/ReturnValue";
+import { ConnectRunDisconnect } from "../GetDatabaseAdapter.js";
+import { HttpReturnValue } from "../../../models/ReturnValue.js";
 
 export async function getVerse(req: Request, res: Response): Promise<Response<HttpReturnValue, Record<string, HttpReturnValue>>> {
     try {

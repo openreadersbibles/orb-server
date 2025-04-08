@@ -1,8 +1,8 @@
-import logger from "../logger";
+import logger from "../logger.js";
 import { Request, Response } from 'express';
-import { CognitoUserInfoResponse } from '../../../models/TimedOauthCredentials';
-import { ConnectRunDisconnect } from "../GetDatabaseAdapter";
-import { HttpReturnValue } from "../../../models/ReturnValue";
+import { CognitoUserInfoResponse } from '../../../models/TimedOauthCredentials.js';
+import { ConnectRunDisconnect } from "../GetDatabaseAdapter.js";
+import { HttpReturnValue } from "../../../models/ReturnValue.js";
 
 /// This function has a special behavior that, if the user is not found in the database
 /// (and if the user_id) has been specified, then it will insert it into the database

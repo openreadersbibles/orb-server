@@ -1,7 +1,7 @@
-import { GitHubFile } from "./GitHubAdapter";
+import { GitHubFile } from "./GitHubAdapter.js";
 import * as fs from 'fs';
 import * as path from 'path';
-import { PublicationConfiguration } from "../../models/PublicationConfiguration";
+import { PublicationConfiguration } from "../../models/PublicationConfiguration.js";
 
 const saxonJs = require('saxon-js');
 const tei2htmlPathFromWebpack = require('./tei2html.sef.json');

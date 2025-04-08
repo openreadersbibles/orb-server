@@ -1,8 +1,8 @@
-import { ProjectPackage, UpdateVerseData } from "../../models/database-input-output";
-import { ProjectId } from "../../models/ProjectConfiguration";
-import { HttpReturnValue } from "../../models/ReturnValue";
-import { UserId, UserUpdateObject } from "../../models/UserProfile";
-import { VerseReference } from "../../models/VerseReference";
+import { ProjectPackage, UpdateVerseData } from "../../models/database-input-output.js";
+import { ProjectId } from "../../models/ProjectConfiguration.js";
+import { HttpReturnValue } from "../../models/ReturnValue.js";
+import { UserId, UserUpdateObject } from "../../models/UserProfile.js";
+import { VerseReference } from "../../models/VerseReference.js";
 
 /// See the implementations in SqliteAdapter.ts and MariaDbAdapter.ts
 

@@ -1,7 +1,7 @@
-import logger from "../logger";
+import logger from "../logger.js";
 import { Request, Response } from 'express';
-import { GitHubAdapter } from "../GitHubAdapter";
-import { HttpReturnValue } from "../../../models/ReturnValue";
+import { GitHubAdapter } from "../GitHubAdapter.js";
+import { HttpReturnValue } from "../../../models/ReturnValue.js";
 
 export async function publicationActionStatus(req: Request, res: Response): Promise<Response<HttpReturnValue, Record<string, HttpReturnValue>>> {
     try {

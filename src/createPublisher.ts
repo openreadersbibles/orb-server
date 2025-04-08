@@ -1,5 +1,5 @@
-import { HollowPublicationRequest } from "../../models/PublicationRequest";
-import { Publisher } from "./Publisher";
+import { HollowPublicationRequest } from "../../models/PublicationRequest.js";
+import { Publisher } from "./Publisher.js";
 
 export async function createPublisher(request: HollowPublicationRequest): Promise<Publisher> {
     /// Check to see if the required fields are present

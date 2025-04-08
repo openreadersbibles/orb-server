@@ -1,15 +1,14 @@
-import { COGNITO } from '../cognito';
+import { COGNITO } from '../cognito.js';
 import axios from 'axios';
-import { CognitoUserInfoResponse } from '../../models/TimedOauthCredentials';
+import { CognitoUserInfoResponse } from '../../models/TimedOauthCredentials.js';
 import { Request, Response } from 'express';
-import { HttpReturnValue } from '../../models/ReturnValue';
+import { HttpReturnValue } from '../../models/ReturnValue.js';
 
 export type ApiCallHandler = (req: Request, res: Response, userInfo: CognitoUserInfoResponse) => Promise<Response<HttpReturnValue, Record<string, HttpReturnValue>>>;
 
 export const authenticateAndThenCall = async (req: Request, res: Response, next: ApiCallHandler) => {
-    const token = req.headers['authorization'];
+    const token = req.headers['authorization'] || "";
     if (!token) {
-        console.error(req.headers);
         return res.status(401).send('No authorization header');
     }
 

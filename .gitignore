@@ -10,3 +10,10 @@ exceptions.log
 ecosystem.config.js
 src/bhsa_OT_JON.xml
 src/index.test.ts
+src/tests/tokens/orbadmin-auth.json
+tests/tokens/access-tokens.json
+tests/.env
+.env
+src/dist/**
+tests/tokens/farhad_ebrahimi-auth.json
+tests/tokens/orbadmin-auth.json

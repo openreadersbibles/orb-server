@@ -1,8 +1,8 @@
-import logger from "../logger";
+import logger from "../logger.js";
 import { Request, Response } from 'express';
-import { HollowPublicationRequest } from "../../../models/PublicationRequest";
-import { createPublisher } from "../createPublisher";
-import { HttpReturnValue } from "../../../models/ReturnValue";
+import { HollowPublicationRequest } from "../../../models/PublicationRequest.js";
+import { createPublisher } from "../createPublisher.js";
+import { HttpReturnValue } from "../../../models/ReturnValue.js";
 
 export async function publish(req: Request, res: Response): Promise<Response<HttpReturnValue, Record<string, HttpReturnValue>>> {
     try {

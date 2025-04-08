@@ -1,20 +1,20 @@
 import mysql, { RowDataPacket } from 'mysql2/promise';
-import { HollowPublicationRequest, PublicationRequest } from '../../models/PublicationRequest';
-import { BookDumpJson, PublicationBook } from '../../models/publication/PublicationBook';
-import { BookIdentifier } from '../../models/BookIdentifier';
+import { HollowPublicationRequest, PublicationRequest } from '../../models/PublicationRequest.js';
+import { BookDumpJson, PublicationBook } from '../../models/publication/PublicationBook.js';
+import { ProjectConfiguration, ProjectId } from '../../models/ProjectConfiguration.js';
+import { BookIdentifier } from '../../models/BookIdentifier.js';
 import path from 'path';
-import { Canon, UbsBook } from '../../models/VerseReference';
-import { ProjectConfiguration, ProjectId } from '../../models/ProjectConfiguration';
-import { GitHubAdapter, GitHubFile } from './GitHubAdapter';
-import { GitHubActionYML } from './GitHubActionYML';
+import { Canon, UbsBook } from '../../models/VerseReference.js';
+import { GitHubAdapter, GitHubFile } from './GitHubAdapter.js';
+import { GitHubActionYML } from './GitHubActionYML.js';
 import axios, { ResponseType } from 'axios';
-import { XslTransformations } from './XslTransformations';
-import logger from "./logger";
-import { PublicationConfiguration } from '../../models/PublicationConfiguration';
-import { annotationFromJson } from '../../models/Annotation';
-import { PublicationHebrewWordElementRow } from '../../models/publication/PublicationHebrewWordElementRow';
-import { PublicationGreekWordElementRow } from '../../models/publication/PublicationGreekWordElementRow';
-import { CheckResults } from '../../models/database-input-output';
+import { XslTransformations } from './XslTransformations.js';
+import logger from "./logger.js";
+import { PublicationConfiguration } from '../../models/PublicationConfiguration.js';
+import { annotationFromJson } from '../../models/Annotation.js';
+import { PublicationHebrewWordElementRow } from '../../models/publication/PublicationHebrewWordElementRow.js';
+import { PublicationGreekWordElementRow } from '../../models/publication/PublicationGreekWordElementRow.js';
+import { CheckResults } from '../../models/database-input-output.js';
 
 export interface PublisherInterface {
     connect(): Promise<void>;

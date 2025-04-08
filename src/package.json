@@ -1,13 +1,14 @@
 {
   "name": "open-readers-bibles-publication-service",
   "version": "1.0.0",
+  "type": "module",
   "dependencies": {
-    "@octokit/core": "^6.1.4",
     "axios": "^1.7.7",
     "cors": "^2.8.5",
     "mysql2": "^3.11.0",
     "saxon-js": "^2.7.0",
     "source-map-support": "^0.5.21",
+    "winston": "^3.17.0",
     "xmlbuilder2": "^3.1.1",
     "xslt3": "^2.7.0"
   },
@@ -17,13 +18,25 @@
     "@eslint/js": "^9.9.0",
     "@types/cors": "^2.8.17",
     "@types/eslint__js": "^8.42.3",
+    "@types/jest": "^29.5.14",
     "@types/node": "^22.5.4",
+    "@types/winston": "^2.4.4",
+    "dotenv": "^16.4.7",
     "eslint": "^9.9.0",
+    "jest": "^29.7.0",
     "node": "^22.6.0",
+    "ts-jest": "^29.3.1",
     "ts-loader": "^9.5.1",
+    "ts-node": "^10.9.2",
     "ts-node-dev": "^2.0.0",
-    "typescript": "^5.6.2",
+    "typescript": "^5.8.3",
     "typescript-eslint": "^8.2.0",
     "webpack": "^5.93.0"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "jest",
+    "tokens": "\"C:\\Progra~1\\Git\\bin\\bash.exe\" ./../tests/tokens/all-access-tokens.sh",
+    "test_tokens": "\"C:\\Progra~1\\Git\\bin\\bash.exe\" ./../tests/tokens/all-access-tokens.sh && jest"
   }
 }

@@ -1,9 +1,9 @@
-import logger from "../logger";
+import logger from "../logger.js";
 import { Request, Response } from 'express';
-import { CognitoUserInfoResponse } from '../../../models/TimedOauthCredentials';
-import { ConnectRunDisconnect } from "../GetDatabaseAdapter";
-import { WrappedBody } from '../../../models/SavedPostRequest';
-import { HttpReturnValue, returnValueConfig } from '../../../models/ReturnValue';
+import { CognitoUserInfoResponse } from '../../../models/TimedOauthCredentials.js';
+import { ConnectRunDisconnect } from "../GetDatabaseAdapter.js";
+import { WrappedBody } from '../../../models/SavedPostRequest.js';
+import { HttpReturnValue, returnValueConfig } from '../../../models/ReturnValue.js';
 
 export async function joinProject(req: Request, res: Response, userInfo: CognitoUserInfoResponse): Promise<Response<HttpReturnValue, Record<string, HttpReturnValue>>> {
     try {

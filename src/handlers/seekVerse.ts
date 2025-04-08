@@ -1,8 +1,8 @@
-import logger from "../logger";
+import logger from "../logger.js";
 import { Request, Response } from 'express';
-import { ConnectRunDisconnect } from "../GetDatabaseAdapter";
-import { VerseReference } from "../../../models/VerseReference";
-import { HttpReturnValue } from "../../../models/ReturnValue";
+import { ConnectRunDisconnect } from "../GetDatabaseAdapter.js";
+import { VerseReference } from "../../../models/VerseReference.js";
+import { HttpReturnValue } from "../../../models/ReturnValue.js";
 
 export async function seekVerse(req: Request, res: Response): Promise<Response<HttpReturnValue, Record<string, HttpReturnValue>>> {
     try {

@@ -1,5 +1,5 @@
 // logger.ts
-import 'source-map-support/register';
+// import 'source-map-support/register';
 import { createLogger, format, transports } from 'winston';
 import path from 'path';
 
