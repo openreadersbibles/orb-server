@@ -75,16 +75,16 @@ app.post('/joinproject/:project_id', async (req: Request, res: Response) => {
 
 /* Verse endpoints */
 
-app.get('/getverse/:user_id/:project_id/:reference', async (req: Request, res: Response) => {
+app.get('/verse/:user_id/:project_id/:frequency_threshold/:startingPosition/:direction/:exclusivity', async (req: Request, res: Response) => {
+    await authenticateAndThenCall(req, res, seekVerse);
+});
+
+app.get('/verse/:user_id/:project_id/:reference', async (req: Request, res: Response) => {
     await authenticateAndThenCall(req, res, getVerse);
 });
 
-app.post('/updateverse/:user_id/:project_id/:reference', async (req: Request, res: Response) => {
+app.post('/verse/:user_id/:project_id/:reference', async (req: Request, res: Response) => {
     await authenticateAndThenCall(req, res, updateVerse);
-});
-
-app.get('/seekVerse/:user_id/:project_id/:frequency_threshold/:startingPosition/:direction/:exclusivity', async (req: Request, res: Response) => {
-    await authenticateAndThenCall(req, res, seekVerse);
 });
 
 /* Publication endpoints */

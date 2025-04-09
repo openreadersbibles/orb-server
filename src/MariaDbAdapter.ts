@@ -110,14 +110,14 @@ GROUP BY
             await this.connection.query<RowDataPacket[]>("DELETE FROM `project_roles` WHERE project_id=?;", [project_id]);
             await this.connection.query<RowDataPacket[]>("DELETE FROM `gloss` WHERE project_id=?;", [project_id]);
             await this.connection.query<RowDataPacket[]>("DELETE FROM `phrase_gloss` WHERE project_id=?;", [project_id]);
+            await this.connection.query<RowDataPacket[]>("DELETE FROM `votes` WHERE gloss_id NOT IN ( SELECT _id FROM gloss );", [project_id]);
+            await this.connection.query<RowDataPacket[]>("DELETE FROM `phrase_gloss_votes` WHERE phrase_gloss_id NOT IN ( SELECT _id FROM gloss );", [project_id]);
             return SuccessValue("Project deleted successfully");
         } catch (err) {
             console.error(err);
             return InternalFailure("Error deleting project");
         }
     }
-
-
 
     async updateProject(requesting_user_id: UserId, project: ProjectConfigurationRow): Promise<HttpReturnValue> {
         try {
@@ -240,6 +240,7 @@ GROUP BY
             return SuccessValue("Verse data updated successfully");
 
         } catch (err) {
+            console.error("Error updating verse data in MariaDbAdapter.updateVerse()");
             console.error(err);
             return InternalFailure("Error updating verse data");
         }

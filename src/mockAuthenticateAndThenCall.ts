@@ -31,7 +31,7 @@ jest.mock('../src/authenticateAndThenCall', () => ({
                     return res.status(error.statusCode).json({ error: error.body });
                 } else {
                     /// this is an unhandled exception, and we need to log it and return a 500 error
-                    logger.error(`Error in updateUser: ${error}`);
+                    logger.error(`Error in (mock) authenticateAndThenCall: ${error}`);
                     return res.status(500).json({ error: `Internal server error: ${error}` });
                 }
             }
