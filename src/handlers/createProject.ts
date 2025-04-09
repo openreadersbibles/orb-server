@@ -5,11 +5,11 @@ import { WrappedBody } from "../../../models/SavedPostRequest.js";
 import { HttpReturnValue, returnValueConfig } from "../../../models/ReturnValue.js";
 import { ProjectConfigurationRow } from "../../../models/ProjectConfiguration.js";
 
-export async function updateProject(req: Request, res: Response, userInfo: CognitoUserInfoResponse): Promise<Response<HttpReturnValue, Record<string, HttpReturnValue>>> {
+export async function createProject(req: Request, res: Response, userInfo: CognitoUserInfoResponse): Promise<Response<HttpReturnValue, Record<string, HttpReturnValue>>> {
     const wrappedBody: WrappedBody = req.body;
     returnValueConfig.hash = wrappedBody.hash;
-    const project = wrappedBody.body;
+    const request = wrappedBody.body;
     return res.json(await ConnectRunDisconnect((adapter) => {
-        return adapter.updateProject(userInfo.username, project as ProjectConfigurationRow);
+        return adapter.createProject(userInfo.username, request as ProjectConfigurationRow);
     }));
 }

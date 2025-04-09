@@ -15,6 +15,8 @@ import { getUserIds } from './handlers/getUserIds.js';
 import { projectDescriptions } from './handlers/projectDescriptions.js';
 import { joinProject } from './handlers/joinProject.js';
 import { removeUser } from './handlers/removeUser.js';
+import { createProject } from './handlers/createProject.js';
+import { removeProject } from './handlers/removeProject.js';
 
 export const app = express();
 
@@ -45,7 +47,33 @@ app.get('/userids', async (req: Request, res: Response) => {
     await authenticateAndThenCall(req, res, getUserIds);
 });
 
+/* Project endpoints */
 
+app.get('/projectExists/:project_id', async (req: Request, res: Response) => {
+    await authenticateAndThenCall(req, res, getProjectIdExists);
+});
+
+app.put('/project/:project_id', async (req: Request, res: Response) => {
+    await authenticateAndThenCall(req, res, updateProject);
+});
+
+app.delete('/project/:project_id', async (req: Request, res: Response) => {
+    await authenticateAndThenCall(req, res, removeProject);
+});
+
+app.put('/project', async (req: Request, res: Response) => {
+    await authenticateAndThenCall(req, res, createProject);
+});
+
+app.get('/projectdescriptions', async (req: Request, res: Response) => {
+    await authenticateAndThenCall(req, res, projectDescriptions);
+});
+
+app.post('/joinproject/:project_id', async (req: Request, res: Response) => {
+    await authenticateAndThenCall(req, res, joinProject);
+});
+
+/* Verse endpoints */
 
 app.get('/getverse/:user_id/:project_id/:reference', async (req: Request, res: Response) => {
     await authenticateAndThenCall(req, res, getVerse);
@@ -59,21 +87,7 @@ app.get('/seekVerse/:user_id/:project_id/:frequency_threshold/:startingPosition/
     await authenticateAndThenCall(req, res, seekVerse);
 });
 
-app.get('/projectExists/:project_id', async (req: Request, res: Response) => {
-    await authenticateAndThenCall(req, res, getProjectIdExists);
-});
-
-app.post('/updateproject', async (req: Request, res: Response) => {
-    await authenticateAndThenCall(req, res, updateProject);
-});
-
-app.get('/projectdescriptions', async (req: Request, res: Response) => {
-    await authenticateAndThenCall(req, res, projectDescriptions);
-});
-
-app.post('/joinproject/:project_id', async (req: Request, res: Response) => {
-    await authenticateAndThenCall(req, res, joinProject);
-});
+/* Publication endpoints */
 
 app.post('/publish', async (req: Request, res: Response) => {
     await authenticateAndThenCall(req, res, publish);

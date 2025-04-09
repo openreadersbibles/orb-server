@@ -61,3 +61,10 @@ export const ProjectConfigurationRowSchema = z.object({
     publication_configurations: z.record(PublicationConfigurationRowSchema).optional(), // { [key: string]: PublicationConfigurationRow }
     numerals: z.array(z.string()),
 });
+
+export const ProjectDescriptionSchema = z.object({
+    project_id: z.string(), // Assuming ProjectId is a string
+    project_title: z.string(),
+    project_description: z.string(),
+    allow_joins: z.boolean(),
+});

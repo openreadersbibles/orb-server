@@ -1,8 +1,8 @@
 import { GenericDatabaseAdapter } from './GenericDatabaseAdapter.js';
-import { BadRequest, HttpReturnValue, InternalFailure, SuccessValue } from '../../models/ReturnValue.js';
-import { PhraseGlossRow, ProjectPackage, UpdateVerseData } from '../../models/database-input-output.js';
+import { BadRequest, Failure, HttpReturnValue, InternalFailure, SuccessValue } from '../../models/ReturnValue.js';
+import { PhraseGlossRow, UpdateVerseData } from '../../models/database-input-output.js';
 import { UserId, UserUpdateObject } from '../../models/UserProfile.js';
-import { ProjectId } from '../../models/ProjectConfiguration.js';
+import { ProjectConfigurationRow, ProjectId } from '../../models/ProjectConfiguration.js';
 import mysql, { RowDataPacket } from 'mysql2/promise';
 import { VerseReference } from '../../models/VerseReference.js';
 import { SuggestionRow } from '../../models/HebrewWordRow.js';
@@ -104,41 +104,63 @@ GROUP BY
         }
     }
 
-
-    async updateProject(user_id: UserId, pkg: ProjectPackage): Promise<HttpReturnValue> {
+    async removeProject(project_id: ProjectId): Promise<HttpReturnValue> {
         try {
-            const project = pkg.project;
-            const roles = pkg.project.roles;
+            await this.connection.query<RowDataPacket[]>("DELETE FROM `project` WHERE project_id=?;", [project_id]);
+            await this.connection.query<RowDataPacket[]>("DELETE FROM `project_roles` WHERE project_id=?;", [project_id]);
+            await this.connection.query<RowDataPacket[]>("DELETE FROM `gloss` WHERE project_id=?;", [project_id]);
+            await this.connection.query<RowDataPacket[]>("DELETE FROM `phrase_gloss` WHERE project_id=?;", [project_id]);
+            return SuccessValue("Project deleted successfully");
+        } catch (err) {
+            console.error(err);
+            return InternalFailure("Error deleting project");
+        }
+    }
+
+
+
+    async updateProject(requesting_user_id: UserId, project: ProjectConfigurationRow): Promise<HttpReturnValue> {
+        try {
+            /// strip the "roles" element from the project object
+            const roles = project.roles;
             const settingWithoutRoles = JSON.parse(JSON.stringify(project));
             delete settingWithoutRoles.roles;
 
-            /// I'm handling new projects separately so that a project can't be accidentally overwritten
-            if (pkg.new_project) {
-                /// insert the new project
-                await this.connection.execute(`INSERT INTO project (project_id,settings) VALUES (?,?);`, [project.project_id, JSON.stringify(settingWithoutRoles)]);
-
-                /// make the user the admin of the project
-                for (const role of roles) {
-                    await this.connection.execute(`INSERT INTO project_roles (user_id,project_id,user_role,power_user) VALUES (?,?,?,?);`, [role.user_id, project.project_id, role.user_role, role.power_user]);
-                }
-                return SuccessValue("Project created successfully");
-            } else {
-                /// update the new project
-                const [result] = await this.connection.execute<mysql.ResultSetHeader>(`UPDATE project p
+            const [result] = await this.connection.execute<mysql.ResultSetHeader>(`UPDATE project p
                             JOIN project_roles pr ON p.project_id = pr.project_id
                             SET p.settings = ?
                             WHERE p.project_id = ?
                             AND pr.user_id = ?
-                            AND pr.user_role = 'admin';`, [JSON.stringify(settingWithoutRoles), project.project_id, user_id]);
-                if (result.affectedRows < 1) {
-                    return BadRequest("The project was not updated. (Perhaps a bad project id?)");
-                }
-
-                for (const role of roles) {
-                    await this.connection.execute(`REPLACE INTO project_roles (user_id,project_id,user_role,power_user) VALUES (?,?,?,?);`, [role.user_id, project.project_id, role.user_role, role.power_user]);
-                }
-                return SuccessValue("Project updated successfully");
+                            AND pr.user_role = 'admin';`, [JSON.stringify(settingWithoutRoles), project.project_id, requesting_user_id]);
+            if (result.affectedRows < 1) {
+                return BadRequest("The project was not updated. (Perhaps a bad project id?)");
             }
+
+            for (const role of roles) {
+                await this.connection.execute(`REPLACE INTO project_roles (user_id,project_id,user_role,power_user) VALUES (?,?,?,?);`, [role.user_id, project.project_id, role.user_role, role.power_user]);
+            }
+            return SuccessValue("Project updated successfully");
+        } catch (err) {
+            console.error(err);
+            return InternalFailure("Error updating project data");
+        }
+    }
+
+    async createProject(user_id: UserId, project: ProjectConfigurationRow): Promise<HttpReturnValue> {
+        try {
+            /// strip the "roles" element from the project object
+            const roles = project.roles;
+            const settingWithoutRoles = JSON.parse(JSON.stringify(project));
+            delete settingWithoutRoles.roles;
+
+            /// insert the new project
+            await this.connection.execute(`INSERT INTO project (project_id,settings) VALUES (?,?);`, [project.project_id, JSON.stringify(settingWithoutRoles)]);
+
+            /// make the user the admin of the project
+            for (const role of roles) {
+                await this.connection.execute(`REPLACE INTO project_roles (user_id,project_id,user_role,power_user) VALUES (?,?,?,?);`, [role.user_id, project.project_id, role.user_role, role.power_user]);
+            }
+            return SuccessValue("Project created successfully");
         } catch (err) {
             console.error(err);
             return InternalFailure("Error updating project data");
@@ -158,10 +180,8 @@ GROUP BY
     async getProjectIdExists(project_id: ProjectId): Promise<HttpReturnValue> {
         try {
             const [rows] = await this.connection.query<RowDataPacket[]>('SELECT project_id FROM project WHERE project_id=?;', [project_id]);
-            return SuccessValue({
-                project_id: project_id,
-                exists: rows.length > 0 ? true : false
-            });
+            const exists = rows.length > 0;
+            return SuccessValue(exists);
         } catch (error) {
             console.error(error);
             return InternalFailure("Error retrieving project ID existence");
@@ -375,11 +395,28 @@ GROUP BY
 
     async joinProject(user_id: UserId, project_id: ProjectId): Promise<HttpReturnValue> {
         try {
-            await this.connection.execute(`insert ignore into project_roles values (?,?,'member',0);`, [user_id, project_id]);
-            return SuccessValue("User added to project successfully");
+            const isJoinable = await this.projectIsJoinable(project_id);
+            if (isJoinable) {
+                await this.connection.execute(`insert ignore into project_roles values (?,?,'member',0);`, [user_id, project_id]);
+                return SuccessValue("User added to project successfully");
+            } else {
+                return Failure(403, "Project is not joinable by this user.");
+            }
         } catch (err) {
             console.error(err);
             return InternalFailure("Error joining project");
+        }
+    }
+    async projectIsJoinable(project_id: ProjectId): Promise<boolean> {
+        try {
+            const [rows] = await this.connection.query<RowDataPacket[]>(`select JSON_VALUE(settings,'$.allow_joins') AS allow_joins FROM project WHERE project_id=?;`, [project_id]);
+            if (rows.length === 0) {
+                return false; // Project not found, so not joinable
+            }
+            return rows[0].allow_joins === '1';
+        } catch (err) {
+            console.error(err);
+            return false; // Error occurred, treat as not joinable
         }
     }
 }
