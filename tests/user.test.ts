@@ -4,6 +4,7 @@ import { accessTokenFromJson } from './acccessTokenFromJson.js';
 import { Server } from 'http';
 import { UserUpdateObject } from '../../models/UserProfile.js';
 import { WrappedBody } from '../../models/SavedPostRequest.js';
+import { UserProfileRowSchema } from './type-guards/UserProfileRowSchema.js';
 
 let server: Server;
 
@@ -49,14 +50,7 @@ describe('User profile Tests', () => {
 
             expect(response.status).toBe(200);
             const parsedJson = JSON.parse(response.body.body);
-            expect(parsedJson).toHaveProperty('user_id', 'orbadmin');
-            expect(parsedJson).toHaveProperty('user_description', '');
-            expect(parsedJson).toHaveProperty('projects');
-            expect(typeof parsedJson.user_id).toBe('string');
-            expect(typeof parsedJson.user_description).toBe('string');
-            expect(typeof parsedJson.projects).toBe('string');
-            expect(Array.isArray(JSON.parse(parsedJson.projects))).toBe(true);
-            expect(JSON.parse(parsedJson.projects).every((project: unknown) => typeof project === 'object' && project !== null)).toBe(true);
+            UserProfileRowSchema.parse(parsedJson);
         });
     });
 
@@ -70,14 +64,7 @@ describe('User profile Tests', () => {
 
             expect(response.status).toBe(200);
             const parsedJson = JSON.parse(response.body.body);
-            expect(parsedJson).toHaveProperty('user_id', new_user.user_id);
-            expect(parsedJson).toHaveProperty('user_description', ''); /// initially blank
-            expect(parsedJson).toHaveProperty('projects');
-            expect(typeof parsedJson.user_id).toBe('string');
-            expect(typeof parsedJson.user_description).toBe('string');
-            expect(typeof parsedJson.projects).toBe('string');
-            expect(Array.isArray(JSON.parse(parsedJson.projects))).toBe(true);
-            expect(JSON.parse(parsedJson.projects).every((project: unknown) => typeof project === 'object' && project !== null)).toBe(true);
+            UserProfileRowSchema.parse(parsedJson);
         });
     });
 
@@ -103,14 +90,7 @@ describe('User profile Tests', () => {
 
             expect(response.status).toBe(200);
             const parsedJson = JSON.parse(response.body.body);
-            expect(parsedJson).toHaveProperty('user_id', new_user.user_id);
-            expect(parsedJson).toHaveProperty('user_description', '');
-            expect(parsedJson).toHaveProperty('projects');
-            expect(typeof parsedJson.user_id).toBe('string');
-            expect(typeof parsedJson.user_description).toBe('string');
-            expect(typeof parsedJson.projects).toBe('string');
-            expect(Array.isArray(JSON.parse(parsedJson.projects))).toBe(true);
-            expect(JSON.parse(parsedJson.projects).every((project: unknown) => typeof project === 'object' && project !== null)).toBe(true);
+            UserProfileRowSchema.parse(parsedJson);
         });
     });
 
@@ -172,7 +152,7 @@ describe('User profile Tests', () => {
 
             expect(response.status).toBe(200);
             const parsedJson = JSON.parse(response.body.body);
-            expect(parsedJson).toHaveProperty('user_description', new_description);
+            UserProfileRowSchema.parse(parsedJson);
             expect(parsedJson.user_description).toBe(new_description);
         });
     });
