@@ -1,28 +1,11 @@
 import { GitHubFile } from "./GitHubAdapter.js";
-import * as fs from 'fs';
-import * as path from 'path';
 import { PublicationConfiguration } from "../../models/PublicationConfiguration.js";
+import SaxonJS from 'saxon-js';
 
-const saxonJs = require('saxon-js');
-const tei2htmlPathFromWebpack = require('./tei2html.sef.json');
-const tei2texPathFromWebpack = require('./tei2tex.sef.json');
+import tei2htmlPathFromWebpack from './tei2html.sef.json';
+import tei2texPathFromWebpack from './tei2tex.sef.json';
 
 export class XslTransformations {
-    static tei2html: any;
-    static tei2tex: any;
-
-    // Load the JSON files synchronously
-    static initialize() {
-        if (fs.existsSync('./tei2html.sef.json') && fs.existsSync('./tei2tex.sef.json')) {
-            this.tei2html = fs.readFileSync('./tei2html.sef.json', 'utf8');
-            this.tei2tex = fs.readFileSync('./tei2tex.sef.json', 'utf8');
-        } else {
-            const tei2htmlPath = path.resolve(__dirname, tei2htmlPathFromWebpack);
-            const tei2texPath = path.resolve(__dirname, tei2texPathFromWebpack);
-            this.tei2html = fs.readFileSync(tei2htmlPath, 'utf8');
-            this.tei2tex = fs.readFileSync(tei2texPath, 'utf8');
-        }
-    }
 
     static produceTransformedFiles(files: GitHubFile[], configuration: PublicationConfiguration): GitHubFile[] {
         const htmlFiles = files
@@ -36,13 +19,13 @@ export class XslTransformations {
 
     static produceHtmlForFile(file: GitHubFile, configuration: PublicationConfiguration): GitHubFile {
         const newPath = configuration.id + '/' + file.path.replace('.xml', '.html');
-        const newContent = XslTransformations.xslTransform(file.content, this.tei2html);
+        const newContent = XslTransformations.xslTransform(file.content, tei2htmlPathFromWebpack);
         return { path: newPath, content: newContent };
     }
 
     static produceTeXForFile(file: GitHubFile, configuration: PublicationConfiguration): GitHubFile {
         const newPath = configuration.id + '/' + file.path.replace('.xml', '.tex');
-        const newContent = XslTransformations.xslTransform(file.content, this.tei2tex);
+        const newContent = XslTransformations.xslTransform(file.content, tei2texPathFromWebpack);
 
         if (file.pb === undefined) {
             throw new Error("File does not have a PublicationBook object.");
@@ -67,15 +50,12 @@ export class XslTransformations {
         return { path: newPath, content: withLaTeXTemplate };
     }
 
-    static xslTransform(fileContent: string, stylesheetContent: string): string {
-        return saxonJs.transform({
-            stylesheetText: stylesheetContent,
+    static xslTransform(fileContent: string, stylesheetContent: object): string {
+        return SaxonJS.transform({
+            stylesheetInternal: stylesheetContent,
             sourceText: fileContent,
             destination: 'serialized'
         }).principalResult || '';
     }
 
 }
-
-// Initialize the JSON files
-XslTransformations.initialize();

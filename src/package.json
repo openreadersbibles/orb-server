@@ -37,6 +37,8 @@
     "build": "tsc",
     "test": "jest",
     "tokens": "\"C:\\Progra~1\\Git\\bin\\bash.exe\" ./../tests/tokens/all-access-tokens.sh",
-    "test_tokens": "\"C:\\Progra~1\\Git\\bin\\bash.exe\" ./../tests/tokens/all-access-tokens.sh && jest"
+    "test_tokens": "\"C:\\Progra~1\\Git\\bin\\bash.exe\" ./../tests/tokens/all-access-tokens.sh && jest",
+    "dev": "ts-node-dev --respawn --transpile-only --inspect ./index.ts",
+    "serve": "tsc && node ./dist/orb-server/src/index.js"
   }
 }
