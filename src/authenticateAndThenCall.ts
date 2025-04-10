@@ -21,7 +21,7 @@ export const authenticateAndThenCall = async (req: Request, res: Response, next:
         const response = await axios.get(`${COGNITO.auth_url}/oauth2/userInfo`, { headers });
         if (response.data.error && response.data.error === 'invalid_token') {
             console.error(response.data);
-            throw new Error('Invalid token');
+            return res.status(401).send('Invalid token');
         } else if (response.data.error) {
             throw new Error(response.data.error);
         }

@@ -1,4 +1,3 @@
-import logger from "../logger.js";
 import { Request, Response } from 'express';
 import { GitHubAdapter } from "../GitHubAdapter.js";
 import { HttpReturnValue } from "../../../models/ReturnValue.js";

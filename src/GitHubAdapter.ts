@@ -2,6 +2,8 @@ import axios, { AxiosRequestConfig } from 'axios';
 import { PublicationBook } from '../../models/publication/PublicationBook.js';
 import { PublicationGreekWordElementRow } from '../../models/publication/PublicationGreekWordElementRow.js';
 import { PublicationHebrewWordElementRow } from '../../models/publication/PublicationHebrewWordElementRow.js';
+import { ProjectConfiguration } from '../../models/ProjectConfiguration.js';
+import { AdHocPublicationResult } from '../../models/database-input-output.js';
 
 export interface GitHubFile { path: string, content: string, pb?: PublicationBook<PublicationGreekWordElementRow | PublicationHebrewWordElementRow> };
 
@@ -9,8 +11,11 @@ export class GitHubAdapter {
     private _secret: string;
     private _owner: string = "openreadersbibles";
     private config: AxiosRequestConfig;
+    private _project: ProjectConfiguration | undefined;
 
-    constructor(secret: string) {
+    /// making the second argument optional is not awesome, but it allows the class
+    /// to be used in instances where the full project is not available
+    constructor(secret: string, project?: ProjectConfiguration) {
         this._secret = secret;
         this._owner = "openreadersbibles";
         this.config = {
@@ -20,64 +25,89 @@ export class GitHubAdapter {
                 'X-GitHub-Api-Version': '2022-11-28'
             }
         };
+        this._project = project;
     }
 
-    async createRepositoryIfNotExists(repo: string) {
+    async setupRepository(repo: string) {
         console.info(`Checking if repository ${repo} exists...`);
+        const exists = await this.repositoryExists(repo);
+        if (exists) {
+            console.info(`Repository ${repo} already exists.`);
+        } else {
+            console.info(`Repository ${repo} does not exist. Creating...`);
+            await this.createRepository(repo);
+        }
+
+        /// Create the GitHub pages if it doesn't yet exist
+        // It seems this can be done more easily through a GitHub Action
+        // await this.createGitHubPages(repo);
+    }
+
+    async createGitHubPages(repo: string) {
         try {
-            return await axios.get(`https://api.github.com/repos/${this._owner}/${repo}`, this.config);
+            console.log(`Checking if GitHub Pages is enabled for repository ${repo}...`);
+            const usesPages = await this.isPagesEnabled(repo);
+            if (usesPages) {
+                console.info(`GitHub Pages is already enabled for repository ${repo}.`);
+            } else {
+                console.info(`GitHub Pages is not enabled for repository ${repo}. Creating...`);
+            }
+            if (!usesPages) {
+                /// https://docs.github.com/en/rest/pages/pages?apiVersion=2022-11-28#create-a-github-pages-site
+                console.log(`https://api.github.com/repos/${this._owner}/${repo}/pages`);
+                await axios.post(`https://api.github.com/repos/${this._owner}/${repo}/pages`, {
+                    build_type: 'workflow',
+                    source: {
+                        branch: 'gh-pages',
+                        path: '/'
+                    }
+                }, this.config);
+            }
+        } catch (error) {
+            console.error(`Error setting up GitHub Pages: ${error}`);
+        }
+    }
+
+    private async repositoryExists(repo: string): Promise<boolean> {
+        try {
+            await axios.get(`https://api.github.com/repos/${this._owner}/${repo}`, this.config);
+            /// if data is returned, it exists
+            return true;
         } catch (error) {
             if (axios.isAxiosError(error)) {
                 if (error.status === 404) {
-                    await this.createRepository(repo);
+                    return false;
                 } else {
                     // Handle other errors
                     console.error(`Error checking repository existence: ${error.message}`);
                 }
             }
+            return false;
         }
     }
-    async createGitHubPages(repo: string) {
+
+    private async isPagesEnabled(repo: string): Promise<boolean> {
         try {
-            await axios.post(`https://api.github.com/repos/${this._owner}/${repo}/pages`, {
-                source: {
-                    branch: 'gh-pages',
-                    path: '/'
-                }
-            }, {
-                ...this.config,
-                headers: {
-                    ...this.config.headers,
-                    'X-GitHub-Api-Version': '2022-11-28'
-                }
-            });
+            /// https://docs.github.com/en/rest/pages/pages?apiVersion=2022-11-28
+            const result = await axios.get(`https://api.github.com/repos/${this._owner}/${repo}/pages`, this.config);
+            /// if data is returned, it exists
+            return result.status === 200;
         } catch (error) {
-            console.error(`Error creating GitHub Pages: ${error}`);
-            try {
-                await axios.put(`https://api.github.com/repos/${this._owner}/${repo}/pages`, {
-                    source: {
-                        branch: 'gh-pages',
-                        path: '/'
-                    }
-                }, {
-                    ...this.config,
-                    headers: {
-                        ...this.config.headers,
-                        'X-GitHub-Api-Version': '2022-11-28'
-                    }
-                });
-            } catch (updateError) {
-                console.error(`Error updating GitHub Pages: ${updateError}`);
-            }
+            /// it returns 404 if it doesn't exist
+            return false;
         }
     }
 
     private async createRepository(repo: string) {
+        if (this._project === undefined) {
+            throw Error("Project is undefined. Cannot create repository.");
+        }
         try {
+            /// https://docs.github.com/en/rest/repos/repos?apiVersion=2022-11-28#create-a-repository-for-the-authenticated-user
             return await axios.post('https://api.github.com/user/repos', {
                 name: repo,
-                description: "This repository has been created by the Open Readers Bibles project.",
-                homepage: "https://openreadersbibles.org/",
+                description: `This repository contains publication files for the “${this._project?.title}” Open Readers Bibles project.`,
+                homepage: this._project?.publicationUrl,
                 private: false,
                 is_template: true,
                 auto_init: true
@@ -92,7 +122,7 @@ export class GitHubAdapter {
     }
 
 
-    public async addFilesToRepository(repo: string, files: GitHubFile[], branch: string = 'main'): Promise<unknown> {
+    public async addFilesToRepository(repo: string, files: GitHubFile[], branch: string = 'main'): Promise<AdHocPublicationResult> {
         try {
             // Step 1: Get the SHA of the base tree
             const { data: refData } = await axios.get(`https://api.github.com/repos/${this._owner}/${repo}/git/ref/heads/${branch}`, this.config);
@@ -127,10 +157,11 @@ export class GitHubAdapter {
             }, this.config);
 
             // Step 5: Update the reference
-            return await axios.patch(`https://api.github.com/repos/${this._owner}/${repo}/git/refs/heads/${branch}`, {
+            const result = await axios.patch(`https://api.github.com/repos/${this._owner}/${repo}/git/refs/heads/${branch}`, {
                 sha: commitData.sha,
                 force: true // Force update to handle conflicts
             }, this.config);
+            return result.data;
         } catch (error) {
             if (axios.isAxiosError(error)) {
                 if (error.response && error.response.status === 409) {

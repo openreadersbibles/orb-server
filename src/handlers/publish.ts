@@ -32,5 +32,6 @@ export async function publish(req: Request, res: Response): Promise<Response<Htt
     await publisher.disconnect();
 
     /// Return the result
-    return res.status(200).json("Success!");
+    /// This is important because the result contains the sha of the commit that was created
+    return res.status(200).json(result);
 }

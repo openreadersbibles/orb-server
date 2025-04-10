@@ -14,7 +14,7 @@ import { PublicationConfiguration } from '../../models/PublicationConfiguration.
 import { annotationFromJson } from '../../models/Annotation.js';
 import { PublicationHebrewWordElementRow } from '../../models/publication/PublicationHebrewWordElementRow.js';
 import { PublicationGreekWordElementRow } from '../../models/publication/PublicationGreekWordElementRow.js';
-import { CheckResults } from '../../models/database-input-output.js';
+import { AdHocPublicationResult, CheckResults } from '../../models/database-input-output.js';
 
 export interface PublisherInterface {
     connect(): Promise<void>;
@@ -26,9 +26,10 @@ export interface PublisherInterface {
 
 /// a feature of this case is that _request is not defined until the connect method is called
 export class Publisher {
+    /// this is lazy, but we'll assume initialize has been called
     protected connection!: mysql.Connection;
     protected _request!: PublicationRequest;
-    protected _github: GitHubAdapter = new GitHubAdapter(process.env['GITHUB_SECRET'] || '');
+    protected _github!: GitHubAdapter;
 
     constructor() {
     }
@@ -47,6 +48,8 @@ export class Publisher {
         if (!project) {
             return Promise.reject(`Project not found: ${req.project_id}`);
         }
+
+        this._github = new GitHubAdapter(process.env['GITHUB_SECRET'] || '', project);
 
         const configuration = project.publicationConfigurations.get(req.publication_configuration_id);
         if (!configuration) {
@@ -106,12 +109,9 @@ export class Publisher {
         return rows.map((row) => row.reference);
     }
 
-    async publish(): Promise<unknown> {
+    async publish(): Promise<AdHocPublicationResult> {
         /// Create the repository if it doesn't yet exist
-        await this._github.createRepositoryIfNotExists(this.request.project.repositoryName);
-
-        /// Create the GitHub pages if it doesn't yet exist
-        await this._github.createGitHubPages(this.request.project.repositoryName);
+        await this._github.setupRepository(this.request.project.repositoryName);
 
         /// The content of the files we create will be kept in this array:
         const files: GitHubFile[] = [];
@@ -357,6 +357,7 @@ FROM ot
 
     async createStyleCss(): Promise<string> {
         const cssContentSource = this._request.configuration.css_template;
+        const cssContentSourceLines = cssContentSource.split('\n');
         const cssContent = cssContentSource
             .replace(/__BIBLICAL_FONT__/g, this.request.configuration.publicationBiblicalFont)
             .replace(/__PROJECT_FONT__/g, this.request.configuration.publicationProjectFont);
