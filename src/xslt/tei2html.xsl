@@ -20,7 +20,10 @@ xsltproc  -o bhsa_OT_JON.html tei2html.xsl bhsa_OT_JON.xml
     <xsl:template match="/" mode="#default">
         <!-- Produce one result document for the enter book -->
         <xsl:apply-templates select="/tei:TEI/tei:text/tei:body" mode="generate-document"/>
+        <!-- Produce one result document for each chapter -->
         <xsl:apply-templates select="/tei:TEI/tei:text/tei:body/tei:div[@type='chapter']" mode="generate-document"/>
+        <!-- Produce a table of contents -->
+        <xsl:apply-templates select="/tei:TEI/tei:text/tei:body" mode="generate-toc"/>
     </xsl:template>
 
     <xsl:template match="tei:body" mode="generate-document">
@@ -36,8 +39,18 @@ xsltproc  -o bhsa_OT_JON.html tei2html.xsl bhsa_OT_JON.xml
         </xsl:result-document>
     </xsl:template>
 
+    <xsl:template match="tei:body" mode="generate-toc">
+        <!-- Produce one result document for each chapter -->
+        <xsl:result-document method="html" href="{concat($filenamebase,'-chapters.html')}">
+            <xsl:call-template name="html-document">
+                <xsl:with-param name="toc" select="true()"/>
+            </xsl:call-template>
+        </xsl:result-document>
+    </xsl:template>
+
     <!-- Template to produce an HTML document -->
     <xsl:template name="html-document">
+        <xsl:param name="toc" select="false()"/>
         <xsl:variable name="biblical-language"><xsl:value-of select="/tei:TEI/tei:teiHeader/tei:profileDesc/tei:langUsage/tei:language[@scope='major']/@ident"/></xsl:variable>
         <html xmlns="http://www.w3.org/1999/xhtml">
             <xsl:attribute name="xml:lang"><xsl:value-of select="$biblical-language"/></xsl:attribute>
@@ -56,12 +69,31 @@ xsltproc  -o bhsa_OT_JON.html tei2html.xsl bhsa_OT_JON.xml
                 </h1>
                 
                 <div id="content">
-                    <xsl:apply-templates select="."/>
-                    <!-- <xsl:apply-templates select="tei:text/tei:body/tei:div[@type='chapter']"/> -->
+                    <!-- If it's a request to generate a TOC, do that. Otherwise just call the templates on the content. -->
+                    <xsl:choose>
+                        <xsl:when test="$toc">
+                            <xsl:call-template name="make-toc"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:apply-templates select="."/>
+                        </xsl:otherwise>    
+                    </xsl:choose>
                 </div>
                 
             </body>
         </html>
+    </xsl:template>
+
+    <xsl:template name="make-toc">
+        <ul class="chapters">
+            <xsl:for-each select="/tei:TEI/tei:text/tei:body/tei:div[@type='chapter']">
+                <li>
+                    <a href="{concat($filenamebase,'-',@n,'.html')}">
+                        <xsl:value-of select="@header"/>
+                    </a>
+                </li>
+            </xsl:for-each>
+        </ul>
     </xsl:template>
 
     <!-- Template to match chapters -->
