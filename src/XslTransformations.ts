@@ -2,8 +2,8 @@ import { GitHubFile } from "./GitHubAdapter.js";
 import { PublicationConfiguration } from "../../models/PublicationConfiguration.js";
 import SaxonJS from 'saxon-js';
 
-import tei2htmlPathFromWebpack from './tei2html.sef.json';
-import tei2texPathFromWebpack from './tei2tex.sef.json';
+import tei2tex from './xslt/tei2tex.sef.js';
+import tei2html from './xslt/tei2html.sef.js';
 
 export class XslTransformations {
 
@@ -19,13 +19,13 @@ export class XslTransformations {
 
     static produceHtmlForFile(file: GitHubFile, configuration: PublicationConfiguration): GitHubFile {
         const newPath = configuration.id + '/' + file.path.replace('.xml', '.html');
-        const newContent = XslTransformations.xslTransform(file.content, tei2htmlPathFromWebpack);
+        const newContent = XslTransformations.xslTransform(file.content, tei2html);
         return { path: newPath, content: newContent };
     }
 
     static produceTeXForFile(file: GitHubFile, configuration: PublicationConfiguration): GitHubFile {
         const newPath = configuration.id + '/' + file.path.replace('.xml', '.tex');
-        const newContent = XslTransformations.xslTransform(file.content, tei2texPathFromWebpack);
+        const newContent = XslTransformations.xslTransform(file.content, tei2tex);
 
         if (file.pb === undefined) {
             throw new Error("File does not have a PublicationBook object.");
