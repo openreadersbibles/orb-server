@@ -75,7 +75,7 @@ xsltproc  -o bhsa_OT_JON.html tei2html.xsl bhsa_OT_JON.xml
 
     <xsl:template match="tei:div[@type='verse']">
         <div class="verse" xmlns="http://www.w3.org/1999/xhtml">
-            <span class="verse-number"><xsl:value-of select="@local-n"/></span>
+            <span class="verse-number"><xsl:value-of select="@local-n"/></span>&#x2009;
             <!-- <xsl:value-of select="parent::tei:div/@n"/> -->
             <xsl:apply-templates/>
         </div>
