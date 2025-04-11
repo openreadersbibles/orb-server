@@ -3,7 +3,7 @@ import { PublicationBook } from '../../models/publication/PublicationBook.js';
 import { PublicationGreekWordElementRow } from '../../models/publication/PublicationGreekWordElementRow.js';
 import { PublicationHebrewWordElementRow } from '../../models/publication/PublicationHebrewWordElementRow.js';
 import { ProjectConfiguration } from '../../models/ProjectConfiguration.js';
-import { AdHocPublicationResult } from '../../models/database-input-output.js';
+import { AdHocPublicationResult, AdHocWorkflowRunsResult } from '../../models/database-input-output.js';
 
 export interface GitHubFile { path: string, content: string, pb?: PublicationBook<PublicationGreekWordElementRow | PublicationHebrewWordElementRow> };
 
@@ -92,7 +92,7 @@ export class GitHubAdapter {
             const result = await axios.get(`https://api.github.com/repos/${this._owner}/${repo}/pages`, this.config);
             /// if data is returned, it exists
             return result.status === 200;
-        } catch (error) {
+        } catch {
             /// it returns 404 if it doesn't exist
             return false;
         }
@@ -176,7 +176,7 @@ export class GitHubAdapter {
         }
     }
 
-    async getActionsForCommit(owner: string, repo: string, commitSha: string) {
+    async getActionsForCommit(owner: string, repo: string, commitSha: string): Promise<AdHocWorkflowRunsResult> {
         try {
             const url = `https://api.github.com/repos/${owner}/${repo}/actions/runs?head_sha=${commitSha}`;
             const response = await axios.get(url, this.config);

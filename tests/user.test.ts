@@ -1,3 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import '../src/mockAuthenticate.js';
+import { setMockedUser } from '../src/mockAuthenticate.js';
+
 import request from 'supertest';
 import { app } from '../src/server.js';
 import { accessTokenFromJson } from './acccessTokenFromJson.js';
@@ -20,6 +24,11 @@ afterAll((done) => {
     });
 });
 
+beforeEach(() => {
+    /// this is most of them
+    setMockedUser("farhad_ebrahimi");
+});
+
 describe('User profile Tests', () => {
     const new_user: UserUpdateObject = { user_id: "JoeSchmoe", user_description: "Not applicable" };
     const new_description = "New description for JoeSchmoe";
@@ -31,7 +40,7 @@ describe('User profile Tests', () => {
                 .set('Content-Type', 'application/json')
                 .set('Authorization', accessTokenFromJson("farhad_ebrahimi"));
 
-            const parsedJson = JSON.parse(response.body.body);
+            const parsedJson = JSON.parse(response.body);
             expect(response.status).toBe(200);
             expect(Array.isArray(parsedJson)).toBe(true);
             expect(parsedJson.length).toBeGreaterThan(0);
@@ -48,8 +57,11 @@ describe('User profile Tests', () => {
                 .set('Content-Type', 'application/json')
                 .set('Authorization', accessTokenFromJson("farhad_ebrahimi"));
 
+            // console.log(response.body);
+
+
             expect(response.status).toBe(200);
-            const parsedJson = JSON.parse(response.body.body);
+            const parsedJson = JSON.parse(response.body);
             UserProfileRowSchema.parse(parsedJson);
         });
     });
@@ -63,7 +75,7 @@ describe('User profile Tests', () => {
                 .set('Authorization', accessTokenFromJson("farhad_ebrahimi"));
 
             expect(response.status).toBe(200);
-            const parsedJson = JSON.parse(response.body.body);
+            const parsedJson = JSON.parse(response.body);
             UserProfileRowSchema.parse(parsedJson);
         });
     });
@@ -76,7 +88,7 @@ describe('User profile Tests', () => {
                 .set('Authorization', accessTokenFromJson("farhad_ebrahimi"));
 
             expect(response.status).toBe(200);
-            const parsedJson = JSON.parse(response.body.body);
+            const parsedJson = JSON.parse(response.body);
             expect(parsedJson).toContain(new_user.user_id);
         });
     });
@@ -89,7 +101,7 @@ describe('User profile Tests', () => {
                 .set('Authorization', accessTokenFromJson("farhad_ebrahimi"));
 
             expect(response.status).toBe(200);
-            const parsedJson = JSON.parse(response.body.body);
+            const parsedJson = JSON.parse(response.body);
             UserProfileRowSchema.parse(parsedJson);
         });
     });
@@ -97,7 +109,7 @@ describe('User profile Tests', () => {
 
     describe('Updating the user description', () => {
         it('cannot be done by non-self/non-admin', async () => {
-            const newData: WrappedBody = {
+            const newData: WrappedBody<UserUpdateObject> = {
                 body: { user_id: new_user.user_id, user_description: new_description },
                 hash: "the backend doesn't care about the hash"
             };
@@ -113,7 +125,7 @@ describe('User profile Tests', () => {
 
     describe('Updating the user description', () => {
         it('can be done by self (non-admin)', async () => {
-            const newData: WrappedBody = {
+            const newData: WrappedBody<UserUpdateObject> = {
                 body: { user_id: 'farhad_ebrahimi', user_description: 'I will not bother to track this' },
                 hash: "the backend doesn't care about the hash"
             };
@@ -129,7 +141,8 @@ describe('User profile Tests', () => {
 
     describe('Updating the user description', () => {
         it('should be no problem', async () => {
-            const newData: WrappedBody = {
+            setMockedUser("orbadmin");
+            const newData: WrappedBody<UserUpdateObject> = {
                 body: { user_id: new_user.user_id, user_description: new_description },
                 hash: "the backend doesn't care about the hash"
             };
@@ -151,7 +164,7 @@ describe('User profile Tests', () => {
                 .set('Authorization', accessTokenFromJson("farhad_ebrahimi"));
 
             expect(response.status).toBe(200);
-            const parsedJson = JSON.parse(response.body.body);
+            const parsedJson = JSON.parse(response.body);
             UserProfileRowSchema.parse(parsedJson);
             expect(parsedJson.user_description).toBe(new_description);
         });
@@ -170,6 +183,7 @@ describe('User profile Tests', () => {
 
     describe('Deleting the new user', () => {
         it('should succeed for orbadmin', async () => {
+            setMockedUser("orbadmin");
             const response = await request(app)
                 .delete(`/user/${new_user.user_id}`)
                 .set('Content-Type', 'application/json')
@@ -187,7 +201,7 @@ describe('User profile Tests', () => {
                 .set('Authorization', accessTokenFromJson("farhad_ebrahimi"));
 
             expect(response.status).toBe(200);
-            const parsedJson = JSON.parse(response.body.body);
+            const parsedJson = JSON.parse(response.body);
             expect(parsedJson).not.toContain(new_user.user_id);
         });
     });

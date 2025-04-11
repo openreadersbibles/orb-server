@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import '../src/mockAuthenticateAndThenCall.js';
-import { setMockedUser } from '../src/mockAuthenticateAndThenCall.js';
+import '../src/mockAuthenticate.js';
+import { setMockedUser } from '../src/mockAuthenticate.js';
 
 import request from 'supertest';
 import { app } from '../src/server.js';
@@ -70,7 +70,7 @@ describe('Project Endpoints Tests', () => {
                 .set('Authorization', accessTokenFromJson("farhad_ebrahimi"));
 
             expect(response.status).toBe(200);
-            const parsedJson = JSON.parse(response.body.body);
+            const parsedJson = JSON.parse(response.body);
             expect(parsedJson).toBe(false);
         });
 
@@ -83,7 +83,7 @@ describe('Project Endpoints Tests', () => {
                 .set('Authorization', accessTokenFromJson("orbadmin"));
 
             expect(response.status).toBe(200);
-            const parsedJson = JSON.parse(response.body.body);
+            const parsedJson = JSON.parse(response.body);
             expect(parsedJson).toBe(true);
         });
     });
@@ -91,7 +91,7 @@ describe('Project Endpoints Tests', () => {
     describe('PUT /project', () => {
         it('should create a new project', async () => {
             setMockedUser("orbadmin");
-            const wb: WrappedBody = {
+            const wb: WrappedBody<ProjectConfigurationRow> = {
                 body: newProjectData,
                 hash: "dummy_hash",
             };
@@ -103,8 +103,8 @@ describe('Project Endpoints Tests', () => {
                 .send(wb);
 
             expect(response.status).toBe(200);
-            const parsedJson = JSON.parse(response.body.body);
-            expect(parsedJson).toBe("Project created successfully");
+            const parsedJson = JSON.parse(response.body);
+            expect(parsedJson).toBe(true);
         });
     });
 
@@ -122,8 +122,8 @@ describe('Project Endpoints Tests', () => {
                 });
 
             expect(response.status).toBe(200);
-            const parsedJson = JSON.parse(response.body.body);
-            expect(parsedJson).toBe("User added to project successfully");
+            const parsedJson = JSON.parse(response.body);
+            expect(parsedJson).toBe(true);
         });
 
         it('results in that user getting the project data', async () => {
@@ -134,7 +134,7 @@ describe('Project Endpoints Tests', () => {
                 .set('Authorization', accessTokenFromJson("farhad_ebrahimi"));
 
             expect(response.status).toBe(200);
-            const parsedJson = JSON.parse(response.body.body);
+            const parsedJson = JSON.parse(response.body);
             const user = new UserProfile(parsedJson as UserProfileRow);
             expect(user.project(newProjectData.project_id)).toBeDefined();
         });
@@ -142,7 +142,7 @@ describe('Project Endpoints Tests', () => {
         it('is not possible when a project is unjoinable', async () => {
             /// create the project with test_user as admin
             setMockedUser("test_user");
-            const wb: WrappedBody = {
+            const wb: WrappedBody<ProjectConfigurationRow> = {
                 body: unjoinableProjectData,
                 hash: "dummy_hash",
             };
@@ -201,8 +201,8 @@ describe('Project Endpoints Tests', () => {
                 });
 
             expect(response.status).toBe(200);
-            const parsedJson = JSON.parse(response.body.body);
-            expect(parsedJson).toBe("Project updated successfully");
+            const parsedJson = JSON.parse(response.body);
+            expect(parsedJson).toBe(true);
         });
     });
 
@@ -225,8 +225,8 @@ describe('Project Endpoints Tests', () => {
                 .set('Authorization', accessTokenFromJson("orbadmin"));
 
             expect(response.status).toBe(200);
-            const parsedJson = JSON.parse(response.body.body);
-            expect(parsedJson).toBe("Project deleted successfully");
+            const parsedJson = JSON.parse(response.body);
+            expect(parsedJson).toBe(true);
         });
 
         it('can fail silently if a project does not exist', async () => {
@@ -251,7 +251,7 @@ describe('Project Endpoints Tests', () => {
                 .set('Authorization', accessTokenFromJson("orbadmin"));
 
             expect(response.status).toBe(200);
-            const parsedJson = JSON.parse(response.body.body);
+            const parsedJson = JSON.parse(response.body);
 
             expect(Array.isArray(parsedJson)).toBe(true);
             expect(parsedJson.every((item: any) => ProjectDescriptionSchema.parse(item))).toBe(true);

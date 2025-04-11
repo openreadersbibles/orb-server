@@ -1,10 +1,10 @@
-import logger from "../logger.js";
 import { Request, Response } from 'express';
 import { ConnectRunDisconnect } from "../GetDatabaseAdapter.js";
-import { HttpReturnValue } from "../../../models/ReturnValue.js";
+import { ProjectDescription } from "../../../models/ProjectConfiguration.js";
+import { NoParams } from '../params.js';
 
-export async function projectDescriptions(req: Request, res: Response): Promise<Response<HttpReturnValue, Record<string, HttpReturnValue>>> {
-    return res.json(await ConnectRunDisconnect((adapter) => {
+export async function projectDescriptions(req: Request<NoParams, ProjectDescription[]>, res: Response) {
+    return await ConnectRunDisconnect((adapter) => {
         return adapter.getProjectDescriptions();
-    }));
+    });
 }

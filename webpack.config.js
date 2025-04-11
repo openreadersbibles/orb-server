@@ -33,4 +33,13 @@ module.exports = {
     },
     target: 'node',
     externals: [nodeExternals()],
+    resolve: {
+        fallback: {
+            zlib: false,
+            util: false,
+            querystring: false,
+            path: false,
+            url: false,
+        },
+    },
 };

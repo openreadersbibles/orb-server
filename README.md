@@ -38,3 +38,14 @@ pm2 logs api-dev
 ```
 pm2 flush
 ```
+
+
+## Build the XSL files
+
+cd ~/Documents/open-readers-bibles/application/orb-server/src
+xslt3 -xsl:xslt/tei2html.xsl -export:xslt/tei2html.sef.json -t -ns:##html5
+xslt3 -xsl:xslt/tei2tex.xsl -export:xslt/tei2tex.sef.json -t -ns:##html5
+
+xslt3 -xsl:xslt/dumb.xsl -export:xslt/dump.sef.json -t 
+xslt3 -xsl:xslt/dumb.xsl -s:bhsa_OT_JON.xml -o:books.html -t
+

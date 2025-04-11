@@ -24,8 +24,6 @@ export async function ConnectRunDisconnect<T>(run: (adapter: GenericDatabaseAdap
     try {
         const result = await run(adapter);
         return result;
-    } catch (error) {
-        throw error;
     } finally {
         await adapter.disconnect();
     }

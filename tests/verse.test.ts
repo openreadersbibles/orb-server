@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import '../src/mockAuthenticateAndThenCall.js';
-import { setMockedUser } from '../src/mockAuthenticateAndThenCall.js';
+import '../src/mockAuthenticate.js';
+import { setMockedUser } from '../src/mockAuthenticate.js';
 
 import request from 'supertest';
 import { app } from '../src/server.js';
@@ -48,7 +48,7 @@ describe('Project Endpoints Tests', () => {
     describe('PUT /project', () => {
         it('should create a new project', async () => {
             setMockedUser("farhad_ebrahimi");
-            const wb: WrappedBody = {
+            const wb: WrappedBody<ProjectConfigurationRow> = {
                 body: newProjectData,
                 hash: "dummy_hash",
             };
@@ -60,53 +60,54 @@ describe('Project Endpoints Tests', () => {
                 .send(wb);
 
             expect(response.status).toBe(200);
-            const parsedJson = JSON.parse(response.body.body);
-            expect(parsedJson).toBe("Project created successfully");
+            const parsedJson = JSON.parse(response.body);
+            expect(parsedJson).toBe(true);
         });
     });
 
-    describe('GET /verse/:user_id/:project_id/:reference', () => {
+    describe('GET /ot/verse/:user_id/:project_id/:reference', () => {
         it('should return well-formed Hebrew data', async () => {
             setMockedUser("farhad_ebrahimi");
             const response = await request(app)
-                .get(`/verse/farhad_ebrahimi/test_project/OT GEN 1:8`)
+                .get(`/ot/verse/farhad_ebrahimi/test_project/OT GEN 1:8`)
                 .set('Content-Type', 'application/json')
                 .set('Authorization', accessTokenFromJson("farhad_ebrahimi"));
 
             expect(response.status).toBe(200);
-            const parsedJson = JSON.parse(response.body.body);
+            const parsedJson = JSON.parse(response.body);
             GetHebrewVerseResponseSchema.parse(parsedJson);
         });
+
+    });
+
+    describe('GET /nt/verse/:user_id/:project_id/:reference', () => {
 
         it('should return well-formed Greek data', async () => {
             setMockedUser("farhad_ebrahimi");
             const response = await request(app)
-                .get(`/verse/farhad_ebrahimi/test_project/NT JHN 1:25`)
+                .get(`/nt/verse/farhad_ebrahimi/test_project/NT JHN 1:25`)
                 .set('Content-Type', 'application/json')
                 .set('Authorization', accessTokenFromJson("farhad_ebrahimi"));
 
             expect(response.status).toBe(200);
-            const parsedJson = JSON.parse(response.body.body);
-            // console.log(parsedJson);
+            const parsedJson = JSON.parse(response.body);
             GetNTVerseResponseSchema.parse(parsedJson);
         });
 
     });
 
-    describe('Hebrew POST /verse/:user_id/:project_id/:reference', () => {
+    describe('Hebrew GET /ot/verse/:user_id/:project_id/:reference', () => {
         const ref = VerseReference.fromString("OT GEN 1:8")!;
-        let verseBeforeChanges: Verse | undefined;
         it('should return well-formed Hebrew data', async () => {
             setMockedUser("farhad_ebrahimi");
             const response = await request(app)
-                .get(`/verse/farhad_ebrahimi/test_project/${ref.toString()}`)
+                .get(`/ot/verse/farhad_ebrahimi/test_project/${ref.toString()}`)
                 .set('Content-Type', 'application/json')
                 .set('Authorization', accessTokenFromJson("farhad_ebrahimi"));
 
             expect(response.status).toBe(200);
-            const parsedJson = JSON.parse(response.body.body);
+            const parsedJson = JSON.parse(response.body);
             GetHebrewVerseResponseSchema.parse(parsedJson);
-            verseBeforeChanges = Verse.fromHebrewVerseResponse(ref, parsedJson);
         });
     });
 
@@ -120,12 +121,12 @@ describe('Project Endpoints Tests', () => {
         it('should start off without votes in Elias for JHN 1:25', async () => {
             setMockedUser("farhad_ebrahimi");
             const response = await request(app)
-                .get(`/verse/farhad_ebrahimi/test_project/${ref.toString()}`)
+                .get(`/nt/verse/farhad_ebrahimi/test_project/${ref.toString()}`)
                 .set('Content-Type', 'application/json')
                 .set('Authorization', accessTokenFromJson("farhad_ebrahimi"));
 
             expect(response.status).toBe(200);
-            const parsedJson = JSON.parse(response.body.body);
+            const parsedJson = JSON.parse(response.body);
             GetNTVerseResponseSchema.parse(parsedJson);
             verseBeforeChanges = Verse.fromNTVerseResponse(ref, parsedJson);
             /// Elias is the 0-indexed 16th word in the verse
@@ -149,7 +150,7 @@ describe('Project Endpoints Tests', () => {
                 word_gloss_updates: [gso],
                 phrase_gloss_updates: [],
             }
-            const wb: WrappedBody = {
+            const wb: WrappedBody<UpdateVerseData> = {
                 body: verseUpdate,
                 hash: "dummy_hash",
             };
@@ -167,12 +168,12 @@ describe('Project Endpoints Tests', () => {
         it('which should then have said gloss', async () => {
             setMockedUser("farhad_ebrahimi");
             const response = await request(app)
-                .get(`/verse/farhad_ebrahimi/test_project/${ref.toString()}`)
+                .get(`/nt/verse/farhad_ebrahimi/test_project/${ref.toString()}`)
                 .set('Content-Type', 'application/json')
                 .set('Authorization', accessTokenFromJson("farhad_ebrahimi"));
 
             expect(response.status).toBe(200);
-            const parsedJson = JSON.parse(response.body.body);
+            const parsedJson = JSON.parse(response.body);
             GetNTVerseResponseSchema.parse(parsedJson);
             const verse = Verse.fromNTVerseResponse(ref, parsedJson);
             /// Elias is the 0-indexed 16th word in the verse
@@ -186,9 +187,9 @@ describe('Project Endpoints Tests', () => {
             console.log("firstGlossId from inside", firstGlossId);
         });
 
-        it('which should then have said gloss', async () => {
-            console.log("firstGlossId from next it inside", firstGlossId);
-        });
+        // it('which should then have said gloss', async () => {
+        //     console.log("firstGlossId from next it inside", firstGlossId);
+        // });
 
 
     });
@@ -202,8 +203,8 @@ describe('Project Endpoints Tests', () => {
                 .set('Authorization', accessTokenFromJson("orbadmin"));
 
             expect(response.status).toBe(200);
-            const parsedJson = JSON.parse(response.body.body);
-            expect(parsedJson).toBe("Project deleted successfully");
+            const parsedJson = JSON.parse(response.body);
+            expect(parsedJson).toBe(true);
         });
     });
 

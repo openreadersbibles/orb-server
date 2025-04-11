@@ -10,22 +10,26 @@ export class XslTransformations {
     static produceTransformedFiles(files: GitHubFile[], configuration: PublicationConfiguration): GitHubFile[] {
         const htmlFiles = files
             .filter(file => file.path.endsWith('.xml'))
-            .map(file => XslTransformations.produceHtmlForFile(file, configuration));
+            .flatMap(file => XslTransformations.produceHtmlForFile(file));
         const texFiles = files
             .filter(file => file.path.endsWith('.xml'))
-            .map(file => XslTransformations.produceTeXForFile(file, configuration));
+            .flatMap(file => XslTransformations.produceTeXForFile(file, configuration));
         return htmlFiles.concat(texFiles);
     }
 
-    static produceHtmlForFile(file: GitHubFile, configuration: PublicationConfiguration): GitHubFile {
-        const newPath = configuration.id + '/' + file.path.replace('.xml', '.html');
-        const newContent = XslTransformations.xslTransform(file.content, tei2html);
-        return { path: newPath, content: newContent };
+    static produceHtmlForFile(file: GitHubFile): GitHubFile[] {
+        const newContent = XslTransformations.xslTransform(file, tei2html);
+        console.log(newContent);
+        const transformedFiles: GitHubFile[] = [];
+        for (const key of Object.keys(newContent)) {
+            transformedFiles.push({ path: key, content: newContent[key] });
+        }
+        return transformedFiles;
     }
 
-    static produceTeXForFile(file: GitHubFile, configuration: PublicationConfiguration): GitHubFile {
-        const newPath = configuration.id + '/' + file.path.replace('.xml', '.tex');
-        const newContent = XslTransformations.xslTransform(file.content, tei2tex);
+    static produceTeXForFile(file: GitHubFile, configuration: PublicationConfiguration): GitHubFile[] {
+        const newContent = XslTransformations.xslTransform(file, tei2tex);
+        console.log(newContent);
 
         if (file.pb === undefined) {
             throw new Error("File does not have a PublicationBook object.");
@@ -38,24 +42,38 @@ export class XslTransformations {
             biblicalFontCommand = `\\newfontfamily\\greekfont[Script=Greek]{${configuration.publicationBiblicalFont}}`;
         }
 
-        const withLaTeXTemplate = configuration.latex_template
-            .replace(/__CONTENT__/g, newContent)
-            .replace(/__TITLE__/g, file.pb.book_title)
-            .replace(/__BIBLICALLANGUAGE__/g, file.pb.canon == "OT" ? "hebrew" : "greek")
-            .replace(/__MAINLANGUAGEFONT__/g, configuration.publicationProjectFont)
-            .replace(/__MAINLANGUAGE__/g, configuration.polyglossiaOtherLanguage)
-            .replace(/__NEWFONTFAMILYCOMMAND__/g, biblicalFontCommand)
-            .replace(/__FOOTNOTESTYLE__/g, configuration.footnote_style);
-
-        return { path: newPath, content: withLaTeXTemplate };
+        const transformedFiles: GitHubFile[] = [];
+        for (const key of Object.keys(newContent)) {
+            const withLaTeXTemplate = configuration.latex_template
+                .replace(/__CONTENT__/g, newContent[key])
+                .replace(/__TITLE__/g, file.pb.book_title)
+                .replace(/__BIBLICALLANGUAGE__/g, file.pb.canon == "OT" ? "hebrew" : "greek")
+                .replace(/__MAINLANGUAGEFONT__/g, configuration.publicationProjectFont)
+                .replace(/__MAINLANGUAGE__/g, configuration.polyglossiaOtherLanguage)
+                .replace(/__NEWFONTFAMILYCOMMAND__/g, biblicalFontCommand)
+                .replace(/__FOOTNOTESTYLE__/g, configuration.footnote_style);
+            transformedFiles.push({ path: key, content: withLaTeXTemplate });
+        }
+        return transformedFiles;
     }
 
-    static xslTransform(fileContent: string, stylesheetContent: object): string {
-        return SaxonJS.transform({
+    static xslTransform(file: GitHubFile, stylesheetContent: object): { [key: string]: string } {
+        const filenamebase = file.path.replace(/\.[^/.]+$/, ''); // Remove the file extension
+        const result = SaxonJS.transform({
             stylesheetInternal: stylesheetContent,
-            sourceText: fileContent,
-            destination: 'serialized'
-        }).principalResult || '';
+            sourceText: file.content,
+            destination: 'serialized', // Use 'application' to capture multiple outputs
+            params: { "filenamebase": filenamebase }
+        });
+        console.log("XSLT transformation result:", result);
+
+        // Check if secondary results exist
+        if (result.secondaryResult) {
+            return result.secondaryResult; // Return all secondary outputs as an object
+        }
+
+        // Fallback to the principal result if no secondary results exist
+        return { principal: result.principalResult || '' };
     }
 
 }

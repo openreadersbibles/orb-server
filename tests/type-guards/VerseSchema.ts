@@ -125,13 +125,6 @@ export const HebrewWordRowSchema = z.object({
     languageISO: z.enum(["hbo", "arc", "grc"]),
 });
 
-// GetHebrewVerseResponse schema
-export const GetHebrewVerseResponseSchema = z.object({
-    words: z.array(HebrewWordRowSchema),
-    suggestions: z.array(SuggestionRowSchema),
-    phrase_glosses: z.array(PhraseGlossRowSchema),
-});
-
 // Define NTPartOfSpeech schema
 export const NTPartOfSpeechSchema = z.enum([
     "particle",
@@ -219,9 +212,14 @@ export const GreekWordRowSchema = z.object({
 });
 
 
-// GetNTVerseResponse schema
-export const GetNTVerseResponseSchema = z.object({
-    words: z.array(GreekWordRowSchema),
-    suggestions: z.array(SuggestionRowSchema),
-    phrase_glosses: z.array(PhraseGlossRowSchema),
-});
+export function createVerseResponseSchema<T>(wordSchema: z.ZodType<T>) {
+    return z.object({
+        words: z.array(wordSchema),
+        suggestions: z.array(SuggestionRowSchema),
+        phrase_glosses: z.array(PhraseGlossRowSchema),
+    });
+}
+
+export const GetHebrewVerseResponseSchema = createVerseResponseSchema(HebrewWordRowSchema);
+
+export const GetNTVerseResponseSchema = createVerseResponseSchema(GreekWordRowSchema);

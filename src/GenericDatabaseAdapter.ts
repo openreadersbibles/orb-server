@@ -1,28 +1,41 @@
 import { UpdateVerseData } from "../../models/database-input-output.js";
-import { ProjectConfigurationRow, ProjectId } from "../../models/ProjectConfiguration.js";
-import { HttpReturnValue } from "../../models/ReturnValue.js";
-import { UserId, UserUpdateObject } from "../../models/UserProfile.js";
-import { VerseReference } from "../../models/VerseReference.js";
+import { GreekWordRow } from "../../models/GreekWordRow.js";
+import { HebrewWordRow } from "../../models/HebrewWordRow.js";
+import { ProjectConfiguration, ProjectConfigurationRow, ProjectDescription, ProjectId } from "../../models/ProjectConfiguration.js";
+import { UserId, UserProfileRow, UserUpdateObject } from "../../models/UserProfile.js";
+import { Canon, UbsBook, VerseReference } from "../../models/VerseReference.js";
+import { VerseResponse } from "../../models/Verse.js";
+import { BookIdentifier } from "../../models/BookIdentifier.js";
+import { BookDumpJson, PublicationBook } from "../../models/publication/PublicationBook.js";
+import { PublicationGreekWordElementRow } from "../../models/publication/PublicationGreekWordElementRow.js";
+import { PublicationHebrewWordElementRow } from "../../models/publication/PublicationHebrewWordElementRow.js";
 
 /// See the implementations in SqliteAdapter.ts and MariaDbAdapter.ts
 
 export interface GenericDatabaseAdapter {
     disconnect(): Promise<void>;
 
-    /// Authenticated calls
-    getUserData(user_id: UserId): Promise<HttpReturnValue>;
-    updateUser(user_id: UserId, userObject: UserUpdateObject): Promise<HttpReturnValue>;
-    removeUser(user_id: UserId): Promise<HttpReturnValue>;
-    createProject(user_id: UserId, project: ProjectConfigurationRow): Promise<HttpReturnValue>;
-    updateProject(user_id: UserId, project: ProjectConfigurationRow): Promise<HttpReturnValue>;
-    removeProject(project_id: ProjectId): Promise<HttpReturnValue>;
-    updateVerse(user_id: UserId, data: UpdateVerseData, project_id: ProjectId, reference_text: string): Promise<HttpReturnValue>;
-    joinProject(user_id: UserId, project_id: ProjectId): Promise<HttpReturnValue>;
-    getUserIds(): Promise<HttpReturnValue>;
+    getUserData(user_id: UserId): Promise<UserProfileRow>;
+    updateUser(user_id: UserId, userObject: UserUpdateObject): Promise<boolean>;
+    removeUser(user_id: UserId): Promise<boolean>;
+    createProject(user_id: UserId, project: ProjectConfigurationRow): Promise<boolean>;
+    updateProject(user_id: UserId, project: ProjectConfigurationRow): Promise<boolean>;
+    removeProject(project_id: ProjectId): Promise<boolean>;
+    updateVerse(user_id: UserId, data: UpdateVerseData, project_id: ProjectId, reference_text: string): Promise<boolean>;
+    joinProject(user_id: UserId, project_id: ProjectId): Promise<boolean>;
+    getUserIds(): Promise<string[]>;
+    getProjectIdExists(project_id: ProjectId): Promise<boolean>;
+    getOTVerse(project_id: ProjectId, user_id: UserId, reference: VerseReference): Promise<VerseResponse<HebrewWordRow>>
+    getNTVerse(project_id: ProjectId, user_id: UserId, reference: VerseReference): Promise<VerseResponse<GreekWordRow>>;
+    seekVerse(project_id: ProjectId, user_id: UserId, frequency_threshold: number, startingPosition: VerseReference, direction: "before" | "after", exclusivity: "me" | "anyone"): Promise<VerseReference>;
+    getProjectDescriptions(): Promise<ProjectDescription[]>;
 
-    /// Non-authenticated calls
-    getProjectIdExists(project_id: ProjectId): Promise<HttpReturnValue>;
-    getVerse(project_id: ProjectId, user_id: UserId, reference: string): Promise<HttpReturnValue>;
-    seekVerse(project_id: ProjectId, user_id: UserId, frequency_threshold: number, startingPosition: VerseReference, direction: "before" | "after", exclusivity: "me" | "anyone"): Promise<HttpReturnValue>;
-    getProjectDescriptions(): Promise<HttpReturnValue>;
+    /* Publication Functions */
+    getProjectFromId(project_id: ProjectId): Promise<ProjectConfiguration>;
+    checkForMissingGlosses(project: ProjectConfiguration, bid: BookIdentifier): Promise<string[]>;
+    getDatabaseRows<T extends PublicationGreekWordElementRow | PublicationHebrewWordElementRow>(project_id: ProjectId, bid: BookIdentifier, query: string): Promise<BookDumpJson<T>>;
+    getCanonicalBookName(canon: Canon, book: UbsBook): Promise<string | undefined>;
+    getFontUrlsForFamiliy(family: string): Promise<string[]>;
+    getOTBook(project_id: ProjectId, bid: BookIdentifier): Promise<PublicationBook<PublicationHebrewWordElementRow>>;
+    getNTBook(project_id: ProjectId, bid: BookIdentifier): Promise<PublicationBook<PublicationGreekWordElementRow>>;
 }
