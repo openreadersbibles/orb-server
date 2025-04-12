@@ -65,11 +65,11 @@ describe('Project Endpoints Tests', () => {
         });
     });
 
-    describe('GET /ot/verse/:user_id/:project_id/:reference', () => {
+    describe('GET /verse/:user_id/:project_id/:reference', () => {
         it('should return well-formed Hebrew data', async () => {
             setMockedUser("farhad_ebrahimi");
             const response = await request(app)
-                .get(`/ot/verse/farhad_ebrahimi/test_project/OT GEN 1:8`)
+                .get(`/verse/farhad_ebrahimi/test_project/OT GEN 1:8`)
                 .set('Content-Type', 'application/json')
                 .set('Authorization', accessTokenFromJson("farhad_ebrahimi"));
 
@@ -80,12 +80,12 @@ describe('Project Endpoints Tests', () => {
 
     });
 
-    describe('GET /nt/verse/:user_id/:project_id/:reference', () => {
+    describe('GET /verse/:user_id/:project_id/:reference', () => {
 
         it('should return well-formed Greek data', async () => {
             setMockedUser("farhad_ebrahimi");
             const response = await request(app)
-                .get(`/nt/verse/farhad_ebrahimi/test_project/NT JHN 1:25`)
+                .get(`/verse/farhad_ebrahimi/test_project/NT JHN 1:25`)
                 .set('Content-Type', 'application/json')
                 .set('Authorization', accessTokenFromJson("farhad_ebrahimi"));
 
@@ -96,12 +96,12 @@ describe('Project Endpoints Tests', () => {
 
     });
 
-    describe('Hebrew GET /ot/verse/:user_id/:project_id/:reference', () => {
+    describe('Hebrew GET /verse/:user_id/:project_id/:reference', () => {
         const ref = VerseReference.fromString("OT GEN 1:8")!;
         it('should return well-formed Hebrew data', async () => {
             setMockedUser("farhad_ebrahimi");
             const response = await request(app)
-                .get(`/ot/verse/farhad_ebrahimi/test_project/${ref.toString()}`)
+                .get(`/verse/farhad_ebrahimi/test_project/${ref.toString()}`)
                 .set('Content-Type', 'application/json')
                 .set('Authorization', accessTokenFromJson("farhad_ebrahimi"));
 
@@ -121,7 +121,7 @@ describe('Project Endpoints Tests', () => {
         it('should start off without votes in Elias for JHN 1:25', async () => {
             setMockedUser("farhad_ebrahimi");
             const response = await request(app)
-                .get(`/nt/verse/farhad_ebrahimi/test_project/${ref.toString()}`)
+                .get(`/verse/farhad_ebrahimi/test_project/${ref.toString()}`)
                 .set('Content-Type', 'application/json')
                 .set('Authorization', accessTokenFromJson("farhad_ebrahimi"));
 
@@ -168,7 +168,7 @@ describe('Project Endpoints Tests', () => {
         it('which should then have said gloss', async () => {
             setMockedUser("farhad_ebrahimi");
             const response = await request(app)
-                .get(`/nt/verse/farhad_ebrahimi/test_project/${ref.toString()}`)
+                .get(`/verse/farhad_ebrahimi/test_project/${ref.toString()}`)
                 .set('Content-Type', 'application/json')
                 .set('Authorization', accessTokenFromJson("farhad_ebrahimi"));
 

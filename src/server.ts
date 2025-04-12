@@ -18,12 +18,10 @@ import { createProject } from './handlers/createProject.js';
 import { removeProject } from './handlers/removeProject.js';
 import { UserProfileRow, UserUpdateObject } from '../../models/UserProfile.js';
 import { ProjectConfigurationRow, ProjectDescription } from '../../models/ProjectConfiguration.js';
-import { VerseReferenceString } from '../../models/VerseReference.js';
+import { VerseReference, VerseReferenceString } from '../../models/VerseReference.js';
 import { WrappedBody } from '../../models/SavedPostRequest.js';
 import { NoParams, ProjectIdParams, PublicationActionsParams, SeekVerseParams, UserIdParams, VerseParams } from './params.js';
 import { VerseResponse } from '../../models/Verse.js';
-import { HebrewWordRow } from '../../models/HebrewWordRow.js';
-import { GreekWordRow } from '../../models/GreekWordRow.js';
 import { getVerseNT } from './handlers/getVerseNT.js';
 import { getVerseOT } from './handlers/getVerseOT.js';
 import { AdHocPublicationResult, AdHocWorkflowRunsResult, CheckResults, UpdateVerseData } from '../../models/database-input-output.js';
@@ -90,12 +88,23 @@ app.get('/verse/:user_id/:project_id/:frequency_threshold/:startingPosition/:dir
     await authenticateAndThenCall(req, res, seekVerse);
 });
 
-app.get('/nt/verse/:user_id/:project_id/:reference', async (req: Request<VerseParams, VerseResponse<GreekWordRow>>, res: Response) => {
-    await authenticateAndThenCall(req, res, getVerseNT);
-});
+app.get('/verse/:user_id/:project_id/:reference', async (req: Request<VerseParams, VerseResponse<unknown>>, res: Response) => {
+    const reference = VerseReference.fromString(req.params.reference);
+    if (!reference) {
+        res.status(400).json(`Invalid verse reference: ${req.params.reference}`);
+        return;
+    }
 
-app.get('/ot/verse/:user_id/:project_id/:reference', async (req: Request<VerseParams, VerseResponse<HebrewWordRow>>, res: Response) => {
-    await authenticateAndThenCall(req, res, getVerseOT);
+    let handler;
+    if (reference.canon === 'NT') {
+        handler = getVerseNT;
+    } else if (reference.canon === 'OT') {
+        handler = getVerseOT;
+    } else {
+        res.status(400).json('Invalid testament specified.  Must be "nt" or "ot".');
+        return;
+    }
+    await authenticateAndThenCall(req, res, handler);
 });
 
 app.post('/verse/:user_id/:project_id/:reference', async (req: Request<VerseParams, boolean, WrappedBody<UpdateVerseData>>, res: Response) => {
