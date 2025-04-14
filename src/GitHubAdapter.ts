@@ -39,8 +39,10 @@ export class GitHubAdapter {
         }
 
         /// Create the GitHub pages if it doesn't yet exist
-        // It seems this can be done more easily through a GitHub Action
-        // await this.createGitHubPages(repo);
+        /// Although GitHub Pages can be set up with a GitHub Action,
+        /// it requires a permissions approach that I can't figure out
+        /// right now. Since this works, we'll stay with doing it this way.
+        await this.createGitHubPages(repo);
     }
 
     async createGitHubPages(repo: string) {
