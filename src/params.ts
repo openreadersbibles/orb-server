@@ -1,34 +1,13 @@
 import { ParamsDictionary } from "express-serve-static-core";
-import { ProjectId } from "../../models/ProjectConfiguration";
-import { UserId } from "../../models/UserProfile";
-import { VerseReferenceString } from "../../models/VerseReference";
 
-export interface UserIdParams extends ParamsDictionary {
-    user_id: UserId;
-}
+export type UserIdParams = Record<'user_id', string>;
 
-export interface ProjectIdParams extends ParamsDictionary {
-    user_id: ProjectId;
-}
+export type ProjectIdParams = Record<'project_id', string>;
 
-export interface SeekVerseParams extends ParamsDictionary {
-    project_id: ProjectId;
-    user_id: UserId;
-    frequency_threshold: string;
-    startingPosition: VerseReferenceString;
-    direction: "before" | "after";
-    exclusivity: "me" | "anyone";
-}
+export type SeekVerseParams = Record<'user_id' | 'project_id' | 'reference' | 'frequency_threshold' | 'startingPosition' | 'direction' | 'exclusivity', string>;
 
-export interface VerseParams extends ParamsDictionary {
-    project_id: ProjectId;
-    user_id: UserId;
-    reference: VerseReferenceString;
-}
+export type VerseParams = Record<'project_id' | 'user_id' | 'reference', string>;
 
-export interface PublicationActionsParams extends ParamsDictionary {
-    repo: string;
-    commit_sha: string;
-}
+export type PublicationActionsParams = Record<'repo' | 'commit_sha', string>;
 
 export type NoParams = ParamsDictionary;
