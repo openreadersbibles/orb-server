@@ -45,6 +45,65 @@ describe('Project Endpoints Tests', () => {
         numerals: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"],
     };
 
+    describe('Verse reference OT GEN 1:8', () => {
+        it('can be produced from string', async () => {
+            const str = "OT GEN 1:8";
+            const ref = VerseReference.fromString(str);
+            expect(ref).not.toBe(undefined);
+            expect(ref?.toString()).toBe(str);
+        });
+    });
+
+    describe('Verse reference NT JHN 1:25', () => {
+        it('can be produced from string', async () => {
+            const str = "NT JHN 1:25";
+            const ref = VerseReference.fromString(str);
+            expect(ref).not.toBe(undefined);
+            expect(ref?.toString()).toBe(str);
+        });
+    });
+
+    describe('Verse reference NT JHN 1:26', () => {
+        it('can be produced from string', async () => {
+            const str = "NT JHN 1:26";
+            const ref = VerseReference.fromString(str);
+            expect(ref).not.toBe(undefined);
+            expect(ref?.toString()).toBe(str);
+        });
+    });
+
+    describe('Nonce verse reference NT XYZ 1:25', () => {
+        it('should produce undefined object', async () => {
+            const str = "NT XYZ 1:25";
+            const ref = VerseReference.fromString(str);
+            expect(ref).toBe(undefined);
+        });
+    });
+
+    describe('Nonce verse reference OT PDQ 1:8', () => {
+        it('should produce undefined object', async () => {
+            const str = "OT PDQ 1:8";
+            const ref = VerseReference.fromString(str);
+            expect(ref).toBe(undefined);
+        });
+    });
+
+    describe('Out-of-range verse reference NT GAL 7:5', () => {
+        it('should produce undefined object', async () => {
+            const str = "NT GAL 7:5";
+            const ref = VerseReference.fromString(str);
+            expect(ref).toBe(undefined);
+        });
+    });
+
+    describe('Out-of-range verse reference OT PSA 160:1', () => {
+        it('should produce undefined object', async () => {
+            const str = "OT PSA 160:1";
+            const ref = VerseReference.fromString(str);
+            expect(ref).toBe(undefined);
+        });
+    });
+
     describe('PUT /project', () => {
         it('should create a new project', async () => {
             setMockedUser("farhad_ebrahimi");
@@ -65,7 +124,7 @@ describe('Project Endpoints Tests', () => {
         });
     });
 
-    describe('GET /verse/:user_id/:project_id/:reference', () => {
+    describe('GET /verse/:user_id/:project_id/:reference (OT GEN 1:8)', () => {
         it('should return well-formed Hebrew data', async () => {
             setMockedUser("farhad_ebrahimi");
             const response = await request(app)
@@ -82,7 +141,7 @@ describe('Project Endpoints Tests', () => {
 
     describe('GET /verse/:user_id/:project_id/:reference', () => {
 
-        it('should return well-formed Greek data', async () => {
+        it('should return well-formed Greek data (NT JHN 1:25)', async () => {
             setMockedUser("farhad_ebrahimi");
             const response = await request(app)
                 .get(`/verse/farhad_ebrahimi/test_project/NT JHN 1:25`)
@@ -94,11 +153,20 @@ describe('Project Endpoints Tests', () => {
             GetNTVerseResponseSchema.parse(parsedJson);
         });
 
-    });
+        it('should return well-formed Greek data (NT JHN 1:26)', async () => {
+            setMockedUser("farhad_ebrahimi");
+            const response = await request(app)
+                .get(`/verse/farhad_ebrahimi/test_project/NT JHN 1:26`)
+                .set('Content-Type', 'application/json')
+                .set('Authorization', accessTokenFromJson("farhad_ebrahimi"));
 
-    describe('Hebrew GET /verse/:user_id/:project_id/:reference', () => {
-        const ref = VerseReference.fromString("OT GEN 1:8")!;
-        it('should return well-formed Hebrew data', async () => {
+            expect(response.status).toBe(200);
+            const parsedJson = JSON.parse(response.body);
+            GetNTVerseResponseSchema.parse(parsedJson);
+        });
+
+        it('should return well-formed Hebrew data (OT GEN 1:8)', async () => {
+            const ref = VerseReference.fromString("OT GEN 1:8")!;
             setMockedUser("farhad_ebrahimi");
             const response = await request(app)
                 .get(`/verse/farhad_ebrahimi/test_project/${ref.toString()}`)
@@ -109,6 +177,40 @@ describe('Project Endpoints Tests', () => {
             const parsedJson = JSON.parse(response.body);
             GetHebrewVerseResponseSchema.parse(parsedJson);
         });
+
+
+        it('should return 400 for a nonce NT reference (NT XYZ 1:25)', async () => {
+            setMockedUser("farhad_ebrahimi");
+            const response = await request(app)
+                .get(`/verse/farhad_ebrahimi/test_project/NT XYZ 1:25`)
+                .set('Content-Type', 'application/json')
+                .set('Authorization', accessTokenFromJson("farhad_ebrahimi"));
+
+            expect(response.status).toBe(400);
+        });
+
+        it('should return 400 for a nonce OT reference (OT PDQ 1:8)', async () => {
+            setMockedUser("farhad_ebrahimi");
+            const response = await request(app)
+                .get(`/verse/farhad_ebrahimi/test_project/OT PDQ 1:8`)
+                .set('Content-Type', 'application/json')
+                .set('Authorization', accessTokenFromJson("farhad_ebrahimi"));
+
+            expect(response.status).toBe(400);
+        });
+
+
+        it('should return 400 for an out of bounds OT reference (OT PSA 160:1)', async () => {
+            setMockedUser("farhad_ebrahimi");
+            const response = await request(app)
+                .get(`/verse/farhad_ebrahimi/test_project/OT PSA 160:1`)
+                .set('Content-Type', 'application/json')
+                .set('Authorization', accessTokenFromJson("farhad_ebrahimi"));
+
+            expect(response.status).toBe(400);
+        });
+
+
     });
 
     describe('Greek POST /verse/:user_id/:project_id/:reference', () => {
@@ -191,6 +293,63 @@ describe('Project Endpoints Tests', () => {
         //     console.log("firstGlossId from next it inside", firstGlossId);
         // });
 
+    });
+
+    describe('GET /verse/:user_id/:project_id/:frequency_threshold/:startingPosition/:direction/:exclusivity, starting from NT JHN 1:25', () => {
+        it('should return JHN 1:23 for the previous verse', async () => {
+            setMockedUser("farhad_ebrahimi");
+            const response = await request(app)
+                .get(`/verse/farhad_ebrahimi/test_project/30/NT JHN 1:25/before/anyone`)
+                .set('Content-Type', 'application/json')
+                .set('Authorization', accessTokenFromJson("farhad_ebrahimi"));
+            expect(response.status).toBe(200);
+            const parsedJson = JSON.parse(response.body);
+            const ref = VerseReference.fromString(parsedJson);
+            expect(ref).not.toBe(undefined);
+            expect(ref?.toString()).toBe("NT JHN 1:23");
+        });
+
+        it('should return JHN 1:27 for the following verse', async () => {
+            setMockedUser("farhad_ebrahimi");
+            const response = await request(app)
+                .get(`/verse/farhad_ebrahimi/test_project/30/NT JHN 1:25/after/anyone`)
+                .set('Content-Type', 'application/json')
+                .set('Authorization', accessTokenFromJson("farhad_ebrahimi"));
+            expect(response.status).toBe(200);
+            const parsedJson = JSON.parse(response.body);
+            const ref = VerseReference.fromString(parsedJson);
+            expect(ref).not.toBe(undefined);
+            expect(ref?.toString()).toBe("NT JHN 1:27");
+        });
+
+    });
+
+    describe('GET /verse/:user_id/:project_id/:frequency_threshold/:startingPosition/:direction/:exclusivity, starting from OT JON 2:8', () => {
+        it('should return JON 2:7', async () => {
+            setMockedUser("farhad_ebrahimi");
+            const response = await request(app)
+                .get(`/verse/farhad_ebrahimi/test_project/50/OT JON 2:8/before/anyone`)
+                .set('Content-Type', 'application/json')
+                .set('Authorization', accessTokenFromJson("farhad_ebrahimi"));
+            expect(response.status).toBe(200);
+            const parsedJson = JSON.parse(response.body);
+            const ref = VerseReference.fromString(parsedJson);
+            expect(ref).not.toBe(undefined);
+            expect(ref?.toString()).toBe("OT JON 2:7");
+        });
+
+        it('should return JON 2:10 for the following verse', async () => {
+            setMockedUser("farhad_ebrahimi");
+            const response = await request(app)
+                .get(`/verse/farhad_ebrahimi/test_project/50/OT JON 2:8/after/anyone`)
+                .set('Content-Type', 'application/json')
+                .set('Authorization', accessTokenFromJson("farhad_ebrahimi"));
+            expect(response.status).toBe(200);
+            const parsedJson = JSON.parse(response.body);
+            const ref = VerseReference.fromString(parsedJson);
+            expect(ref).not.toBe(undefined);
+            expect(ref?.toString()).toBe("OT JON 2:10");
+        });
 
     });
 

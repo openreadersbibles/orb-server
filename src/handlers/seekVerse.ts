@@ -6,6 +6,7 @@ import { Failure } from '../../../models/ReturnValue.js';
 
 export async function seekVerse(req: Request<SeekVerseParams, VerseReferenceString>, res: Response) {
     const reference = VerseReference.fromString(req.params.startingPosition);
+    console.log(reference, VerseReference.fromString(req.params.startingPosition));
     if (!reference) {
         return Failure(400, `Invalid verse reference: ${req.params.startingPosition}`);
     }
@@ -14,8 +15,8 @@ export async function seekVerse(req: Request<SeekVerseParams, VerseReferenceStri
             req.params.user_id,
             Number.parseInt(req.params.frequency_threshold),
             reference,
-            req.params.direction,
-            req.params.exclusivity);
+            req.params.direction as "before" | "after", /// TODO not great to assume this
+            req.params.exclusivity as "me" | "anyone"); /// TODO not great to assume this
         return ref.toString();
     });
 }

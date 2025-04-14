@@ -387,19 +387,27 @@ GROUP BY
             const query = `SELECT ${canon}.reference FROM ${canon} 
         LEFT JOIN gloss
         ON gloss.word_id=${canon}._id  
-        LEFT JOIN votes
-        ON votes.word_id=${canon}._id ${userClause} AND vote='1' 
         LEFT JOIN project_roles 
-        ON votes.user_id = project_roles.user_id  AND project_roles.project_id=? AND user_role!='disabled' 
-        WHERE (vote is null OR vote=0) AND ${canon}.freq_lex < ? AND ${canon}._id ${greaterThanLessThan} (SELECT ${minMax}(_id) FROM ${canon} WHERE reference=?) 
+        ON project_roles.project_id=? AND user_role!='disabled' and project_roles.project_id = gloss.project_id  
+        LEFT JOIN votes
+        ON votes.user_id = project_roles.user_id AND votes.word_id=${canon}._id ${userClause}  
+        WHERE 
+            (vote is null OR vote=0) 
+            AND 
+            ${canon}.freq_lex < ? 
+            AND 
+            ${canon}._id ${greaterThanLessThan} (SELECT ${minMax}(_id) FROM ${canon} WHERE reference=?) 
         ORDER BY ${canon}._id ${orderDirection} 
         LIMIT 1;`;
 
             const [rows] = await this.connection.query<RowDataPacket[]>(query, args);
+            if (rows.length === 0) {
+                return InternalFailure(`No data returned for user ${user_id} in project ${project_id} starting at ${startingPosition} in direction ${direction} with exclusivity ${exclusivity} and frequency threshold ${frequency_threshold}`);
+            }
             const ref = VerseReference.fromString(rows[0].reference);
 
             if (ref === undefined) {
-                throw new Error("Bad reference returned from seekVerse: " + rows[0].reference);
+                return InternalFailure(`Bad reference returned for user ${user_id} in project ${project_id} starting at ${startingPosition} in direction ${direction} with exclusivity ${exclusivity} and frequency threshold ${frequency_threshold}`);
             }
             return ref;
         } catch (err) {
