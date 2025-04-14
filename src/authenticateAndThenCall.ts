@@ -35,6 +35,8 @@ export async function authenticateAndThenCall
                 return res.status(error.statusCode).json(error.body);
             } else {
                 /// this is an unhandled exception, and we need to log it and return a 500 error
+                console.error(error);
+                console.trace();
                 return res.status(500).json(`Internal server error`);
             }
         }

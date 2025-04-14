@@ -86,6 +86,7 @@ export class Publisher {
         if (this._request.nopdf) {
             files.push({ path: GitHubActionYML.ymlFilePath, content: '' });
         } else {
+            /// Note that the publication configuration folder is not prefixed here; the YWL sets the working directory for the TeX run
             const ymlContent = await this.createYMLFile(this._request.books.map(bid => this.texFilename(bid)), this.request.configuration);
             files.push({ path: GitHubActionYML.ymlFilePath, content: ymlContent });
         }
