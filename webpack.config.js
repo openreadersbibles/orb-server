@@ -1,7 +1,12 @@
-const path = require('path');
-const nodeExternals = require('webpack-node-externals');
+import path from 'path';
+import { fileURLToPath } from 'url';
+import nodeExternals from 'webpack-node-externals';
 
-module.exports = {
+// Emulate __dirname in ES module
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+export default {
     mode: 'production',
     entry: './src/index.ts',
     module: {
@@ -28,18 +33,23 @@ module.exports = {
     },
     output: {
         filename: 'server.js',
-        path: path.resolve(__dirname, 'dist'),
+        path: path.resolve(path.dirname(''), 'dist'),
         assetModuleFilename: 'assets/[name][ext]',
     },
     target: 'node',
     externals: [nodeExternals()],
     resolve: {
-        fallback: {
-            zlib: false,
-            util: false,
-            querystring: false,
-            path: false,
-            url: false,
+        alias: {
+            '@models': path.resolve(__dirname, '../models'),
         },
-    },
+    }
+    // resolve: {
+    //     fallback: {
+    //         zlib: false,
+    //         util: false,
+    //         querystring: false,
+    //         path: false,
+    //         url: false,
+    //     },
+    // },
 };

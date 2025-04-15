@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
-import { CheckResults } from "../../../models/database-input-output.js";
+import { CheckResults } from "@models/database-input-output.js";
 import { ConnectRunDisconnect } from "../GetDatabaseAdapter.js";
 import { Publisher } from "../Publisher.js";
-import { HollowPublicationRequest } from '../../../models/PublicationRequest.js';
+import { HollowPublicationRequest } from '@models/PublicationRequest.js';
 import { NoParams } from '../params.js';
 
 export async function publicationCheck(req: Request<NoParams, CheckResults, HollowPublicationRequest>, res: Response) {

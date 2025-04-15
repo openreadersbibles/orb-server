@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { GitHubAdapter } from "../GitHubAdapter.js";
-import { AdHocWorkflowRunsResult } from '../../../models/database-input-output.js';
+import { AdHocWorkflowRunsResult } from '@models/database-input-output.js';
 import { PublicationActionsParams } from '../params.js';
 
 export async function publicationActionStatus(req: Request<PublicationActionsParams, AdHocWorkflowRunsResult>, res: Response) {

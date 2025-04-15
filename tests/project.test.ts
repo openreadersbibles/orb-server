@@ -6,10 +6,10 @@ import request from 'supertest';
 import { app } from '../src/server.js';
 import { accessTokenFromJson } from './acccessTokenFromJson.js';
 import { Server } from 'http';
-import { WrappedBody } from '../../models/SavedPostRequest.js';
-import { ProjectConfigurationRow, ProjectDescription } from '../../models/ProjectConfiguration.js';
+import { WrappedBody } from '@models/SavedPostRequest.js';
+import { ProjectConfigurationRow, ProjectDescription } from '@models/ProjectConfiguration.js';
 import { ProjectDescriptionSchema } from './type-guards/ProjectConfigurationRowSchema.js';
-import { UserProfile, UserProfileRow } from '../../models/UserProfile.js';
+import { UserProfile, UserProfileRow } from '@models/UserProfile.js';
 
 let server: Server;
 

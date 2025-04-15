@@ -1,12 +1,12 @@
 import logger from "../logger.js";
 import { Request, Response } from 'express';
-import { HollowPublicationRequest } from "../../../models/PublicationRequest.js";
-import { AdHocPublicationResult } from "../../../models/database-input-output.js";
-import { WrappedBody } from "../../../models/SavedPostRequest.js";
+import { HollowPublicationRequest } from "@models/PublicationRequest.js";
+import { AdHocPublicationResult } from "@models/database-input-output.js";
+import { WrappedBody } from "@models/SavedPostRequest.js";
 import { ConnectRunDisconnect } from "../GetDatabaseAdapter.js";
 import { Publisher } from "../Publisher.js";
 import { NoParams } from "../params.js";
-import { Failure } from "../../../models/ReturnValue.js";
+import { Failure } from "@models/ReturnValue.js";
 
 export async function publish(req: Request<NoParams, AdHocPublicationResult, WrappedBody<HollowPublicationRequest>>, res: Response) {
     return await ConnectRunDisconnect(async (adapter) => {

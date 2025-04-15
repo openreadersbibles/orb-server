@@ -1,16 +1,16 @@
-import { HollowPublicationRequest, PublicationRequest } from '../../models/PublicationRequest.js';
-import { PublicationBook } from '../../models/publication/PublicationBook.js';
-import { BookIdentifier } from '../../models/BookIdentifier.js';
+import { HollowPublicationRequest, PublicationRequest } from '@models/PublicationRequest.js';
+import { PublicationBook } from '@models/publication/PublicationBook.js';
+import { BookIdentifier } from '@models/BookIdentifier.js';
 import path from 'path';
 import { GitHubAdapter, GitHubFile } from './GitHubAdapter.js';
 import { GitHubActionYML } from './GitHubActionYML.js';
 import axios, { ResponseType } from 'axios';
 import { XslTransformations } from './XslTransformations.js';
 import logger from "./logger.js";
-import { PublicationConfiguration } from '../../models/PublicationConfiguration.js';
-import { PublicationHebrewWordElementRow } from '../../models/publication/PublicationHebrewWordElementRow.js';
-import { PublicationGreekWordElementRow } from '../../models/publication/PublicationGreekWordElementRow.js';
-import { AdHocPublicationResult, CheckResults } from '../../models/database-input-output.js';
+import { PublicationConfiguration } from '@models/PublicationConfiguration.js';
+import { PublicationHebrewWordElementRow } from '@models/publication/PublicationHebrewWordElementRow.js';
+import { PublicationGreekWordElementRow } from '@models/publication/PublicationGreekWordElementRow.js';
+import { AdHocPublicationResult, CheckResults } from '@models/database-input-output.js';
 import { GenericDatabaseAdapter } from './GenericDatabaseAdapter.js';
 
 /// a feature of this case is that _request is not defined until the connect method is called

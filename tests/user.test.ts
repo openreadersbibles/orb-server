@@ -6,8 +6,8 @@ import request from 'supertest';
 import { app } from '../src/server.js';
 import { accessTokenFromJson } from './acccessTokenFromJson.js';
 import { Server } from 'http';
-import { UserUpdateObject } from '../../models/UserProfile.js';
-import { WrappedBody } from '../../models/SavedPostRequest.js';
+import { UserUpdateObject } from '@models/UserProfile.js';
+import { WrappedBody } from '@models/SavedPostRequest.js';
 import { UserProfileRowSchema } from './type-guards/UserProfileRowSchema.js';
 
 let server: Server;

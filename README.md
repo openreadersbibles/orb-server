@@ -49,3 +49,30 @@ xslt3 -xsl:xslt/tei2tex.xsl -export:xslt/tei2tex.sef.json -t -ns:##html5
 xslt3 -xsl:xslt/dumb.xsl -export:xslt/dump.sef.json -t 
 xslt3 -xsl:xslt/dumb.xsl -s:bhsa_OT_JON.xml -o:books.html -t
 
+
+## XSL transformations
+XSLT can be done with SaxonJS. 
+
+Installation.
+```
+npm install saxon-js
+```
+
+Compile the XSL files to JSON format:
+```
+cd ~\Documents\open-readers-bibles\application\orb-server\src
+node node_modules/xslt3/xslt3.js -t -xsl:xslt/tei2html.xsl -export:tei2html.sef.json -nogo "-ns:##html5"
+node node_modules/xslt3/xslt3.js -t -xsl:xslt/tei2tex.xsl -export:tei2tex.sef.json -nogo "-ns:##html5"
+```
+
+Example:
+```
+node run-xslt.js
+```
+
+xslt3 -xsl:xslt/tei2html.xsl -s:bhsa_OT_JON.xml -o:books.html -t
+
+## Tests
+
+npx jest verse.test.ts
+

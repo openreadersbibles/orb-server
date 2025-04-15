@@ -1,5 +1,5 @@
 import axios from "axios";
-import { CognitoUserInfoResponse } from "../../models/TimedOauthCredentials";
+import { CognitoUserInfoResponse } from "@models/TimedOauthCredentials";
 import { COGNITO } from "../cognito.js";
 
 export async function authenticate(token: string): Promise<CognitoUserInfoResponse> {

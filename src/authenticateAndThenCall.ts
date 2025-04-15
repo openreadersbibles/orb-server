@@ -1,4 +1,4 @@
-import { CognitoUserInfoResponse } from '../../models/TimedOauthCredentials.js';
+import { CognitoUserInfoResponse } from '@models/TimedOauthCredentials.js';
 import { Request, Response } from 'express';
 import { ParamsDictionary } from "express-serve-static-core";
 import { authenticate } from './authenticate.js';

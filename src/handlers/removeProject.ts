@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
-import { CognitoUserInfoResponse } from '../../../models/TimedOauthCredentials.js';
+import { CognitoUserInfoResponse } from '@models/TimedOauthCredentials.js';
 import { ConnectRunDisconnect } from "../GetDatabaseAdapter.js";
 import { ProjectIdParams } from '../params.js';
-import { Failure } from '../../../models/ReturnValue.js';
+import { Failure } from '@models/ReturnValue.js';
 
 export async function removeProject(req: Request<ProjectIdParams, boolean>, res: Response, userInfo: CognitoUserInfoResponse) {
     if (userInfo.username !== "orbadmin") {

@@ -1,4 +1,4 @@
-import { CognitoUserInfoResponse } from "../../models/TimedOauthCredentials.js";
+import { CognitoUserInfoResponse } from "@models/TimedOauthCredentials.js";
 
 const mockedUserInfo: CognitoUserInfoResponse = {
     "email": "example@example.com",

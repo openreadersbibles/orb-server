@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
 import { ConnectRunDisconnect } from "../GetDatabaseAdapter.js";
-import { VerseReference, VerseReferenceString } from "../../../models/VerseReference.js";
+import { VerseReference, VerseReferenceString } from "@models/VerseReference.js";
 import { SeekVerseParams } from "../params.js";
-import { Failure } from '../../../models/ReturnValue.js';
+import { Failure } from '@models/ReturnValue.js';
 
 export async function seekVerse(req: Request<SeekVerseParams, VerseReferenceString>, res: Response) {
     const reference = VerseReference.fromString(req.params.startingPosition);

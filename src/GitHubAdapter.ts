@@ -1,9 +1,9 @@
 import axios, { AxiosRequestConfig } from 'axios';
-import { PublicationBook } from '../../models/publication/PublicationBook.js';
-import { PublicationGreekWordElementRow } from '../../models/publication/PublicationGreekWordElementRow.js';
-import { PublicationHebrewWordElementRow } from '../../models/publication/PublicationHebrewWordElementRow.js';
-import { ProjectConfiguration } from '../../models/ProjectConfiguration.js';
-import { AdHocPublicationResult, AdHocWorkflowRunsResult } from '../../models/database-input-output.js';
+import { PublicationBook } from '@models/publication/PublicationBook.js';
+import { PublicationGreekWordElementRow } from '@models/publication/PublicationGreekWordElementRow.js';
+import { PublicationHebrewWordElementRow } from '@models/publication/PublicationHebrewWordElementRow.js';
+import { ProjectConfiguration } from '@models/ProjectConfiguration.js';
+import { AdHocPublicationResult, AdHocWorkflowRunsResult } from '@models/database-input-output.js';
 
 export interface GitHubFile { path: string, content: string, pb?: PublicationBook<PublicationGreekWordElementRow | PublicationHebrewWordElementRow> };
 

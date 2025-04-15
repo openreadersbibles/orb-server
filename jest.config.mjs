@@ -9,7 +9,7 @@ export default {
   },
   extensionsToTreatAsEsm: [".ts"],
   moduleNameMapper: {
-    '^@octokit/(.*)$': '<rootDir>/node_modules/@octokit/$1/dist-src/index.js',
+    "^@models/(.*)\\.js$": "<rootDir>/../models/$1.ts",
     "^(\\.{1,2}/.*)\\.js$": "$1",
   },
   transformIgnorePatterns: [
@@ -18,7 +18,8 @@ export default {
 
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
 
-  roots: ["<rootDir>/../tests"],
+  roots: ["<rootDir>/tests"],
 
   setupFiles: ['<rootDir>/jest.setup.ts'],
+
 };

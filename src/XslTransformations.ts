@@ -1,5 +1,5 @@
 import { GitHubFile } from "./GitHubAdapter.js";
-import { PublicationConfiguration } from "../../models/PublicationConfiguration.js";
+import { PublicationConfiguration } from "@models/PublicationConfiguration.js";
 import SaxonJS from 'saxon-js';
 
 import tei2tex from './xslt/tei2tex.sef.js';

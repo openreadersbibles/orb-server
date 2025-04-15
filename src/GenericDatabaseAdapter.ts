@@ -1,14 +1,14 @@
-import { UpdateVerseData } from "../../models/database-input-output.js";
-import { GreekWordRow } from "../../models/GreekWordRow.js";
-import { HebrewWordRow } from "../../models/HebrewWordRow.js";
-import { ProjectConfiguration, ProjectConfigurationRow, ProjectDescription, ProjectId } from "../../models/ProjectConfiguration.js";
-import { UserId, UserProfileRow, UserUpdateObject } from "../../models/UserProfile.js";
-import { Canon, UbsBook, VerseReference } from "../../models/VerseReference.js";
-import { VerseResponse } from "../../models/Verse.js";
-import { BookIdentifier } from "../../models/BookIdentifier.js";
-import { BookDumpJson, PublicationBook } from "../../models/publication/PublicationBook.js";
-import { PublicationGreekWordElementRow } from "../../models/publication/PublicationGreekWordElementRow.js";
-import { PublicationHebrewWordElementRow } from "../../models/publication/PublicationHebrewWordElementRow.js";
+import { UpdateVerseData } from "@models/database-input-output.js";
+import { GreekWordRow } from "@models/GreekWordRow.js";
+import { HebrewWordRow } from "@models/HebrewWordRow.js";
+import { ProjectConfiguration, ProjectConfigurationRow, ProjectDescription, ProjectId } from "@models/ProjectConfiguration.js";
+import { UserId, UserProfileRow, UserUpdateObject } from "@models/UserProfile.js";
+import { Canon, UbsBook, VerseReference } from "@models/VerseReference.js";
+import { VerseResponse } from "@models/Verse.js";
+import { BookIdentifier } from "@models/BookIdentifier.js";
+import { BookDumpJson, PublicationBook } from "@models/publication/PublicationBook.js";
+import { PublicationGreekWordElementRow } from "@models/publication/PublicationGreekWordElementRow.js";
+import { PublicationHebrewWordElementRow } from "@models/publication/PublicationHebrewWordElementRow.js";
 
 /// See the implementations in SqliteAdapter.ts and MariaDbAdapter.ts
 

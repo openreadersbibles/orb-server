@@ -1,12 +1,22 @@
 {
   "compilerOptions": {
-    "target": "es6",
-    "module": "commonjs",
+    "target": "ES2022",
+    "module": "ES2022",
+    "moduleResolution": "node",
+    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
     "strict": true,
     "esModuleInterop": true,
-    "sourceMap": true, // Enable source maps
     "resolveJsonModule": true,
+    "sourceMap": true, // Enable source maps,
+    "outDir": "./dist",
+    "typeRoots": ["./node_modules/@types", "./src/types"],
+    "baseUrl": "./",
+    "paths": {
+      "@models/*": ["../models/*"]
+    }
   },
+  "include": ["src/**/*", "../models/**/*"],
   "exclude": [
     "node_modules"
   ],

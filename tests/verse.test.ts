@@ -6,12 +6,12 @@ import request from 'supertest';
 import { app } from '../src/server.js';
 import { accessTokenFromJson } from './acccessTokenFromJson.js';
 import { Server } from 'http';
-import { WrappedBody } from '../../models/SavedPostRequest.js';
-import { ProjectConfigurationRow } from '../../models/ProjectConfiguration.js';
+import { WrappedBody } from '@models/SavedPostRequest.js';
+import { ProjectConfigurationRow } from '@models/ProjectConfiguration.js';
 import { GetHebrewVerseResponseSchema, GetNTVerseResponseSchema } from './type-guards/VerseSchema.js';
-import { Verse } from '../../models/Verse.js';
-import { VerseReference } from '../../models/VerseReference.js';
-import { GlossSendObject, UpdateVerseData } from '../../models/database-input-output.js';
+import { Verse } from '@models/Verse.js';
+import { VerseReference } from '@models/VerseReference.js';
+import { GlossSendObject, UpdateVerseData } from '@models/database-input-output.js';
 
 let server: Server;
 
