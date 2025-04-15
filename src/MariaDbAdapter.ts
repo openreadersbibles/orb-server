@@ -372,42 +372,90 @@ GROUP BY
     }
 
     async seekVerse(project_id: ProjectId, user_id: UserId, frequency_threshold: number, startingPosition: VerseReference, direction: "before" | "after", exclusivity: "me" | "anyone"): Promise<VerseReference> {
+        if (exclusivity == "me") {
+            return await this.seekVerseExclusiveToMe(project_id, user_id, frequency_threshold, startingPosition, direction);
+        } else {
+            return await this.seekVerseExclusiveAnyone(project_id, user_id, frequency_threshold, startingPosition, direction);
+        }
+    }
+
+    private async seekVerseExclusiveToMe(project_id: ProjectId, user_id: UserId, frequency_threshold: number, startingPosition: VerseReference, direction: "before" | "after"): Promise<VerseReference> {
         try {
-            console.info(`Seeking verse for user ${user_id} in project ${project_id} starting at ${startingPosition} in direction ${direction} with exclusivity ${exclusivity} and frequency threshold ${frequency_threshold}`);
+            // console.info(`Seeking verse for user ${user_id} in project ${project_id} starting at ${startingPosition} in direction ${direction} with exclusivity ${exclusivity} and frequency threshold ${frequency_threshold}`);
 
             const orderDirection = direction === "before" ? "DESC" : "ASC";
-            const userClause = exclusivity === "me" ? " AND user_id=? " : "";
             const greaterThanLessThan = direction === "before" ? "<" : ">";
             const minMax = direction === "before" ? "min" : "max";
             const canon = startingPosition.canon.toLowerCase();
 
-            const args: string[] = exclusivity === "me" ? [user_id, project_id, frequency_threshold.toString(), startingPosition.toString()] : [project_id, frequency_threshold.toString(), startingPosition.toString()];
-
-            /// TODO this is nonsense
             const query = `SELECT ${canon}.reference FROM ${canon} 
         LEFT JOIN gloss
-        ON gloss.word_id=${canon}._id  
+        ON gloss.word_id=${canon}._id  and gloss.project_id=? 
         LEFT JOIN project_roles 
         ON project_roles.project_id=? AND user_role!='disabled' and project_roles.project_id = gloss.project_id  
         LEFT JOIN votes
-        ON votes.user_id = project_roles.user_id AND votes.word_id=${canon}._id ${userClause}  
+        ON votes.user_id = project_roles.user_id AND votes.word_id=${canon}._id  AND votes.user_id=?   
         WHERE 
             (vote is null OR vote=0) 
             AND 
             ${canon}.freq_lex < ? 
             AND 
-            ${canon}._id ${greaterThanLessThan} (SELECT ${minMax}(_id) FROM ${canon} WHERE reference=?) 
+            ${canon}._id ${greaterThanLessThan} (SELECT ${minMax}(_id) FROM ${canon} WHERE reference=? ) 
         ORDER BY ${canon}._id ${orderDirection} 
         LIMIT 1;`;
 
-            const [rows] = await this.connection.query<RowDataPacket[]>(query, args);
+            // console.log(query, [project_id, project_id, user_id, frequency_threshold.toString(), startingPosition.toString()]);
+
+            const [rows] = await this.connection.query<RowDataPacket[]>(query, [project_id, project_id, user_id, frequency_threshold.toString(), startingPosition.toString()]);
             if (rows.length === 0) {
-                return InternalFailure(`No data returned for user ${user_id} in project ${project_id} starting at ${startingPosition} in direction ${direction} with exclusivity ${exclusivity} and frequency threshold ${frequency_threshold}`);
+                return InternalFailure(`No data returned for user ${user_id} in project ${project_id} starting at ${startingPosition} in direction ${direction} with exclusivity me and frequency threshold ${frequency_threshold}`);
             }
             const ref = VerseReference.fromString(rows[0].reference);
 
             if (ref === undefined) {
-                return InternalFailure(`Bad reference returned for user ${user_id} in project ${project_id} starting at ${startingPosition} in direction ${direction} with exclusivity ${exclusivity} and frequency threshold ${frequency_threshold}`);
+                return InternalFailure(`Bad reference returned for user ${user_id} in project ${project_id} starting at ${startingPosition} in direction ${direction} with exclusivity me and frequency threshold ${frequency_threshold}`);
+            }
+            return ref;
+        } catch (err) {
+            console.error(err);
+            return InternalFailure("Error seeking verse data");
+        }
+    }
+
+    private async seekVerseExclusiveAnyone(project_id: ProjectId, user_id: UserId, frequency_threshold: number, startingPosition: VerseReference, direction: "before" | "after"): Promise<VerseReference> {
+        try {
+            const orderDirection = direction === "before" ? "DESC" : "ASC";
+            const greaterThanLessThan = direction === "before" ? "<" : ">";
+            const minMax = direction === "before" ? "min" : "max";
+            const canon = startingPosition.canon.toLowerCase();
+
+            const query = `SELECT ${canon}.reference ,sum( ifnull(vote,0) ) as vote_count FROM ${canon}
+                                LEFT JOIN gloss
+                                ON gloss.word_id=${canon}._id and gloss.project_id=? 
+                                LEFT JOIN votes
+                                ON votes.gloss_id=gloss._id  
+                                left join project_roles
+                                on project_roles.user_id = votes.user_id and project_roles.project_id=? and project_roles.user_role != 'disabled'
+                            WHERE
+                                ${canon}.freq_lex < ?
+                                AND
+                                ${canon}._id ${greaterThanLessThan} (SELECT ${minMax}(_id) FROM ${canon} WHERE reference=?)
+                            group by ${canon}._id
+                            having vote_count = 0 
+                            order by ${canon}._id ${orderDirection}
+                            limit 1
+                        ;`;
+
+            // console.log(query, [project_id, project_id, frequency_threshold.toString(), startingPosition.toString()]);
+
+            const [rows] = await this.connection.query<RowDataPacket[]>(query, [project_id, project_id, frequency_threshold.toString(), startingPosition.toString()]);
+            if (rows.length === 0) {
+                return InternalFailure(`No data returned for user ${user_id} in project ${project_id} starting at ${startingPosition} in direction ${direction} with exclusivity anyone and frequency threshold ${frequency_threshold}`);
+            }
+            const ref = VerseReference.fromString(rows[0].reference);
+
+            if (ref === undefined) {
+                return InternalFailure(`Bad reference returned for user ${user_id} in project ${project_id} starting at ${startingPosition} in direction ${direction} with exclusivity anyone and frequency threshold ${frequency_threshold}`);
             }
             return ref;
         } catch (err) {
