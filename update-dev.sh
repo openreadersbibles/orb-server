@@ -9,18 +9,14 @@
 # Exit immediately if a command exits with a non-zero status.
 set -e
 
-# Pull the latest 'models' repository
-cd ~/models
+cd ~/orb-server-dev/models
+git stash
+git pull
+cd ~/orb-server-dev/orb-server
 git stash
 git pull
 npm install
-
-# Pull the latest development branch server, build it, etc.
-cd ~/orb-server-dev
-git stash
-git pull
-npm install
-npx webpack
+npm run build
 
 cd ~
 pm2 start ecosystem.config.js
