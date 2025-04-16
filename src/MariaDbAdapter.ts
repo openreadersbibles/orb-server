@@ -4,7 +4,7 @@ import { PhraseGlossRow, UpdateVerseData } from '@models/database-input-output.j
 import { UserId, UserProfileRow, UserUpdateObject } from '@models/UserProfile.js';
 import { ProjectConfiguration, ProjectConfigurationRow, ProjectDescription, ProjectId } from '@models/ProjectConfiguration.js';
 import mysql, { RowDataPacket } from 'mysql2/promise';
-import { Canon, UbsBook, VerseReference } from '@models/VerseReference.js';
+import { VerseReference } from '@models/VerseReference.js';
 import { HebrewWordRow, SuggestionRow } from '@models/HebrewWordRow.js';
 import { PhraseGlossLocationObject, WordGlossLocation, WordGlossLocationObject } from '@models/gloss-locations.js';
 import { annotationFromJson, MarkdownAnnotationContent } from '@models/Annotation.js';
@@ -14,6 +14,8 @@ import { BookIdentifier } from '@models/BookIdentifier.js';
 import { BookDumpJson, PublicationBook } from '@models/publication/PublicationBook.js';
 import { PublicationGreekWordElementRow } from '@models/publication/PublicationGreekWordElementRow.js';
 import { PublicationHebrewWordElementRow } from '@models/publication/PublicationHebrewWordElementRow.js';
+import { Canon } from '@models/Canon.js';
+import { UbsBook } from '@models/UbsBook.js';
 
 export class MariaDbAdapter implements GenericDatabaseAdapter {
     private connection!: mysql.Connection;

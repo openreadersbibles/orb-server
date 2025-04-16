@@ -11,6 +11,7 @@ import { GetHebrewVerseResponseSchema, GetNTVerseResponseSchema } from './type-g
 import { Verse } from '@models/Verse.js';
 import { VerseReference } from '@models/VerseReference.js';
 import { GlossSendObject, UpdateVerseData } from '@models/database-input-output.js';
+import { VerseReferenceJsonSchema } from '@models/VerseReferenceJson.js';
 
 let server: Server;
 
@@ -314,7 +315,8 @@ describe('Project Endpoints Tests', () => {
                 .set('Authorization', accessTokenFromJson("farhad_ebrahimi"));
             expect(response.status).toBe(200);
             const parsedJson = JSON.parse(response.body);
-            const ref = VerseReference.fromString(parsedJson);
+            VerseReferenceJsonSchema.parse(parsedJson);
+            const ref = VerseReference.fromJson(parsedJson);
             expect(ref).not.toBe(undefined);
             expect(ref?.toString()).toBe("NT JHN 1:23");
         });
@@ -327,7 +329,8 @@ describe('Project Endpoints Tests', () => {
                 .set('Authorization', accessTokenFromJson("farhad_ebrahimi"));
             expect(response.status).toBe(200);
             const parsedJson = JSON.parse(response.body);
-            const ref = VerseReference.fromString(parsedJson);
+            VerseReferenceJsonSchema.parse(parsedJson);
+            const ref = VerseReference.fromJson(parsedJson);
             expect(ref).not.toBe(undefined);
             expect(ref?.toString()).toBe("NT JHN 1:27");
         });
@@ -340,7 +343,8 @@ describe('Project Endpoints Tests', () => {
                 .set('Authorization', accessTokenFromJson("orbadmin"));
             expect(response.status).toBe(200);
             const parsedJson = JSON.parse(response.body);
-            const ref = VerseReference.fromString(parsedJson);
+            VerseReferenceJsonSchema.parse(parsedJson);
+            const ref = VerseReference.fromJson(parsedJson);
             expect(ref).not.toBe(undefined);
             expect(ref?.toString()).toBe("NT JHN 7:13");
         });
@@ -356,7 +360,8 @@ describe('Project Endpoints Tests', () => {
                 .set('Authorization', accessTokenFromJson("farhad_ebrahimi"));
             expect(response.status).toBe(200);
             const parsedJson = JSON.parse(response.body);
-            const ref = VerseReference.fromString(parsedJson);
+            VerseReferenceJsonSchema.parse(parsedJson);
+            const ref = VerseReference.fromJson(parsedJson);
             expect(ref).not.toBe(undefined);
             expect(ref?.toString()).toBe("OT JON 2:7");
         });
@@ -369,7 +374,8 @@ describe('Project Endpoints Tests', () => {
                 .set('Authorization', accessTokenFromJson("farhad_ebrahimi"));
             expect(response.status).toBe(200);
             const parsedJson = JSON.parse(response.body);
-            const ref = VerseReference.fromString(parsedJson);
+            VerseReferenceJsonSchema.parse(parsedJson);
+            const ref = VerseReference.fromJson(parsedJson);
             expect(ref).not.toBe(undefined);
             expect(ref?.toString()).toBe("OT JON 2:10");
         });
@@ -444,7 +450,8 @@ describe('Project Endpoints Tests', () => {
                     .set('Authorization', accessTokenFromJson("farhad_ebrahimi"));
                 expect(response.status).toBe(200);
                 const parsedJson = JSON.parse(response.body);
-                const ref = VerseReference.fromString(parsedJson);
+                VerseReferenceJsonSchema.parse(parsedJson);
+                const ref = VerseReference.fromJson(parsedJson);
                 expect(ref).not.toBe(undefined);
                 expect(ref?.toString()).toBe("NT JHN 6:3");
             });
@@ -457,7 +464,8 @@ describe('Project Endpoints Tests', () => {
                     .set('Authorization', accessTokenFromJson("farhad_ebrahimi"));
                 expect(response.status).toBe(200);
                 const parsedJson = JSON.parse(response.body);
-                const ref = VerseReference.fromString(parsedJson);
+                VerseReferenceJsonSchema.parse(parsedJson);
+                const ref = VerseReference.fromJson(parsedJson);
                 expect(ref).not.toBe(undefined);
                 expect(ref?.toString()).toBe("NT JHN 10:5");
             });
@@ -470,7 +478,8 @@ describe('Project Endpoints Tests', () => {
                     .set('Authorization', accessTokenFromJson("farhad_ebrahimi"));
                 expect(response.status).toBe(200);
                 const parsedJson = JSON.parse(response.body);
-                const ref = VerseReference.fromString(parsedJson);
+                VerseReferenceJsonSchema.parse(parsedJson);
+                const ref = VerseReference.fromJson(parsedJson);
                 expect(ref).not.toBe(undefined);
                 expect(ref?.toString()).toBe("NT JHN 5:47");
             });
@@ -483,7 +492,8 @@ describe('Project Endpoints Tests', () => {
                     .set('Authorization', accessTokenFromJson("farhad_ebrahimi"));
                 expect(response.status).toBe(200);
                 const parsedJson = JSON.parse(response.body);
-                const ref = VerseReference.fromString(parsedJson);
+                VerseReferenceJsonSchema.parse(parsedJson);
+                const ref = VerseReference.fromJson(parsedJson);
                 expect(ref).not.toBe(undefined);
                 expect(ref?.toString()).toBe("NT LUK 24:51");
             });

@@ -18,7 +18,7 @@ import { createProject } from './handlers/createProject.js';
 import { removeProject } from './handlers/removeProject.js';
 import { UserProfileRow, UserUpdateObject } from '@models/UserProfile.js';
 import { ProjectConfigurationRow, ProjectDescription } from '@models/ProjectConfiguration.js';
-import { VerseReference, VerseReferenceString } from '@models/VerseReference.js';
+import { VerseReference } from '@models/VerseReference.js';
 import { WrappedBody } from '@models/SavedPostRequest.js';
 import { NoParams, ProjectIdParams, PublicationActionsParams, SeekVerseParams, UserIdParams, VerseParams } from './params.js';
 import { VerseResponse } from '@models/Verse.js';
@@ -26,6 +26,7 @@ import { getVerseNT } from './handlers/getVerseNT.js';
 import { getVerseOT } from './handlers/getVerseOT.js';
 import { AdHocPublicationResult, AdHocWorkflowRunsResult, CheckResults, UpdateVerseData } from '@models/database-input-output.js';
 import { HollowPublicationRequest } from '@models/PublicationRequest.js';
+import { VerseReferenceJson } from '@models/VerseReferenceJson.js';
 
 export const app = express();
 
@@ -84,7 +85,7 @@ app.post('/joinproject/:project_id', async (req: Request<ProjectIdParams, boolea
 
 /* Verse endpoints */
 
-app.get('/verse/:user_id/:project_id/:frequency_threshold/:startingPosition/:direction/:exclusivity', async (req: Request<SeekVerseParams, VerseReferenceString>, res: Response) => {
+app.get('/verse/:user_id/:project_id/:frequency_threshold/:startingPosition/:direction/:exclusivity', async (req: Request<SeekVerseParams, VerseReferenceJson>, res: Response) => {
     await authenticateAndThenCall(req, res, seekVerse);
 });
 

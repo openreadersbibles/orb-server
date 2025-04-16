@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { CanonSchema } from "./CanonSchema";
+import { CanonSchema } from "@models/Canon.js";
 
 // Define dependent schemas
 const ThresholdObjectSchema = z.record(z.number()); // { [key: string]: number }

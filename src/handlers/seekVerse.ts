@@ -1,10 +1,11 @@
 import { Request } from 'express';
 import { ConnectRunDisconnect } from "../GetDatabaseAdapter.js";
-import { VerseReference, VerseReferenceString } from "@models/VerseReference.js";
+import { VerseReference } from "@models/VerseReference.js";
 import { SeekVerseParams } from "../params.js";
 import { Failure } from '@models/ReturnValue.js';
+import { VerseReferenceJson } from '@models/VerseReferenceJson.js';
 
-export async function seekVerse(req: Request<SeekVerseParams, VerseReferenceString>) {
+export async function seekVerse(req: Request<SeekVerseParams, VerseReferenceJson>) {
     const reference = VerseReference.fromString(req.params.startingPosition);
     if (!reference) {
         return Failure(400, `Invalid verse reference: ${req.params.startingPosition}`);
@@ -16,6 +17,6 @@ export async function seekVerse(req: Request<SeekVerseParams, VerseReferenceStri
             reference,
             req.params.direction as "before" | "after", /// TODO not great to assume this
             req.params.exclusivity as "me" | "anyone"); /// TODO not great to assume this
-        return ref.toString();
+        return ref.toJson();
     });
 }

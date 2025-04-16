@@ -10,13 +10,22 @@
     "resolveJsonModule": true,
     "sourceMap": true, // Enable source maps,
     "outDir": "./dist",
-    "typeRoots": ["./node_modules/@types", "./src/types"],
+    "typeRoots": [
+      "./node_modules/@types",
+      "./src/types"
+    ],
     "baseUrl": "./",
     "paths": {
-      "@models/*": ["../models/*"]
+      "@models/*": [
+        "../models/*"
+      ]
     }
   },
-  "include": ["src/**/*", "../models/**/*"],
+  "include": [
+    "src/**/*",
+    "tests/**/*",
+    "../models/**/*"
+  ],
   "exclude": [
     "node_modules"
   ],
