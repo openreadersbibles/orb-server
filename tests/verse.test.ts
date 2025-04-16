@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import '../src/mockAuthenticate.js';
 import { setMockedUser } from '../src/mockAuthenticate.js';
 

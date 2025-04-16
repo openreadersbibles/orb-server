@@ -1,4 +1,4 @@
-import { Request, Response } from 'express';
+import { Request } from 'express';
 import { ConnectRunDisconnect } from "../GetDatabaseAdapter.js";
 import { HebrewWordRow } from '@models/HebrewWordRow.js';
 import { VerseResponse } from '@models/Verse.js';
@@ -6,7 +6,7 @@ import { VerseParams } from '../params.js';
 import { VerseReference } from '@models/VerseReference.js';
 import { Failure } from '@models/ReturnValue.js';
 
-export async function getVerseOT(req: Request<VerseParams, VerseResponse<HebrewWordRow>>, res: Response) {
+export async function getVerseOT(req: Request<VerseParams, VerseResponse<HebrewWordRow>>) {
     const user_id = req.params.user_id;
     const project_id = req.params.project_id;
 

@@ -9,10 +9,10 @@ SaxonJS.transform({
     stylesheetInternal: tei2html,
     sourceText: xml,
     stylesheetParams: { "filenamebase": "mybase" },
-    "deliverResultDocument": function (uri) {
+    "deliverResultDocument": function () {
         return {
             "destination": "serialized",
-            "save": function (resultUri, result, encoding) {
+            "save": function (resultUri, result) {
                 resultDocs[resultUri] = result;
             }
         };

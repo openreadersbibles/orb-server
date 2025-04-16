@@ -1,5 +1,5 @@
 import logger from "../logger.js";
-import { Request, Response } from 'express';
+import { Request } from 'express';
 import { HollowPublicationRequest } from "@models/PublicationRequest.js";
 import { AdHocPublicationResult } from "@models/database-input-output.js";
 import { WrappedBody } from "@models/SavedPostRequest.js";
@@ -8,7 +8,7 @@ import { Publisher } from "../Publisher.js";
 import { NoParams } from "../params.js";
 import { Failure } from "@models/ReturnValue.js";
 
-export async function publish(req: Request<NoParams, AdHocPublicationResult, WrappedBody<HollowPublicationRequest>>, res: Response) {
+export async function publish(req: Request<NoParams, AdHocPublicationResult, WrappedBody<HollowPublicationRequest>>) {
     return await ConnectRunDisconnect(async (adapter) => {
         const publisher = await Publisher.createPublisher(adapter, req.body.body);
 

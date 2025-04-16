@@ -1,11 +1,11 @@
-import { Request, Response } from 'express';
+import { Request } from 'express';
 import { CheckResults } from "@models/database-input-output.js";
 import { ConnectRunDisconnect } from "../GetDatabaseAdapter.js";
 import { Publisher } from "../Publisher.js";
 import { HollowPublicationRequest } from '@models/PublicationRequest.js';
 import { NoParams } from '../params.js';
 
-export async function publicationCheck(req: Request<NoParams, CheckResults, HollowPublicationRequest>, res: Response) {
+export async function publicationCheck(req: Request<NoParams, CheckResults, HollowPublicationRequest>) {
     return await ConnectRunDisconnect(async (adapter) => {
         const publisher = await Publisher.createPublisher(adapter, req.body);
 
