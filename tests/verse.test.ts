@@ -5,13 +5,14 @@ import request from 'supertest';
 import { app } from '../src/server.js';
 import { accessTokenFromJson } from './acccessTokenFromJson.js';
 import { Server } from 'http';
-import { WrappedBody } from '@models/SavedPostRequest.js';
+import { WrappedBody } from '@models/WrappedBody.js';
 import { ProjectConfigurationRow } from '@models/ProjectConfiguration.js';
 import { Verse } from '@models/Verse.js';
 import { VerseReference } from '@models/VerseReference.js';
-import { GlossSendObject, UpdateVerseData } from '@models/database-input-output.js';
 import { VerseReferenceJsonSchema } from '@models/VerseReferenceJson.js';
 import { GetHebrewVerseResponseSchema, GetNTVerseResponseSchema } from '@models/VerseResponse.js';
+import { GlossSendObject } from '@models/GlossSendObject.js';
+import { UpdateVerseData } from '@models/UpdateVerseData.js';
 
 let server: Server;
 
@@ -165,20 +166,19 @@ describe('Project Endpoints Tests', () => {
             GetNTVerseResponseSchema.parse(parsedJson);
         });
 
-        // Pericope of the Adulterous Woman — not sure what the correct behavior is yet
-        // it('should return well-formed Greek data (NT JHN 8:1)', async () => {
-        //     setMockedUser("farhad_ebrahimi");
-        //     const response = await request(app)
-        //         .get(`/verse/farhad_ebrahimi/test_project/NT JHN 8:1`)
-        //         .set('Content-Type', 'application/json')
-        //         .set('Authorization', accessTokenFromJson("farhad_ebrahimi"));
+        it('should return well-formed Greek data (NT JHN 8:1)', async () => {
+            setMockedUser("farhad_ebrahimi");
+            const response = await request(app)
+                .get(`/verse/farhad_ebrahimi/test_project/NT JHN 8:1`)
+                .set('Content-Type', 'application/json')
+                .set('Authorization', accessTokenFromJson("farhad_ebrahimi"));
 
-        //     expect(response.status).toBe(200);
-        //     const parsedJson = JSON.parse(response.body);
-        //     const verse = GetNTVerseResponseSchema.parse(parsedJson);
-        //     expect(verse.words.length).toBeGreaterThan(0);
-        //     console.log("verse", verse);
-        // });
+            expect(response.status).toBe(200);
+            const parsedJson = JSON.parse(response.body);
+            const verse = GetNTVerseResponseSchema.parse(parsedJson);
+            expect(verse.words.length).toBeGreaterThan(0);
+            console.log("verse", verse);
+        });
 
         it('should return well-formed Hebrew data (OT GEN 1:8)', async () => {
             const ref = VerseReference.fromString("OT GEN 1:8")!;

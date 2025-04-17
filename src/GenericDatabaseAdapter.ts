@@ -1,4 +1,3 @@
-import { UpdateVerseData } from "@models/database-input-output.js";
 import { GreekWordRow } from "@models/GreekWordRow.js";
 import { HebrewWordRow } from "@models/HebrewWordRow.js";
 import { ProjectConfiguration, ProjectConfigurationRow, ProjectDescription, ProjectId } from "@models/ProjectConfiguration.js";
@@ -11,6 +10,8 @@ import { PublicationGreekWordElementRow } from "@models/publication/PublicationG
 import { PublicationHebrewWordElementRow } from "@models/publication/PublicationHebrewWordElementRow.js";
 import { Canon } from "@models/Canon";
 import { UbsBook } from "@models/UbsBook";
+import { GlossSendObject } from "@models/GlossSendObject";
+import { UpdateVerseData } from "@models/UpdateVerseData";
 
 /// See the implementations in SqliteAdapter.ts and MariaDbAdapter.ts
 
@@ -31,6 +32,8 @@ export interface GenericDatabaseAdapter {
     getNTVerse(project_id: ProjectId, user_id: UserId, reference: VerseReference): Promise<VerseResponse<GreekWordRow>>;
     seekVerse(project_id: ProjectId, user_id: UserId, frequency_threshold: number, startingPosition: VerseReference, direction: "before" | "after", exclusivity: "me" | "anyone"): Promise<VerseReference>;
     getProjectDescriptions(): Promise<ProjectDescription[]>;
+    updateGloss(user_id: UserId, gso: GlossSendObject): Promise<boolean>;
+    deleteGloss(user_id: UserId, gloss_id: number): Promise<boolean>;
 
     /* Publication Functions */
     getProjectFromId(project_id: ProjectId): Promise<ProjectConfiguration>;

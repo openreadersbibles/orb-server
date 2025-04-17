@@ -1,12 +1,11 @@
 import { GenericDatabaseAdapter } from './GenericDatabaseAdapter.js';
 import { BadRequest, Failure, InternalFailure } from '@models/ReturnValue.js';
-import { UpdateVerseData } from '@models/database-input-output.js';
 import { UserId, UserProfileRow, UserUpdateObject } from '@models/UserProfile.js';
 import { ProjectConfiguration, ProjectConfigurationRow, ProjectDescription, ProjectId } from '@models/ProjectConfiguration.js';
 import mysql, { RowDataPacket } from 'mysql2/promise';
 import { VerseReference } from '@models/VerseReference.js';
 import { HebrewWordRow } from '@models/HebrewWordRow.js';
-import { PhraseGlossLocationObject, WordGlossLocation, WordGlossLocationObject } from '@models/gloss-locations.js';
+import { WordGlossLocation } from '@models/gloss-locations.js';
 import { annotationFromJson } from '@models/Annotation.js';
 import { GreekWordRow } from '@models/GreekWordRow.js';
 import { VerseResponse } from '@models/Verse.js';
@@ -19,6 +18,10 @@ import { UbsBook } from '@models/UbsBook.js';
 import { MarkdownAnnotationContent } from '@models/AnnotationJsonObject.js';
 import { PhraseGlossRow } from '@models/PhraseGlossRow.js';
 import { SuggestionRow } from '@models/SuggestionRow.js';
+import { GlossSendObject } from '@models/GlossSendObject.js';
+import { WordGlossLocationObject } from '@models/WordGlossLocationObject.js';
+import { PhraseGlossLocationObject } from '@models/PhraseGlossLocationObject.js';
+import { UpdateVerseData } from '@models/UpdateVerseData.js';
 
 export class MariaDbAdapter implements GenericDatabaseAdapter {
     private connection!: mysql.Connection;
@@ -568,6 +571,50 @@ GROUP BY
         }
     }
 
+    async updateGloss(user_id: UserId, gso: GlossSendObject): Promise<boolean> {
+        try {
+            const hasPower = await this.userHasPowerOverGloss(user_id, gso.gloss_id);
+            if (hasPower) {
+                const [result] = await this.connection.execute<mysql.ResultSetHeader>(`update gloss set gloss=? where _id=?;`, [JSON.stringify(gso.annotationObject), gso.gloss_id]);
+                return result.affectedRows > 0;
+            } else {
+                return Failure(403, "User is not a power user in this project.");
+            }
+        } catch (err) {
+            console.error(err);
+            return InternalFailure("Error deleting gloss");
+        }
+    }
+
+    async deleteGloss(user_id: UserId, gloss_id: number): Promise<boolean> {
+        try {
+            const hasPower = await this.userHasPowerOverGloss(user_id, gloss_id);
+            if (hasPower) {
+                const [result] = await this.connection.execute<mysql.ResultSetHeader>(`delete from gloss where _id=?;`, [gloss_id]);
+                return result.affectedRows > 0;
+            } else {
+                return Failure(403, "User is not a power user in this project.");
+            }
+        } catch (err) {
+            console.error(err);
+            return InternalFailure("Error deleting gloss");
+        }
+    }
+
+    async userHasPowerOverGloss(user_id: UserId, gloss_id: number): Promise<boolean> {
+        try {
+            const [rows] = await this.connection.query<RowDataPacket[]>(`select power_user from gloss left join project_roles on project_roles.project_id=gloss.project_id where _id=? and user_id=?;`, [gloss_id, user_id]);
+            if (rows.length === 0) {
+                return false; // No such gloss or user
+            }
+            return rows[0].power_user === 1; // Check if the user has power over the gloss
+        } catch (err) {
+            console.error(err);
+            return InternalFailure("Error checking if user has power over gloss");
+        }
+    }
+
+
     async joinProject(user_id: UserId, project_id: ProjectId): Promise<boolean> {
         try {
             const isJoinable = await this.projectIsJoinable(project_id);
@@ -582,6 +629,7 @@ GROUP BY
             return InternalFailure("Error joining project");
         }
     }
+
     async projectIsJoinable(project_id: ProjectId): Promise<boolean> {
         try {
             const [rows] = await this.connection.query<RowDataPacket[]>(`select JSON_VALUE(settings,'$.allow_joins') AS allow_joins FROM project WHERE project_id=?;`, [project_id]);

@@ -19,14 +19,18 @@ import { removeProject } from './handlers/removeProject.js';
 import { UserProfileRow, UserUpdateObject } from '@models/UserProfile.js';
 import { ProjectConfigurationRow, ProjectDescription } from '@models/ProjectConfiguration.js';
 import { VerseReference } from '@models/VerseReference.js';
-import { WrappedBody } from '@models/SavedPostRequest.js';
-import { NoParams, ProjectIdParams, PublicationActionsParams, SeekVerseParams, UserIdParams, VerseParams } from './params.js';
+import { WrappedBody } from '@models/WrappedBody.js';
+import { GlossIdParams, NoParams, ProjectIdParams, PublicationActionsParams, SeekVerseParams, UserIdParams, VerseParams } from './params.js';
 import { VerseResponse } from '@models/Verse.js';
 import { getVerseNT } from './handlers/getVerseNT.js';
 import { getVerseOT } from './handlers/getVerseOT.js';
-import { AdHocPublicationResult, AdHocWorkflowRunsResult, CheckResults, UpdateVerseData } from '@models/database-input-output.js';
+import { AdHocPublicationResult, AdHocWorkflowRunsResult, CheckResults } from '@models/database-input-output.js';
 import { HollowPublicationRequest } from '@models/PublicationRequest.js';
 import { VerseReferenceJson } from '@models/VerseReferenceJson.js';
+import { UpdateVerseData } from '@models/UpdateVerseData.js';
+import { removeGloss } from './handlers/removeGloss.js';
+import { GlossSendObject } from '@models/GlossSendObject.js';
+import { updateGloss } from './handlers/updateGloss.js';
 
 export const app = express();
 
@@ -110,6 +114,16 @@ app.get('/verse/:user_id/:project_id/:reference', async (req: Request<VerseParam
 
 app.post('/verse/:user_id/:project_id/:reference', async (req: Request<VerseParams, boolean, WrappedBody<UpdateVerseData>>, res: Response) => {
     await authenticateAndThenCall(req, res, updateVerse);
+});
+
+/* Gloss endpoints */
+
+app.put('/gloss/:gloss_id', async (req: Request<GlossIdParams, boolean, WrappedBody<GlossSendObject>>, res: Response) => {
+    await authenticateAndThenCall(req, res, updateGloss);
+});
+
+app.delete('/gloss/:gloss_id', async (req: Request<GlossIdParams, boolean>, res: Response) => {
+    await authenticateAndThenCall(req, res, removeGloss);
 });
 
 /* Publication endpoints */

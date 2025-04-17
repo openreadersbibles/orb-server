@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { CognitoUserInfoResponse } from '@models/TimedOauthCredentials.js';
 import { ConnectRunDisconnect } from "../GetDatabaseAdapter.js";
-import { WrappedBody } from '@models/SavedPostRequest.js';
+import { WrappedBody } from '@models/WrappedBody.js';
 import { returnValueConfig } from '@models/ReturnValue.js';
 import { ProjectIdParams } from '../params.js';
 

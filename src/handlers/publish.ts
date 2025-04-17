@@ -2,7 +2,7 @@ import logger from "../logger.js";
 import { Request } from 'express';
 import { HollowPublicationRequest } from "@models/PublicationRequest.js";
 import { AdHocPublicationResult } from "@models/database-input-output.js";
-import { WrappedBody } from "@models/SavedPostRequest.js";
+import { WrappedBody } from "@models/WrappedBody.js";
 import { ConnectRunDisconnect } from "../GetDatabaseAdapter.js";
 import { Publisher } from "../Publisher.js";
 import { NoParams } from "../params.js";
