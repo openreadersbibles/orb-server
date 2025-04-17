@@ -1,13 +1,13 @@
 import { GenericDatabaseAdapter } from './GenericDatabaseAdapter.js';
 import { BadRequest, Failure, InternalFailure } from '@models/ReturnValue.js';
-import { PhraseGlossRow, UpdateVerseData } from '@models/database-input-output.js';
+import { UpdateVerseData } from '@models/database-input-output.js';
 import { UserId, UserProfileRow, UserUpdateObject } from '@models/UserProfile.js';
 import { ProjectConfiguration, ProjectConfigurationRow, ProjectDescription, ProjectId } from '@models/ProjectConfiguration.js';
 import mysql, { RowDataPacket } from 'mysql2/promise';
 import { VerseReference } from '@models/VerseReference.js';
-import { HebrewWordRow, SuggestionRow } from '@models/HebrewWordRow.js';
+import { HebrewWordRow } from '@models/HebrewWordRow.js';
 import { PhraseGlossLocationObject, WordGlossLocation, WordGlossLocationObject } from '@models/gloss-locations.js';
-import { annotationFromJson, MarkdownAnnotationContent } from '@models/Annotation.js';
+import { annotationFromJson } from '@models/Annotation.js';
 import { GreekWordRow } from '@models/GreekWordRow.js';
 import { VerseResponse } from '@models/Verse.js';
 import { BookIdentifier } from '@models/BookIdentifier.js';
@@ -16,6 +16,9 @@ import { PublicationGreekWordElementRow } from '@models/publication/PublicationG
 import { PublicationHebrewWordElementRow } from '@models/publication/PublicationHebrewWordElementRow.js';
 import { Canon } from '@models/Canon.js';
 import { UbsBook } from '@models/UbsBook.js';
+import { MarkdownAnnotationContent } from '@models/AnnotationJsonObject.js';
+import { PhraseGlossRow } from '@models/PhraseGlossRow.js';
+import { SuggestionRow } from '@models/SuggestionRow.js';
 
 export class MariaDbAdapter implements GenericDatabaseAdapter {
     private connection!: mysql.Connection;
@@ -264,7 +267,8 @@ GROUP BY
             /// add/update the votes table
             for (const item of wordGlossUpdates) {
                 const location = item.location as unknown as WordGlossLocationObject;
-                await this.connection.execute(`REPLACE INTO votes (vote,gloss_id,user_id,word_id) VALUES (?,?,?,?);`, [item.myVote, item.gloss_id, user_id, location.word_id]);
+                const myVote = item.votes.includes(user_id) ? 1 : 0;
+                await this.connection.execute(`REPLACE INTO votes (vote,gloss_id,user_id,word_id,project_id) VALUES (?,?,?,?,?);`, [myVote, item.gloss_id, user_id, location.word_id, project_id]);
             }
 
             /// insert new phrase-level glosses
@@ -280,7 +284,8 @@ GROUP BY
 
             /// update phrase-level gloss votes
             for (const item of phraseGlossUpdates) {
-                await this.connection.execute(`REPLACE INTO phrase_gloss_votes (vote,phrase_gloss_id,user_id) VALUES (?,?,?);`, [item.myVote, item.gloss_id, user_id]);
+                const myVote = item.votes.includes(user_id) ? 1 : 0;
+                await this.connection.execute(`REPLACE INTO phrase_gloss_votes (vote,phrase_gloss_id,user_id) VALUES (?,?,?);`, [myVote, item.gloss_id, user_id]);
             }
 
             return true;
@@ -296,15 +301,54 @@ GROUP BY
     /// that is fixed, but it might be better to make that kind of error unable to happen.
     async getOTVerse(project_id: ProjectId, user_id: UserId, reference: VerseReference): Promise<VerseResponse<HebrewWordRow>> {
         try {
-            const [rows] = await this.connection.query<RowDataPacket[]>(`SELECT _id,freq_lex,g_word_utf8,trailer_utf8,lex_id,gn, nu, st, vt, vs, ps, pdp, ot.gloss AS englishGloss, prs_gn, prs_nu, prs_ps,voc_lex_utf8,languageISO,
-            CASE WHEN voteResults.gloss IS NULL THEN '[]' ELSE JSON_ARRAYAGG(JSON_OBJECT('jsonContent',voteResults.gloss,'votes',voteCount,'gloss_id',gloss_id)) END AS votes,
-            (SELECT gloss_id FROM votes WHERE user_id=? AND votes.word_id=ot._id AND vote=1 GROUP BY user_id) AS myVote
-            FROM ot
-            LEFT JOIN 
-            (SELECT gloss.word_id,gloss._id AS gloss_id,gloss.project_id,gloss,SUM(ifnull(vote,0)) AS voteCount FROM gloss LEFT JOIN votes ON votes.gloss_id=gloss._id  WHERE gloss.project_id=? AND reference=? GROUP BY gloss._id ORDER BY gloss.word_id,voteCount DESC) AS voteResults
-            ON ot._id=voteResults.word_id
-            WHERE ot.reference=? 
-            GROUP BY ot._id;`, [user_id, project_id, reference.toString(), reference.toString()]);
+            const [rows] = await this.connection.query<RowDataPacket[]>(`SELECT 
+    _id,
+    freq_lex,
+    g_word_utf8,
+    trailer_utf8,
+    lex_id,
+    gn,
+    nu,
+    st,
+    vt,
+    vs,
+    ps,
+    pdp,
+    ot.gloss AS englishGloss,
+    prs_gn,
+    prs_nu,
+    prs_ps,
+    voc_lex_utf8,
+    languageISO,
+    CASE when votes IS NULL THEN '[]' ELSE JSON_ARRAYAGG(votes) END AS votes
+FROM 
+    ot
+LEFT JOIN 
+    (
+        SELECT 
+			gloss.word_id,
+			JSON_OBJECT('jsonContent',gloss,'gloss_id',gloss._id,'votes', JSON_ARRAYAGG(user_id) ) as votes 
+		FROM 
+			gloss
+		LEFT JOIN 
+			votes 
+		ON 
+			votes.gloss_id = gloss._id
+		WHERE 
+			gloss.project_id = ? 
+			AND reference = ?  
+            and user_id is not null
+		GROUP BY 
+			gloss._id
+		ORDER BY 
+			gloss.word_id DESC
+    ) AS voteResults
+ON 
+    ot._id = voteResults.word_id
+WHERE 
+    ot.reference = ?
+GROUP BY 
+    ot._id;`, [project_id, reference.toString(), reference.toString()]);
 
             const glossSuggestions = await this.getWordGlosses(project_id, reference, 'ot');
             const phraseGlosses = await this.getPhraseGlosses(user_id, project_id, reference);
@@ -323,21 +367,62 @@ GROUP BY
 
     async getNTVerse(project_id: ProjectId, user_id: UserId, reference: VerseReference): Promise<VerseResponse<GreekWordRow>> {
         try {
-            const [rows] = await this.connection.query<RowDataPacket[]>(`SELECT _id, freq_lex, lex_id, 0 AS myVote, punctuated_text, unpunctuated_text, lemma, part_of_speech, person, tense, voice, mood, grammatical_case, grammatical_number, gender, degree, 'grc' AS languageISO,nt.gloss AS englishGloss,
-            CASE WHEN voteResults.gloss IS NULL THEN '[]' ELSE JSON_ARRAYAGG(JSON_OBJECT('jsonContent',voteResults.gloss,'votes',voteCount,'gloss_id',gloss_id)) END AS votes,
-            (SELECT gloss_id FROM votes WHERE user_id=? AND votes.word_id=nt._id AND vote=1 GROUP BY user_id) AS myVote
-            FROM nt
-            LEFT JOIN 
-            (SELECT gloss.word_id,gloss._id AS gloss_id,gloss.project_id,gloss,SUM(ifnull(vote,0)) AS voteCount FROM gloss LEFT JOIN votes ON votes.gloss_id=gloss._id  WHERE gloss.project_id=? AND reference=? GROUP BY gloss._id ORDER BY gloss.word_id,voteCount DESC) AS voteResults
-            ON nt._id=voteResults.word_id
-            WHERE nt.reference=? 
-            GROUP BY nt._id;`, [user_id, project_id, reference.toString(), reference.toString()]);
+            const [rows] = await this.connection.query<RowDataPacket[]>(`SELECT 
+    _id,
+    freq_lex,
+    lex_id,
+    punctuated_text,
+    unpunctuated_text,
+    lemma,
+    part_of_speech,
+    person,
+    tense,
+    voice,
+    mood,
+    grammatical_case,
+    grammatical_number,
+    gender,
+    degree,
+    'grc' AS languageISO,
+    nt.gloss AS englishGloss,
+    CASE when votes IS NULL THEN '[]' ELSE JSON_ARRAYAGG(votes) END AS votes 
+FROM 
+    nt
+LEFT JOIN 
+    (
+        SELECT 
+    gloss.word_id,
+    JSON_OBJECT('jsonContent',gloss,'gloss_id',gloss._id,'votes', JSON_ARRAYAGG(user_id) ) as votes 
+FROM 
+    gloss
+LEFT JOIN 
+    votes 
+ON 
+    votes.gloss_id = gloss._id
+WHERE 
+    gloss.project_id = ? 
+    AND reference = ?  
+    and user_id is not null
+GROUP BY 
+    gloss._id
+ORDER BY 
+    gloss.word_id DESC
+    ) AS voteResults
+ON 
+    nt._id = voteResults.word_id
+WHERE 
+    nt.reference = ? 
+GROUP BY 
+    nt._id;`, [project_id, reference.toString(), reference.toString()]);
 
             const glossSuggestions = await this.getWordGlosses(project_id, reference, 'nt');
             const phraseGlosses = await this.getPhraseGlosses(user_id, project_id, reference);
 
             return {
-                words: rows.map((row) => { row.votes = JSON.parse(row.votes); return row as GreekWordRow; }),
+                words: rows.map((row) => {
+                    row.votes = JSON.parse(row.votes);
+                    return row as GreekWordRow;
+                }),
                 suggestions: glossSuggestions,
                 phrase_glosses: phraseGlosses
             };

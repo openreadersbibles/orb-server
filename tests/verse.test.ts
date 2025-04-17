@@ -7,11 +7,11 @@ import { accessTokenFromJson } from './acccessTokenFromJson.js';
 import { Server } from 'http';
 import { WrappedBody } from '@models/SavedPostRequest.js';
 import { ProjectConfigurationRow } from '@models/ProjectConfiguration.js';
-import { GetHebrewVerseResponseSchema, GetNTVerseResponseSchema } from './type-guards/VerseSchema.js';
 import { Verse } from '@models/Verse.js';
 import { VerseReference } from '@models/VerseReference.js';
 import { GlossSendObject, UpdateVerseData } from '@models/database-input-output.js';
 import { VerseReferenceJsonSchema } from '@models/VerseReferenceJson.js';
+import { GetHebrewVerseResponseSchema, GetNTVerseResponseSchema } from '@models/VerseResponse.js';
 
 let server: Server;
 
@@ -249,7 +249,6 @@ describe('Project Endpoints Tests', () => {
             /// Elias is the 0-indexed 16th word in the verse
             expect(verseBeforeChanges?.words[index].text).toBe("Ἠλίας");
             expect(verseBeforeChanges?.words[index].elements.length).toBe(1);
-            expect(verseBeforeChanges?.words[index].elements[0].myVote).toBe(null);
             expect(verseBeforeChanges?.words[index].elements[0].glossSuggestions.length).toBe(0);
             word_id = verseBeforeChanges?.words[index].elements[0].word_id;
             lex_id = verseBeforeChanges?.words[index]!.elements[0].lex_id;
@@ -260,7 +259,7 @@ describe('Project Endpoints Tests', () => {
             const gso: GlossSendObject = {
                 annotationObject: { type: "word", content: { gloss: "Elijah" } },
                 gloss_id: -1, // -1 means new gloss
-                myVote: 1,
+                votes: ["farhad_ebrahimi"],
                 location: { word_id: word_id, lex_id: lex_id },
             }
             const verseUpdate: UpdateVerseData = {
@@ -280,7 +279,7 @@ describe('Project Endpoints Tests', () => {
             expect(response.status).toBe(200);
         });
 
-        it('which should then have said gloss', async () => {
+        it('which should then have said gloss (JHN 1:25)', async () => {
             setMockedUser("farhad_ebrahimi");
             const response = await request(app)
                 .get(`/verse/farhad_ebrahimi/test_project/${ref.toString()}`)
@@ -297,12 +296,7 @@ describe('Project Endpoints Tests', () => {
             expect(verse.words[index].elements[0].glossSuggestions.length).toBe(1);
             expect(verse.words[index].elements[0].glossSuggestions[0].html).toBe("Elijah");
             expect(verse.words[index].elements[0].glossSuggestions[0].votes).toBe(1);
-            expect(verse.words[index].elements[0].myVote).toBe(verse.words[index].elements[0].glossSuggestions[0].gloss_id);
         });
-
-        // it('which should then have said gloss', async () => {
-        //     console.log("firstGlossId from next it inside", firstGlossId);
-        // });
 
     });
 
@@ -401,7 +395,7 @@ describe('Project Endpoints Tests', () => {
             const gso: GlossSendObject = {
                 annotationObject: { type: "word", content: { gloss: "شششششش" } },
                 gloss_id: -1, // -1 means new gloss
-                myVote: 1,
+                votes: ["farhad_ebrahimi"],
                 location: { word_id: 552726, lex_id: 503679 },
             }
             const verseUpdate: UpdateVerseData = {
@@ -421,7 +415,7 @@ describe('Project Endpoints Tests', () => {
             expect(response.status).toBe(200);
         });
 
-        it('which should then have said gloss', async () => {
+        it('which should then have said gloss (NT JHN 6:3)', async () => {
             setMockedUser("farhad_ebrahimi");
             const response = await request(app)
                 .get(`/verse/farhad_ebrahimi/farsi/NT JHN 6:3`)
