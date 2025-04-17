@@ -8,7 +8,7 @@ import { NoParams } from '../params.js';
 
 export async function createProject(req: Request<NoParams, boolean, WrappedBody<ProjectConfigurationRow>>, res: Response, userInfo: CognitoUserInfoResponse) {
     returnValueConfig.hash = req.body.hash;
-    return await ConnectRunDisconnect((adapter) => {
+    return await ConnectRunDisconnect<boolean>((adapter) => {
         return adapter.createProject(userInfo.username, req.body.body);
     });
 }

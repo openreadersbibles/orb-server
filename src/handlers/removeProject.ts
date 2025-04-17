@@ -8,7 +8,7 @@ export async function removeProject(req: Request<ProjectIdParams, boolean>, res:
     if (userInfo.username !== "orbadmin") {
         return Failure(403, `User is not authorized to remove projects`);
     }
-    return await ConnectRunDisconnect((adapter) => {
+    return await ConnectRunDisconnect<boolean>((adapter) => {
         return adapter.removeProject(req.params.project_id);
     });
 }

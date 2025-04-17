@@ -10,7 +10,7 @@ export async function seekVerse(req: Request<SeekVerseParams, VerseReferenceJson
     if (!reference) {
         return Failure(400, `Invalid verse reference: ${req.params.startingPosition}`);
     }
-    return await ConnectRunDisconnect(async (adapter) => {
+    return await ConnectRunDisconnect<VerseReferenceJson>(async (adapter) => {
         const ref = await adapter.seekVerse(req.params.project_id,
             req.params.user_id,
             Number.parseInt(req.params.frequency_threshold),

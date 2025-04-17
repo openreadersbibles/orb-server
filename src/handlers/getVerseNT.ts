@@ -18,7 +18,7 @@ export async function getVerseNT(req: Request<VerseParams, VerseResponse<GreekWo
         return Failure(400, `Invalid verse reference: ${req.params.reference}`);
     }
 
-    return await ConnectRunDisconnect((adapter) => {
+    return await ConnectRunDisconnect<VerseResponse<GreekWordRow>>((adapter) => {
         return adapter.getNTVerse(project_id, user_id, reference);
     });
 }

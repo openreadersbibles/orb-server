@@ -8,7 +8,7 @@ import { ProjectIdParams } from '../params.js';
 
 export async function updateProject(req: Request<ProjectIdParams, boolean, WrappedBody<ProjectConfigurationRow>>, res: Response, userInfo: CognitoUserInfoResponse) {
     returnValueConfig.hash = req.body.hash;
-    return await ConnectRunDisconnect((adapter) => {
+    return await ConnectRunDisconnect<boolean>((adapter) => {
         return adapter.updateProject(userInfo.username, req.body.body);
     });
 }

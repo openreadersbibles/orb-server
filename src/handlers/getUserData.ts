@@ -8,7 +8,7 @@ import { UserIdParams } from '../params.js';
 /// and return the user object. 
 export async function getUserData(req: Request<UserIdParams, UserProfileRow>) {
     const user_id = req.params.user_id;
-    return await ConnectRunDisconnect((adapter) => {
+    return await ConnectRunDisconnect<UserProfileRow>((adapter) => {
         return adapter.getUserData(user_id);
     });
 }

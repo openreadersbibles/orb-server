@@ -12,7 +12,7 @@ export async function updateUser(req: Request<UserIdParams, boolean, WrappedBody
         console.log(`User ID in request body (${userInfo.username}) does not match URL parameter (${req.params.user_id})`);
         return Failure(400, `User ID in request body (${userInfo.username}) does not match URL parameter (${req.params.user_id})`);
     }
-    return await ConnectRunDisconnect((adapter) => {
+    return await ConnectRunDisconnect<boolean>((adapter) => {
         return adapter.updateUser(userInfo.username, req.body.body);
     });
 }

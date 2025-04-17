@@ -18,7 +18,7 @@ export async function getVerseOT(req: Request<VerseParams, VerseResponse<HebrewW
         return Failure(400, `Invalid verse reference: ${req.params.reference}`);
     }
 
-    return await ConnectRunDisconnect((adapter) => {
+    return await ConnectRunDisconnect<VerseResponse<HebrewWordRow>>((adapter) => {
         return adapter.getOTVerse(project_id, user_id, reference);
     });
 }

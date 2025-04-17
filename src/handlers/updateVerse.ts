@@ -8,7 +8,7 @@ import { VerseParams } from "../params.js";
 
 export async function updateVerse(req: Request<VerseParams, boolean, WrappedBody<UpdateVerseData>>, res: Response, userInfo: CognitoUserInfoResponse) {
     returnValueConfig.hash = req.body.hash;
-    return await ConnectRunDisconnect((adapter) => {
+    return await ConnectRunDisconnect<boolean>((adapter) => {
         return adapter.updateVerse(
             userInfo.username,
             req.body.body,

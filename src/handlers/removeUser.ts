@@ -9,7 +9,7 @@ export async function removeUser(req: Request<UserIdParams, boolean>, res: Respo
         return Failure(403, `User is not authorized to remove users`);
     }
     const user_id = req.params.user_id;
-    return await ConnectRunDisconnect((adapter) => {
+    return await ConnectRunDisconnect<boolean>((adapter) => {
         return adapter.removeUser(user_id);
     });
 }
