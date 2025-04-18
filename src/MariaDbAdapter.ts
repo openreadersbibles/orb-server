@@ -22,6 +22,7 @@ import { GlossSendObject } from '@models/GlossSendObject.js';
 import { WordGlossLocationObject } from '@models/WordGlossLocationObject.js';
 import { PhraseGlossLocationObject } from '@models/PhraseGlossLocationObject.js';
 import { UpdateVerseData } from '@models/UpdateVerseData.js';
+import { WordRow } from '@models/WordRow.js';
 
 export class MariaDbAdapter implements GenericDatabaseAdapter {
     private connection!: mysql.Connection;
@@ -260,10 +261,10 @@ GROUP BY
             /// we'll then store the new gloss_id in the postArray
             /// array so that we can use it to update votes
             for (let i = 0; i < wordGlossUpdates.length; i++) {
-                if (wordGlossUpdates[i].gloss_id == -1) {
+                if (wordGlossUpdates[i].annotationObject.gloss_id == -1) {
                     const location = wordGlossUpdates[i].location as WordGlossLocation
-                    await this.connection.execute(`INSERT INTO gloss (word_id, project_id, gloss,reference, lex_id) VALUES (?,?,?,?,?);`, [location.word_id, project_id, JSON.stringify(wordGlossUpdates[i].annotationObject), reference_text, location.lex_id]);
-                    wordGlossUpdates[i].gloss_id = await this.lastInsertId();
+                    await this.connection.execute(`INSERT INTO gloss (project_id, gloss,reference, lex_id) VALUES (?,?,?,?);`, [project_id, JSON.stringify(wordGlossUpdates[i].annotationObject), reference_text, location.lex_id]);
+                    wordGlossUpdates[i].annotationObject.gloss_id = await this.lastInsertId();
                 }
             }
 
@@ -271,24 +272,25 @@ GROUP BY
             for (const item of wordGlossUpdates) {
                 const location = item.location as unknown as WordGlossLocationObject;
                 const myVote = item.votes.includes(user_id) ? 1 : 0;
-                await this.connection.execute(`REPLACE INTO votes (vote,gloss_id,user_id,word_id,project_id) VALUES (?,?,?,?,?);`, [myVote, item.gloss_id, user_id, location.word_id, project_id]);
+                const gloss_id = item.annotationObject.gloss_id;
+                await this.connection.execute(`REPLACE INTO votes (vote,gloss_id,user_id,word_id,project_id) VALUES (?,?,?,?,?);`, [myVote, gloss_id, user_id, location.word_id, project_id]);
             }
 
             /// insert new phrase-level glosses
             for (let i = 0; i < phraseGlossUpdates.length; i++) {
-                if (phraseGlossUpdates[i].gloss_id === -1) {
+                if (phraseGlossUpdates[i].annotationObject.gloss_id === -1) {
                     const location = phraseGlossUpdates[i].location as unknown as PhraseGlossLocationObject;
                     /// phrase-level glosses are always just markdown annotation
                     const annotation = phraseGlossUpdates[i]?.annotationObject as { type: "markdown"; content: MarkdownAnnotationContent; };
                     await this.connection.execute(`INSERT INTO phrase_gloss (from_word_id, to_word_id, project_id, markdown,reference) VALUES (?,?,?,?,?);`, [location.from_word_id, location.to_word_id, project_id, annotation.content.markdown, reference_text]);
-                    phraseGlossUpdates[i].gloss_id = await this.lastInsertId();
+                    phraseGlossUpdates[i].annotationObject.gloss_id = await this.lastInsertId();
                 }
             }
 
             /// update phrase-level gloss votes
             for (const item of phraseGlossUpdates) {
                 const myVote = item.votes.includes(user_id) ? 1 : 0;
-                await this.connection.execute(`REPLACE INTO phrase_gloss_votes (vote,phrase_gloss_id,user_id) VALUES (?,?,?);`, [myVote, item.gloss_id, user_id]);
+                await this.connection.execute(`REPLACE INTO phrase_gloss_votes (vote,phrase_gloss_id,user_id) VALUES (?,?,?);`, [myVote, item.annotationObject.gloss_id, user_id]);
             }
 
             return true;
@@ -299,9 +301,6 @@ GROUP BY
         }
     }
 
-    /// TODO The clause "GROUP BY user_id" (here an in the NT call) is a cludge because
-    /// at least during development sometimes two glosses would both be voted for. I think
-    /// that is fixed, but it might be better to make that kind of error unable to happen.
     async getOTVerse(project_id: ProjectId, user_id: UserId, reference: VerseReference): Promise<VerseResponse<HebrewWordRow>> {
         try {
             const [rows] = await this.connection.query<RowDataPacket[]>(`SELECT 
@@ -329,22 +328,23 @@ FROM
 LEFT JOIN 
     (
         SELECT 
-			gloss.word_id,
-			JSON_OBJECT('jsonContent',gloss,'gloss_id',gloss._id,'votes', JSON_ARRAYAGG(user_id) ) as votes 
-		FROM 
-			gloss
-		LEFT JOIN 
-			votes 
-		ON 
-			votes.gloss_id = gloss._id
-		WHERE 
-			gloss.project_id = ? 
-			AND reference = ?  
-            and user_id is not null
-		GROUP BY 
-			gloss._id
-		ORDER BY 
-			gloss.word_id DESC
+    votes.word_id,
+    JSON_OBJECT('annotationObject',JSON_SET(JSON_REMOVE(gloss, '$.gloss_id'), '$.gloss_id', gloss._id ),'gloss_id',gloss._id,'votes', JSON_ARRAYAGG(user_id) ) as votes 
+FROM 
+    gloss
+LEFT JOIN 
+    votes 
+ON 
+    votes.gloss_id = gloss._id
+WHERE 
+    gloss.project_id = ? 
+    and gloss.project_id = votes.project_id
+    AND reference = ?  
+    and user_id is not null
+GROUP BY 
+    gloss._id,votes.word_id
+ORDER BY 
+    votes.word_id DESC
     ) AS voteResults
 ON 
     ot._id = voteResults.word_id
@@ -353,14 +353,8 @@ WHERE
 GROUP BY 
     ot._id;`, [project_id, reference.toString(), reference.toString()]);
 
-            const glossSuggestions = await this.getWordGlosses(project_id, reference, 'ot');
-            const phraseGlosses = await this.getPhraseGlosses(user_id, project_id, reference);
+            return await this.processIntoVerseResponse<HebrewWordRow>(rows, user_id, project_id, reference, 'ot');
 
-            return {
-                words: rows.map((row) => { row.votes = JSON.parse(row.votes); return row as HebrewWordRow; }),
-                suggestions: glossSuggestions,
-                phrase_glosses: phraseGlosses
-            };
         } catch (error) {
             console.error(user_id, project_id, reference, reference);
             console.error(error);
@@ -394,8 +388,8 @@ FROM
 LEFT JOIN 
     (
         SELECT 
-    gloss.word_id,
-    JSON_OBJECT('jsonContent',gloss,'gloss_id',gloss._id,'votes', JSON_ARRAYAGG(user_id) ) as votes 
+    votes.word_id,
+    JSON_OBJECT('annotationObject',JSON_SET(JSON_REMOVE(gloss, '$.gloss_id'), '$.gloss_id', gloss._id ),'gloss_id',gloss._id,'votes', JSON_ARRAYAGG(user_id) ) as votes 
 FROM 
     gloss
 LEFT JOIN 
@@ -404,12 +398,13 @@ ON
     votes.gloss_id = gloss._id
 WHERE 
     gloss.project_id = ? 
+    and gloss.project_id = votes.project_id
     AND reference = ?  
     and user_id is not null
 GROUP BY 
-    gloss._id
+    gloss._id,votes.word_id
 ORDER BY 
-    gloss.word_id DESC
+    votes.word_id DESC
     ) AS voteResults
 ON 
     nt._id = voteResults.word_id
@@ -418,17 +413,8 @@ WHERE
 GROUP BY 
     nt._id;`, [project_id, reference.toString(), reference.toString()]);
 
-            const glossSuggestions = await this.getWordGlosses(project_id, reference, 'nt');
-            const phraseGlosses = await this.getPhraseGlosses(user_id, project_id, reference);
+            return await this.processIntoVerseResponse<GreekWordRow>(rows, user_id, project_id, reference, 'nt');
 
-            return {
-                words: rows.map((row) => {
-                    row.votes = JSON.parse(row.votes);
-                    return row as GreekWordRow;
-                }),
-                suggestions: glossSuggestions,
-                phrase_glosses: phraseGlosses
-            };
         } catch (error) {
             console.error(error);
             console.error(project_id, user_id, reference);
@@ -436,13 +422,46 @@ GROUP BY
         }
     }
 
+    private async processIntoVerseResponse<T extends WordRow>(rows: RowDataPacket[], user_id: UserId, project_id: ProjectId, reference: VerseReference, databaseTable: 'ot' | 'nt'): Promise<VerseResponse<T>> {
+        const glossSuggestions = await this.getWordGlosses(project_id, reference, databaseTable);
+        const phraseGlosses = await this.getPhraseGlosses(user_id, project_id, reference);
+        const words = rows.map((row) => {
+            row.votes = JSON.parse(row.votes);
+            return row as T;
+        });
+
+        return {
+            words: words,
+            suggestions: glossSuggestions,
+            phrase_glosses: phraseGlosses
+        };
+    }
+
     async getWordGlosses(project_id: ProjectId, reference: VerseReference, dataTableName: 'nt' | 'ot'): Promise<SuggestionRow[]> {
         try {
-            const [rows] = await this.connection.query<RowDataPacket[]>(`SELECT _id AS gloss_id,lex_id,JSON_ARRAYAGG(DISTINCT gloss.gloss) AS suggestions FROM gloss WHERE project_id=? AND lex_id IN (SELECT lex_id FROM ${dataTableName} WHERE reference=?) GROUP BY lex_id;`, [project_id, reference.toString()]);
+            const [rows] = await this.connection.query<RowDataPacket[]>(`
+                SELECT 
+                    lex_id,
+                    JSON_ARRAYAGG(DISTINCT JSON_SET(gloss, '$.gloss_id', _id)) AS suggestions
+                FROM 
+                    gloss
+                WHERE 
+                    project_id = ? 
+                    AND lex_id IN (
+                        SELECT 
+                            lex_id 
+                        FROM 
+                            ${dataTableName} 
+                        WHERE 
+                            reference = ?
+                    )
+                GROUP BY 
+                    lex_id;
+                    `, [project_id, reference.toString()]);
             return rows.map((row) => {
                 return {
                     lex_id: row.lex_id,
-                    suggestions: JSON.parse(row.suggestions).map((str: string) => JSON.parse(str))
+                    suggestions: JSON.parse(row.suggestions)
                 };
             });
         } catch (err) {
@@ -479,12 +498,12 @@ GROUP BY
             const canon = startingPosition.canon.toLowerCase();
 
             const query = `SELECT ${canon}.reference FROM ${canon} 
-        LEFT JOIN gloss
-        ON gloss.word_id=${canon}._id  and gloss.project_id=? 
-        LEFT JOIN project_roles 
-        ON project_roles.project_id=? AND user_role!='disabled' and project_roles.project_id = gloss.project_id  
-        LEFT JOIN votes
-        ON votes.user_id = project_roles.user_id AND votes.word_id=${canon}._id  AND votes.user_id=?   
+                                    LEFT JOIN votes
+                                    ON  votes.word_id=${canon}._id and votes.project_id=?  AND votes.user_id=? 
+                                    LEFT JOIN gloss 
+                                    ON votes.gloss_id=gloss._id  
+        LEFT JOIN project_roles
+        ON votes.user_id = project_roles.user_id     
         WHERE 
             (vote is null OR vote=0) 
             AND 
@@ -494,15 +513,18 @@ GROUP BY
         ORDER BY ${canon}._id ${orderDirection} 
         LIMIT 1;`;
 
-            // console.log(query, [project_id, project_id, user_id, frequency_threshold.toString(), startingPosition.toString()]);
-
-            const [rows] = await this.connection.query<RowDataPacket[]>(query, [project_id, project_id, user_id, frequency_threshold.toString(), startingPosition.toString()]);
+            const [rows] = await this.connection.query<RowDataPacket[]>(query, [project_id, user_id, frequency_threshold.toString(), startingPosition.toString()]);
             if (rows.length === 0) {
-                return InternalFailure(`No data returned for user ${user_id} in project ${project_id} starting at ${startingPosition} in direction ${direction} with exclusivity me and frequency threshold ${frequency_threshold}`);
+                console.log(query);
+                const msg = `No data returned for user ${user_id} in project ${project_id} starting at ${startingPosition} in direction ${direction} with exclusivity me and frequency threshold ${frequency_threshold}`;
+                console.error(msg);
+                return InternalFailure(msg);
             }
             const ref = VerseReference.fromString(rows[0].reference);
 
             if (ref === undefined) {
+                console.log(query);
+                console.error(`Bad reference returned for user ${user_id} in project ${project_id} starting at ${startingPosition} in direction ${direction} with exclusivity me and frequency threshold ${frequency_threshold}`);
                 return InternalFailure(`Bad reference returned for user ${user_id} in project ${project_id} starting at ${startingPosition} in direction ${direction} with exclusivity me and frequency threshold ${frequency_threshold}`);
             }
             return ref;
@@ -520,10 +542,10 @@ GROUP BY
             const canon = startingPosition.canon.toLowerCase();
 
             const query = `SELECT ${canon}.reference ,sum( ifnull(vote,0) ) as vote_count FROM ${canon}
-                                LEFT JOIN gloss
-                                ON gloss.word_id=${canon}._id and gloss.project_id=? 
-                                LEFT JOIN votes
-                                ON votes.gloss_id=gloss._id  
+                                    LEFT JOIN votes
+                                    ON  votes.word_id=${canon}._id and votes.project_id=?  
+                                    LEFT JOIN gloss 
+                                    ON votes.gloss_id=gloss._id  
                                 left join project_roles
                                 on project_roles.user_id = votes.user_id and project_roles.project_id=? and project_roles.user_role != 'disabled'
                             WHERE
@@ -536,16 +558,20 @@ GROUP BY
                             limit 1
                         ;`;
 
-            // console.log(query, [project_id, project_id, frequency_threshold.toString(), startingPosition.toString()]);
+            // console.log(query);
 
             const [rows] = await this.connection.query<RowDataPacket[]>(query, [project_id, project_id, frequency_threshold.toString(), startingPosition.toString()]);
             if (rows.length === 0) {
-                return InternalFailure(`No data returned for user ${user_id} in project ${project_id} starting at ${startingPosition} in direction ${direction} with exclusivity anyone and frequency threshold ${frequency_threshold}`);
+                const msg = `No data returned for user ${user_id} in project ${project_id} starting at ${startingPosition} in direction ${direction} with exclusivity anyone and frequency threshold ${frequency_threshold}`;
+                console.error(msg);
+                return InternalFailure(msg);
             }
             const ref = VerseReference.fromString(rows[0].reference);
 
             if (ref === undefined) {
-                return InternalFailure(`Bad reference returned for user ${user_id} in project ${project_id} starting at ${startingPosition} in direction ${direction} with exclusivity anyone and frequency threshold ${frequency_threshold}`);
+                const msg = `Bad reference returned for user ${user_id} in project ${project_id} starting at ${startingPosition} in direction ${direction} with exclusivity anyone and frequency threshold ${frequency_threshold}`;
+                console.error(msg);
+                return InternalFailure(msg);
             }
             return ref;
         } catch (err) {
@@ -573,9 +599,9 @@ GROUP BY
 
     async updateGloss(user_id: UserId, gso: GlossSendObject): Promise<boolean> {
         try {
-            const hasPower = await this.userHasPowerOverGloss(user_id, gso.gloss_id);
+            const hasPower = await this.userHasPowerOverGloss(user_id, gso.annotationObject.gloss_id);
             if (hasPower) {
-                const [result] = await this.connection.execute<mysql.ResultSetHeader>(`update gloss set gloss=? where _id=?;`, [JSON.stringify(gso.annotationObject), gso.gloss_id]);
+                const [result] = await this.connection.execute<mysql.ResultSetHeader>(`update gloss set gloss=? where _id=?;`, [JSON.stringify(gso.annotationObject), gso.annotationObject.gloss_id]);
                 return result.affectedRows > 0;
             } else {
                 return Failure(403, "User is not a power user in this project.");
@@ -667,9 +693,9 @@ GROUP BY
     async checkForMissingGlosses(project: ProjectConfiguration, bid: BookIdentifier): Promise<string[]> {
         const canon = bid.canon.toLowerCase(); /// in Linux, MariaDB table names can be case sensitive
         const queryString = `SELECT ${canon}.reference FROM ${canon} 
-                                        LEFT JOIN gloss 
-                                        ON ${canon}._id = gloss.word_id AND gloss.project_id = ?
-                                        LEFT JOIN votes
+                                    LEFT JOIN votes
+                                        ON nt._id = votes.word_id  AND votes.project_id = ? 
+                                    LEFT JOIN gloss 
                                         ON gloss._id = votes.gloss_id 
                                     WHERE 
                                         ${canon}.reference LIKE '${canon} ${bid.book}%' 
@@ -734,12 +760,12 @@ GROUP BY
 IF( count(from_word_id) = 0, JSON_ARRAY(),
 JSON_ARRAYAGG( DISTINCT JSON_OBJECT('from_word_id', from_word_id, 'to_word_id', to_word_id, 'markdown', phrase_gloss.markdown) )) AS phrasalGlosses
 FROM ot 
-                        LEFT JOIN gloss 
-                        ON ot._id = gloss.word_id AND gloss.project_id = ?
                         LEFT JOIN votes
+                        ON votes.project_id = ? AND votes.word_id = nt._id
+                        LEFT JOIN gloss 
                         ON gloss._id = votes.gloss_id 
                         LEFT JOIN phrase_gloss 
-                        ON phrase_gloss.from_word_id = ot._id 
+                        ON phrase_gloss.from_word_id = nt._id 
                         AND phrase_gloss.project_id = ? 
                     WHERE 
                         ot.reference LIKE '${bid.canon} ${bid.book}%' 
@@ -753,9 +779,9 @@ FROM ot
             IF( count(from_word_id) = 0, JSON_ARRAY(),
                 JSON_ARRAYAGG( DISTINCT JSON_OBJECT('from_word_id', from_word_id, 'to_word_id', to_word_id, 'markdown', phrase_gloss.markdown) )) AS phrasalGlosses
             FROM nt 
-                        LEFT JOIN gloss 
-                        ON nt._id = gloss.word_id AND gloss.project_id = ?
                         LEFT JOIN votes
+                        ON votes.project_id = ? AND votes.word_id = nt._id
+                        LEFT JOIN gloss 
                         ON gloss._id = votes.gloss_id 
                         LEFT JOIN phrase_gloss 
                         ON phrase_gloss.from_word_id = nt._id 

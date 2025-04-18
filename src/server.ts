@@ -89,11 +89,11 @@ app.post('/joinproject/:project_id', async (req: Request<ProjectIdParams, boolea
 
 /* Verse endpoints */
 
-app.get('/verse/:user_id/:project_id/:frequency_threshold/:startingPosition/:direction/:exclusivity', async (req: Request<SeekVerseParams, VerseReferenceJson>, res: Response) => {
+app.get('/verse/:project_id/:frequency_threshold/:startingPosition/:direction/:exclusivity', async (req: Request<SeekVerseParams, VerseReferenceJson>, res: Response) => {
     await authenticateAndThenCall(req, res, seekVerse);
 });
 
-app.get('/verse/:user_id/:project_id/:reference', async (req: Request<VerseParams, VerseResponse<unknown>>, res: Response) => {
+app.get('/verse/:project_id/:reference', async (req: Request<VerseParams, VerseResponse<unknown>>, res: Response) => {
     const reference = VerseReference.fromString(req.params.reference);
     if (!reference) {
         res.status(400).json(`Invalid verse reference: ${req.params.reference}`);
@@ -112,13 +112,13 @@ app.get('/verse/:user_id/:project_id/:reference', async (req: Request<VerseParam
     await authenticateAndThenCall(req, res, handler);
 });
 
-app.post('/verse/:user_id/:project_id/:reference', async (req: Request<VerseParams, boolean, WrappedBody<UpdateVerseData>>, res: Response) => {
+app.post('/verse/:project_id/:reference', async (req: Request<VerseParams, boolean, WrappedBody<UpdateVerseData>>, res: Response) => {
     await authenticateAndThenCall(req, res, updateVerse);
 });
 
 /* Gloss endpoints */
 
-app.put('/gloss/:gloss_id', async (req: Request<GlossIdParams, boolean, WrappedBody<GlossSendObject>>, res: Response) => {
+app.put('/gloss', async (req: Request<GlossIdParams, boolean, WrappedBody<GlossSendObject>>, res: Response) => {
     await authenticateAndThenCall(req, res, updateGloss);
 });
 

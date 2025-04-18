@@ -65,12 +65,12 @@ describe('Project Endpoints Tests', () => {
         });
     });
 
-    describe('GET /verse/:user_id/:project_id/:reference', () => {
+    describe('GET /verse/:project_id/:reference', () => {
 
         it('should return well-formed Greek data (NT JHN 10:5)', async () => {
             setMockedUser("farhad_ebrahimi");
             const response = await request(app)
-                .get(`/verse/farhad_ebrahimi/test_project/NT JHN 10:5`)
+                .get(`/verse/test_project/NT JHN 10:5`)
                 .set('Content-Type', 'application/json')
                 .set('Authorization', accessTokenFromJson("farhad_ebrahimi"));
 
@@ -82,7 +82,7 @@ describe('Project Endpoints Tests', () => {
         it('should return well-formed Greek data (NT JHN 1:26)', async () => {
             setMockedUser("farhad_ebrahimi");
             const response = await request(app)
-                .get(`/verse/farhad_ebrahimi/test_project/NT JHN 1:26`)
+                .get(`/verse/test_project/NT JHN 1:26`)
                 .set('Content-Type', 'application/json')
                 .set('Authorization', accessTokenFromJson("farhad_ebrahimi"));
 
@@ -95,7 +95,7 @@ describe('Project Endpoints Tests', () => {
 
     let gloss_id = -1;
 
-    describe('POST /verse/:user_id/:project_id/:reference (NT JHN 10:5)', () => {
+    describe('POST /verse/:project_id/:reference (NT JHN 10:5)', () => {
         const ref = VerseReference.fromString("NT JHN 10:5")!;
         const lex_id = 503621; /// for ἀλλοτρίῳ
         const word_id = 556641; /// for ἀλλοτρίῳ
@@ -103,8 +103,7 @@ describe('Project Endpoints Tests', () => {
         it('should accept a new gloss', async () => {
             setMockedUser("farhad_ebrahimi");
             const gso: GlossSendObject = {
-                annotationObject: { type: "word", content: { gloss: "SILLY EXAMPLE" } },
-                gloss_id: -1, // -1 means new gloss
+                annotationObject: { type: "word", content: { gloss: "SILLY EXAMPLE" }, gloss_id: -1 }, // -1 means new gloss
                 votes: ["farhad_ebrahimi"],
                 location: { word_id: word_id, lex_id: lex_id },
             }
@@ -117,7 +116,7 @@ describe('Project Endpoints Tests', () => {
                 hash: "dummy_hash",
             };
             const response = await request(app)
-                .post(`/verse/farhad_ebrahimi/test_project/${ref.toString()}`)
+                .post(`/verse/test_project/${ref.toString()}`)
                 .set('Content-Type', 'application/json')
                 .set('Authorization', accessTokenFromJson("farhad_ebrahimi"))
                 .send(wb);
@@ -128,7 +127,7 @@ describe('Project Endpoints Tests', () => {
         it('which should then have said gloss (NT JHN 10:5)', async () => {
             setMockedUser("farhad_ebrahimi");
             const response = await request(app)
-                .get(`/verse/farhad_ebrahimi/test_project/${ref.toString()}`)
+                .get(`/verse/test_project/${ref.toString()}`)
                 .set('Content-Type', 'application/json')
                 .set('Authorization', accessTokenFromJson("farhad_ebrahimi"));
 
@@ -153,8 +152,7 @@ describe('Project Endpoints Tests', () => {
             setMockedUser("orbadmin");
 
             const gso: GlossSendObject = {
-                annotationObject: { type: "word", content: { gloss: "SILLY EDITED" } },
-                gloss_id: gloss_id,
+                annotationObject: { type: "word", content: { gloss: "SILLY EDITED" }, gloss_id: gloss_id },
                 votes: ["farhad_ebrahimi"],
                 location: { word_id: word_id, lex_id: lex_id },
             }
@@ -164,7 +162,7 @@ describe('Project Endpoints Tests', () => {
             };
 
             const response = await request(app)
-                .put(`/gloss/${gloss_id}`)
+                .put(`/gloss`)
                 .set('Content-Type', 'application/json')
                 .set('Authorization', accessTokenFromJson("orbadmin"))
                 .send(wb);
@@ -174,7 +172,7 @@ describe('Project Endpoints Tests', () => {
         it('(so that the underlying data will not have changed)', async () => {
             setMockedUser("farhad_ebrahimi");
             const response = await request(app)
-                .get(`/verse/farhad_ebrahimi/test_project/${ref.toString()}`)
+                .get(`/verse/test_project/${ref.toString()}`)
                 .set('Content-Type', 'application/json')
                 .set('Authorization', accessTokenFromJson("farhad_ebrahimi"));
 
@@ -197,8 +195,7 @@ describe('Project Endpoints Tests', () => {
             setMockedUser("farhad_ebrahimi");
 
             const gso: GlossSendObject = {
-                annotationObject: { type: "word", content: { gloss: "SILLY EDITED" } },
-                gloss_id: gloss_id,
+                annotationObject: { type: "word", content: { gloss: "SILLY EDITED" }, gloss_id: gloss_id },
                 votes: ["farhad_ebrahimi"],
                 location: { word_id: word_id, lex_id: lex_id },
             }
@@ -208,7 +205,7 @@ describe('Project Endpoints Tests', () => {
             };
 
             const response = await request(app)
-                .put(`/gloss/${gloss_id}`)
+                .put(`/gloss`)
                 .set('Content-Type', 'application/json')
                 .set('Authorization', accessTokenFromJson("farhad_ebrahimi"))
                 .send(wb);
@@ -218,7 +215,7 @@ describe('Project Endpoints Tests', () => {
         it('(so that the underlying data should have changed)', async () => {
             setMockedUser("farhad_ebrahimi");
             const response = await request(app)
-                .get(`/verse/farhad_ebrahimi/test_project/${ref.toString()}`)
+                .get(`/verse/test_project/${ref.toString()}`)
                 .set('Content-Type', 'application/json')
                 .set('Authorization', accessTokenFromJson("farhad_ebrahimi"));
 
@@ -249,7 +246,7 @@ describe('Project Endpoints Tests', () => {
         it('(so that the gloss should still be there)', async () => {
             setMockedUser("farhad_ebrahimi");
             const response = await request(app)
-                .get(`/verse/farhad_ebrahimi/test_project/${ref.toString()}`)
+                .get(`/verse/test_project/${ref.toString()}`)
                 .set('Content-Type', 'application/json')
                 .set('Authorization', accessTokenFromJson("farhad_ebrahimi"));
 
@@ -280,7 +277,7 @@ describe('Project Endpoints Tests', () => {
         it('(so that the gloss should now be gone)', async () => {
             setMockedUser("farhad_ebrahimi");
             const response = await request(app)
-                .get(`/verse/farhad_ebrahimi/test_project/${ref.toString()}`)
+                .get(`/verse/test_project/${ref.toString()}`)
                 .set('Content-Type', 'application/json')
                 .set('Authorization', accessTokenFromJson("farhad_ebrahimi"));
 
