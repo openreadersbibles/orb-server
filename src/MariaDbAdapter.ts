@@ -263,7 +263,7 @@ GROUP BY
             for (let i = 0; i < wordGlossUpdates.length; i++) {
                 if (wordGlossUpdates[i].annotationObject.gloss_id == -1) {
                     const location = wordGlossUpdates[i].location as WordGlossLocation
-                    await this.connection.execute(`INSERT INTO gloss (project_id, gloss,reference, lex_id) VALUES (?,?,?,?);`, [project_id, JSON.stringify(wordGlossUpdates[i].annotationObject), reference_text, location.lex_id]);
+                    await this.connection.execute(`INSERT INTO gloss (project_id, gloss, lex_id) VALUES (?,?,?);`, [project_id, JSON.stringify(wordGlossUpdates[i].annotationObject), location.lex_id]);
                     wordGlossUpdates[i].annotationObject.gloss_id = await this.lastInsertId();
                 }
             }
@@ -339,7 +339,6 @@ ON
 WHERE 
     gloss.project_id = ? 
     and gloss.project_id = votes.project_id
-    AND reference = ?  
     and user_id is not null
 GROUP BY 
     gloss._id,votes.word_id
@@ -351,7 +350,7 @@ ON
 WHERE 
     ot.reference = ?
 GROUP BY 
-    ot._id;`, [project_id, reference.toString(), reference.toString()]);
+    ot._id;`, [project_id, reference.toString()]);
 
             return await this.processIntoVerseResponse<HebrewWordRow>(rows, user_id, project_id, reference, 'ot');
 
@@ -399,7 +398,6 @@ ON
 WHERE 
     gloss.project_id = ? 
     and gloss.project_id = votes.project_id
-    AND reference = ?  
     and user_id is not null
 GROUP BY 
     gloss._id,votes.word_id
@@ -411,7 +409,9 @@ ON
 WHERE 
     nt.reference = ? 
 GROUP BY 
-    nt._id;`, [project_id, reference.toString(), reference.toString()]);
+    nt._id;`, [project_id, reference.toString()]);
+
+            console.log(rows[0]);
 
             return await this.processIntoVerseResponse<GreekWordRow>(rows, user_id, project_id, reference, 'nt');
 
