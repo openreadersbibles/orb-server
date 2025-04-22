@@ -12,7 +12,6 @@ export async function updateVerse(req: Request<VerseParams, boolean, WrappedBody
         return adapter.updateVerse(
             userInfo.username,
             req.body.body,
-            req.params.project_id,
-            req.params.reference)
+            req.params.project_id)
     });
 }

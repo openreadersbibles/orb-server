@@ -83,3 +83,5 @@ npx jest verse.test.ts
 
 npx jest gloss.test.ts
 
+
+npx jest phrasegloss.test.ts

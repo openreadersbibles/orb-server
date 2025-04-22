@@ -56,9 +56,6 @@ describe('User profile Tests', () => {
                 .set('Content-Type', 'application/json')
                 .set('Authorization', accessTokenFromJson("farhad_ebrahimi"));
 
-            // console.log(response.body);
-
-
             expect(response.status).toBe(200);
             const parsedJson = JSON.parse(response.body);
             UserProfileRowSchema.parse(parsedJson);

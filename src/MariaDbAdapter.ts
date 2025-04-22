@@ -165,7 +165,7 @@ GROUP BY
             await this.connection.query<RowDataPacket[]>("DELETE FROM `gloss` WHERE project_id=?;", [project_id]);
             await this.connection.query<RowDataPacket[]>("DELETE FROM `phrase_gloss` WHERE project_id=?;", [project_id]);
             await this.connection.query<RowDataPacket[]>("DELETE FROM `votes` WHERE gloss_id NOT IN ( SELECT _id FROM gloss );", [project_id]);
-            await this.connection.query<RowDataPacket[]>("DELETE FROM `phrase_gloss_votes` WHERE phrase_gloss_id NOT IN ( SELECT _id FROM gloss );", [project_id]);
+            await this.connection.query<RowDataPacket[]>("DELETE FROM `phrase_gloss_votes` WHERE phrase_gloss_id NOT IN ( SELECT _id FROM phrase_gloss );", [project_id]);
             return true;
         } catch (err) {
             console.error(err);
@@ -251,7 +251,7 @@ GROUP BY
         }
     }
 
-    async updateVerse(user_id: UserId, data: UpdateVerseData, project_id: ProjectId, reference_text: string): Promise<boolean> {
+    async updateVerse(user_id: UserId, data: UpdateVerseData, project_id: ProjectId): Promise<boolean> {
         const wordGlossUpdates = data.word_gloss_updates;
         const phraseGlossUpdates = data.phrase_gloss_updates;
 
@@ -282,7 +282,7 @@ GROUP BY
                     const location = phraseGlossUpdates[i].location as unknown as PhraseGlossLocationObject;
                     /// phrase-level glosses are always just markdown annotation
                     const annotation = phraseGlossUpdates[i]?.annotationObject as { type: "markdown"; content: MarkdownAnnotationContent; };
-                    await this.connection.execute(`INSERT INTO phrase_gloss (from_word_id, to_word_id, project_id, markdown,reference) VALUES (?,?,?,?,?);`, [location.from_word_id, location.to_word_id, project_id, annotation.content.markdown, reference_text]);
+                    await this.connection.execute(`INSERT INTO phrase_gloss (from_word_id, to_word_id, project_id, markdown) VALUES (?,?,?,?);`, [location.from_word_id, location.to_word_id, project_id, annotation.content.markdown]);
                     phraseGlossUpdates[i].annotationObject.gloss_id = await this.lastInsertId();
                 }
             }
@@ -411,8 +411,6 @@ WHERE
 GROUP BY 
     nt._id;`, [project_id, reference.toString()]);
 
-            console.log(rows[0]);
-
             return await this.processIntoVerseResponse<GreekWordRow>(rows, user_id, project_id, reference, 'nt');
 
         } catch (error) {
@@ -424,7 +422,7 @@ GROUP BY
 
     private async processIntoVerseResponse<T extends WordRow>(rows: RowDataPacket[], user_id: UserId, project_id: ProjectId, reference: VerseReference, databaseTable: 'ot' | 'nt'): Promise<VerseResponse<T>> {
         const glossSuggestions = await this.getWordGlosses(project_id, reference, databaseTable);
-        const phraseGlosses = await this.getPhraseGlosses(user_id, project_id, reference);
+        const phraseGlosses = await this.getPhraseGlosses(project_id, reference);
         const words = rows.map((row) => {
             row.votes = JSON.parse(row.votes);
             return row as T;
@@ -440,23 +438,23 @@ GROUP BY
     async getWordGlosses(project_id: ProjectId, reference: VerseReference, dataTableName: 'nt' | 'ot'): Promise<SuggestionRow[]> {
         try {
             const [rows] = await this.connection.query<RowDataPacket[]>(`
-                SELECT 
-                    lex_id,
-                    JSON_ARRAYAGG(DISTINCT JSON_SET(gloss, '$.gloss_id', _id)) AS suggestions
-                FROM 
-                    gloss
-                WHERE 
-                    project_id = ? 
-                    AND lex_id IN (
-                        SELECT 
-                            lex_id 
-                        FROM 
-                            ${dataTableName} 
-                        WHERE 
-                            reference = ?
-                    )
-                GROUP BY 
-                    lex_id;
+SELECT 
+    lex_id,
+    JSON_ARRAYAGG(DISTINCT JSON_SET(gloss, '$.gloss_id', _id)) AS suggestions
+FROM 
+    gloss
+WHERE 
+    project_id = ? 
+    AND lex_id IN (
+        SELECT 
+            lex_id 
+        FROM 
+            ${dataTableName} 
+        WHERE 
+            reference = ?
+    )
+GROUP BY 
+    lex_id;
                     `, [project_id, reference.toString()]);
             return rows.map((row) => {
                 return {
@@ -470,10 +468,39 @@ GROUP BY
         }
     }
 
-    async getPhraseGlosses(user_id: UserId, project_id: ProjectId, reference: VerseReference): Promise<PhraseGlossRow[]> {
+    async getPhraseGlosses(project_id: ProjectId, reference: VerseReference): Promise<PhraseGlossRow[]> {
         try {
-            const [rows] = await this.connection.query<RowDataPacket[]>(`SELECT _id AS phrase_gloss_id,from_word_id,to_word_id,markdown,SUM(IFNULL(vote,0)) AS votes,(SELECT phrase_gloss_id FROM phrase_gloss_votes WHERE user_id=? AND vote=1 AND phrase_gloss_id=phrase_gloss._id) AS myVote FROM phrase_gloss LEFT JOIN phrase_gloss_votes ON phrase_gloss._id=phrase_gloss_votes.phrase_gloss_id  WHERE project_id=? AND reference=? GROUP BY _id ORDER BY votes DESC;`, [user_id, project_id, reference.toString()]);
-            return rows as PhraseGlossRow[];
+            const [rows] = await this.connection.query<RowDataPacket[]>(`
+SELECT 
+    _id AS phrase_gloss_id,
+    from_word_id,
+    to_word_id,
+    markdown,
+    JSON_ARRAYAGG(user_id) as votes
+FROM 
+    phrase_gloss
+LEFT JOIN 
+    phrase_gloss_votes 
+ON 
+    phrase_gloss._id = phrase_gloss_votes.phrase_gloss_id
+WHERE 
+    project_id = ? 
+    and from_word_id in (select _id from ${reference.canon.toLowerCase()} where reference = ?)
+    and vote = 1
+GROUP BY 
+    _id
+ORDER BY 
+    votes DESC;
+`, [project_id, reference.toString()]);
+            return rows.map((row) => {
+                return {
+                    phrase_gloss_id: row.phrase_gloss_id,
+                    from_word_id: row.from_word_id,
+                    to_word_id: row.to_word_id,
+                    markdown: row.markdown,
+                    votes: JSON.parse(row.votes) as string[],
+                };
+            });
         } catch (err) {
             console.error(err);
             return [];
@@ -515,7 +542,7 @@ GROUP BY
 
             const [rows] = await this.connection.query<RowDataPacket[]>(query, [project_id, user_id, frequency_threshold.toString(), startingPosition.toString()]);
             if (rows.length === 0) {
-                console.log(query);
+                console.error(query);
                 const msg = `No data returned for user ${user_id} in project ${project_id} starting at ${startingPosition} in direction ${direction} with exclusivity me and frequency threshold ${frequency_threshold}`;
                 console.error(msg);
                 return InternalFailure(msg);
@@ -523,7 +550,7 @@ GROUP BY
             const ref = VerseReference.fromString(rows[0].reference);
 
             if (ref === undefined) {
-                console.log(query);
+                console.error(query);
                 console.error(`Bad reference returned for user ${user_id} in project ${project_id} starting at ${startingPosition} in direction ${direction} with exclusivity me and frequency threshold ${frequency_threshold}`);
                 return InternalFailure(`Bad reference returned for user ${user_id} in project ${project_id} starting at ${startingPosition} in direction ${direction} with exclusivity me and frequency threshold ${frequency_threshold}`);
             }
@@ -557,8 +584,6 @@ GROUP BY
                             order by ${canon}._id ${orderDirection}
                             limit 1
                         ;`;
-
-            // console.log(query);
 
             const [rows] = await this.connection.query<RowDataPacket[]>(query, [project_id, project_id, frequency_threshold.toString(), startingPosition.toString()]);
             if (rows.length === 0) {
@@ -599,7 +624,7 @@ GROUP BY
 
     async updateGloss(user_id: UserId, gso: GlossSendObject): Promise<boolean> {
         try {
-            const hasPower = await this.userHasPowerOverGloss(user_id, gso.annotationObject.gloss_id);
+            const hasPower = await this.userHasPowerOverGloss(user_id, gso.annotationObject.gloss_id, 'gloss');
             if (hasPower) {
                 const [result] = await this.connection.execute<mysql.ResultSetHeader>(`update gloss set gloss=? where _id=?;`, [JSON.stringify(gso.annotationObject), gso.annotationObject.gloss_id]);
                 return result.affectedRows > 0;
@@ -608,15 +633,31 @@ GROUP BY
             }
         } catch (err) {
             console.error(err);
-            return InternalFailure("Error deleting gloss");
+            return InternalFailure("Error updating gloss");
         }
     }
 
-    async deleteGloss(user_id: UserId, gloss_id: number): Promise<boolean> {
+    async updatePhraseGloss(user_id: UserId, gso: GlossSendObject): Promise<boolean> {
         try {
-            const hasPower = await this.userHasPowerOverGloss(user_id, gloss_id);
+            const hasPower = await this.userHasPowerOverGloss(user_id, gso.annotationObject.gloss_id, 'phrase_gloss');
             if (hasPower) {
-                const [result] = await this.connection.execute<mysql.ResultSetHeader>(`delete from gloss where _id=?;`, [gloss_id]);
+                const markdown = (gso.annotationObject.content as MarkdownAnnotationContent).markdown;
+                const [result] = await this.connection.execute<mysql.ResultSetHeader>(`update phrase_gloss set markdown=? where _id=?;`, [markdown, gso.annotationObject.gloss_id]);
+                return result.affectedRows > 0;
+            } else {
+                return Failure(403, "User is not a power user in this project.");
+            }
+        } catch (err) {
+            console.error(err);
+            return InternalFailure("Error updating phrase gloss");
+        }
+    }
+
+    async deleteGloss(user_id: UserId, gloss_id: number, table: 'gloss' | 'phrase_gloss'): Promise<boolean> {
+        try {
+            const hasPower = await this.userHasPowerOverGloss(user_id, gloss_id, table);
+            if (hasPower) {
+                const [result] = await this.connection.execute<mysql.ResultSetHeader>(`delete from ${table} where _id=?;`, [gloss_id]);
                 return result.affectedRows > 0;
             } else {
                 return Failure(403, "User is not a power user in this project.");
@@ -627,9 +668,9 @@ GROUP BY
         }
     }
 
-    async userHasPowerOverGloss(user_id: UserId, gloss_id: number): Promise<boolean> {
+    async userHasPowerOverGloss(user_id: UserId, gloss_id: number, table: 'gloss' | 'phrase_gloss'): Promise<boolean> {
         try {
-            const [rows] = await this.connection.query<RowDataPacket[]>(`select power_user from gloss left join project_roles on project_roles.project_id=gloss.project_id where _id=? and user_id=?;`, [gloss_id, user_id]);
+            const [rows] = await this.connection.query<RowDataPacket[]>(`select power_user from ${table} left join project_roles on project_roles.project_id=${table}.project_id where _id=? and user_id=?;`, [gloss_id, user_id]);
             if (rows.length === 0) {
                 return false; // No such gloss or user
             }

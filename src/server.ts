@@ -31,6 +31,8 @@ import { UpdateVerseData } from '@models/UpdateVerseData.js';
 import { removeGloss } from './handlers/removeGloss.js';
 import { GlossSendObject } from '@models/GlossSendObject.js';
 import { updateGloss } from './handlers/updateGloss.js';
+import { removePhraseGloss } from './handlers/removePhraseGloss.js';
+import { updatePhraseGloss } from './handlers/updatePhraseGloss.js';
 
 export const app = express();
 
@@ -126,6 +128,16 @@ app.delete('/gloss/:gloss_id', async (req: Request<GlossIdParams, boolean>, res:
     await authenticateAndThenCall(req, res, removeGloss);
 });
 
+/* Phrase Gloss endpoints */
+
+app.put('/phrasegloss', async (req: Request<GlossIdParams, boolean, WrappedBody<GlossSendObject>>, res: Response) => {
+    await authenticateAndThenCall(req, res, updatePhraseGloss);
+});
+
+app.delete('/phrasegloss/:gloss_id', async (req: Request<GlossIdParams, boolean>, res: Response) => {
+    await authenticateAndThenCall(req, res, removePhraseGloss);
+});
+
 /* Publication endpoints */
 
 app.post('/publish', async (req: Request<NoParams, AdHocPublicationResult, WrappedBody<HollowPublicationRequest>>, res: Response) => {
@@ -140,3 +152,4 @@ app.post('/check', async (req: Request<NoParams, CheckResults, HollowPublication
 app.get('/action_status/:repo/:commit_sha', async (req: Request<PublicationActionsParams, AdHocWorkflowRunsResult>, res: Response) => {
     await authenticateAndThenCall(req, res, publicationActionStatus);
 });
+

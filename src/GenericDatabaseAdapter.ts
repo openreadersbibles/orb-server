@@ -24,7 +24,7 @@ export interface GenericDatabaseAdapter {
     createProject(user_id: UserId, project: ProjectConfigurationRow): Promise<boolean>;
     updateProject(user_id: UserId, project: ProjectConfigurationRow): Promise<boolean>;
     removeProject(project_id: ProjectId): Promise<boolean>;
-    updateVerse(user_id: UserId, data: UpdateVerseData, project_id: ProjectId, reference_text: string): Promise<boolean>;
+    updateVerse(user_id: UserId, data: UpdateVerseData, project_id: ProjectId): Promise<boolean>;
     joinProject(user_id: UserId, project_id: ProjectId): Promise<boolean>;
     getUserIds(): Promise<string[]>;
     getProjectIdExists(project_id: ProjectId): Promise<boolean>;
@@ -33,7 +33,8 @@ export interface GenericDatabaseAdapter {
     seekVerse(project_id: ProjectId, user_id: UserId, frequency_threshold: number, startingPosition: VerseReference, direction: "before" | "after", exclusivity: "me" | "anyone"): Promise<VerseReference>;
     getProjectDescriptions(): Promise<ProjectDescription[]>;
     updateGloss(user_id: UserId, gso: GlossSendObject): Promise<boolean>;
-    deleteGloss(user_id: UserId, gloss_id: number): Promise<boolean>;
+    updatePhraseGloss(user_id: UserId, gso: GlossSendObject): Promise<boolean>;
+    deleteGloss(user_id: UserId, gloss_id: number, table: 'gloss' | 'phrase_gloss'): Promise<boolean>;
 
     /* Publication Functions */
     getProjectFromId(project_id: ProjectId): Promise<ProjectConfiguration>;
