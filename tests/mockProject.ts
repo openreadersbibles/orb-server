@@ -1,4 +1,4 @@
-import { ProjectConfigurationRow } from "@models/ProjectConfiguration";
+import { ProjectConfigurationRow } from "@models/ProjectConfigurationRow";
 import { WrappedBody } from "@models/WrappedBody";
 import request from 'supertest';
 import { setMockedUser } from "../src/mockAuthenticate";

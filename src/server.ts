@@ -16,8 +16,6 @@ import { joinProject } from './handlers/joinProject.js';
 import { removeUser } from './handlers/removeUser.js';
 import { createProject } from './handlers/createProject.js';
 import { removeProject } from './handlers/removeProject.js';
-import { UserProfileRow, UserUpdateObject } from '@models/UserProfile.js';
-import { ProjectConfigurationRow, ProjectDescription } from '@models/ProjectConfiguration.js';
 import { VerseReference } from '@models/VerseReference.js';
 import { WrappedBody } from '@models/WrappedBody.js';
 import { GlossIdParams, NoParams, ProjectIdParams, PublicationActionsParams, SeekVerseParams, UserIdParams, VerseParams } from './params.js';
@@ -33,6 +31,10 @@ import { GlossSendObject } from '@models/GlossSendObject.js';
 import { updateGloss } from './handlers/updateGloss.js';
 import { removePhraseGloss } from './handlers/removePhraseGloss.js';
 import { updatePhraseGloss } from './handlers/updatePhraseGloss.js';
+import { ProjectConfigurationRow } from '@models/ProjectConfigurationRow.js';
+import { ProjectDescription } from '@models/ProjectDescription.js';
+import { UserProfileRow } from '@models/UserProfileRow.js';
+import { UserUpdateObject } from '@models/UserUpdateObject.js';
 
 export const app = express();
 

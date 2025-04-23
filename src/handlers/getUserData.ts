@@ -1,6 +1,6 @@
 import { Request } from 'express';
 import { ConnectRunDisconnect } from "../GetDatabaseAdapter.js";
-import { UserProfileRow } from "@models/UserProfile.js";
+import { UserProfileRow } from "@models/UserProfileRow.js";
 import { UserIdParams } from '../params.js';
 
 /// This function has a special behavior that, if the user is not found in the database

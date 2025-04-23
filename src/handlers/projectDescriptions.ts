@@ -1,4 +1,4 @@
-import { ProjectDescription } from "@models/ProjectConfiguration.js";
+import { ProjectDescription } from "@models/ProjectDescription.js";
 import { ConnectRunDisconnect } from "../GetDatabaseAdapter.js";
 
 export async function projectDescriptions() {

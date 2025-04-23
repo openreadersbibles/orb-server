@@ -7,9 +7,10 @@ import { app } from '../src/server.js';
 import { accessTokenFromJson } from './acccessTokenFromJson.js';
 import { Server } from 'http';
 import { WrappedBody } from '@models/WrappedBody.js';
-import { ProjectConfigurationRow, ProjectDescription } from '@models/ProjectConfiguration.js';
-import { ProjectDescriptionSchema } from './type-guards/ProjectConfigurationRowSchema.js';
-import { UserProfile, UserProfileRow } from '@models/UserProfile.js';
+import { UserProfile } from '@models/UserProfile.js';
+import { ProjectConfigurationRow } from '@models/ProjectConfigurationRow.js';
+import { ProjectDescriptionSchema, ProjectDescription } from '@models/ProjectDescription.js';
+import { UserProfileRow } from '@models/UserProfileRow.js';
 
 let server: Server;
 

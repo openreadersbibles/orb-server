@@ -1,7 +1,7 @@
 import { GreekWordRow } from "@models/GreekWordRow.js";
 import { HebrewWordRow } from "@models/HebrewWordRow.js";
-import { ProjectConfiguration, ProjectConfigurationRow, ProjectDescription, ProjectId } from "@models/ProjectConfiguration.js";
-import { UserId, UserProfileRow, UserUpdateObject } from "@models/UserProfile.js";
+import { ProjectConfiguration, ProjectId } from "@models/ProjectConfiguration.js";
+import { UserId } from "@models/UserProfile.js";
 import { VerseReference } from "@models/VerseReference.js";
 import { VerseResponse } from "@models/Verse.js";
 import { BookIdentifier } from "@models/BookIdentifier.js";
@@ -12,6 +12,10 @@ import { Canon } from "@models/Canon";
 import { UbsBook } from "@models/UbsBook";
 import { GlossSendObject } from "@models/GlossSendObject";
 import { UpdateVerseData } from "@models/UpdateVerseData";
+import { ProjectConfigurationRow } from "@models/ProjectConfigurationRow";
+import { ProjectDescription } from "@models/ProjectDescription";
+import { UserProfileRow } from "@models/UserProfileRow";
+import { UserUpdateObject } from "@models/UserUpdateObject";
 
 /// See the implementations in SqliteAdapter.ts and MariaDbAdapter.ts
 

@@ -1,7 +1,7 @@
 import { GenericDatabaseAdapter } from './GenericDatabaseAdapter.js';
 import { BadRequest, Failure, InternalFailure } from '@models/ReturnValue.js';
-import { UserId, UserProfileRow, UserUpdateObject } from '@models/UserProfile.js';
-import { ProjectConfiguration, ProjectConfigurationRow, ProjectDescription, ProjectId } from '@models/ProjectConfiguration.js';
+import { UserId } from '@models/UserProfile.js';
+import { ProjectConfiguration, ProjectId } from '@models/ProjectConfiguration.js';
 import mysql, { RowDataPacket } from 'mysql2/promise';
 import { VerseReference } from '@models/VerseReference.js';
 import { HebrewWordRow } from '@models/HebrewWordRow.js';
@@ -23,6 +23,10 @@ import { WordGlossLocationObject } from '@models/WordGlossLocationObject.js';
 import { PhraseGlossLocationObject } from '@models/PhraseGlossLocationObject.js';
 import { UpdateVerseData } from '@models/UpdateVerseData.js';
 import { WordRow } from '@models/WordRow.js';
+import { ProjectConfigurationRow } from '@models/ProjectConfigurationRow.js';
+import { ProjectDescription } from '@models/ProjectDescription.js';
+import { UserProfileRow } from '@models/UserProfileRow.js';
+import { UserUpdateObject } from '@models/UserUpdateObject.js';
 
 export class MariaDbAdapter implements GenericDatabaseAdapter {
     private connection!: mysql.Connection;
