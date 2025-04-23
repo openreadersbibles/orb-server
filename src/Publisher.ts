@@ -205,6 +205,7 @@ export class Publisher {
         const cssContentSource = this._request.configuration.css_template;
         const cssContent = cssContentSource
             .replace(/__BIBLICAL_FONT__/g, this.request.configuration.publicationBiblicalFont)
+            .replace(/__LAYOUT_DIRECTION__/g, this.request.project.layout_direction)
             .replace(/__PROJECT_FONT__/g, this.request.configuration.publicationProjectFont);
         return cssContent;
     }
