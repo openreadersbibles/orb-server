@@ -10,6 +10,7 @@ export async function updateUser(req: Request<UserIdParams, boolean, WrappedBody
     returnValueConfig.hash = req.body.hash;
     const parseResult = UserUpdateObjectSchema.safeParse(req.body.body);
     if (!parseResult.success) {
+        console.error("Invalid user update data", parseResult.error.format());
         return Failure(400, "Invalid user update data");
     } else {
         return await ConnectRunDisconnect<boolean>((adapter) => {
