@@ -739,7 +739,7 @@ ORDER BY
         const canon = bid.canon.toLowerCase(); /// in Linux, MariaDB table names can be case sensitive
         const queryString = `SELECT ${canon}.reference FROM ${canon} 
                                     LEFT JOIN votes
-                                        ON nt._id = votes.word_id  AND votes.project_id = ? 
+                                        ON ${canon}._id = votes.word_id  AND votes.project_id = ? 
                                     LEFT JOIN gloss 
                                         ON gloss._id = votes.gloss_id 
                                     WHERE 
@@ -806,11 +806,11 @@ IF( count(from_word_id) = 0, JSON_ARRAY(),
 JSON_ARRAYAGG( DISTINCT JSON_OBJECT('from_word_id', from_word_id, 'to_word_id', to_word_id, 'markdown', phrase_gloss.markdown) )) AS phrasalGlosses
 FROM ot 
                         LEFT JOIN votes
-                        ON votes.project_id = ? AND votes.word_id = nt._id
+                        ON votes.project_id = ? AND votes.word_id = ot._id
                         LEFT JOIN gloss 
                         ON gloss._id = votes.gloss_id 
                         LEFT JOIN phrase_gloss 
-                        ON phrase_gloss.from_word_id = nt._id 
+                        ON phrase_gloss.from_word_id = ot._id 
                         AND phrase_gloss.project_id = ? 
                     WHERE 
                         ot.reference LIKE '${bid.canon} ${bid.book}%' 
