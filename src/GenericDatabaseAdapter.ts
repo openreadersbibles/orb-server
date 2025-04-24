@@ -16,6 +16,7 @@ import { ProjectConfigurationRow } from "@models/ProjectConfigurationRow";
 import { ProjectDescription } from "@models/ProjectDescription";
 import { UserProfileRow } from "@models/UserProfileRow";
 import { UserUpdateObject } from "@models/UserUpdateObject";
+import { StatsSummary } from "@models/StatsSummary";
 
 /// See the implementations in SqliteAdapter.ts and MariaDbAdapter.ts
 
@@ -39,6 +40,7 @@ export interface GenericDatabaseAdapter {
     updateGloss(user_id: UserId, gso: GlossSendObject): Promise<boolean>;
     updatePhraseGloss(user_id: UserId, gso: GlossSendObject): Promise<boolean>;
     deleteGloss(user_id: UserId, gloss_id: number, table: 'gloss' | 'phrase_gloss'): Promise<boolean>;
+    getStats(project_id: ProjectId, canon: Canon, book?: UbsBook): Promise<StatsSummary>;
 
     /* Publication Functions */
     getProjectFromId(project_id: ProjectId): Promise<ProjectConfiguration>;

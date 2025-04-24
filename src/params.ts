@@ -1,3 +1,5 @@
+import { CanonSchema } from "@models/Canon.js";
+import { UbsBookSchema } from "@models/UbsBook.js";
 import { ParamsDictionary } from "express-serve-static-core";
 import { z } from "zod";
 
@@ -11,6 +13,13 @@ export const GlossIdParamsSchema = z.object({
 export type GlossIdParams = ParamsDictionary & z.infer<typeof GlossIdParamsSchema>;
 
 export type ProjectIdParams = Record<'project_id', string>;
+
+export const StatsParamsSchema = z.object({
+    project_id: z.string(),
+    canon: CanonSchema,
+    book: UbsBookSchema.optional(),
+});
+export type StatsParams = ParamsDictionary & z.infer<typeof StatsParamsSchema>;
 
 export type SeekVerseParams = Record<'project_id' | 'reference' | 'frequency_threshold' | 'startingPosition' | 'direction' | 'exclusivity', string>;
 

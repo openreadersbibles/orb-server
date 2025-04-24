@@ -18,7 +18,7 @@ import { createProject } from './handlers/createProject.js';
 import { removeProject } from './handlers/removeProject.js';
 import { VerseReference } from '@models/VerseReference.js';
 import { WrappedBody } from '@models/WrappedBody.js';
-import { GlossIdParams, NoParams, ProjectIdParams, PublicationActionsParams, SeekVerseParams, UserIdParams, VerseParams } from './params.js';
+import { GlossIdParams, NoParams, ProjectIdParams, PublicationActionsParams, SeekVerseParams, StatsParams, UserIdParams, VerseParams } from './params.js';
 import { VerseResponse } from '@models/Verse.js';
 import { getVerseNT } from './handlers/getVerseNT.js';
 import { getVerseOT } from './handlers/getVerseOT.js';
@@ -35,6 +35,8 @@ import { ProjectConfigurationRow } from '@models/ProjectConfigurationRow.js';
 import { ProjectDescription } from '@models/ProjectDescription.js';
 import { UserProfileRow } from '@models/UserProfileRow.js';
 import { UserUpdateObject } from '@models/UserUpdateObject.js';
+import { StatsSummary } from '@models/StatsSummary.js';
+import { getStats } from './handlers/getStats.js';
 
 export const app = express();
 
@@ -155,3 +157,12 @@ app.get('/action_status/:repo/:commit_sha', async (req: Request<PublicationActio
     await authenticateAndThenCall(req, res, publicationActionStatus);
 });
 
+/* Stats endpoints */
+
+app.get('/stats/:project_id/:canon/:book', async (req: Request<StatsParams, StatsSummary>, res: Response) => {
+    await authenticateAndThenCall(req, res, getStats);
+});
+
+app.get('/stats/:project_id/:canon', async (req: Request<StatsParams, StatsSummary>, res: Response) => {
+    await authenticateAndThenCall(req, res, getStats);
+});

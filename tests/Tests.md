@@ -26,6 +26,9 @@ Tests of adding and editing glosses.
 ## phrasegloss.test.ts
 Test of adding and editing phrase glosses.
 
+## stats.test.ts
+Tests the `/stats` endpoint. At this point it's tests of the data format, not of the actual statistics.
+
 ## Running them:
 
 ```
@@ -35,4 +38,5 @@ npx jest tests/versereference.test.ts
 npx jest tests/verse.test.ts
 npx jest tests/gloss.test.ts
 npx jest tests/phrasegloss.test.ts
+npx jest tests/stats.test.ts
 ```

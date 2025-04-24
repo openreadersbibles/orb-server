@@ -27,6 +27,7 @@ import { ProjectConfigurationRow } from '@models/ProjectConfigurationRow.js';
 import { ProjectDescription } from '@models/ProjectDescription.js';
 import { UserProfileRow } from '@models/UserProfileRow.js';
 import { UserUpdateObject } from '@models/UserUpdateObject.js';
+import { StatsSummary } from '@models/StatsSummary.js';
 
 export class MariaDbAdapter implements GenericDatabaseAdapter {
     private connection!: mysql.Connection;
@@ -838,6 +839,69 @@ FROM ot
                     GROUP BY nt._id 
                     ORDER BY nt._id ASC;`);
         return new PublicationBook<PublicationGreekWordElementRow>(content);
+    }
+
+    async getStats(project_id: ProjectId, canoncanon: Canon, book?: UbsBook): Promise<StatsSummary> {
+        const canon = canoncanon.toLowerCase(); /// in Linux, MariaDB table names can be case sensitive
+        const project = await this.getProjectFromId(project_id);
+        const frequency_threshold = project.getFrequencyThreshold(canoncanon);
+        // const bookClause = book ? ` and ${canon}.reference LIKE '${canon} ${book}%' ` : ` `;
+        const bookClause = book ? ` and reference LIKE '${canon} ${book}%' ` : ` `;
+
+        let query = `select count(distinct lex_id) as tally from ${canon} where freq_lex < ? ${bookClause}`;
+        let [result] = await this.connection.query<RowDataPacket[]>(query, [frequency_threshold]);
+        if (result.length === 0 || result[0].tally === undefined) {
+            return InternalFailure("Error retrieving stats data");
+        }
+        const totalLexicalItems = result[0].tally as number;
+
+        query = `select count(distinct lex_id) as tally from gloss where project_id=? and lex_id in (select lex_id from ${canon} where 1=1 ${bookClause});`;
+        [result] = await this.connection.query<RowDataPacket[]>(query, [project_id]);
+        if (result.length === 0 || result[0].tally === undefined) {
+            console.error(query);
+            console.error(result);
+            return InternalFailure("Error retrieving stats data");
+        }
+        const lexicalItemsWithGloss = result[0].tally as number;
+
+        query = `select count(_id) as tally from ${canon} where freq_lex < ? ${bookClause};`;
+        [result] = await this.connection.query<RowDataPacket[]>(query, [frequency_threshold]);
+        if (result.length === 0 || result[0].tally === undefined) {
+            console.error(query);
+            console.error(result);
+            return InternalFailure("Error retrieving stats data");
+        }
+        const totalWords = result[0].tally as number;
+
+        query = `select count(distinct word_id) as tally from votes where project_id=? and word_id in (select _id from ${canon} where 1=1 ${bookClause});`;
+        [result] = await this.connection.query<RowDataPacket[]>(query, [project_id]);
+        if (result.length === 0 || result[0].tally === undefined) {
+            console.error(query);
+            console.error(result);
+            return InternalFailure("Error retrieving stats data");
+        }
+        const wordsWithGlosses = result[0].tally as number;
+
+        query = `select count(_id) as tally from ${canon} where _id not in (select word_id from votes where project_id=?) and lex_id in (select lex_id from gloss where project_id=?) ${bookClause};`;
+        [result] = await this.connection.query<RowDataPacket[]>(query, [project_id, project_id]);
+        if (result.length === 0 || result[0].tally === undefined) {
+            console.error(query);
+            console.error(result);
+            return InternalFailure("Error retrieving stats data");
+        }
+        const potentialGlosses = result[0].tally as number;
+
+        return {
+            lexicalItems: {
+                with: lexicalItemsWithGloss,
+                without: totalLexicalItems - lexicalItemsWithGloss
+            },
+            words: {
+                with: wordsWithGlosses,
+                without: totalWords - wordsWithGlosses - potentialGlosses,
+                potential: potentialGlosses
+            },
+        }
     }
 
 }
