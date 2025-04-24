@@ -11,7 +11,7 @@ export async function updateUser(req: Request<UserIdParams, boolean, WrappedBody
     const parseResult = UserUpdateObjectSchema.safeParse(req.body.body);
     if (!parseResult.success) {
         console.error("Invalid user update data", parseResult.error.format());
-        return Failure(400, "Invalid user update data");
+        return Failure(400, `Invalid user update data:  ${parseResult.error}`);
     } else {
         return await ConnectRunDisconnect<boolean>((adapter) => {
             return adapter.updateUser(userInfo.username, parseResult.data);

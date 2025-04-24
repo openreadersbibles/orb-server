@@ -10,7 +10,7 @@ export async function updateProject(req: Request<ProjectIdParams, boolean, Wrapp
     returnValueConfig.hash = req.body.hash;
     const parseResult = ProjectConfigurationRowSchema.safeParse(req.body.body);
     if (!parseResult.success) {
-        return Failure(400, "Invalid project configuration data");
+        return Failure(400, `Invalid project configuration data: ${parseResult.error}`);
     } else {
         return await ConnectRunDisconnect<boolean>((adapter) => {
             return adapter.updateProject(userInfo.username, req.body.body);
