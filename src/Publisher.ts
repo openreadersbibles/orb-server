@@ -61,9 +61,6 @@ export class Publisher {
         const results: CheckResults = {};
         await Promise.all(this.request.books.map(async (bid: BookIdentifier) => {
             const mg = await this._adapter.checkForMissingGlosses(this._request.project, bid);
-            if (mg.length > 0) {
-                logger.error(`Missing glosses for ${bid.toString()}: ${mg.join(', ')}`);
-            }
             results[bid.toString()] = mg;
         }));
         return results;

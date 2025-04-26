@@ -23,7 +23,8 @@ export class GitHubAdapter {
                 'Accept': 'application/vnd.github+json',
                 'Authorization': `Bearer ${process.env['GITHUB_SECRET']}`,
                 'X-GitHub-Api-Version': '2022-11-28'
-            }
+                , timeout: 10000
+            } // 10 seconds timeout
         };
         this._project = project;
     }
@@ -163,6 +164,9 @@ export class GitHubAdapter {
                 sha: commitData.sha,
                 force: true // Force update to handle conflicts
             }, this.config);
+
+            console.log(`Files added successfully to repository ${repo}.`);
+
             return result.data;
         } catch (error) {
             if (axios.isAxiosError(error)) {
