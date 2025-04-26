@@ -740,7 +740,7 @@ ORDER BY
 
     async checkForMissingGlosses(project: ProjectConfiguration, bid: BookIdentifier): Promise<string[]> {
         const canon = bid.canon.toLowerCase(); /// in Linux, MariaDB table names can be case sensitive
-        const queryString = `SELECT ${canon}.reference FROM ${canon} 
+        const queryString = `SELECT DISTINCT ${canon}.reference FROM ${canon} 
                                     LEFT JOIN votes
                                         ON ${canon}._id = votes.word_id  AND votes.project_id = ? 
                                     LEFT JOIN gloss 
@@ -748,7 +748,7 @@ ORDER BY
                                     WHERE 
                                         ${canon}.reference LIKE '${canon} ${bid.book}%' 
                                         AND ${canon}.freq_lex < ?	
-                                    GROUP BY ${canon}.reference 
+                                    GROUP BY ${canon}._id 
                                     HAVING SUM(IFNULL(vote,0)) < 1 OR SUM(IFNULL(vote,0)) IS NULL
                                     ORDER BY ${canon}._id ASC
                                     LIMIT 10;`;
