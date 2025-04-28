@@ -32,6 +32,14 @@ Tests the `/stats` endpoint. At this point it's tests of the data format, not of
 ## publication.test.ts
 Tests of endpoints `/check` and `/publish` (with mocked GitHub actions).
 
+## ot.test.ts
+
+Publication runs for every book of the OT canon, using the glosses from the bhsa project.
+
+## nt.test.ts
+
+Publication runs for every book of the NT canon, using the glosses from the sblgnt-biblebento project.
+
 ## Running them:
 
 ```
@@ -43,4 +51,7 @@ npx jest tests/gloss.test.ts
 npx jest tests/phrasegloss.test.ts
 npx jest tests/stats.test.ts
 npx jest tests/publication.test.ts
+
+clear; npx jest tests/ot.test.ts
+clear; npx jest tests/nt.test.ts
 ```

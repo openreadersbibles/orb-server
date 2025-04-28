@@ -132,6 +132,14 @@ xsltproc  -o bhsa_OT_JON.html tei2html.xsl bhsa_OT_JON.xml
             <xsl:attribute name="class">annotation hidden</xsl:attribute>
             <xsl:attribute name="onclick">goAway(this)</xsl:attribute>
             <xsl:attribute name="dir"><xsl:value-of select="/tei:TEI/@orb:layout-direction"/></xsl:attribute>
+            <xsl:if test="tei:gloss[@type='ketiv-qere']">
+                <span class="ketiv-qere">
+                    <xsl:text>כ </xsl:text>
+                    <xsl:value-of select="tei:gloss[@type='ketiv-qere']/orb:ketiv"/>
+                    <xsl:text> ק </xsl:text>
+                    <xsl:value-of select="tei:gloss[@type='ketiv-qere']/orb:qere"/>
+                </span>
+            </xsl:if>
             <xsl:if test="tei:gloss[@type='parsing']">
                 <span class="parsing"><xsl:apply-templates select="tei:gloss[@type='parsing']/text()"/></span>
             </xsl:if>

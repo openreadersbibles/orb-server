@@ -6,7 +6,9 @@ xsltproc  -o bhsa_OT_JON.tex tei2tex.xsl bhsa_OT_JON.xml
  -->
 <xsl:stylesheet version="1.0"
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-    xmlns:tei="http://www.tei-c.org/ns/1.0" exclude-result-prefixes="tei">
+    xmlns:tei="http://www.tei-c.org/ns/1.0"
+    xmlns:orb="https://openreadersbibles.org/"
+    exclude-result-prefixes="tei">
 
     <xsl:output method="text"/>
 
@@ -42,41 +44,39 @@ xsltproc  -o bhsa_OT_JON.tex tei2tex.xsl bhsa_OT_JON.xml
     </xsl:template>
 
     <xsl:template match="tei:note[@type='gloss']">
-        <xsl:choose>
+        <xsl:text>\FnGenericTemplate{</xsl:text>
+        <xsl:value-of select="@n"/>
+        <xsl:text>}{</xsl:text>
 
-            <xsl:when test="tei:gloss[@type='parsing'] and tei:gloss[@type='lexical-form'] and tei:gloss[@type='gloss']">
-                <xsl:text>\FnParseFormGloss{</xsl:text>
-                <xsl:value-of select="@n"/>
-                <xsl:text>}{</xsl:text>
-                <xsl:apply-templates select="tei:gloss[@type='parsing']"/>
-                <xsl:text>}{</xsl:text>
-                <xsl:apply-templates select="tei:gloss[@type='lexical-form']"/>
-                <xsl:text>}{</xsl:text>
-                <xsl:apply-templates select="tei:gloss[@type='gloss']"/>
-                <xsl:text>}</xsl:text>
-            </xsl:when>
+        <xsl:if test="tei:gloss[@type='ketiv-qere']">
+            <xsl:text>\KetivQere{</xsl:text>
+            <xsl:value-of select="tei:gloss[@type='ketiv-qere']/orb:ketiv"/>
+            <xsl:text>}{</xsl:text>
+            <xsl:value-of select="tei:gloss[@type='ketiv-qere']/orb:qere"/>
+            <xsl:text>} </xsl:text>
+        </xsl:if>
+        
+        <xsl:if test="tei:gloss[@type='parsing']">
+            <xsl:text>\Parse{</xsl:text>
+            <xsl:apply-templates select="tei:gloss[@type='parsing']"/>
+            <xsl:text>} </xsl:text>
+        </xsl:if>
+        
+        <xsl:if test="tei:gloss[@type='lexical-form']">
+            <xsl:text>\Form{</xsl:text>
+            <xsl:apply-templates select="tei:gloss[@type='lexical-form']"/>
+            <xsl:text>} </xsl:text>
+        </xsl:if>
 
-            <xsl:when test="tei:gloss[@type='lexical-form'] and tei:gloss[@type='gloss']">
-                <xsl:text>\FnFormGloss{</xsl:text>
-                <xsl:value-of select="@n"/>
-                <xsl:text>}{</xsl:text>
-                <xsl:apply-templates select="tei:gloss[@type='lexical-form']"/>
-                <xsl:text>}{</xsl:text>
-                <xsl:apply-templates select="tei:gloss[@type='gloss']"/>
-                <xsl:text>}</xsl:text>
-            </xsl:when>
+        <xsl:if test="tei:gloss[@type='gloss']">
+            <xsl:text>\Gloss{</xsl:text>
+            <xsl:apply-templates select="tei:gloss[@type='gloss']"/>
+            <xsl:text>} </xsl:text>
+        </xsl:if>
 
-            <xsl:when test="tei:gloss[@type='parsing']">
-                <xsl:text>\FnParse{</xsl:text>
-                <xsl:value-of select="@n"/>
-                <xsl:text>}{</xsl:text>
-                <xsl:apply-templates/>
-                <xsl:text>}</xsl:text>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:message>Unexpected note format</xsl:message>
-            </xsl:otherwise>
-        </xsl:choose>
+        <xsl:text>}</xsl:text>
+
+
         <!-- output the closing gloss tag, if the tei:w coming before this note matches -->
         <!-- it's done this way so that the phrasal gloss wraps all of the word-level glosses -->
         <xsl:variable name="id-of-preceding-w" select="preceding-sibling::tei:w[1]/@xml:id"/>
