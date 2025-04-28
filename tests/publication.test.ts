@@ -1,6 +1,6 @@
-jest.mock('../src/GitHubAdapter'); // Automatically uses the mock in __mocks__
-import '../src/mockAuthenticate.js';
-import { setMockedUser } from '../src/mockAuthenticate.js';
+jest.mock('../src/GitHubAdapter');
+jest.mock('../src/authenticate');
+import { setMockedUser } from '../src/__mocks__/authenticate.js';
 
 import request from 'supertest';
 import { app } from '../src/server.js';

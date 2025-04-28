@@ -1,7 +1,10 @@
+jest.mock('../src/GitHubAdapter');
+jest.mock('../src/authenticate');
+import { setMockedUser } from '../src/__mocks__/authenticate.js';
+
 import { ProjectConfigurationRow } from "@models/ProjectConfigurationRow";
 import { WrappedBody } from "@models/WrappedBody";
 import request from 'supertest';
-import { setMockedUser } from "../src/mockAuthenticate";
 import { app } from '../src/server.js';
 import { accessTokenFromJson } from "./acccessTokenFromJson";
 

@@ -15,8 +15,7 @@ export const setMockedUser = (username: string) => {
 };
 
 // Mock the module where authenticateAndThenCall is defined
-jest.mock('../src/authenticate', () => ({
-    authenticate: jest.fn().mockImplementation(async () => {
-        return Promise.resolve(mockedUserInfo);
-    }),
-}));
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export async function authenticate(token: string): Promise<CognitoUserInfoResponse> {
+    return Promise.resolve(mockedUserInfo);
+}

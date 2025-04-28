@@ -1,6 +1,9 @@
+jest.mock('../src/GitHubAdapter');
+jest.mock('../src/authenticate');
+import { setMockedUser } from '../src/__mocks__/authenticate.js';
+
 import { VerseReference } from "@models/VerseReference.js";
 import { GetHebrewVerseResponseSchema, GetNTVerseResponseSchema } from "@models/VerseResponse.js";
-import { setMockedUser } from "../src/mockAuthenticate.js";
 import { app } from "../src/server.js";
 import request from 'supertest';
 import { accessTokenFromJson } from "./acccessTokenFromJson.js";
