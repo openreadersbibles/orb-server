@@ -118,6 +118,8 @@ export class Publisher {
         //     logger.info(`File path: ${file.path}`);
         // });
 
+        console.info(`Adding ${files.length} files to the repository`);
+
         /// Add the files to the repository and create a new commit
         return await this._github.addFilesToRepository(this.request.project.repositoryName, files);
     }
@@ -199,7 +201,9 @@ export class Publisher {
     }
 
     async createStyleCss(): Promise<string> {
-        const cssContentSource = this._request.configuration.css_template;
+        const fileContent = await Publisher.downloadContent(`https://github.com/openreadersbibles/publication-files/raw/refs/heads/main/style.css`)
+
+        const cssContentSource = fileContent + "\n\n/* Begin Custom Template */\n\n" + this._request.configuration.css_template;
         const cssContent = cssContentSource
             .replace(/__BIBLICAL_FONT__/g, this.request.configuration.publicationBiblicalFont)
             .replace(/__LAYOUT_DIRECTION__/g, this.request.project.layout_direction)
