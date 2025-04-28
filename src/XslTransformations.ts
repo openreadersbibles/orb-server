@@ -10,18 +10,18 @@ export class XslTransformations {
     static produceTransformedFiles(files: GitHubFile[], configuration: PublicationConfiguration): GitHubFile[] {
         const htmlFiles = files
             .filter(file => file.path.endsWith('.xml'))
-            .flatMap(file => XslTransformations.produceHtmlForFile(file, configuration));
+            .flatMap(file => XslTransformations.produceHtmlForFile(file));
         const texFiles = files
             .filter(file => file.path.endsWith('.xml'))
             .flatMap(file => XslTransformations.produceTeXForFile(file, configuration));
         return htmlFiles.concat(texFiles);
     }
 
-    static produceHtmlForFile(file: GitHubFile, configuration: PublicationConfiguration): GitHubFile[] {
+    static produceHtmlForFile(file: GitHubFile): GitHubFile[] {
         const newContent = XslTransformations.xslTransformMultiple(file, tei2html);
         const transformedFiles: GitHubFile[] = [];
         for (const key of Object.keys(newContent)) {
-            transformedFiles.push({ path: `${configuration.id}/${key}`, content: newContent[key] });
+            transformedFiles.push({ path: `${key}`, content: newContent[key] });
         }
         return transformedFiles;
     }
@@ -50,7 +50,7 @@ export class XslTransformations {
             .replace(/__NEWFONTFAMILYCOMMAND__/g, biblicalFontCommand)
             .replace(/__FOOTNOTESTYLE__/g, configuration.footnote_style);
 
-        return { path: `${configuration.id}/${newPath}`, content: withLaTeXTemplate };
+        return { path: `${newPath}`, content: withLaTeXTemplate };
     }
 
     static xslTransformMultiple(file: GitHubFile, stylesheetContent: object): { [key: string]: string } {

@@ -138,7 +138,7 @@ export class Publisher {
             files.push({ path: this.dumpFilename(bid), content: JSON.stringify(pb.toJsonObject(), null, 2) });
 
             const tei = pb.toTEI(this._request);
-            files.push({ path: this.teiFilename(bid), content: tei, pb: pb });
+            files.push({ path: this.addPublicationConfigurationFolder(this.teiFilename(bid)), content: tei, pb: pb });
 
             logger.info(`Finished processing ${bid.canon} ${bid.book}. Now files has ${files.length} items.`);
         }));
