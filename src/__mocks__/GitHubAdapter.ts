@@ -6,11 +6,8 @@ import { GitHubFile } from 'src/GitHubAdapter';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export class GitHubAdapter {
-    private _secret: string;
-    private _owner: string = "openreadersbibles";
 
-    constructor(secret: string, project?: any) {
-        this._secret = secret;
+    constructor() {
         // console.info('Mock GitHubAdapter is being used');
     }
 

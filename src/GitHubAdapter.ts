@@ -8,15 +8,13 @@ import { AdHocPublicationResult, AdHocWorkflowRunsResult } from '@models/databas
 export interface GitHubFile { path: string, content: string, pb?: PublicationBook<PublicationGreekWordElementRow | PublicationHebrewWordElementRow> };
 
 export class GitHubAdapter {
-    private _secret: string;
     private _owner: string = "openreadersbibles";
     private config: AxiosRequestConfig;
     private _project: ProjectConfiguration | undefined;
 
     /// making the second argument optional is not awesome, but it allows the class
     /// to be used in instances where the full project is not available
-    constructor(secret: string, project?: ProjectConfiguration) {
-        this._secret = secret;
+    constructor(project?: ProjectConfiguration) {
         this._owner = "openreadersbibles";
         this.config = {
             headers: {

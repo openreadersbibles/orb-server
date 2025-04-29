@@ -40,7 +40,7 @@ export class Publisher {
             return Promise.reject(`Project not found: ${request.project_id}`);
         }
 
-        publisher._github = new GitHubAdapter(process.env['GITHUB_SECRET'] || '', project);
+        publisher._github = new GitHubAdapter(project);
 
         const configuration = project.publicationConfigurations.get(request.publication_configuration_id);
         if (!configuration) {
