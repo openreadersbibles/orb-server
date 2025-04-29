@@ -26,13 +26,16 @@ export async function publish(req: Request<NoParams, AdHocPublicationResult, Wra
         const publisher = await Publisher.createPublisher(adapter, req.body.body);
 
         /// Check to see if any glosses are missing from the specified book
-        const checkForMissingGlossesResult = await publisher.checkAllFilesForMissingGlosses();
-        for (const key in checkForMissingGlossesResult) {
-            if (checkForMissingGlossesResult[key].length > 0) {
-                // logger.info(`Missing glosses for ${key}: ${checkForMissingGlossesResult[key].join(', ')}`);
-                return Failure(400, `Missing glosses for ${key}: ${checkForMissingGlossesResult[key].join(', ')} See the check endpoint for more information.`);
-            }
-        }
+
+        // Experiment: maybe it's enough to warn people about the missing glosses
+
+        // const checkForMissingGlossesResult = await publisher.checkAllFilesForMissingGlosses();
+        // for (const key in checkForMissingGlossesResult) {
+        //     if (checkForMissingGlossesResult[key].length > 0) {
+        //         // logger.info(`Missing glosses for ${key}: ${checkForMissingGlossesResult[key].join(', ')}`);
+        //         return Failure(400, `Missing glosses for ${key}: ${checkForMissingGlossesResult[key].join(', ')} See the check endpoint for more information.`);
+        //     }
+        // }
 
         /// TODO: Check for glosses that are tied for votes
         /// At this point we know that the book is ready
