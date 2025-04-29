@@ -1,7 +1,6 @@
 import { HollowPublicationRequest, PublicationRequest } from '@models/PublicationRequest.js';
 import { PublicationBook } from '@models/publication/PublicationBook.js';
 import { BookIdentifier } from '@models/BookIdentifier.js';
-import path from 'path';
 import { GitHubAdapter, GitHubFile } from './GitHubAdapter.js';
 import { GitHubActionYML } from './GitHubActionYML.js';
 import axios, { ResponseType } from 'axios';
@@ -12,6 +11,7 @@ import { PublicationHebrewWordElementRow } from '@models/publication/Publication
 import { PublicationGreekWordElementRow } from '@models/publication/PublicationGreekWordElementRow.js';
 import { AdHocPublicationResult, CheckResults } from '@models/database-input-output.js';
 import { GenericDatabaseAdapter } from './GenericDatabaseAdapter.js';
+import { GoogleFontsAdapter } from './GoogleFontsAdapter.js';
 
 /// a feature of this case is that _request is not defined until the connect method is called
 export class Publisher {
@@ -89,14 +89,14 @@ export class Publisher {
         }
 
         /// Get the fonts
-        const googleFonts = await this.getGoogleFonts(this.request.configuration.publicationProjectFont);
+        const googleFonts = await GoogleFontsAdapter.getGoogleFonts(this.request.configuration.publicationProjectFont, `${this.request.configuration.id}/`);
         files.push(...googleFonts);
 
         /// Get the biblical font
         if (this.request.configuration.publicationBiblicalFont === 'SBL BibLit') {
             files.push({ path: this.addPublicationConfigurationFolder('fonts/SBL_BLit.ttf'), content: await Publisher.downloadContent(`https://github.com/openreadersbibles/publication-files/raw/refs/heads/main/SBL_BLit.ttf`, 'arraybuffer') });
         } else {
-            const googleFonts = await this.getGoogleFonts(this.request.configuration.publicationBiblicalFont);
+            const googleFonts = await GoogleFontsAdapter.getGoogleFonts(this.request.configuration.publicationBiblicalFont, `${this.request.configuration.id}/`);
             files.push(...googleFonts);
         }
 
@@ -166,18 +166,6 @@ export class Publisher {
 
     protected addPublicationConfigurationFolder(filename: string): string {
         return this.request.configuration.id + '/' + filename;
-    }
-
-    async getGoogleFonts(family: string): Promise<GitHubFile[]> {
-        const urls = await this._adapter.getFontUrlsForFamiliy(family);
-        const promises = urls.map(async (url: string) => {
-            const parsedUrl = new URL(url);
-            const basename = this.addPublicationConfigurationFolder('fonts/' + path.basename(parsedUrl.pathname));
-            const fileContent = await Publisher.downloadContent(url, 'arraybuffer');
-            const ghf: GitHubFile = { path: basename, content: fileContent };
-            return ghf;
-        });
-        return await Promise.all(promises);
     }
 
     static async downloadContent(url: string, responseType: ResponseType = 'text'): Promise<string> {

@@ -14,7 +14,8 @@ module.exports = {
                 MARIADB_PASSWORD: 'SECRET',
                 RDS_DATABASE: 'openreadersbibles',
                 RDS_PORT: 3306,
-                GITHUB_SECRET: 'SECRET'
+                GITHUB_SECRET: 'SECRET',
+                GOOGLE_FONTS_API_SECRET: 'SECRET'
             }
         },
         {
@@ -28,7 +29,8 @@ module.exports = {
                 MARIADB_PASSWORD: 'SECRET',
                 RDS_DATABASE: 'openreadersbibles-dev',
                 RDS_PORT: 3306,
-                GITHUB_SECRET: 'SECRET'
+                GITHUB_SECRET: 'SECRET',
+                GOOGLE_FONTS_API_SECRET: 'SECRET'
             }
         }
     ]
