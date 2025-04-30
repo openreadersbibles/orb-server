@@ -88,7 +88,7 @@ xsltproc  -o bhsa_OT_JON.html tei2html.xsl bhsa_OT_JON.xml
         <ul class="chapters">
             <xsl:for-each select="/tei:TEI/tei:text/tei:body/tei:div[@type='chapter']">
                 <li>
-                    <a href="{concat($filenamebase,'-',@n,'.html')}">
+                    <a href="{concat('../',$filenamebase,'-',@n,'.html')}">
                         <xsl:value-of select="@header"/>
                     </a>
                 </li>
