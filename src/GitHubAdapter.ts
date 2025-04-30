@@ -5,6 +5,10 @@ import { PublicationHebrewWordElementRow } from '@models/publication/Publication
 import { ProjectConfiguration } from '@models/ProjectConfiguration.js';
 import { AdHocPublicationResult, AdHocWorkflowRunsResult } from '@models/database-input-output.js';
 
+import pLimit from 'p-limit';
+
+const limit = pLimit(50);
+
 export interface GitHubFile { path: string, content: string, pb?: PublicationBook<PublicationGreekWordElementRow | PublicationHebrewWordElementRow> };
 
 export class GitHubAdapter {
@@ -12,7 +16,7 @@ export class GitHubAdapter {
     private config: AxiosRequestConfig;
     private _project: ProjectConfiguration | undefined;
 
-    /// making the second argument optional is not awesome, but it allows the class
+    /// making the argument optional is not awesome, but it allows the class
     /// to be used in instances where the full project is not available
     constructor(project?: ProjectConfiguration) {
         this._owner = "openreadersbibles";
@@ -21,7 +25,7 @@ export class GitHubAdapter {
                 'Accept': 'application/vnd.github+json',
                 'Authorization': `Bearer ${process.env['GITHUB_SECRET']}`,
                 'X-GitHub-Api-Version': '2022-11-28'
-                , timeout: 10000
+                , timeout: 1000000
             } // 10 seconds timeout
         };
         this._project = project;
@@ -130,14 +134,22 @@ export class GitHubAdapter {
             const baseTreeSha = refData.object.sha;
 
             // Step 2: Create blobs for each file
-            const blobs = await Promise.all(files.map(async file => {
-                console.info(`Adding file ${file.path} to repository ${repo}...`);
-                const { data: blobData } = await axios.post(`https://api.github.com/repos/${this._owner}/${repo}/git/blobs`, {
-                    content: Buffer.from(file.content).toString('base64'),
-                    encoding: 'base64'
-                }, this.config);
-                return { path: file.path, sha: blobData.sha };
-            }));
+            const blobs = await Promise.all(
+                files.map(file =>
+                    limit(async () => {
+                        console.info(`Adding file ${file.path} to repository ${repo}...`);
+                        const { data: blobData } = await axios.post(
+                            `https://api.github.com/repos/${this._owner}/${repo}/git/blobs`,
+                            {
+                                content: Buffer.from(file.content).toString('base64'),
+                                encoding: 'base64',
+                            },
+                            this.config
+                        );
+                        return { path: file.path, sha: blobData.sha };
+                    })
+                )
+            );
 
             // Step 3: Create a new tree with all blobs
             const { data: treeData } = await axios.post(`https://api.github.com/repos/${this._owner}/${repo}/git/trees`, {
