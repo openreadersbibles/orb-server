@@ -45,3 +45,25 @@ export async function authenticateAndThenCall
         return res.status(401).json("Invalid token");
     }
 };
+
+export async function authenticateAndThenCallWithoutResult
+    <ParamType extends ParamsDictionary, ResultType, RequestType>
+    (req: Request<ParamType, ResultType, RequestType>,
+        res: Response,
+        next: ApiCallHandler<ParamType, ResultType, RequestType>) {
+    const token = req.headers['authorization'] || "";
+    if (!token) {
+        return;
+    }
+
+    try {
+        const userInfo = await authenticate(token);
+        await next(req, res, userInfo);
+
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+        console.error(error);
+        console.error(`Request body: ${JSON.stringify(req.body)}`);
+        console.trace();
+    }
+}
