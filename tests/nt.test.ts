@@ -60,13 +60,13 @@ describe('NT Publication Tests', () => {
 
         });
 
-        // it('should publish an OT book', async () => {
+        // it('should publish an NT book', async () => {
         //     setMockedUser("farhad_ebrahimi");
 
         //     const req: HollowPublicationRequest = {
         //         "books": [
         //             {
-        //                 "book": "MAT",
+        //                 "book": "JHN",
         //                 "canon": "NT"
         //             }
         //         ],
@@ -86,7 +86,7 @@ describe('NT Publication Tests', () => {
         //         .send(wb);
 
         //     expect(response.status).toBe(200);
-        // }, 50000);
+        // }, 500000);
 
     });
 

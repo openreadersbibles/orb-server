@@ -28,19 +28,49 @@ describe('OT Publication Tests', () => {
 
     describe('POST /publish', () => {
 
-        // OT.books.forEach((book) => {
-        //     it(`should publish OT ${book}`, async () => {
+        OT.books.forEach((book) => {
+            it(`should publish OT ${book}`, async () => {
 
+                setMockedUser("farhad_ebrahimi");
+
+                const req: HollowPublicationRequest = {
+                    "books": [
+                        {
+                            "book": book,
+                            "canon": "OT"
+                        }
+                    ],
+                    "project_id": "bhsa",
+                    "publication_configuration_id": "default",
+                    "nopdf": false
+                };
+                const wb: WrappedBody<HollowPublicationRequest> = {
+                    body: req,
+                    hash: "the backend doesn't care about the hash"
+                };
+
+                const response = await request(app)
+                    .post(`/publish`)
+                    .set('Content-Type', 'application/json')
+                    .set('Authorization', accessTokenFromJson("farhad_ebrahimi"))
+                    .send(wb);
+
+                expect(response.status).toBe(200);
+            }, 50000);
+
+        });
+
+        //     it('should publish an OT book', async () => {
         //         setMockedUser("farhad_ebrahimi");
 
         //         const req: HollowPublicationRequest = {
         //             "books": [
         //                 {
-        //                     "book": book,
+        //                     "book": "JON",
         //                     "canon": "OT"
         //                 }
         //             ],
-        //             "project_id": "bhsa",
+        //             "project_id": "farsi",
         //             "publication_configuration_id": "default",
         //             "nopdf": false
         //         };
@@ -57,36 +87,6 @@ describe('OT Publication Tests', () => {
 
         //         expect(response.status).toBe(200);
         //     }, 50000);
-
-        // });
-
-        it('should publish an OT book', async () => {
-            setMockedUser("farhad_ebrahimi");
-
-            const req: HollowPublicationRequest = {
-                "books": [
-                    {
-                        "book": "OBA",
-                        "canon": "OT"
-                    }
-                ],
-                "project_id": "bhsa",
-                "publication_configuration_id": "default",
-                "nopdf": false
-            };
-            const wb: WrappedBody<HollowPublicationRequest> = {
-                body: req,
-                hash: "the backend doesn't care about the hash"
-            };
-
-            const response = await request(app)
-                .post(`/publish`)
-                .set('Content-Type', 'application/json')
-                .set('Authorization', accessTokenFromJson("farhad_ebrahimi"))
-                .send(wb);
-
-            expect(response.status).toBe(200);
-        }, 50000);
 
     });
 
