@@ -17,6 +17,7 @@ import { ProjectDescription } from "@models/ProjectDescription";
 import { UserProfileRow } from "@models/UserProfileRow";
 import { UserUpdateObject } from "@models/UserUpdateObject";
 import { StatsSummary } from "@models/StatsSummary";
+import { PublicationRequest } from "@models/PublicationRequest";
 
 /// See the implementations in SqliteAdapter.ts and MariaDbAdapter.ts
 
@@ -44,7 +45,7 @@ export interface GenericDatabaseAdapter {
 
     /* Publication Functions */
     getProjectFromId(project_id: ProjectId): Promise<ProjectConfiguration>;
-    checkForMissingGlosses(project: ProjectConfiguration, bid: BookIdentifier): Promise<string[]>;
+    checkForMissingGlosses(request: PublicationRequest, bid: BookIdentifier): Promise<string[]>;
     getDatabaseRows<T extends PublicationGreekWordElementRow | PublicationHebrewWordElementRow>(project_id: ProjectId, bid: BookIdentifier, query: string): Promise<BookDumpJson<T>>;
     getCanonicalBookName(canon: Canon, book: UbsBook): Promise<string | undefined>;
     getFontUrlsForFamiliy(family: string): Promise<string[]>;

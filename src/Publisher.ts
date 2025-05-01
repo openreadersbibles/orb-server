@@ -12,6 +12,7 @@ import { PublicationGreekWordElementRow } from '@models/publication/PublicationG
 import { AdHocPublicationResult, CheckResults } from '@models/database-input-output.js';
 import { GenericDatabaseAdapter } from './GenericDatabaseAdapter.js';
 import { GoogleFontsAdapter } from './GoogleFontsAdapter.js';
+import { Canon } from '@models/Canon.js';
 
 /// a feature of this case is that _request is not defined until the connect method is called
 export class Publisher {
@@ -25,13 +26,6 @@ export class Publisher {
     }
 
     static async createPublisher(adapter: GenericDatabaseAdapter, request: HollowPublicationRequest): Promise<Publisher> {
-        /// Check to see if the required fields are present
-        if (request.project_id === undefined
-            || request.books === undefined
-            || request.publication_configuration_id === undefined) {
-            throw "Missing required fields.";
-        }
-
         const publisher = new Publisher(adapter);
 
         /// get the project from the database        
@@ -47,11 +41,20 @@ export class Publisher {
             return Promise.reject(`Publication configuration not found: ${request.publication_configuration_id}`);
         }
 
+        /// Get the frequency thresholds:
+        const thresholds = new Map(project.frequency_thresholds);
+        if (configuration.frequency_thresholds !== undefined) {
+            for (const [canon, threshold] of configuration.frequency_thresholds.entries()) {
+                thresholds.set(canon as Canon, threshold);
+            }
+        }
+
         publisher._request = {
             books: request.books.map(b => BookIdentifier.fromObject(b)).filter(b => b !== undefined) as BookIdentifier[],
             project: project,
             configuration: configuration,
             nopdf: request.nopdf,
+            frequency_thresholds: thresholds
         };
 
         return publisher;
@@ -60,7 +63,7 @@ export class Publisher {
     async checkAllFilesForMissingGlosses(): Promise<CheckResults> {
         const results: CheckResults = {};
         await Promise.all(this.request.books.map(async (bid: BookIdentifier) => {
-            const mg = await this._adapter.checkForMissingGlosses(this._request.project, bid);
+            const mg = await this._adapter.checkForMissingGlosses(this._request, bid);
             results[bid.toString()] = mg;
         }));
         return results;

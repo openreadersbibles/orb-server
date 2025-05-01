@@ -28,6 +28,7 @@ import { ProjectDescription } from '@models/ProjectDescription.js';
 import { UserProfileRow } from '@models/UserProfileRow.js';
 import { UserUpdateObject } from '@models/UserUpdateObject.js';
 import { StatsSummary } from '@models/StatsSummary.js';
+import { PublicationRequest } from '@models/PublicationRequest.js';
 
 export class MariaDbAdapter implements GenericDatabaseAdapter {
     private connection!: mysql.Connection;
@@ -347,6 +348,7 @@ WHERE
     gloss.project_id = ? 
     and gloss.project_id = votes.project_id
     and user_id is not null
+    and vote=1
 GROUP BY 
     gloss._id,votes.word_id
 ORDER BY 
@@ -370,7 +372,8 @@ GROUP BY
 
     async getNTVerse(project_id: ProjectId, user_id: UserId, reference: VerseReference): Promise<VerseResponse<GreekWordRow>> {
         try {
-            const [rows] = await this.connection.query<RowDataPacket[]>(`SELECT 
+            const [rows] = await this.connection.query<RowDataPacket[]>(`
+SELECT 
     _id,
     freq_lex,
     lex_id,
@@ -406,6 +409,7 @@ WHERE
     gloss.project_id = ? 
     and gloss.project_id = votes.project_id
     and user_id is not null
+    and vote=1
 GROUP BY 
     gloss._id,votes.word_id
 ORDER BY 
@@ -416,7 +420,8 @@ ON
 WHERE 
     nt.reference = ? 
 GROUP BY 
-    nt._id;`, [project_id, reference.toString()]);
+    nt._id;
+`, [project_id, reference.toString()]);
 
             return await this.processIntoVerseResponse<GreekWordRow>(rows, user_id, project_id, reference, 'nt');
 
@@ -738,7 +743,7 @@ ORDER BY
         }
     }
 
-    async checkForMissingGlosses(project: ProjectConfiguration, bid: BookIdentifier): Promise<string[]> {
+    async checkForMissingGlosses(request: PublicationRequest, bid: BookIdentifier): Promise<string[]> {
         const canon = bid.canon.toLowerCase(); /// in Linux, MariaDB table names can be case sensitive
         const queryString = `SELECT DISTINCT ${canon}.reference FROM ${canon} 
                                     LEFT JOIN votes
@@ -753,8 +758,8 @@ ORDER BY
                                     ORDER BY ${canon}._id ASC
                                     LIMIT 10;`;
 
-        const frequency_threshold = project.getFrequencyThreshold(bid.canon);
-        const [rows] = await this.connection.query<RowDataPacket[]>(queryString, [project.id, frequency_threshold]);
+        const frequency_threshold = request.frequency_thresholds.get(bid.canon);
+        const [rows] = await this.connection.query<RowDataPacket[]>(queryString, [request.project.project_id, frequency_threshold]);
         return rows.map((row) => row.reference);
     }
 
