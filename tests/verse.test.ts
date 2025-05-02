@@ -388,4 +388,65 @@ describe('Verse Endpoints Tests', () => {
 
     });
 
+    describe('Seeking for a verse at the edge of the canon should return the first verse of the canon', () => {
+
+        it('from the beginning of the OT', async () => {
+            setMockedUser("orbadmin");
+            const response = await request(app)
+                .get(`/verse/bhsa/50/OT GEN 1:2/before/me`)
+                .set('Content-Type', 'application/json')
+                .set('Authorization', accessTokenFromJson("orbadmin"));
+            expect(response.status).toBe(200);
+            const parsedJson = JSON.parse(response.body);
+            VerseReferenceJsonSchema.parse(parsedJson);
+            const ref = VerseReference.fromJson(parsedJson);
+            expect(ref).not.toBe(undefined);
+            expect(ref?.toString()).toBe("OT GEN 1:1");
+        });
+
+        it('from the beginning of the NT', async () => {
+            setMockedUser("orbadmin");
+            const response = await request(app)
+                .get(`/verse/sblgnt-biblebento/30/NT MAT 1:2/before/me`)
+                .set('Content-Type', 'application/json')
+                .set('Authorization', accessTokenFromJson("orbadmin"));
+            expect(response.status).toBe(200);
+            const parsedJson = JSON.parse(response.body);
+            VerseReferenceJsonSchema.parse(parsedJson);
+            const ref = VerseReference.fromJson(parsedJson);
+            expect(ref).not.toBe(undefined);
+            expect(ref?.toString()).toBe("NT MAT 1:1");
+        });
+
+        it('from the end of the OT', async () => {
+            setMockedUser("orbadmin");
+            const response = await request(app)
+                .get(`/verse/bhsa/50/OT MAL 1:1/after/me`)
+                .set('Content-Type', 'application/json')
+                .set('Authorization', accessTokenFromJson("orbadmin"));
+            expect(response.status).toBe(200);
+            const parsedJson = JSON.parse(response.body);
+            VerseReferenceJsonSchema.parse(parsedJson);
+            const ref = VerseReference.fromJson(parsedJson);
+            expect(ref).not.toBe(undefined);
+            expect(ref?.toString()).toBe("OT MAL 3:24");
+        });
+
+        it('from the end of the NT', async () => {
+            setMockedUser("orbadmin");
+            const response = await request(app)
+                .get(`/verse/sblgnt-biblebento/30/NT REV 1:1/after/me`)
+                .set('Content-Type', 'application/json')
+                .set('Authorization', accessTokenFromJson("orbadmin"));
+            expect(response.status).toBe(200);
+            const parsedJson = JSON.parse(response.body);
+            VerseReferenceJsonSchema.parse(parsedJson);
+            const ref = VerseReference.fromJson(parsedJson);
+            expect(ref).not.toBe(undefined);
+            expect(ref?.toString()).toBe("NT REV 22:21");
+        });
+
+
+    });
+
 });

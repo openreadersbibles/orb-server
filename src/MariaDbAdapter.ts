@@ -29,6 +29,7 @@ import { UserProfileRow } from '@models/UserProfileRow.js';
 import { UserUpdateObject } from '@models/UserUpdateObject.js';
 import { StatsSummary } from '@models/StatsSummary.js';
 import { PublicationRequest } from '@models/PublicationRequest.js';
+import { getCanon } from '@models/Canons.js';
 
 export class MariaDbAdapter implements GenericDatabaseAdapter {
     private connection!: mysql.Connection;
@@ -554,10 +555,7 @@ ORDER BY
 
             const [rows] = await this.connection.query<RowDataPacket[]>(query, [project_id, user_id, frequency_threshold.toString(), startingPosition.toString()]);
             if (rows.length === 0) {
-                console.error(query);
-                const msg = `No data returned for user ${user_id} in project ${project_id} starting at ${startingPosition} in direction ${direction} with exclusivity me and frequency threshold ${frequency_threshold}`;
-                console.error(msg);
-                return InternalFailure(msg);
+                return this.boundaryVerse(startingPosition.canon, direction);
             }
             const ref = VerseReference.fromString(rows[0].reference);
 
@@ -599,9 +597,7 @@ ORDER BY
 
             const [rows] = await this.connection.query<RowDataPacket[]>(query, [project_id, project_id, frequency_threshold.toString(), startingPosition.toString()]);
             if (rows.length === 0) {
-                const msg = `No data returned for user ${user_id} in project ${project_id} starting at ${startingPosition} in direction ${direction} with exclusivity anyone and frequency threshold ${frequency_threshold}`;
-                console.error(msg);
-                return InternalFailure(msg);
+                return this.boundaryVerse(startingPosition.canon, direction);
             }
             const ref = VerseReference.fromString(rows[0].reference);
 
@@ -614,6 +610,15 @@ ORDER BY
         } catch (err) {
             console.error(err);
             return InternalFailure("Error seeking verse data");
+        }
+    }
+
+    private boundaryVerse(canon: Canon, direction: "before" | "after"): VerseReference {
+        const canonData = getCanon(canon);
+        if (direction === "before") {
+            return canonData.firstVerseOfCanon();
+        } else {
+            return canonData.lastVerseOfCanon();
         }
     }
 
