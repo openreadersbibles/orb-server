@@ -850,7 +850,6 @@ FROM ot
                     ORDER BY nt._id ASC;`);
         return new PublicationBook<PublicationGreekWordElementRow>(content);
     }
-
     async getStats(project_id: ProjectId, canoncanon: Canon, book?: UbsBook): Promise<StatsSummary> {
         const canon = canoncanon.toLowerCase(); /// in Linux, MariaDB table names can be case sensitive
         const project = await this.getProjectFromId(project_id);
@@ -865,8 +864,8 @@ FROM ot
         }
         const totalLexicalItems = result[0].tally as number;
 
-        query = `select count(distinct lex_id) as tally from gloss where project_id=? and lex_id in (select lex_id from ${canon} where 1=1 ${bookClause});`;
-        [result] = await this.connection.query<RowDataPacket[]>(query, [project_id]);
+        query = `select count(distinct lex_id) as tally from gloss where project_id=? and lex_id in (select lex_id from ${canon} where freq_lex < ? ${bookClause});`;
+        [result] = await this.connection.query<RowDataPacket[]>(query, [project_id, frequency_threshold]);
         if (result.length === 0 || result[0].tally === undefined) {
             console.error(query);
             console.error(result);
@@ -883,8 +882,8 @@ FROM ot
         }
         const totalWords = result[0].tally as number;
 
-        query = `select count(distinct word_id) as tally from votes where project_id=? and word_id in (select _id from ${canon} where 1=1 ${bookClause});`;
-        [result] = await this.connection.query<RowDataPacket[]>(query, [project_id]);
+        query = `select count(distinct word_id) as tally from votes where project_id=? and word_id in (select _id from ${canon} where freq_lex < ? ${bookClause});`;
+        [result] = await this.connection.query<RowDataPacket[]>(query, [project_id, frequency_threshold]);
         if (result.length === 0 || result[0].tally === undefined) {
             console.error(query);
             console.error(result);
@@ -913,5 +912,4 @@ FROM ot
             },
         }
     }
-
 }
