@@ -43,14 +43,14 @@ Publication runs for every book of the NT canon, using the glosses from the sblg
 ## Running them:
 
 ```
-npx jest tests/user.test.ts
-npx jest tests/project.test.ts
-npx jest tests/versereference.test.ts
-npx jest tests/verse.test.ts
-npx jest tests/gloss.test.ts
-npx jest tests/phrasegloss.test.ts
-npx jest tests/stats.test.ts
-npx jest tests/publication.test.ts
+clear; npx jest tests/user.test.ts
+clear; npx jest tests/project.test.ts
+clear; npx jest tests/versereference.test.ts
+clear; npx jest tests/verse.test.ts
+clear; npx jest tests/gloss.test.ts
+clear; npx jest tests/phrasegloss.test.ts
+clear; npx jest tests/stats.test.ts
+clear; npx jest tests/publication.test.ts
 
 clear; npx jest tests/ot.test.ts
 clear; npx jest tests/nt.test.ts
