@@ -2,6 +2,7 @@ import { CognitoUserInfoResponse } from '@models/TimedOauthCredentials.js';
 import { Request, Response } from 'express';
 import { ParamsDictionary } from "express-serve-static-core";
 import { authenticate } from './authenticate.js';
+import logger from './logger.js';
 
 export type ApiCallHandler<ParamType extends ParamsDictionary, ResultType, RequestType> =
     (req: Request<ParamType, ResultType, RequestType>,
@@ -38,6 +39,9 @@ export async function authenticateAndThenCall
                 console.error(error);
                 console.error(`Request body: ${JSON.stringify(req.body)}`);
                 console.trace();
+                logger.error(`Unhandled exception: ${error}`);
+                logger.error(`Request body: ${JSON.stringify(req.body)}`);
+                logger.error(`Trace: ${error.stack}`);
                 return res.status(500).json(`Internal server error`);
             }
         }

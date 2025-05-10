@@ -11,15 +11,15 @@ export async function publish(req: Request<NoParams, AdHocPublicationResult, Wra
     return await ConnectRunDisconnect(async (adapter) => {
         const wrappedBody = WrappedBodySchema.safeParse(req.body);
         if (wrappedBody.success === false) {
-            // console.error(`Invalid request body: ${wrappedBody.error}`);
-            // console.error("Request body", req.body);
+            console.error(`Invalid request body: ${wrappedBody.error}`);
+            console.error("Request body", req.body);
             return Failure(400, `Invalid request body: ${wrappedBody.error}`);
         }
         const body = wrappedBody.data.body;
         const parseResult = HollowPublicationRequestSchema.safeParse(body);
         if (!parseResult.success) {
-            // console.error("Invalid request data", parseResult.error);
-            // console.error("Request body", req.body);
+            console.error("Invalid request data", parseResult.error);
+            console.error("Request body", req.body);
             return Failure(400, `Invalid request data:  ${parseResult.error}`);
         }
 
