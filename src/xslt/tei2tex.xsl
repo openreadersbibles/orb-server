@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="3.0" encoding="UTF-8"?>
 <!-- 
 xsltproc  -o sblgnt-biblebento_NT_1JN.tex tei2tex.xsl sblgnt-biblebento_NT_1JN.xml
 xsltproc  -o farsi_OT_JON.tex tei2tex.xsl farsi_OT_JON.xml
@@ -70,7 +70,7 @@ xsltproc  -o bhsa_OT_JON.tex tei2tex.xsl bhsa_OT_JON.xml
 
         <xsl:if test="tei:gloss[@type='gloss']">
             <xsl:text>\Gloss{</xsl:text>
-            <xsl:apply-templates select="tei:gloss[@type='gloss']"/>
+            <xsl:apply-templates select="tei:gloss[@type='gloss']" mode="gloss"/>
             <xsl:text>} </xsl:text>
         </xsl:if>
 
@@ -81,6 +81,33 @@ xsltproc  -o bhsa_OT_JON.tex tei2tex.xsl bhsa_OT_JON.xml
         <!-- it's done this way so that the phrasal gloss wraps all of the word-level glosses -->
         <xsl:variable name="id-of-preceding-w" select="preceding-sibling::tei:w[1]/@xml:id"/>
         <xsl:apply-templates select="preceding-sibling::tei:span[@to=concat('#',$id-of-preceding-w)]" mode="closing-gloss"/>
+    </xsl:template>
+
+    <xsl:template match="text()" mode="gloss">
+        <xsl:value-of select="."/>
+    </xsl:template>
+
+    <xsl:template match="tei:span[@class]" mode="gloss">
+        <xsl:choose>
+            <xsl:when test="@class='original-language'">
+                <xsl:text>\textmainlanguage{</xsl:text>
+                <xsl:apply-templates/>
+                <xsl:text>}</xsl:text>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:text>\text</xsl:text>
+                <xsl:value-of select="@class"/>
+                <xsl:text>{</xsl:text>
+                <xsl:apply-templates/>
+                <xsl:text>}</xsl:text>                
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+
+    <xsl:template match="tei:i" mode="gloss">
+        <xsl:text>\emph{</xsl:text>
+        <xsl:apply-templates/>
+        <xsl:text>}</xsl:text>
     </xsl:template>
 
     <!-- We trust that tei:span will occur just before the first word of the span -->

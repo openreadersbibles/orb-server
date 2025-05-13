@@ -115,7 +115,6 @@ xsltproc  -o bhsa_OT_JON.html tei2html.xsl bhsa_OT_JON.xml
     </xsl:template>
 
     <xsl:template match="tei:w">
-        <xsl:variable name="id" select="@xml:id"/>
         <xsl:variable name="annotation" select="preceding-sibling::tei:span[@to=concat('#',current()/@xml:id)]"/>
         <span class="wd" xmlns="http://www.w3.org/1999/xhtml">
             <xsl:apply-templates/>
@@ -147,10 +146,35 @@ xsltproc  -o bhsa_OT_JON.html tei2html.xsl bhsa_OT_JON.xml
                 <span class="lexical-form"><xsl:apply-templates select="tei:gloss[@type='lexical-form']/text()"/></span>
             </xsl:if>
             <xsl:if test="tei:gloss[@type='gloss']">
-                <span class="gloss"><xsl:apply-templates select="tei:gloss[@type='gloss']/text()"/></span>
+                <span class="gloss"><xsl:apply-templates select="tei:gloss[@type='gloss']/node()" mode="gloss"/></span>
             </xsl:if>
         </div>
         </span>
+    </xsl:template>
+
+    <xsl:template match="text()" mode="gloss">
+        <xsl:value-of select="."/>
+    </xsl:template>
+
+    <xsl:template match="tei:span[@class]" mode="gloss">
+        <xsl:choose>
+            <xsl:when test="@class='original-language'">
+                <span class="lexical-form" xmlns="http://www.w3.org/1999/xhtml">
+                    <xsl:apply-templates/>
+                </span>
+            </xsl:when>
+            <xsl:otherwise>
+                <span class="{@class}" xmlns="http://www.w3.org/1999/xhtml">
+                    <xsl:apply-templates/>
+                </span>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+
+    <xsl:template match="tei:i" mode="gloss">
+        <i xmlns="http://www.w3.org/1999/xhtml">
+            <xsl:apply-templates/>
+        </i>
     </xsl:template>
 
     <xsl:template match="tei:note[@type='gloss']"></xsl:template>
