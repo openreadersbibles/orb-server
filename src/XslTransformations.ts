@@ -35,11 +35,8 @@ export class XslTransformations {
         }
 
         let biblicalFontCommand = "";
-        if (file.pb.canon == "OT") {
-            biblicalFontCommand = `\\newfontfamily\\hebrewfont[Script=Hebrew]{${configuration.publicationBiblicalFont}}`;
-        } else {
-            biblicalFontCommand = `\\newfontfamily\\greekfont[Script=Greek]{${configuration.publicationBiblicalFont}}`;
-        }
+        biblicalFontCommand += `\\newfontfamily\\hebrewfont[Script=Hebrew]{${configuration.publicationBiblicalFont}}\r\n`;
+        biblicalFontCommand += `\\newfontfamily\\greekfont[Script=Greek]{${configuration.publicationBiblicalFont}}`;
 
         const withLaTeXTemplate = configuration.latex_template
             .replace(/__CONTENT__/g, newContent)

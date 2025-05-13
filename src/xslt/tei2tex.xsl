@@ -90,7 +90,7 @@ xsltproc  -o bhsa_OT_JON.tex tei2tex.xsl bhsa_OT_JON.xml
     <xsl:template match="tei:span[@class]" mode="gloss">
         <xsl:choose>
             <xsl:when test="@class='original-language'">
-                <xsl:text>\textmainlanguage{</xsl:text>
+                <xsl:text>\AsGreekOrHebrew{</xsl:text>
                 <xsl:apply-templates/>
                 <xsl:text>}</xsl:text>
             </xsl:when>
