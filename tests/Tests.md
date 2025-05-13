@@ -54,4 +54,6 @@ clear; npx jest tests/publication.test.ts
 
 clear; npx jest tests/ot.test.ts
 clear; npx jest tests/nt.test.ts
+clear; npx jest tests/minimarkdown.test.ts
+
 ```
