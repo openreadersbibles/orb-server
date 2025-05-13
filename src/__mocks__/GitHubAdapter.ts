@@ -37,7 +37,7 @@ export class GitHubAdapter {
         // console.info(`Mock: Adding files to repository ${repo} on branch ${branch}`);
 
         files.forEach((file) => {
-            const filePath = `/temp/openreadersbibles/${file.path}`;
+            const filePath = `/temp/openreadersbibles/${repo}/${file.path}`;
             // console.info(`Mock: Writing file ${filePath}`);
             fs.mkdirSync(path.dirname(filePath), { recursive: true });
             fs.writeFileSync(filePath, file.content);
