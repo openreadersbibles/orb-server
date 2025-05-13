@@ -58,6 +58,8 @@ Compile the XSL files to JSON format:
 cd ~\Documents\open-readers-bibles\application\orb-server\src
 xslt3 -t -xsl:xslt/tei2html.xsl -export:xslt/tei2html.sef.json -nogo "-ns:##html5"
 xslt3 -t -xsl:xslt/tei2tex.xsl -export:xslt/tei2tex.sef.json -nogo "-ns:##html5"
+
+cd ~\Documents\open-readers-bibles\application\orb-server\src
 "export default $(Get-Content -Raw xslt/tei2html.sef.json)" | Set-Content xslt/tei2html.sef.ts
 "export default $(Get-Content -Raw xslt/tei2tex.sef.json)" | Set-Content xslt/tei2tex.sef.ts
 
