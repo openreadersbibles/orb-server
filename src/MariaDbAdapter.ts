@@ -75,9 +75,9 @@ export class MariaDbAdapter implements GenericDatabaseAdapter {
 FROM 
 	project 
 	LEFT JOIN project_roles ON project.project_id = project_roles.project_id 
-where user_id=?
+where project.project_id in (select project_id from project_roles where user_id=?)
 GROUP BY 
-	project.project_id;`, [user_id]);
+	project.project_id;`, [user_id, user_id]);
 
             // const project_rows = projects.map((row) => { JSON.parse(row.settings) as ProjectConfigurationRow });
             const project_rows: ProjectConfigurationRow[] = [];
