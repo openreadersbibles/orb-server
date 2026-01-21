@@ -23,6 +23,7 @@ export const testProjectData: ProjectConfigurationRow = {
     parsing_formats: {},
     publication_configurations: {},
     numerals: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"],
+    glossSuggestionMode: 'byBinyanOrVoice'
 };
 
 export async function createTestProject(as_user: string) {

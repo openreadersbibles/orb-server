@@ -312,7 +312,8 @@ GROUP BY
 
     async getOTVerse(project_id: ProjectId, user_id: UserId, reference: VerseReference): Promise<VerseResponse<HebrewWordRow>> {
         try {
-            const [rows] = await this.connection.query<RowDataPacket[]>(`SELECT 
+            const [rows] = await this.connection.query<RowDataPacket[]>(`
+SELECT 
     _id,
     freq_lex,
     g_word_utf8,
@@ -338,13 +339,15 @@ LEFT JOIN
     (
         SELECT 
     votes.word_id,
-    JSON_OBJECT('annotationObject',JSON_SET(JSON_REMOVE(gloss, '$.gloss_id'), '$.gloss_id', gloss._id ),'gloss_id',gloss._id,'votes', JSON_ARRAYAGG(user_id) ) as votes 
+    JSON_OBJECT('annotationObject',JSON_SET(JSON_REMOVE(gloss.gloss, '$.gloss_id'), '$.gloss_id', gloss._id, '$.voice', innerOT.vs ),'gloss_id',gloss._id,'votes', JSON_ARRAYAGG(user_id) ) as votes 
 FROM 
     gloss
 LEFT JOIN 
     votes 
 ON 
     votes.gloss_id = gloss._id
+LEFT JOIN 
+	ot innerOT ON innerOT._id = votes.word_id
 WHERE 
     gloss.project_id = ? 
     and gloss.project_id = votes.project_id
@@ -399,13 +402,15 @@ LEFT JOIN
     (
         SELECT 
     votes.word_id,
-    JSON_OBJECT('annotationObject',JSON_SET(JSON_REMOVE(gloss, '$.gloss_id'), '$.gloss_id', gloss._id ),'gloss_id',gloss._id,'votes', JSON_ARRAYAGG(user_id) ) as votes 
+    JSON_OBJECT('annotationObject',JSON_SET(JSON_REMOVE(gloss.gloss, '$.gloss_id'), '$.gloss_id', gloss._id, '$.voice', innerNT.voice  ),'gloss_id',gloss._id,'votes', JSON_ARRAYAGG(user_id) ) as votes 
 FROM 
     gloss
 LEFT JOIN 
     votes 
 ON 
     votes.gloss_id = gloss._id
+LEFT JOIN 
+	nt innerNT ON innerNT._id = votes.word_id
 WHERE 
     gloss.project_id = ? 
     and gloss.project_id = votes.project_id
@@ -449,16 +454,21 @@ GROUP BY
     }
 
     async getWordGlosses(project_id: ProjectId, reference: VerseReference, dataTableName: 'nt' | 'ot'): Promise<SuggestionRow[]> {
+        const voiceColumn = dataTableName == 'nt' ? 'voice' : 'vs';
         try {
             const [rows] = await this.connection.query<RowDataPacket[]>(`
 SELECT 
-    lex_id,
-    JSON_ARRAYAGG(DISTINCT JSON_SET(gloss, '$.gloss_id', _id)) AS suggestions
+    g.lex_id,
+    JSON_ARRAYAGG(DISTINCT JSON_SET(g.gloss, '$.gloss_id', g._id, '$.voice', n.${voiceColumn})) AS suggestions
 FROM 
-    gloss
+    gloss g
+INNER JOIN
+	votes v ON v.gloss_id = g._id
+INNER JOIN
+	${dataTableName} n ON v.word_id = n._id
 WHERE 
-    project_id = ? 
-    AND lex_id IN (
+    g.project_id = ? 
+    AND g.lex_id IN (
         SELECT 
             lex_id 
         FROM 
@@ -467,7 +477,7 @@ WHERE
             reference = ?
     )
 GROUP BY 
-    lex_id;
+    g.lex_id;
                     `, [project_id, reference.toString()]);
             return rows.map((row) => {
                 return {
