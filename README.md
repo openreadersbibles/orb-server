@@ -74,6 +74,8 @@ xslt3 -xsl:xslt/tei2html.xsl -s:bhsa_OT_JON.xml -o:books.html -t
 
 ## Tests
 
+Run these from `~/Documents/open-readers-bibles/application/orb-server/src`.
+
 npx jest verse.test.ts
 
 npx jest gloss.test.ts
