@@ -96,45 +96,7 @@ GROUP BY
             return InternalFailure("Error retrieving user data");
         }
     }
-    /*
-        async getUserData(user_id: UserId): Promise<UserProfileRow> {
-            try {
-                // very strange, but the nested query here introduces an extra set of brackets around the roles array array
-                const [rows] = await this.connection.query<RowDataPacket[]>(`SELECT 
-        user.user_id,
-        user_description,
-        IF(settings IS NULL,JSON_ARRAY(),JSON_ARRAYAGG(settings)) AS projects
-    FROM 
-        user 
-        LEFT JOIN project_roles ON user.user_id = project_roles.user_id
-        LEFT JOIN (
-            SELECT 
-                project.project_id,
-                json_insert(settings, '$.roles', JSON_ARRAYAGG(JSON_OBJECT('user_id', user_id, 'user_role', user_role, 'power_user', power_user))) AS settings
-            FROM 
-                project 
-                LEFT JOIN project_roles ON project.project_id = project_roles.project_id 
-            GROUP BY 
-                project.project_id
-        ) AS combined_project_data ON project_roles.project_id = combined_project_data.project_id
-    WHERE 
-        user.user_id = ? AND settings IS NOT NULL  
-    GROUP BY 
-        user.user_id;`, [user_id]);
-    
-                /// if no user is returned, we'll insert it into the database
-                if (rows.length === 0) {
-                    await this.updateUser(user_id, { user_id: user_id, user_description: "" });
-                    return this.getUserData(user_id);
-                } else {
-                    return rows[0] as UserProfileRow;
-                }
-            } catch (error) {
-                console.error(error);
-                return InternalFailure("Error retrieving user data");
-            }
-        }
-    */
+
     async updateUser(requesting_user_id: UserId, userObject: UserUpdateObject): Promise<boolean> {
         try {
             if (userObject.user_id !== requesting_user_id && requesting_user_id !== "orbadmin") {
