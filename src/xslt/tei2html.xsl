@@ -57,6 +57,7 @@ xsltproc  -o bhsa_OT_JON.html tei2html.xsl bhsa_OT_JON.xml
             <xsl:attribute name="lang"><xsl:value-of select="$biblical-language"/></xsl:attribute>
             <head>
                 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+                <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
                 <title>
                     <xsl:value-of select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:title"/>
                 </title>
@@ -64,6 +65,7 @@ xsltproc  -o bhsa_OT_JON.html tei2html.xsl bhsa_OT_JON.xml
                 <script type="text/javascript" src="script.js"></script>
             </head>
             <body>
+                <div id="container">
                 <h1>
                     <xsl:value-of select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:title"/>
                 </h1>
@@ -79,7 +81,7 @@ xsltproc  -o bhsa_OT_JON.html tei2html.xsl bhsa_OT_JON.xml
                         </xsl:otherwise>    
                     </xsl:choose>
                 </div>
-                
+                </div>
             </body>
         </html>
     </xsl:template>
@@ -107,9 +109,11 @@ xsltproc  -o bhsa_OT_JON.html tei2html.xsl bhsa_OT_JON.xml
 
     <xsl:template match="tei:div[@type='verse']">
         <div class="verse" xmlns="http://www.w3.org/1999/xhtml">
+<!--             
             <xsl:if test="@n != 1">
                 <span class="verse-number"><xsl:value-of select="@local-n"/></span>&#x2009;
-            </xsl:if>
+            </xsl:if> 
+-->            
             <xsl:apply-templates/>
         </div>
     </xsl:template>
@@ -117,7 +121,12 @@ xsltproc  -o bhsa_OT_JON.html tei2html.xsl bhsa_OT_JON.xml
     <xsl:template match="tei:w">
         <xsl:variable name="annotation" select="preceding-sibling::tei:span[@to=concat('#',current()/@xml:id)]"/>
         <span class="wd" xmlns="http://www.w3.org/1999/xhtml">
-            <xsl:apply-templates/>
+            <xsl:if test="position() = 1">
+                <xsl:if test="parent::tei:div/@n != 1">
+                    <span class="verse-number"><xsl:value-of select="parent::tei:div/@local-n"/></span>&#x2009;
+                </xsl:if> 
+            </xsl:if>
+            <span class="txt"><xsl:apply-templates/></span>
             <xsl:apply-templates select="following-sibling::*[1][self::tei:note]" mode="annotation"/>
         </span>
         <xsl:if test="$annotation">
@@ -126,10 +135,11 @@ xsltproc  -o bhsa_OT_JON.html tei2html.xsl bhsa_OT_JON.xml
     </xsl:template>
 
     <xsl:template match="tei:note[@type='gloss']" mode="annotation">
-        <span class="annotation-toggle" onclick="toggleAnnotation(this)" xmlns="http://www.w3.org/1999/xhtml"><xsl:value-of select="@n"/>
-        <div>
+        <span class="annotation-toggle" xmlns="http://www.w3.org/1999/xhtml"><xsl:value-of select="@n"/></span>
+        <!-- <span class="annotation-toggle" onclick="toggleAnnotation(this)" xmlns="http://www.w3.org/1999/xhtml"><xsl:value-of select="@n"/> -->
+        <div xmlns="http://www.w3.org/1999/xhtml">
             <xsl:attribute name="class">annotation hidden</xsl:attribute>
-            <xsl:attribute name="onclick">goAway(this)</xsl:attribute>
+            <!-- <xsl:attribute name="onclick">goAway(this)</xsl:attribute> -->
             <xsl:attribute name="dir"><xsl:value-of select="/tei:TEI/@orb:layout-direction"/></xsl:attribute>
             <xsl:if test="tei:gloss[@type='ketiv-qere']">
                 <span class="ketiv-qere">
@@ -149,7 +159,7 @@ xsltproc  -o bhsa_OT_JON.html tei2html.xsl bhsa_OT_JON.xml
                 <span class="gloss"><xsl:apply-templates select="tei:gloss[@type='gloss']/node()" mode="gloss"/></span>
             </xsl:if>
         </div>
-        </span>
+        
     </xsl:template>
 
     <xsl:template match="text()" mode="gloss">
@@ -180,10 +190,11 @@ xsltproc  -o bhsa_OT_JON.html tei2html.xsl bhsa_OT_JON.xml
     <xsl:template match="tei:note[@type='gloss']"></xsl:template>
 
     <xsl:template match="tei:span">
-        <span class="annotation-toggle" onclick="toggleAnnotation(this)" xmlns="http://www.w3.org/1999/xhtml"><xsl:value-of select="@n"/>
+        <!-- <span class="annotation-toggle" onclick="toggleAnnotation(this)" xmlns="http://www.w3.org/1999/xhtml"><xsl:value-of select="@n"/> -->
+        <span class="annotation-toggle" xmlns="http://www.w3.org/1999/xhtml"><xsl:value-of select="@n"/>
         <div>
             <xsl:attribute name="class">annotation hidden</xsl:attribute>
-            <xsl:attribute name="onclick">goAway(this)</xsl:attribute>
+            <!-- <xsl:attribute name="onclick">goAway(this)</xsl:attribute> -->
             <xsl:attribute name="dir"><xsl:value-of select="/tei:TEI/@orb:layout-direction"/></xsl:attribute>
             <xsl:value-of select="text()"/>
         </div>
