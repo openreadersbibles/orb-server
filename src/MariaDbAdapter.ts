@@ -100,12 +100,12 @@ GROUP BY
     async updateUser(requesting_user_id: UserId, userObject: UserUpdateObject): Promise<boolean> {
         try {
             if (userObject.user_id !== requesting_user_id && requesting_user_id !== "orbadmin") {
-                console.error("User is not allowed to update another user's data", userObject.user_id, requesting_user_id);
+                // console.error("User is not allowed to update another user's data", userObject.user_id, requesting_user_id);
                 return BadRequest("You are not allowed to update that user's data.");
             }
             const [result] = await this.connection.execute<mysql.ResultSetHeader>("REPLACE INTO `user` (user_id,user_description) VALUES (?,?);", [userObject.user_id, userObject.user_description]);
             if (result.affectedRows < 1) {
-                console.error("User was not updated", userObject.user_id, userObject.user_description);
+                // console.error("User was not updated", userObject.user_id, userObject.user_description);
                 return BadRequest("The user was not updated. (Perhaps a bad project id?)");
             }
 
