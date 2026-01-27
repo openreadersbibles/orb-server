@@ -1,6 +1,6 @@
 jest.mock('../src/GitHubAdapter');
 jest.mock('../src/authenticate');
-import { setMockedUser } from '../src/__mocks__/authenticate.js';
+import { setMockedUser } from '../src/MockUser.js';
 
 import request from 'supertest';
 import { app } from '../src/server.js';

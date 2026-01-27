@@ -1,6 +1,6 @@
 jest.mock('../src/GitHubAdapter');
 jest.mock('../src/authenticate');
-import { setMockedUser } from '../src/__mocks__/authenticate.js';
+import { setMockedUser } from '../src/MockUser.js';
 
 import request from 'supertest';
 import { app } from '../src/server.js';
@@ -150,7 +150,7 @@ describe('Verse Endpoints Tests', () => {
         it('and then receive a new gloss for Elijah', async () => {
             setMockedUser("farhad_ebrahimi");
             const gso: GlossSendObject = {
-                annotationObject: { type: "word", content: { gloss: "Elijah" }, gloss_id: -1 }, // -1 means new gloss
+                annotationObject: { type: "word", content: { gloss: "Elijah" }, gloss_id: -1, voice: "NA" }, // -1 means new gloss
                 votes: ["farhad_ebrahimi"],
                 location: { word_id: word_id, lex_id: lex_id },
             }
@@ -180,6 +180,7 @@ describe('Verse Endpoints Tests', () => {
 
             expect(response.status).toBe(200);
             const parsedJson = JSON.parse(response.body);
+            console.log(parsedJson.words[16].votes[0]);
             GetNTVerseResponseSchema.parse(parsedJson);
             const verse = Verse.fromNTVerseResponse(ref, parsedJson);
             /// Elias is the 0-indexed 16th word in the verse
@@ -286,7 +287,7 @@ describe('Verse Endpoints Tests', () => {
         it('first should receive a new gloss for anerchomai', async () => {
             setMockedUser("farhad_ebrahimi");
             const gso: GlossSendObject = {
-                annotationObject: { type: "word", content: { gloss: "شششششش" }, gloss_id: -1 }, // -1 means new gloss
+                annotationObject: { type: "word", content: { gloss: "شششششش" }, gloss_id: -1, voice: "active" }, // -1 means new gloss
                 votes: ["farhad_ebrahimi"],
                 location: { word_id: 552726, lex_id: 503679 },
             }

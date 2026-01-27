@@ -7,7 +7,7 @@ import { accessTokenFromJson } from './acccessTokenFromJson.js';
 import { Server } from 'http';
 import { HollowPublicationRequest } from '@models/PublicationRequest.js';
 import { WrappedBody } from '@models/WrappedBody.js';
-import { setMockedUser } from '../src/__mocks__/authenticate.js';
+import { setMockedUser } from '../src/MockUser.js';
 import { OT } from '@models/Canons.js';
 
 let server: Server;

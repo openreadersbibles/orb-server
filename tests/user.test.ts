@@ -1,6 +1,5 @@
 jest.mock('../src/GitHubAdapter');
 jest.mock('../src/authenticate');
-import { setMockedUser } from '../src/__mocks__/authenticate.js';
 
 import request from 'supertest';
 import { app } from '../src/server.js';
@@ -9,6 +8,7 @@ import { Server } from 'http';
 import { UserUpdateObject } from '@models/UserUpdateObject.js';
 import { WrappedBody } from '@models/WrappedBody.js';
 import { UserProfileRowSchema } from '@models/UserProfileRow.js';
+import { setMockedUser } from '../src/MockUser.js';
 
 let server: Server;
 
@@ -106,6 +106,8 @@ describe('User profile Tests', () => {
 
     describe('Updating the user description', () => {
         it('cannot be done by non-self/non-admin', async () => {
+            setMockedUser("farhad_ebrahimi");
+
             const newData: WrappedBody<UserUpdateObject> = {
                 body: { user_id: new_user.user_id, user_description: new_description },
                 hash: "the backend doesn't care about the hash"

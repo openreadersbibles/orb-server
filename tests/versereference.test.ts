@@ -1,4 +1,3 @@
-import '../src/mockAuthenticate.js';
 import { VerseReference } from '@models/VerseReference.js';
 
 describe('Verse Reference Tests', () => {

@@ -1,6 +1,6 @@
 jest.mock('../src/GitHubAdapter');
 jest.mock('../src/authenticate');
-import { setMockedUser } from '../src/__mocks__/authenticate.js';
+import { setMockedUser } from '../src/MockUser.js';
 
 import request from 'supertest';
 import { app } from '../src/server.js';
@@ -42,7 +42,7 @@ describe('Gloss Endpoints Tests', () => {
         it('should accept a new gloss', async () => {
             setMockedUser("farhad_ebrahimi");
             const gso: GlossSendObject = {
-                annotationObject: { type: "word", content: { gloss: "SILLY EXAMPLE" }, gloss_id: -1 }, // -1 means new gloss
+                annotationObject: { type: "word", content: { gloss: "SILLY EXAMPLE" }, gloss_id: -1, voice: "NA" }, // -1 means new gloss
                 votes: ["farhad_ebrahimi"],
                 location: { word_id: word_id, lex_id: lex_id },
             }
@@ -89,7 +89,7 @@ describe('Gloss Endpoints Tests', () => {
             setMockedUser("orbadmin");
 
             const gso: GlossSendObject = {
-                annotationObject: { type: "word", content: { gloss: "SILLY EDITED" }, gloss_id: gloss_id },
+                annotationObject: { type: "word", content: { gloss: "SILLY EDITED" }, gloss_id: gloss_id, voice: "NA" },
                 votes: ["farhad_ebrahimi"],
                 location: { word_id: word_id, lex_id: lex_id },
             }
@@ -122,7 +122,7 @@ describe('Gloss Endpoints Tests', () => {
             setMockedUser("farhad_ebrahimi");
 
             const gso: GlossSendObject = {
-                annotationObject: { type: "word", content: { gloss: "SILLY EDITED" }, gloss_id: gloss_id },
+                annotationObject: { type: "word", content: { gloss: "SILLY EDITED" }, gloss_id: gloss_id, voice: "NA" },
                 votes: ["farhad_ebrahimi"],
                 location: { word_id: word_id, lex_id: lex_id },
             }
