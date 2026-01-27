@@ -58,3 +58,6 @@ clear; npx jest tests/minimarkdown.test.ts
 
 clear; npx jest tests/adhoc.test.ts
 ```
+
+## Outstanding Issues
+These tests ensure that the queries execute correctly with the (recently added) `corpus` column, but since there are currently no alternate corpora in the database, one couldn't say that the logic has been thoroughly tested.

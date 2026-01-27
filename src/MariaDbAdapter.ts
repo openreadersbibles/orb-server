@@ -30,6 +30,7 @@ import { UserUpdateObject } from '@models/UserUpdateObject.js';
 import { StatsSummary } from '@models/StatsSummary.js';
 import { PublicationRequest } from '@models/PublicationRequest.js';
 import { getCanon } from '@models/Canons.js';
+import { CorpusId, getFallbackCorpus } from '@models/CorpusId.js';
 
 export class MariaDbAdapter implements GenericDatabaseAdapter {
     private connection!: mysql.Connection;
@@ -274,6 +275,7 @@ GROUP BY
 
     async getOTVerse(project_id: ProjectId, user_id: UserId, reference: VerseReference): Promise<VerseResponse<HebrewWordRow>> {
         try {
+            const corpus_id = await this.getCorpus(project_id, reference.canon);
             const [rows] = await this.connection.query<RowDataPacket[]>(`
 SELECT 
     _id,
@@ -324,10 +326,11 @@ ON
     ot._id = voteResults.word_id
 WHERE 
     ot.reference = ?
+    and ot.corpus = ?
 GROUP BY 
-    ot._id;`, [project_id, reference.toString()]);
+    ot._id;`, [project_id, corpus_id, reference.toString()]);
 
-            return await this.processIntoVerseResponse<HebrewWordRow>(rows, user_id, project_id, reference, 'ot');
+            return await this.processIntoVerseResponse<HebrewWordRow>(rows, user_id, project_id, reference, 'ot', corpus_id);
 
         } catch (error) {
             console.error(user_id, project_id, reference, reference);
@@ -338,6 +341,7 @@ GROUP BY
 
     async getNTVerse(project_id: ProjectId, user_id: UserId, reference: VerseReference): Promise<VerseResponse<GreekWordRow>> {
         try {
+            const corpus_id = await this.getCorpus(project_id, reference.canon);
             const [rows] = await this.connection.query<RowDataPacket[]>(`
 SELECT 
     _id,
@@ -387,11 +391,12 @@ ON
     nt._id = voteResults.word_id
 WHERE 
     nt.reference = ? 
+    and nt.corpus = ?
 GROUP BY 
     nt._id;
-`, [project_id, reference.toString()]);
+`, [project_id, reference.toString(), corpus_id]);
 
-            return await this.processIntoVerseResponse<GreekWordRow>(rows, user_id, project_id, reference, 'nt');
+            return await this.processIntoVerseResponse<GreekWordRow>(rows, user_id, project_id, reference, 'nt', corpus_id);
 
         } catch (error) {
             console.error(error);
@@ -400,9 +405,9 @@ GROUP BY
         }
     }
 
-    private async processIntoVerseResponse<T extends WordRow>(rows: RowDataPacket[], user_id: UserId, project_id: ProjectId, reference: VerseReference, databaseTable: 'ot' | 'nt'): Promise<VerseResponse<T>> {
-        const glossSuggestions = await this.getWordGlosses(project_id, reference, databaseTable);
-        const phraseGlosses = await this.getPhraseGlosses(project_id, reference);
+    private async processIntoVerseResponse<T extends WordRow>(rows: RowDataPacket[], user_id: UserId, project_id: ProjectId, reference: VerseReference, databaseTable: 'ot' | 'nt', corpus_id: CorpusId): Promise<VerseResponse<T>> {
+        const glossSuggestions = await this.getWordGlosses(project_id, reference, databaseTable, corpus_id);
+        const phraseGlosses = await this.getPhraseGlosses(project_id, reference, corpus_id);
         const words = rows.map((row) => {
             row.votes = JSON.parse(row.votes);
             return row as T;
@@ -415,7 +420,7 @@ GROUP BY
         };
     }
 
-    async getWordGlosses(project_id: ProjectId, reference: VerseReference, dataTableName: 'nt' | 'ot'): Promise<SuggestionRow[]> {
+    async getWordGlosses(project_id: ProjectId, reference: VerseReference, dataTableName: 'nt' | 'ot', corpus_id: CorpusId): Promise<SuggestionRow[]> {
         const voiceColumn = dataTableName == 'nt' ? 'voice' : 'vs';
         try {
             const [rows] = await this.connection.query<RowDataPacket[]>(`
@@ -437,10 +442,11 @@ WHERE
             ${dataTableName} 
         WHERE 
             reference = ?
+            and corpus = ?
     )
 GROUP BY 
     g.lex_id;
-                    `, [project_id, reference.toString()]);
+                    `, [project_id, reference.toString(), corpus_id]);
             return rows.map((row) => {
                 return {
                     lex_id: row.lex_id,
@@ -453,7 +459,7 @@ GROUP BY
         }
     }
 
-    async getPhraseGlosses(project_id: ProjectId, reference: VerseReference): Promise<PhraseGlossRow[]> {
+    async getPhraseGlosses(project_id: ProjectId, reference: VerseReference, corpus_id: CorpusId): Promise<PhraseGlossRow[]> {
         try {
             const [rows] = await this.connection.query<RowDataPacket[]>(`
 SELECT 
@@ -470,13 +476,13 @@ ON
     phrase_gloss._id = phrase_gloss_votes.phrase_gloss_id
 WHERE 
     project_id = ? 
-    and from_word_id in (select _id from ${reference.canon.toLowerCase()} where reference = ?)
+    and from_word_id in (select _id from ${reference.canon.toLowerCase()} where reference = ? and corpus = ?)
     and vote = 1
 GROUP BY 
     _id
 ORDER BY 
     votes DESC;
-`, [project_id, reference.toString()]);
+`, [project_id, reference.toString(), corpus_id]);
             return rows.map((row) => {
                 return {
                     phrase_gloss_id: row.phrase_gloss_id,
@@ -493,14 +499,15 @@ ORDER BY
     }
 
     async seekVerse(project_id: ProjectId, user_id: UserId, frequency_threshold: number, startingPosition: VerseReference, direction: "before" | "after", exclusivity: "me" | "anyone"): Promise<VerseReference> {
+        const corpus_id = await this.getCorpus(project_id, startingPosition.canon);
         if (exclusivity == "me") {
-            return await this.seekVerseExclusiveToMe(project_id, user_id, frequency_threshold, startingPosition, direction);
+            return await this.seekVerseExclusiveToMe(project_id, corpus_id, user_id, frequency_threshold, startingPosition, direction);
         } else {
-            return await this.seekVerseExclusiveAnyone(project_id, user_id, frequency_threshold, startingPosition, direction);
+            return await this.seekVerseExclusiveAnyone(project_id, corpus_id, user_id, frequency_threshold, startingPosition, direction);
         }
     }
 
-    private async seekVerseExclusiveToMe(project_id: ProjectId, user_id: UserId, frequency_threshold: number, startingPosition: VerseReference, direction: "before" | "after"): Promise<VerseReference> {
+    private async seekVerseExclusiveToMe(project_id: ProjectId, corpus_id: CorpusId, user_id: UserId, frequency_threshold: number, startingPosition: VerseReference, direction: "before" | "after"): Promise<VerseReference> {
         try {
             // console.info(`Seeking verse for user ${user_id} in project ${project_id} starting at ${startingPosition} in direction ${direction} with exclusivity ${exclusivity} and frequency threshold ${frequency_threshold}`);
 
@@ -521,11 +528,12 @@ ORDER BY
             AND 
             ${canon}.freq_lex < ? 
             AND 
-            ${canon}._id ${greaterThanLessThan} (SELECT ${minMax}(_id) FROM ${canon} WHERE reference=? ) 
+            ${canon}._id ${greaterThanLessThan} (SELECT ${minMax}(_id) FROM ${canon} WHERE reference=? and ${canon}.corpus = ? ) 
+            and ${canon}.corpus = ?
         ORDER BY ${canon}._id ${orderDirection} 
         LIMIT 1;`;
 
-            const [rows] = await this.connection.query<RowDataPacket[]>(query, [project_id, user_id, frequency_threshold.toString(), startingPosition.toString()]);
+            const [rows] = await this.connection.query<RowDataPacket[]>(query, [project_id, user_id, frequency_threshold.toString(), startingPosition.toString(), corpus_id, corpus_id]);
             if (rows.length === 0) {
                 return this.boundaryVerse(startingPosition.canon, direction);
             }
@@ -543,7 +551,7 @@ ORDER BY
         }
     }
 
-    private async seekVerseExclusiveAnyone(project_id: ProjectId, user_id: UserId, frequency_threshold: number, startingPosition: VerseReference, direction: "before" | "after"): Promise<VerseReference> {
+    private async seekVerseExclusiveAnyone(project_id: ProjectId, corpus_id: CorpusId, user_id: UserId, frequency_threshold: number, startingPosition: VerseReference, direction: "before" | "after"): Promise<VerseReference> {
         try {
             const orderDirection = direction === "before" ? "DESC" : "ASC";
             const greaterThanLessThan = direction === "before" ? "<" : ">";
@@ -560,14 +568,15 @@ ORDER BY
                             WHERE
                                 ${canon}.freq_lex < ?
                                 AND
-                                ${canon}._id ${greaterThanLessThan} (SELECT ${minMax}(_id) FROM ${canon} WHERE reference=?)
+                                ${canon}._id ${greaterThanLessThan} (SELECT ${minMax}(_id) FROM ${canon} WHERE reference=? and ${canon}.corpus = ? )
+                                and ${canon}.corpus = ?
                             group by ${canon}._id
                             having vote_count = 0 
                             order by ${canon}._id ${orderDirection}
                             limit 1
                         ;`;
 
-            const [rows] = await this.connection.query<RowDataPacket[]>(query, [project_id, project_id, frequency_threshold.toString(), startingPosition.toString()]);
+            const [rows] = await this.connection.query<RowDataPacket[]>(query, [project_id, project_id, frequency_threshold.toString(), startingPosition.toString(), corpus_id, corpus_id]);
             if (rows.length === 0) {
                 return this.boundaryVerse(startingPosition.canon, direction);
             }
@@ -591,6 +600,19 @@ ORDER BY
             return canonData.firstVerseOfCanon();
         } else {
             return canonData.lastVerseOfCanon();
+        }
+    }
+
+    async getCorpus(project_id: ProjectId, canon: Canon): Promise<CorpusId> {
+        try {
+            const [rows] = await this.connection.query<RowDataPacket[]>(`SELECT JSON_EXTRACT(settings,'$.corpora') FROM project WHERE project.project_id=?;`, [project_id]);
+            if (rows.length === 0 || rows[0][canon] === undefined) {
+                return getFallbackCorpus(canon); /// if it's not defined, just return the default
+            }
+            return rows[0][canon];
+        } catch (err) {
+            console.error(err);
+            return getFallbackCorpus(canon);
         }
     }
 
@@ -722,6 +744,7 @@ ORDER BY
 
     async checkForMissingGlosses(request: PublicationRequest, bid: BookIdentifier): Promise<string[]> {
         const canon = bid.canon.toLowerCase(); /// in Linux, MariaDB table names can be case sensitive
+        const corpus_id = await this.getCorpus(request.project.project_id, bid.canon);
         const queryString = `SELECT DISTINCT ${canon}.reference FROM ${canon} 
                                     LEFT JOIN votes
                                         ON ${canon}._id = votes.word_id  AND votes.project_id = ? 
@@ -730,13 +753,14 @@ ORDER BY
                                     WHERE 
                                         ${canon}.reference LIKE '${canon} ${bid.book}%' 
                                         AND ${canon}.freq_lex < ?	
+                                        AND ${canon}.corpus = ? 
                                     GROUP BY ${canon}._id 
                                     HAVING SUM(IFNULL(vote,0)) < 1 OR SUM(IFNULL(vote,0)) IS NULL
                                     ORDER BY ${canon}._id ASC
                                     LIMIT 10;`;
 
         const frequency_threshold = request.frequency_thresholds.get(bid.canon);
-        const [rows] = await this.connection.query<RowDataPacket[]>(queryString, [request.project.project_id, frequency_threshold]);
+        const [rows] = await this.connection.query<RowDataPacket[]>(queryString, [request.project.project_id, frequency_threshold, corpus_id]);
         return rows.map((row) => row.reference);
     }
 
@@ -786,6 +810,7 @@ ORDER BY
     }
 
     async getOTBook(project_id: ProjectId, bid: BookIdentifier): Promise<PublicationBook<PublicationHebrewWordElementRow>> {
+        const corpus_id = await this.getCorpus(project_id, bid.canon);
         const content = await this.getDatabaseRows<PublicationHebrewWordElementRow>(project_id, bid, `SELECT ot._id,g_word_utf8, trailer_utf8, voc_lex_utf8, gn, nu, st, vt, vs, ps, pdp, freq_lex, gloss.gloss AS gloss, qere_utf8, kq_hybrid_utf8, prs_gn, prs_nu, prs_ps, ot.reference,ot.lex_id,
 IF( count(from_word_id) = 0, JSON_ARRAY(),
 JSON_ARRAYAGG( DISTINCT JSON_OBJECT('from_word_id', from_word_id, 'to_word_id', to_word_id, 'markdown', phrase_gloss.markdown) )) AS phrasalGlosses
@@ -799,12 +824,14 @@ FROM ot
                         AND phrase_gloss.project_id = ? 
                     WHERE 
                         ot.reference LIKE '${bid.canon} ${bid.book}%' 
+                        and ot.corpus = '${corpus_id}' 
                     GROUP BY ot._id
                     ORDER BY ot._id ASC;`);
         return new PublicationBook<PublicationHebrewWordElementRow>(content);
     }
 
     async getNTBook(project_id: ProjectId, bid: BookIdentifier): Promise<PublicationBook<PublicationGreekWordElementRow>> {
+        const corpus_id = await this.getCorpus(project_id, bid.canon);
         const content = await this.getDatabaseRows<PublicationGreekWordElementRow>(project_id, bid, `SELECT nt._id,punctuated_text, unpunctuated_text, lemma, part_of_speech, person, tense, voice, mood, grammatical_case, grammatical_number, gender, degree, freq_lex, nt.reference,nt.lex_id, gloss.gloss AS gloss,
             IF( count(from_word_id) = 0, JSON_ARRAY(),
                 JSON_ARRAYAGG( DISTINCT JSON_OBJECT('from_word_id', from_word_id, 'to_word_id', to_word_id, 'markdown', phrase_gloss.markdown) )) AS phrasalGlosses
@@ -818,26 +845,28 @@ FROM ot
                         AND phrase_gloss.project_id = ? 
                     WHERE 
                         nt.reference LIKE '${bid.canon} ${bid.book}%' 
+                        and nt.corpus = '${corpus_id}' 
                     GROUP BY nt._id 
                     ORDER BY nt._id ASC;`);
         return new PublicationBook<PublicationGreekWordElementRow>(content);
     }
     async getStats(project_id: ProjectId, canoncanon: Canon, book?: UbsBook): Promise<StatsSummary> {
+        const corpus_id = await this.getCorpus(project_id, canoncanon);
         const canon = canoncanon.toLowerCase(); /// in Linux, MariaDB table names can be case sensitive
         const project = await this.getProjectFromId(project_id);
         const frequency_threshold = project.getFrequencyThreshold(canoncanon);
         // const bookClause = book ? ` and ${canon}.reference LIKE '${canon} ${book}%' ` : ` `;
         const bookClause = book ? ` and reference LIKE '${canon} ${book}%' ` : ` `;
 
-        let query = `select count(distinct lex_id) as tally from ${canon} where freq_lex < ? ${bookClause}`;
-        let [result] = await this.connection.query<RowDataPacket[]>(query, [frequency_threshold]);
+        let query = `select count(distinct lex_id) as tally from ${canon} where freq_lex < ? ${bookClause} and corpus=?`;
+        let [result] = await this.connection.query<RowDataPacket[]>(query, [frequency_threshold, corpus_id]);
         if (result.length === 0 || result[0].tally === undefined) {
             return InternalFailure("Error retrieving stats data");
         }
         const totalLexicalItems = result[0].tally as number;
 
-        query = `select count(distinct lex_id) as tally from gloss where project_id=? and lex_id in (select lex_id from ${canon} where freq_lex < ? ${bookClause});`;
-        [result] = await this.connection.query<RowDataPacket[]>(query, [project_id, frequency_threshold]);
+        query = `select count(distinct lex_id) as tally from gloss where project_id=? and lex_id in (select lex_id from ${canon} where freq_lex < ? ${bookClause} and corpus=?);`;
+        [result] = await this.connection.query<RowDataPacket[]>(query, [project_id, frequency_threshold, corpus_id]);
         if (result.length === 0 || result[0].tally === undefined) {
             console.error(query);
             console.error(result);
@@ -845,8 +874,8 @@ FROM ot
         }
         const lexicalItemsWithGloss = result[0].tally as number;
 
-        query = `select count(_id) as tally from ${canon} where freq_lex < ? ${bookClause};`;
-        [result] = await this.connection.query<RowDataPacket[]>(query, [frequency_threshold]);
+        query = `select count(_id) as tally from ${canon} where freq_lex < ? ${bookClause} and corpus=?;`;
+        [result] = await this.connection.query<RowDataPacket[]>(query, [frequency_threshold, corpus_id]);
         if (result.length === 0 || result[0].tally === undefined) {
             console.error(query);
             console.error(result);
@@ -854,8 +883,8 @@ FROM ot
         }
         const totalWords = result[0].tally as number;
 
-        query = `select count(distinct word_id) as tally from votes where project_id=? and word_id in (select _id from ${canon} where freq_lex < ? ${bookClause});`;
-        [result] = await this.connection.query<RowDataPacket[]>(query, [project_id, frequency_threshold]);
+        query = `select count(distinct word_id) as tally from votes where project_id=? and word_id in (select _id from ${canon} where freq_lex < ? ${bookClause} and corpus=?);`;
+        [result] = await this.connection.query<RowDataPacket[]>(query, [project_id, frequency_threshold, corpus_id]);
         if (result.length === 0 || result[0].tally === undefined) {
             console.error(query);
             console.error(result);
@@ -863,8 +892,8 @@ FROM ot
         }
         const wordsWithGlosses = result[0].tally as number;
 
-        query = `select count(_id) as tally from ${canon} where _id not in (select word_id from votes where project_id=?) and lex_id in (select lex_id from gloss where project_id=?) ${bookClause};`;
-        [result] = await this.connection.query<RowDataPacket[]>(query, [project_id, project_id]);
+        query = `select count(_id) as tally from ${canon} where corpus=? AND _id not in (select word_id from votes where project_id=?) and lex_id in (select lex_id from gloss where project_id=?) ${bookClause};`;
+        [result] = await this.connection.query<RowDataPacket[]>(query, [corpus_id, project_id, project_id]);
         if (result.length === 0 || result[0].tally === undefined) {
             console.error(query);
             console.error(result);

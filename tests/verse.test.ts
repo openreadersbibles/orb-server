@@ -180,7 +180,6 @@ describe('Verse Endpoints Tests', () => {
 
             expect(response.status).toBe(200);
             const parsedJson = JSON.parse(response.body);
-            console.log(parsedJson.words[16].votes[0]);
             GetNTVerseResponseSchema.parse(parsedJson);
             const verse = Verse.fromNTVerseResponse(ref, parsedJson);
             /// Elias is the 0-indexed 16th word in the verse

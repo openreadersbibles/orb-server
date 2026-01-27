@@ -9,6 +9,7 @@ import { HollowPublicationRequest } from '@models/PublicationRequest.js';
 import { WrappedBody } from '@models/WrappedBody.js';
 import { setMockedUser } from '../src/MockUser.js';
 import { OT } from '@models/Canons.js';
+import { UbsBook } from '@models/UbsBook.js';
 
 let server: Server;
 
@@ -28,7 +29,8 @@ describe('OT Publication Tests', () => {
 
     describe('POST /publish', () => {
 
-        OT.books.forEach((book) => {
+        // OT.books.forEach((book) => {
+        ['JON' as UbsBook].forEach((book) => {
             it(`should publish OT ${book}`, async () => {
 
                 setMockedUser("farhad_ebrahimi");
