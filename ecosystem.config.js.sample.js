@@ -12,7 +12,7 @@ module.exports = {
                 RDS_HOST: 'localhost',
                 MARIADB_USER: 'orb',
                 MARIADB_PASSWORD: 'SECRET',
-                RDS_DATABASE: 'openreadersbibles',
+                RDS_DATABASE: 'openreadersbibles-dev',
                 RDS_PORT: 3306,
                 GITHUB_SECRET: 'SECRET',
                 GOOGLE_FONTS_API_SECRET: 'SECRET'
@@ -27,7 +27,7 @@ module.exports = {
                 RDS_HOST: 'localhost',
                 MARIADB_USER: 'orb',
                 MARIADB_PASSWORD: 'SECRET',
-                RDS_DATABASE: 'openreadersbibles-dev',
+                RDS_DATABASE: 'openreadersbibles-prod',
                 RDS_PORT: 3306,
                 GITHUB_SECRET: 'SECRET',
                 GOOGLE_FONTS_API_SECRET: 'SECRET'
