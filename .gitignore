@@ -17,3 +17,4 @@ tests/.env
 src/dist/**
 tests/tokens/farhad_ebrahimi-auth.json
 tests/tokens/orbadmin-auth.json
+PRIVATE.md
