@@ -276,7 +276,7 @@ GROUP BY
     async getOTVerse(project_id: ProjectId, user_id: UserId, reference: VerseReference): Promise<VerseResponse<HebrewWordRow>> {
         try {
             const corpus_id = await this.getCorpus(project_id, reference.canon);
-            const [rows] = await this.connection.query<RowDataPacket[]>(`
+            const query = `
 SELECT 
     _id,
     freq_lex,
@@ -328,8 +328,10 @@ WHERE
     ot.reference = ?
     and ot.corpus = ?
 GROUP BY 
-    ot._id;`, [project_id, corpus_id, reference.toString()]);
-
+    ot._id;`;
+            const boundValues = [project_id, reference.toString(), corpus_id];
+            const [rows] = await this.connection.query<RowDataPacket[]>(query, boundValues);
+            // console.log(mysql.format(query, boundValues))
             return await this.processIntoVerseResponse<HebrewWordRow>(rows, user_id, project_id, reference, 'ot', corpus_id);
 
         } catch (error) {
