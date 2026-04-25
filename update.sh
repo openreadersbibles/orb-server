@@ -20,7 +20,9 @@ git pull
 cd ~/orb-server-prod/orb-server
 git stash
 git pull
+npm prune
 npm install
+npm update
 npm run build
 
 # Pull the latest development branch server, build it, etc.
@@ -34,7 +36,9 @@ git pull
 cd ~/orb-server-dev/orb-server
 git stash
 git pull
+npm prune
 npm install
+npm update
 npm run build
 
 cd ~
