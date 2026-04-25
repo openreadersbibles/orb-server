@@ -140,6 +140,7 @@ export class Publisher {
             }
             files.push({ path: this.dumpFilename(bid), content: JSON.stringify(pb.toJsonObject(), null, 2) });
 
+            /// Convert the book dump to TEI format
             const tei = pb.toTEI(this._request);
             files.push({ path: this.addPublicationConfigurationFolder(this.teiFilename(bid)), content: tei, pb: pb });
 

@@ -824,6 +824,7 @@ FROM ot
                         LEFT JOIN phrase_gloss 
                         ON phrase_gloss.from_word_id = ot._id 
                         AND phrase_gloss.project_id = ? 
+                        AND (SELECT vote FROM phrase_gloss_votes WHERE phrase_gloss._id = phrase_gloss_votes.phrase_gloss_id ) > 0 
                     WHERE 
                         ot.reference LIKE '${bid.canon} ${bid.book}%' 
                         and ot.corpus = '${corpus_id}' 
@@ -845,6 +846,7 @@ FROM ot
                         LEFT JOIN phrase_gloss 
                         ON phrase_gloss.from_word_id = nt._id 
                         AND phrase_gloss.project_id = ? 
+                        AND (SELECT vote FROM phrase_gloss_votes WHERE phrase_gloss._id = phrase_gloss_votes.phrase_gloss_id ) > 0
                     WHERE 
                         nt.reference LIKE '${bid.canon} ${bid.book}%' 
                         and nt.corpus = '${corpus_id}' 
