@@ -9,6 +9,9 @@
 # Exit immediately if a command exits with a non-zero status.
 set -e
 
+# Stop the processes so I can delete the folders
+pm2 stop all
+
 # Pull the latest production branch server, build it, etc.
 # First time:
 # cd ~ && mkdir orb-server-prod
@@ -20,9 +23,7 @@ git pull
 cd ~/orb-server-prod/orb-server
 git stash
 git pull
-npm prune
-npm install
-npm update
+npm ci
 npm run build
 
 # Pull the latest development branch server, build it, etc.
@@ -36,9 +37,7 @@ git pull
 cd ~/orb-server-dev/orb-server
 git stash
 git pull
-npm prune
-npm install
-npm update
+npm ci
 npm run build
 
 cd ~
