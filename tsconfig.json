@@ -18,7 +18,10 @@
     "paths": {
       "@models/*": [
         "../models/*"
-      ]
+      ],
+      "@lib/FootnoteTypeResolver": [
+        "../models/publication/FootnoteTypeResolver.ts"
+      ],
     }
   },
   "include": [
