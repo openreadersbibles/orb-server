@@ -22,6 +22,9 @@
       "@lib/FootnoteTypeResolver": [
         "../models/publication/FootnoteTypeResolver.ts"
       ],
+      "@lib/logger": [
+        "./src/logger.ts"
+      ],
     }
   },
   "include": [
